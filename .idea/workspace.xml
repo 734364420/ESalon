@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="bbf3ffbc-e6fd-4ced-98da-76b3afefdd73" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php" afterPath="$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Academic/Model/WeixinAddonModel.class.php" afterPath="$PROJECT_DIR$/Addons/Academic/Model/WeixinAddonModel.class.php" />
     </list>
     <ignored path="weiphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,8 +40,8 @@
       <file leaf-file-name="AcademicController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1800643" vertical-offset="0" max-vertical-offset="622">
-              <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+            <state vertical-scroll-proportion="0.15434083" vertical-offset="0" max-vertical-offset="622">
+              <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -245,7 +244,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -423,8 +422,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1800643" vertical-offset="0" max-vertical-offset="622">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.15434083" vertical-offset="0" max-vertical-offset="622">
+          <caret line="6" column="28" selection-start-line="6" selection-start-column="28" selection-end-line="6" selection-end-column="28" />
           <folding />
         </state>
       </provider>
