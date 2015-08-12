@@ -131,8 +131,6 @@ var  ROOT = "";
   </div>
 <div class="main_body">
 	
-  <script type="text/javascript" src="/Public/static/uploadify/jquery.uploadify.min.js"></script>
-  <!-- 标签页导航 -->
   <div class="span9 page_message">
     <section id="contents">
       <ul class="tab-nav nav">
@@ -148,13 +146,13 @@ var  ROOT = "";
 <?php if(!empty($normal_tips)): ?><p class="normal_tips"><b class="fa fa-info-circle"></b> <?php echo ($normal_tips); ?></p><?php endif; ?>
       <div class="tab-content"> 
         <!-- 表单 -->
-        <?php $post_url || $post_url = U('edit?model='.$model['id'], $get_param); ?>
-        <form id="form" action="<?php echo $post_url;?>" method="post" class="form-horizontal form-center">
+        <?php $post_url || $post_url = U('add?model='.$model['id'], $get_param); ?>
+        <form id="form" action="<?php echo ($post_url); ?>" method="post" class="form-horizontal form-center">
           <!-- 基础文档模型 -->
           <?php $_result=parse_config_attr($model['field_group']);if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$group): $mod = ($i % 2 );++$i;?><div id="tab<?php echo ($key); ?>" class="tab-pane <?php if(($key) == "1"): ?>in<?php endif; ?>
               tab<?php echo ($key); ?>">
-              <?php if(is_array($fields[$key])): $i = 0; $__LIST__ = $fields[$key];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$field): $mod = ($i % 2 );++$i; if($field['is_show'] == 4): ?><input type="hidden" class="text input-large" name="<?php echo ($field["name"]); ?>" value="<?php echo ($data[$field['name']]); ?>"><?php endif; ?>
-                <?php if($field['is_show'] == 1 || $field['is_show'] == 3 || ($field['is_show'] == 5 && I($field['name']) )): ?><div class="form-item cf toggle-<?php echo ($field["name"]); ?>">
+              <?php if(is_array($fields[$key])): $i = 0; $__LIST__ = $fields[$key];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$field): $mod = ($i % 2 );++$i; if($field['is_show'] == 4): ?><input type="hidden" class="text input-large" name="<?php echo ($field["name"]); ?>" value="<?php echo I($field[name], $field[value]);?>"><?php endif; ?>
+                <?php if($field['is_show'] == 1 || $field['is_show'] == 2 || ($field['is_show'] == 5 && I($field['name']))): ?><div class="form-item cf toggle-<?php echo ($field["name"]); ?>">
                     <label class="item-label">
                     <?php if(!empty($field["is_must"])): ?><span class="need_flag">*</span><?php endif; ?>
                     <?php echo ($field['title']); ?>
@@ -162,57 +160,55 @@ var  ROOT = "";
                       <?php if(!empty($field['remark'])): ?>（<?php echo ($field['remark']); ?>）<?php endif; ?>
                       </span></label>
                     <div class="controls">
-                      <?php switch($field["type"]): case "num": ?><input type="number" class="text input-medium" name="<?php echo ($field["name"]); ?>" value="<?php echo ($data[$field['name']]); ?>"><?php break;?>
-                        <?php case "string": ?><input type="text" class="text input-large" name="<?php echo ($field["name"]); ?>" value="<?php echo ($data[$field['name']]); ?>"><?php break;?>
+                      <?php switch($field["type"]): case "num": ?><input type="number" class="text input-medium" name="<?php echo ($field["name"]); ?>" value="<?php echo I($field[name], $field[value]);?>"><?php break;?>
+                        <?php case "string": ?><input type="text" class="text input-large" name="<?php echo ($field["name"]); ?>" value="<?php echo I($field[name], $field[value]);?>"><?php break;?>
                         <?php case "textarea": ?><label class="textarea input-large">
-                            <textarea name="<?php echo ($field["name"]); ?>"><?php echo ($data[$field['name']]); ?></textarea>
+                            <textarea name="<?php echo ($field["name"]); ?>"><?php echo I($field[name], $field[value]);?></textarea>
                           </label><?php break;?>
-                        <?php case "datetime": ?><input type="datetime" name="<?php echo ($field["name"]); ?>" class="text input-large time" value="<?php echo (time_format($data[$field['name']])); ?>" placeholder="请选择时间" /><?php break;?>
-                        <?php case "date": ?><input type="datetime" name="<?php echo ($field["name"]); ?>" class="text input-large date" value="<?php echo (time_format($data[$field['name']],'Y-m-d')); ?>" placeholder="请选择时间" /><?php break;?>                        
+                        <?php case "datetime": ?><input type="datetime" name="<?php echo ($field["name"]); ?>" class="text input-large time" value="<?php echo I($field[name], $field[value]);?>" placeholder="请选择时间" /><?php break;?>
+                        <?php case "date": ?><input type="datetime" name="<?php echo ($field["name"]); ?>" class="text input-large date" value="<?php echo I($field[name], $field[value]);?>" placeholder="请选择日期" /><?php break;?>                        
                         <?php case "bool": ?><select name="<?php echo ($field["name"]); ?>">
                             <?php $_result=parse_field_attr($field['extra']);if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($key); ?>" class="toggle-data" toggle-data="<?php echo (get_hide_attr($vo)); ?>"
-                              <?php if(($data[$field['name']]) == $key): ?>selected<?php endif; ?>
+                              <?php if(($field["value"]) == $key): ?>selected<?php endif; ?>
                               ><?php echo (clean_hide_attr($vo)); ?>
                               </option><?php endforeach; endif; else: echo "" ;endif; ?>
                           </select><?php break;?>
                         <?php case "select": ?><select name="<?php echo ($field["name"]); ?>">
                             <?php $_result=parse_field_attr($field['extra']);if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($key); ?>" class="toggle-data" toggle-data="<?php echo (get_hide_attr($vo)); ?>"
-                              <?php if(($data[$field['name']]) == $key): ?>selected<?php endif; ?>
+                              <?php if(($field["value"]) == $key): ?>selected<?php endif; ?>
                               ><?php echo (clean_hide_attr($vo)); ?>
                               </option><?php endforeach; endif; else: echo "" ;endif; ?>
                           </select><?php break;?>
                         <?php case "cascade": ?><div id="cascade_<?php echo ($field["name"]); ?>"></div>
-                        <?php echo hook('cascade', array('name'=>$field['name'],'value'=>$data[$field['name']],'extra'=>$field['extra'])); break;?>                          
+                        <?php echo hook('cascade', array('name'=>$field['name'],'value'=>$field['value'],'extra'=>$field['extra'])); break;?>                        
                         <?php case "radio": $_result=parse_field_attr($field['extra']);if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="check-item">
 							<!--[if !IE]><!-->  
 								  <input type="radio" class="regular-radio toggle-data" value="<?php echo ($key); ?>" id="<?php echo ($field["name"]); ?>_<?php echo ($key); ?>" name="<?php echo ($field["name"]); ?>" toggle-data="<?php echo (get_hide_attr($vo)); ?>"
-								  <?php if(($data[$field['name']]) == $key): ?>checked="checked"<?php endif; ?> />
+								  <?php if(($field["value"]) == $key): ?>checked<?php endif; ?> />
 								  <label for="<?php echo ($field["name"]); ?>_<?php echo ($key); ?>"></label><?php echo (clean_hide_attr($vo)); ?> 
-							  <!--<![endif]-->
+							   <!--<![endif]-->
 							   <!--[if IE]>
 							       <input type="radio" value="<?php echo ($key); ?>" 
 								   id="<?php echo ($field["name"]); ?>_<?php echo ($key); ?>" name="<?php echo ($field["name"]); ?>" class="toggle-data" toggle-data="<?php echo (get_hide_attr($vo)); ?>"
-								  <?php if(($data[$field['name']]) == $key): ?>checked="checked"<?php endif; ?>/> 
+								  <?php if(($field["value"]) == $key): ?>checked="checked"<?php endif; ?> />
 								  <label for="<?php echo ($field["name"]); ?>_<?php echo ($key); ?>"></label><?php echo (clean_hide_attr($vo)); ?>
 							   <![endif]-->
                              </div><?php endforeach; endif; else: echo "" ;endif; break;?>
                         <?php case "checkbox": $_result=parse_field_attr($field['extra']);if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><div class="check-item">
                               <input type="checkbox" class="regular-checkbox toggle-data" value="<?php echo ($key); ?>" id="<?php echo ($field["name"]); ?>_<?php echo ($key); ?>" name="<?php echo ($field["name"]); ?>[]" toggle-data="<?php echo (get_hide_attr($vo)); ?>"
-                              <?php if(in_array(($key), is_array($data[$field['name']])?$data[$field['name']]:explode(',',$data[$field['name']]))): ?>checked="checked"<?php endif; ?> >
+                              <?php if(in_array(($key), is_array($field['value'])?$field['value']:explode(',',$field['value']))): ?>checked="checked"<?php endif; ?> >
                               <label for="<?php echo ($field["name"]); ?>_<?php echo ($key); ?>"></label><?php echo (clean_hide_attr($vo)); ?> 
-                             </div><?php endforeach; endif; else: echo "" ;endif; break;?>
+                              </div><?php endforeach; endif; else: echo "" ;endif; break;?>
                         <?php case "editor": ?><label class="textarea">
-                            <textarea name="<?php echo ($field["name"]); ?>"><?php echo ($data[$field['name']]); ?></textarea>
-                            <?php echo hook('adminArticleEdit', array('name'=>$field['name'],'value'=>$data[$field['name']]));?> </label><?php break;?>
+                            <textarea name="<?php echo ($field["name"]); ?>"></textarea>
+                            <?php echo hook('adminArticleEdit', array('name'=>$field['name'],'value'=>$field['value']));?> </label><?php break;?>
                         <?php case "picture": ?><div class="controls uploadrow2" title="点击修改图片">
                             <input type="file" id="upload_picture_<?php echo ($field["name"]); ?>">
-                            <input type="hidden" name="<?php echo ($field["name"]); ?>" id="cover_id_<?php echo ($field["name"]); ?>" value="<?php echo ($data[$field['name']]); ?>"/>
-                            
+                            <input type="hidden" name="<?php echo ($field["name"]); ?>" id="cover_id_<?php echo ($field["name"]); ?>"/>
                             <div class="upload-img-box">
                               <?php if(!empty($data[$field['name']])): ?><div class="upload-pre-item2"><img width="180" height="100" src="<?php echo (get_cover($data[$field['name']],'path')); ?>"/></div><?php endif; ?>
                             </div>
                           </div>
-                         
                           <script type="text/javascript">
 								//上传图片
 							    /* 初始化上传插件 */
@@ -240,17 +236,17 @@ var  ROOT = "";
 							        } else {
 							        	updateAlert(data.info);
 							        	setTimeout(function(){
-							                $('#top-alert').find('.close').click();
+							                $('#top-alert').find('button').click();
 							                $(that).removeClass('disabled').prop('disabled',false);
 							            },1500);
 							        }
 							    }
 								</script><?php break;?>
                         <?php case "file": ?><div class="controls upload_file">
-                            <input type="file" id="upload_file_<?php echo ($field["name"]); ?>">
+                            <input type="file" id="upload_file_<?php echo ($field["name"]); ?>" title="点击修改文件">
                             <input type="hidden" name="<?php echo ($field["name"]); ?>" value="<?php echo ($data[$field['name']]); ?>"/>
                             <div class="upload-img-box">
-                              <?php if(isset($data[$field['name']])): ?><div class="upload-pre-file"><span class="upload_icon_all"></span><?php echo (get_table_field($data[$field['name']],'id','name','File')); ?></div><?php endif; ?>
+                              <?php if(isset($data[$field['name']])): ?><div class="upload-pre-file"><span class="upload_icon_all"></span><?php echo ($data[$field['name']]); ?></div><?php endif; ?>
                             </div>
                           </div>
                           <script type="text/javascript">
@@ -274,7 +270,6 @@ var  ROOT = "";
 							        	$("input[name="+name+"]").parent().find('.upload-img-box').html(
 							        		"<div class=\"upload-pre-file\"><span class=\"upload_icon_all\"></span>" + data.name + "</div>"
 							        	);
-										
 							        } else {
 							        	updateAlert(data.info);
 							        	setTimeout(function(){
@@ -285,15 +280,15 @@ var  ROOT = "";
 							    }
 								</script><?php break;?>
                         <?php default: ?>
-                        <input type="text" class="text input-large" name="<?php echo ($field["name"]); ?>" value="<?php echo ($data[$field['name']]); ?>"><?php endswitch;?>
+                        <input type="text" class="text input-large" name="<?php echo ($field["name"]); ?>" value="<?php echo I($field[name], $field[value]);?>"><?php endswitch;?>
                     </div>
-                  </div><?php endif; endforeach; endif; else: echo "" ;endif; ?>
-            </div><?php endforeach; endif; else: echo "" ;endif; ?>
+                  </div><?php endif; endforeach; endif; else: echo "" ;endif; endforeach; endif; else: echo "" ;endif; ?>
           <div class="form-item cf">
-            <?php if(!empty($data["id"])): ?><input type="hidden" name="id" value="<?php echo ($data["id"]); ?>"><?php endif; ?>
             <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal"><?php echo ((isset($submit_name) && ($submit_name !== ""))?($submit_name):'确 定'); ?></button>
-          </div>
+             </div>
+             
         </form>
+        </div>
         <!--通用的微信预览模板-->
 <!--头部标题栏-->
 <!--鉴于样式title放进具体每块模块-->
@@ -384,14 +379,15 @@ $('textarea[name="intro"]').keyup(function(){
     <link href="/Public/static/datetimepicker/css/datetimepicker_blue.css?v=<?php echo SITE_VERSION;?>" rel="stylesheet" type="text/css">
     '; ?>
   <link href="/Public/static/datetimepicker/css/dropdown.css?v=<?php echo SITE_VERSION;?>" rel="stylesheet" type="text/css">
-  <script type="text/javascript" src="/Public/static/datetimepicker/js/bootstrap-datetimepicker.min.js"></script> 
+  <script type="text/javascript" src="/Public/static/datetimepicker/js/bootstrap-datetimepicker.js"></script> 
   <script type="text/javascript" src="/Public/static/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js?v=<?php echo SITE_VERSION;?>" charset="UTF-8"></script> 
   <script type="text/javascript">
 $('#submit').click(function(){
     $('#form').submit();
 });
 
-$(function(){    $('.time').datetimepicker({
+$(function(){
+    $('.time').datetimepicker({
         format: 'yyyy-mm-dd hh:ii',
         language:"zh-CN",
         minView:0,
@@ -414,7 +410,16 @@ $(function(){    $('.time').datetimepicker({
 		 }
 	});
 	
-	$('.toggle-data').bind("click",function(){ change_event(this) });
+	$('select[name=type]').change(function(){
+		$('.toggle-data').each(function(){
+			var data = $(this).attr('toggle-data');
+			if(data=='') return true;		
+			
+			 if($(this).is(":selected") || $(this).is(":checked")){
+				 change_event(this)
+			 }
+		});
+	});
 });
 </script> 
  <!-- 用于加载js代码 -->

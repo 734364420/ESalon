@@ -87,62 +87,25 @@
             
 
             
-	<!-- 标题栏 -->
-	<div class="main-title">
-		<h2>模型列表</h2>
-
-	</div>
-    <div class="tools">
-        <a class="btn" href="<?php echo U('Model/add');?>">新 增</a>
-        <button class="btn ajax-post" target-form="ids" url="<?php echo U('Model/setStatus',array('status'=>1));?>">启 用</button>
-        <button class="btn ajax-post" target-form="ids" url="<?php echo U('Model/setStatus',array('status'=>0));?>">禁 用</button>
-        <a class="btn" href="<?php echo U('Model/generate');?>">生 成</a>
-        <a class="btn" href="<?php echo U('Model/add_comon_model');?>" title="包括关键词、关键词类型、Token、发布时间等常用字段的模型">一键新增微信插件常用模型</a>
+    <div class="main-title">
+        <h2>编辑 <?php echo ($data["title"]); ?> 分类</h2>
     </div>
-
-	<!-- 数据列表 -->
-	<div class="data-table">
-        <div class="data-table table-striped">
-<table class="">
-    <thead>
-        <tr>
-		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
-		<th class="">编号</th>
-		<th class="">标识</th>
-		<th class="">名称</th>
-		<th class="">创建时间</th>
-		<th class="">状态</th>
-		<th class="">操作</th>
-		</tr>
-    </thead>
-    <tbody>
-	<?php if(!empty($_list)): if(is_array($_list)): $i = 0; $__LIST__ = $_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-            <td><input class="ids" type="checkbox" name="ids[]" value="<?php echo ($vo["id"]); ?>" /></td>
-			<td><?php echo ($vo["id"]); ?> </td>
-			<td><?php echo ($vo["name"]); ?></td>
-			<td><a data-id="<?php echo ($vo["id"]); ?>" href="<?php echo U('model/edit?id='.$vo['id']);?>#2"><?php echo ($vo["title"]); ?></a></td>
-			<td><span><?php echo (time_format($vo["create_time"])); ?></span></td>
-			<td><?php echo ($vo["status_text"]); ?></td>
-			<td>
-				<a href="<?php echo U('think/lists?model='.$vo['name']);?>">数据</a>
-				<a href="<?php echo U('model/setstatus?ids='.$vo['id'].'&status='.abs(1-$vo['status']));?>" class="ajax-get"><?php echo (show_status_op($vo["status"])); ?></a>
-				<a href="<?php echo U('model/edit?id='.$vo['id']);?>#2">编辑</a>
-				<a href="<?php echo U('model/del?ids='.$vo['id']);?>" class="confirm ajax-get">删除</a>
-                <a href="<?php echo U('model/export?type=0&id='.$vo['id']);?>">导出安装文件</a>
-                <a href="<?php echo U('model/export?type=1&id='.$vo['id']);?>">导出卸载文件</a>
-                <a href="<?php echo U('attribute/index?model_id='.$vo['id']);?>">字段管理</a>
-            </td>
-		</tr><?php endforeach; endif; else: echo "" ;endif; ?>
-		<?php else: ?>
-		<td colspan="7" class="text-center"> aOh! 暂时还没有内容! </td><?php endif; ?>
-	</tbody>
-    </table>
-
+    <form action="<?php echo U();?>" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">请选择分类</label>
+            <div class="controls">
+                  <select name="cate_id">
+                  <option value="0" <?php if(($data['cate_id']) == "0"): ?>selected<?php endif; ?>>无分类</option>
+                      <?php if(is_array($categorys)): $i = 0; $__LIST__ = $categorys;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>" <?php if(($data['cate_id']) == "vo.id"): ?>selected<?php endif; ?>><?php echo ($vo["title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                  </select>
+            </div>
         </div>
-    </div>
-    <div class="page">
-        <?php echo ($_page); ?>
-    </div>
+        <div class="form-item">
+            <input type="hidden" name="id" value="<?php echo ($data["id"]); ?>" />
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
 
         </div>
         <div class="cont-ft">
@@ -237,23 +200,10 @@
         }();
     </script>
     
-    <script src="/Public/static/thinkbox/jquery.thinkbox.js?v=<?php echo SITE_VERSION;?>"></script>
     <script type="text/javascript">
-    $(function(){
-    	$("#search").click(function(){
-    		var url = $(this).attr('url');
-    		var status = $('select[name=status]').val();
-    		var search = $('input[name=search]').val();
-    		if(status != ''){
-    			url += '/status/' + status;
-    		}
-    		if(search != ''){
-    			url += '/search/' + search;
-    		}
-    		window.location.href = url;
-    	});
-})
-</script>
+        //导航高亮
+        $('.side-sub-menu').find('a[href="<?php echo U('User/index');?>"]').closest('li').addClass('current');
+    </script>
 
 </body>
 </html>

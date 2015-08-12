@@ -1,18 +1,25 @@
 <?php
         	
-namespace Addons\e_salon\Model;
+namespace Addons\Academic\Model;
 use Home\Model\WeixinModel;
         	
 /**
- * e_salon的微信模型
+ * Academic的微信模型
  */
 class WeixinAddonModel extends WeixinModel{
 	function reply($dataArr, $keywordArr = array()) {
-		$config = getAddonConfig ( 'e_salon' ); // 获取后台插件的配置参数	
-		var_dump($param);
-		die();
-		//dump($config);
-
+		$config = getAddonConfig ( 'Academic' ); // 获取后台插件的配置参数	
+  $param ['token'] = get_token ();
+  $param ['openid'] = get_openid ();
+  $url = addons_url ( 'Suggestions://Suggestions/suggest', $param );
+  $articles [0] = array (
+    'Title' => '建议意见',
+    'Description' => '请点击进入填写反馈内容',
+    'PicUrl' => 'http://weiphp.cn/Public/Home/images/about/logo.jpg',
+    'Url' => $url
+  );
+ 
+  $res = $this->replyNews ( $articles );
 	} 
 
 	// 关注公众号事件
