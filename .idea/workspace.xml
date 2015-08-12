@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbf3ffbc-e6fd-4ced-98da-76b3afefdd73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php" afterPath="$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Academic/Model/WeixinAddonModel.class.php" afterPath="$PROJECT_DIR$/Addons/Academic/Model/WeixinAddonModel.class.php" />
     </list>
     <ignored path="weiphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,20 +27,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="WeixinAddonModel.class.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="WeixinAddonModel.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Addons/Academic/Model/WeixinAddonModel.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.916667" vertical-offset="114" max-vertical-offset="1024">
-              <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.48553056" vertical-offset="114" max-vertical-offset="1024">
+              <caret line="26" column="55" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AcademicController.class.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AcademicController.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1800643" vertical-offset="0" max-vertical-offset="622">
+            <state vertical-scroll-proportion="-4.6666665" vertical-offset="0" max-vertical-offset="256">
               <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
               <folding />
             </state>
@@ -66,8 +66,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Addons/CustomReply/Model/WeixinAddonModel.class.php" />
-        <option value="$PROJECT_DIR$/Addons/Academic/Model/WeixinAddonModel.class.php" />
         <option value="$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php" />
+        <option value="$PROJECT_DIR$/Addons/Academic/Model/WeixinAddonModel.class.php" />
       </list>
     </option>
   </component>
@@ -412,18 +412,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Addons/Academic/Model/WeixinAddonModel.class.php">
+    <entry file="file://$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.916667" vertical-offset="114" max-vertical-offset="1024">
-          <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+        <state vertical-scroll-proportion="-4.6666665" vertical-offset="0" max-vertical-offset="256">
+          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php">
+    <entry file="file://$PROJECT_DIR$/Addons/Academic/Model/WeixinAddonModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1800643" vertical-offset="0" max-vertical-offset="622">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+        <state vertical-scroll-proportion="0.48553056" vertical-offset="114" max-vertical-offset="1024">
+          <caret line="26" column="55" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
           <folding />
         </state>
       </provider>

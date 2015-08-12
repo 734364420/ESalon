@@ -24,7 +24,7 @@ class WeixinAddonModel extends WeixinModel{
 				'Title' => $info ['title'],
 				'Description' => $info ['intro'],
 				'PicUrl' => get_cover_url ( $info ['cover'] ),
-				'Url' => addons_url ( 'Acadamic://Acadamic/instruction', $param )
+				'Url' => addons_url ( 'Academic://Academic/instruction', $param )
 			);
 		}
         $res = $this->replyNews ( $articles );
