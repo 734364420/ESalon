@@ -5,6 +5,6 @@ use Home\Controller\AddonsController;
 
 class AcademicController extends AddonsController{
 	function  instruction() {
-		$this->error("失败了哦");
+		$this->success("成功了哦");
 	}
 }
