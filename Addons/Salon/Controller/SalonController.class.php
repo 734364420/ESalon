@@ -11,14 +11,14 @@ class SalonController extends AddonsController{
 	function  instruction() {
 		$this->display();
 	}
-	//ÎÒµÄEÉ³ÁúÄ£¿é
+	//æˆ‘çš„æ²™é¾™
 	function MySalon() {
 		$salons=M('e_salon')->where('publish_userid=1')->select();
 		for($i=0;$i<count($salons);$i++){
 			if(empty($salons[$i]['summary'])){
-				$salons[$i]['summary']='Î´×Ü½á';
+				$salons[$i]['summary']='æœªæ€»ç»“';
 			}else{
-				$salons[$i]['summary']='ÒÑ×Ü½á';
+				$salons[$i]['summary']='å·²æ€»ç»“';
 			}
 		}
 		var_dump($salons);
@@ -26,14 +26,14 @@ class SalonController extends AddonsController{
 		$this->display('Salon/mysalon');
 	}
 
-	//²é¿´·¢²¼É³ÁúÏêÏ¸ÐÅÏ¢
+	//æŸ¥çœ‹å‘å¸ƒæ²™é¾™è¯¦ç»†ä¿¡æ¯
 	function CheckSalon() {
 		$id=\LfRequest::inNum('id');
 		$salon=M('e_salon')->where('id='.$id)->find();
 		$this->assign($salon);
 		$this->display();
 	}
-	//×Ü½á
+	//æ€»ç»“
 	function Summary(){
 		if(IS_POST) {
 			$data['summary']=\LfRequest::inStr('summary');
@@ -42,10 +42,10 @@ class SalonController extends AddonsController{
 		}
 	}
 
-	//·¢ÆðEÉ³ÁúÄ£¿é
+	//æ–°å»ºæ²™é¾™
 	function CreateSalon() {
 		//if(IS_POST) {
-			$data['title']='ºÃºÃ';
+			$data['title']='ï¿½Ãºï¿½';
 			$data['date']='haohao';
 			$data['space']='haohao';
 			$data['participate_number']=
@@ -55,15 +55,15 @@ class SalonController extends AddonsController{
 			$data['participated_number']='2';
 			$result=M('e_salon')->add($data);
 			if($result){
-				$this->success('Ìí¼Ó³É¹¦',addons_url('Salon://Salon/instruction'),3);
+				$this->success('æ–°å»ºæˆåŠŸ',addons_url('Salon://Salon/instruction'),3);
 			}else{
-				$this->error('Ìí¼ÓÊ§°Ü£¬Çë¼ì²éÐÅÏ¢ÌîÐ´');
+				$this->error('æ–°å»ºå¤±è´¥å’¯ï¼Œè¯·ä»”ç»†æ£€æŸ¥');
 			}
 //		} else {
 //			$this->display();
 //		}
 	}
-	//²ÎÓëEÉ³Áú
+	//å‚åŠ æ²™é¾™
 	function ParticipateSalon() {
 		$id=\LfRequest::isGet('id');
 		$data['user_id']=session('user_id');
@@ -71,31 +71,31 @@ class SalonController extends AddonsController{
 		$participated_number=M('e_salon')->where('id='.$id)->getField('participated_number');
 		$participate_number=M('e_salon')->where('id='.$id)->getField('participate_number');
 		if($participated_number>=$participate_number){
-			$this->error('²ÎÓëÈËÊýÒÑÂú£¬²»ÄÜ±¨Ãû¿©');
+			$this->error('å‚åŠ å¤±è´¥å’¯ï¼Œç¨åŽå†è¯•');
 		}
 		$result=M('e_participate')->add($data);
 		if($result){
-			$this->success('²ÎÓë³É¹¦',addons_url('Salon://Salon/instruction'),3);
+			$this->success('å‚åŠ æˆåŠŸ',addons_url('Salon://Salon/instruction'),3);
 		}else{
-			$this->error('²ÎÓëÊ§°Ü£¬Çë¼ì²éÐÅÏ¢ÌîÐ´');
+			$this->error('å‚åŠ å¤±è´¥');
 		}
 	}
-	//EÉ³Áú¹ã³¡
+	//æ²™é¾™å¹¿åœº
 	function SalonSquare() {
 		$list = M('e_salon')->limit(20)->select();
 		$this->assign($list);
 		$this->display();
 	}
-	//ÁªÏµÎÒÃÇ
+	//è”ç³»æˆ‘ä»¬
 	function Contact() {
 		if(IS_POST){
 			$data['uid']=session('user_id');
 			$data['content']=\LfRequest::inStr('content');
 			$result=M('suggestions')->add($data);
 			if($result){
-				$this->success('ÁôÑÔ³É¹¦£¬¸ÐÐ»ÄúµÄ½¨Òé',addons_url('Salon://Salon/instruction'),3);
+				$this->success('ç•™è¨€æˆåŠŸ',addons_url('Salon://Salon/instruction'),3);
 			}else{
-				$this->error('ÁôÑÔÊ§°Ü¿©£¬ÉÔºóÔÙÊÔ¡­¡­');
+				$this->error('ç•™è¨€å¤±è´¥');
 			}
 		}else {
 			$this->display();
