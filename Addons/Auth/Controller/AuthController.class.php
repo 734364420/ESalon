@@ -17,11 +17,44 @@ class AuthController extends AddonsController{
             $user->student_status = I('student_status');
             $user->good = I('good');
             $user->openid = get_openid();
-            $user->save();
+            $user->add();
             $this->success("认证成功");
         } else {
+            $user = M('e_user');
             $this->assign('title',"用户认证");
+            $this->assign('user',$user);
             $this->display();
         }
+    }
+    function UserProfile() {
+        $user_id = I('user_id');
+        $user = M('user_id')->find($user_id);
+        if(empty($user)) {
+            $this->error("该用户不存在");
+        }
+        $this->assign('user',$user);
+        $this->display();
+    }
+    function EditProfile() {
+        if(IS_POST) {
+            $user_id = session('user_id');
+            $user = M('e_user')->find($user_id);
+//            $user->student_id = I('student_id');
+//            $user->student_name = I('student_name');
+            $user->major = I('major');
+            $user->phone = I('phone');
+            $user->email = I('email');
+//            $user->gender = I('gender');
+            $user->school = I('school');
+            $user->student_status = I('student_status');
+            $user->good = I('good');
+            $user->save();
+        } else {
+            $user_id = session('user_id');
+            $user = M('e_user')->find($user_id);
+            $this->assign('user',$user);
+            $this->display('Auth/Auth');
+        }
+
     }
 }
