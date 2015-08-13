@@ -17,4 +17,8 @@ class SalonController extends AddonsController{
 	function MySalon() {
 		$this->display('Salon/instruction');
 	}
+
+	function Summary() {
+		$this->display
+	}
 }
