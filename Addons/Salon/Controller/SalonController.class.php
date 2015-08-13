@@ -13,6 +13,17 @@ class SalonController extends AddonsController{
 	}
 
 	function MySalon() {
+		$data['title']='好好';
+		$data['date']='haohao';
+		$data['space']='haohao';
+		$data['type']='haohao';
+		$data['brief']='haohao';
+		$result=$db=M('e_salon')->add($data);
+		if($result){
+			$this->success('添加成功',addons_url('Salon://Salon/instrucion'),3);
+		}else{
+			$this->error('添加失败，请检查原因');
+		}
 		$this->display('Salon/instruction');
 	}
 	//发起E沙龙模块
