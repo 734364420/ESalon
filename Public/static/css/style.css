@@ -250,7 +250,7 @@ div.form-control input,div.form-control textarea,div.form-control select{
 form.data{
     width: 80%;
     margin: 0 10%;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 form .form-group{
     overflow: hidden;
