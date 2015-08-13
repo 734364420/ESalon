@@ -15,5 +15,5 @@
 define('UC_APP_ID', 1); //应用ID
 define('UC_API_TYPE', 'Model'); //可选值 Model / Service
 define('UC_AUTH_KEY', 'T34!k&sw-]SaV*b~Z|{r=fcpY8PCKm2nG9IEhzMi'); //加密KEY
-define('UC_DB_DSN', 'mysqli://root:8eRUK1d1@127.0.0.1:3306/weiphp_eagerfor'); // 数据库连接，使用Model方式调用API必须配置此项
+define('UC_DB_DSN', 'mysqli://root:8eRUK1d1@127.0.0.1:3306/weixin_eagerfor'); // 数据库连接，使用Model方式调用API必须配置此项
 define('UC_TABLE_PREFIX', 'eagerfor_'); // 数据表前缀，使用Model方式调用API必须配置此项
