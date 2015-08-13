@@ -12,7 +12,6 @@
 >>>>>>> eb858962e78471c4159fe64d2fa4afa8993e43fa
 =======
     <list default="true" id="bbf3ffbc-e6fd-4ced-98da-76b3afefdd73" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/instruction.html" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/instruction.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Public/static/css/style.css" afterPath="$PROJECT_DIR$/Public/static/css/style.css" />
     </list>
 >>>>>>> c7c863c39705089d1d098a046dced754601a3ccc
@@ -86,8 +85,12 @@
         <entry file="file://$PROJECT_DIR$/Public/static/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.84184515">
+<<<<<<< HEAD
               <caret line="84" column="22" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
 >>>>>>> c7c863c39705089d1d098a046dced754601a3ccc
+=======
+              <caret line="84" column="19" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
+>>>>>>> 305d3718aaaf3270600506b6acd970002b5a0973
               <folding />
             </state>
           </provider>
@@ -640,8 +643,12 @@
     <entry file="file://$PROJECT_DIR$/Public/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.84184515">
+<<<<<<< HEAD
           <caret line="84" column="22" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
 >>>>>>> c7c863c39705089d1d098a046dced754601a3ccc
+=======
+          <caret line="84" column="19" selection-start-line="84" selection-start-column="19" selection-end-line="84" selection-end-column="19" />
+>>>>>>> 305d3718aaaf3270600506b6acd970002b5a0973
           <folding />
         </state>
       </provider>
