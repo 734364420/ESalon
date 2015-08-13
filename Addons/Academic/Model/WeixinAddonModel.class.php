@@ -12,7 +12,7 @@ class WeixinAddonModel extends WeixinModel{
         $param ['token'] = get_token ();
         $param ['openid'] = get_openid ();
 		//初始化查找条件，56,57，。。。60分别为E学术几个固定的图文项
-		$map_news['id'] = array('in',array(56,57,58,59,60);
+		$map_news['id'] = array('in',array(56,57,58,59,60));
 		$list = M ( 'custom_reply_news' )->where ( $map_news )->select ();
 		foreach ( $list as $k => $info ) {
 			if ($k > 8)
