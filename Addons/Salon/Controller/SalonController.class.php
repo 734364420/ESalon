@@ -75,8 +75,10 @@ class SalonController extends AddonsController{
 			$this->error('参加失败咯，稍后再试');
 		}
 		$result=M('e_participate')->add($data);
+		$param ['token'] = get_token ();
+		$param ['openid'] = get_openid ();
 		if($result){
-			$this->success('参加成功',addons_url('Salon://Salon/instruction',array('openid'=>get_openid())),3);
+			$this->success('参加成功',addons_url('Salon://Salon/instruction',$param),3);
 		}else{
 			$this->error('参加失败');
 		}
