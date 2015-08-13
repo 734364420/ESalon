@@ -20,8 +20,25 @@ class AuthController extends AddonsController{
             $user->save();
             $this->success("认证成功");
         } else {
+            $user = M('e_user');
             $this->assign('title',"用户认证");
+            $this->assign('user',$user);
             $this->display();
         }
+    }
+    function UserProfile() {
+        $user_id = I('user_id');
+        $user = M('user_id')->find($user_id);
+        if(empty($user)) {
+            $this->error("该用户不存在");
+        }
+        $this->assign('user',$user);
+        $this->display();
+    }
+    function EditProfile() {
+        $user_id = session('user_id');
+        $user = M('e_user')->find($user_id);
+        $this->assign('user',$user);
+        $this->display('Auth/Auth');
     }
 }
