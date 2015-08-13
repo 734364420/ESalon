@@ -14,6 +14,13 @@ class SalonController extends AddonsController{
 	//我的E沙龙模块
 	function MySalon() {
 		$salons=M('e_salon')->where('publish_userid=1')->select();
+		for($i=0;$i<count($salons);$i++){
+			if(empty($salons[$i]['summary'])){
+				$salons[$i]['summary']='未总结';
+			}else{
+				$salons[$i]['summary']='已总结';
+			}
+		}
 		var_dump($salons);
 		$this->salons=$salons;
 		$this->display('Salon/mysalon');
