@@ -2,42 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbf3ffbc-e6fd-4ced-98da-76b3afefdd73" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Cache\Admin\8dcdf3a4accf696b8c69581ec2c8103b.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Cache\Home\387e1e11b9e3bfcbf3ff3caee77639d6.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Cache\Home\413161ce60857f3111b8e40283dda29e.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.addon_category.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.addons.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.addonstatus.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.attribute.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.config.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.custom_reply_news.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.follow.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.hooks.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.member.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.member_public.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.member_public_link.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.menu.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.model.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.picture.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.tongji.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Data\_fields\weixin_eagerfor.weixin_log.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Temp\4e819c837d54a6ed09abc77a8560a66f.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\Temp\95a1fe934b68ebfee8468bf0bc4f0000.php" afterPath="" />
-      <change type="DELETED" beforePath="G:\wamp\www\weiphp\Runtime\common~runtime.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php" afterPath="$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/Controller/SalonController.class.php" afterPath="$PROJECT_DIR$/Addons/Salon/Controller/SalonController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Auth/View/default/Auth/authentication.html" afterPath="$PROJECT_DIR$/Addons/Auth/View/default/Auth/authentication.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/authentication.html" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/authentication.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/detail.html" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/default/Public/e_footer.html" afterPath="$PROJECT_DIR$/Application/Home/View/default/Public/e_footer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/default/Public/e_header.html" afterPath="$PROJECT_DIR$/Application/Home/View/default/Public/e_header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/instruction.html" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/instruction.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/list.html" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/start.html" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/start.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/success.html" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/success.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/summary.html" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/summary.html" />
     </list>
     <ignored path="weiphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -62,28 +27,8 @@
       <file leaf-file-name="AcademicAddon.class.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Addons/Academic/AcademicAddon.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="instruction.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Addons/Salon/View/default/Salon/instruction.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="24" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="e_header.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Application/Home/View/default/Public/e_header.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.259259">
-              <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+            <state vertical-scroll-proportion="-20.444445">
+              <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -92,18 +37,18 @@
       <file leaf-file-name="SalonController.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Addons/Salon/Controller/SalonController.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3857868">
-              <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.5924696">
+              <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="authentication.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Addons/Auth/View/default/Auth/authentication.html">
+      <file leaf-file-name="function.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Application/Common/Common/function.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-16.11111">
+              <caret line="2314" column="47" selection-start-line="2314" selection-start-column="17" selection-end-line="2314" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -154,8 +99,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="784" />
+    <option name="width" value="1936" />
+    <option name="height" value="1096" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -253,6 +198,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="weiphp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="weiphp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Addons" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Auth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="weiphp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="weiphp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Addons" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Auth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -319,15 +304,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3288889" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2489019" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17708333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -335,7 +321,6 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3299595" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -359,22 +344,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Addons/Academic/AcademicAddon.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Addons/Salon/View/default/Salon/instruction.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="24" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Application/Home/View/default/Public/e_header.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -411,6 +380,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -426,6 +396,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="30" column="6" selection-start-line="30" selection-start-column="6" selection-end-line="30" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -562,6 +533,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -577,6 +549,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.75">
           <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -619,6 +592,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="10.625">
           <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -633,6 +607,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.5247525">
           <caret line="131" column="25" selection-start-line="131" selection-start-column="25" selection-end-line="131" selection-end-column="25" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -650,14 +625,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Addons/Academic/AcademicAddon.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Addons/Leaflets/View/default/Leaflets/show.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -672,7 +639,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Addons/Auth/View/default/Auth/authentication.html">
+    <entry file="file://$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cleancache.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -680,10 +655,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php">
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/default/Public/e_header.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.18578352">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -696,25 +671,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cleancache.php">
+    <entry file="file://$PROJECT_DIR$/Addons/Academic/AcademicAddon.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-20.444445">
+          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Application/Home/View/default/Public/e_header.html">
+    <entry file="file://$PROJECT_DIR$/Addons/Auth/View/default/Auth/authentication.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.259259">
-          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        <state vertical-scroll-proportion="-0.41195476">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Public/Lf/Function.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.211632">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Common/Common/function.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.11111">
+          <caret line="2314" column="47" selection-start-line="2314" selection-start-column="17" selection-end-line="2314" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Addons/Salon/Controller/SalonController.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3857868">
-          <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.5924696">
+          <caret line="33" column="9" selection-start-line="33" selection-start-column="9" selection-end-line="33" selection-end-column="9" />
           <folding />
         </state>
       </provider>
