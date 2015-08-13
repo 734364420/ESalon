@@ -44,9 +44,9 @@ class SalonController extends AddonsController{
 			$data['participate_number']=
 			$data['type']='haohao';
 			$data['brief']='haohao';
-			$data['publish_userid']=seesion('user_id');
-			$data['participated_number']=
-			$result=$db=M('e_salon')->add($data);
+			$data['publish_userid']='1';
+			$data['participated_number']='2';
+			$result=M('e_salon')->add($data);
 			if($result){
 				$this->success('Ìí¼Ó³É¹¦',addons_url('Salon://Salon/instruction'),3);
 			}else{
