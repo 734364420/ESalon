@@ -2312,6 +2312,6 @@ function short_url($long_url) {
 function e_auth($openid) {
 	$user = M('e_user')->where(array('openid'=>$openid))->find();
 	if(empty($user)) {
-		$this->redirect(addons_url('Auth://Auth/Auth'));
+		redirect(addons_url('Auth://Auth/Auth'));
 	}
 }
