@@ -13,14 +13,12 @@ class SalonController extends AddonsController{
 	}
 	//我的E沙龙模块
 	function MySalon() {
-		$this->display('Salon/instruction');
-	}
-	//我发起的E沙龙列表
-	function MysSalonLists() {
 		$data=M('e_salon')->where('publish_userid='.session('user_id'))->select();
+		var_dump($data);
 		$this->assign($data);
-		$this->display();
+		$this->display('Salon/mysalon');
 	}
+
 	//查看发布沙龙详细信息
 	function CheckSalon() {
 		$id=\LfRequest::inNum('id');
@@ -39,7 +37,7 @@ class SalonController extends AddonsController{
 
 	//发起E沙龙模块
 	function CreateSalon() {
-		if(IS_POST) {
+		//if(IS_POST) {
 			$data['title']='好好';
 			$data['date']='haohao';
 			$data['space']='haohao';
@@ -54,9 +52,9 @@ class SalonController extends AddonsController{
 			}else{
 				$this->error('添加失败，请检查信息填写');
 			}
-		} else {
-			$this->display();
-		}
+//		} else {
+//			$this->display();
+//		}
 	}
 	//参与E沙龙
 	function ParticipateSalon() {
