@@ -2,28 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbf3ffbc-e6fd-4ced-98da-76b3afefdd73" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/authentication.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/detail.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/default/Public/e_footer.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Application/Home/View/default/Public/e_header.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/list.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/start.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/success.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/summary.html" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/weiphp.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/Controller/SalonController.class.php" afterPath="$PROJECT_DIR$/Addons/Salon/Controller/SalonController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/Model/WeixinAddonModel.class.php" afterPath="$PROJECT_DIR$/Addons/Salon/Model/WeixinAddonModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Auth/View/default/Auth/authentication.html" afterPath="$PROJECT_DIR$/Addons/Auth/View/default/Auth/authentication.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Common/Common/function.php" afterPath="$PROJECT_DIR$/Application/Common/Common/function.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/instruction.html" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/instruction.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Application/Home/View/default/Public/e_header.html" afterPath="$PROJECT_DIR$/Application/Home/View/default/Public/e_header.html" />
     </list>
     <ignored path="weiphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,11 +37,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="instruction.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="instruction.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Addons/Salon/View/default/Salon/instruction.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="936">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="450">
+              <caret line="0" column="24" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="e_header.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Application/Home/View/default/Public/e_header.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.08012821" vertical-offset="0" max-vertical-offset="936">
+              <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -105,6 +94,7 @@
         <option value="$PROJECT_DIR$/Application/User/Model/UcenterMemberModel.class.php" />
         <option value="$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php" />
         <option value="$PROJECT_DIR$/Addons/Salon/View/default/Salon/instruction.html" />
+        <option value="$PROJECT_DIR$/Application/Home/View/default/Public/e_header.html" />
       </list>
     </option>
   </component>
@@ -727,8 +717,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Addons/Salon/View/default/Salon/instruction.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="936">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="450">
+          <caret line="0" column="24" selection-start-line="0" selection-start-column="24" selection-end-line="0" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Application/Home/View/default/Public/e_header.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08012821" vertical-offset="0" max-vertical-offset="936">
+          <caret line="5" column="18" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
           <folding />
         </state>
       </provider>
