@@ -81,7 +81,7 @@ textarea{
     text-indent: 30px;
     margin-top: 10px;
 }
-.instruction .orange:first-child{
+.instruction .orange.first{
     text-indent: 25px;
 }
 .instruction p.content{
