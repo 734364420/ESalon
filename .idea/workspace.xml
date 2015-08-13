@@ -2,53 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bbf3ffbc-e6fd-4ced-98da-76b3afefdd73" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/View/default/Public/img/star.png" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Public/img/star.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Cache/Home/387e1e11b9e3bfcbf3ff3caee77639d6.php" afterPath="$PROJECT_DIR$/Runtime/Cache/Home/387e1e11b9e3bfcbf3ff3caee77639d6.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Cache/Home/413161ce60857f3111b8e40283dda29e.php" afterPath="$PROJECT_DIR$/Runtime/Cache/Home/413161ce60857f3111b8e40283dda29e.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Temp/4e819c837d54a6ed09abc77a8560a66f.php" afterPath="$PROJECT_DIR$/Runtime/Temp/4e819c837d54a6ed09abc77a8560a66f.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Cache/Admin/8dcdf3a4accf696b8c69581ec2c8103b.php" afterPath="$PROJECT_DIR$/Runtime/Cache/Admin/8dcdf3a4accf696b8c69581ec2c8103b.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Temp/95a1fe934b68ebfee8468bf0bc4f0000.php" afterPath="$PROJECT_DIR$/Runtime/Temp/95a1fe934b68ebfee8468bf0bc4f0000.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Academic/AcademicAddon.class.php" afterPath="$PROJECT_DIR$/Addons/Academic/AcademicAddon.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php" afterPath="$PROJECT_DIR$/Addons/Academic/Controller/AcademicController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Academic/Model/AcademicModel.class.php" afterPath="$PROJECT_DIR$/Addons/Academic/Model/AcademicModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Auth/AuthAddon.class.php" afterPath="$PROJECT_DIR$/Addons/Auth/AuthAddon.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Auth/Controller/AuthController.class.php" afterPath="$PROJECT_DIR$/Addons/Auth/Controller/AuthController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Auth/Model/AuthModel.class.php" afterPath="$PROJECT_DIR$/Addons/Auth/Model/AuthModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/SalonAddon.class.php" afterPath="$PROJECT_DIR$/Addons/Salon/SalonAddon.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/Controller/SalonController.class.php" afterPath="$PROJECT_DIR$/Addons/Salon/Controller/SalonController.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/Model/SalonModel.class.php" afterPath="$PROJECT_DIR$/Addons/Salon/Model/SalonModel.class.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Academic/Model/WeixinAddonModel.class.php" afterPath="$PROJECT_DIR$/Addons/Academic/Model/WeixinAddonModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Auth/Model/WeixinAddonModel.class.php" afterPath="$PROJECT_DIR$/Addons/Auth/Model/WeixinAddonModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/Model/WeixinAddonModel.class.php" afterPath="$PROJECT_DIR$/Addons/Salon/Model/WeixinAddonModel.class.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/View/default/Public/authentication.html" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Public/authentication.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/common~runtime.php" afterPath="$PROJECT_DIR$/Runtime/common~runtime.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/instruction.html" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Salon/instruction.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/View/default/Public/js/jquery-1.11.3.min.js" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Public/js/jquery-1.11.3.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Addons/Salon/View/default/Public/css/style.css" afterPath="$PROJECT_DIR$/Addons/Salon/View/default/Public/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/weiphp.iml" afterPath="$PROJECT_DIR$/.idea/weiphp.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.addon_category.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.addon_category.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.addons.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.addons.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.addonstatus.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.addonstatus.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.attribute.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.attribute.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.config.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.config.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.custom_reply_news.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.custom_reply_news.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.follow.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.follow.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.hooks.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.hooks.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.member.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.member.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.member_public.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.member_public.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.member_public_link.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.member_public_link.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.menu.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.menu.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.model.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.picture.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.picture.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.tongji.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.tongji.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.weixin_log.php" afterPath="$PROJECT_DIR$/Runtime/Data/_fields/weixin_eagerfor.weixin_log.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="weiphp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -76,8 +30,8 @@
       <file leaf-file-name="WeixinAddonModel.class.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Addons/Academic/Model/WeixinAddonModel.class.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.1923077" vertical-offset="0" max-vertical-offset="936">
-              <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.22435898" vertical-offset="0" max-vertical-offset="936">
+              <caret line="14" column="57" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -535,8 +489,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Addons/Academic/Model/WeixinAddonModel.class.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.1923077" vertical-offset="0" max-vertical-offset="936">
-          <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.22435898" vertical-offset="0" max-vertical-offset="936">
+          <caret line="14" column="57" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
           <folding />
         </state>
       </provider>
