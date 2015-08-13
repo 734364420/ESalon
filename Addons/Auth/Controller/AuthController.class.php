@@ -17,7 +17,7 @@ class AuthController extends AddonsController{
             $user->student_status = I('student_status');
             $user->good = I('good');
             $user->openid = get_openid();
-            $user->save();
+            $user->add();
             $this->success("认证成功");
         } else {
             $user = M('e_user');
@@ -36,9 +36,25 @@ class AuthController extends AddonsController{
         $this->display();
     }
     function EditProfile() {
-        $user_id = session('user_id');
-        $user = M('e_user')->find($user_id);
-        $this->assign('user',$user);
-        $this->display('Auth/Auth');
+        if(IS_POST) {
+            $user_id = session('user_id');
+            $user = M('e_user')->find($user_id);
+//            $user->student_id = I('student_id');
+//            $user->student_name = I('student_name');
+            $user->major = I('major');
+            $user->phone = I('phone');
+            $user->email = I('email');
+//            $user->gender = I('gender');
+            $user->school = I('school');
+            $user->student_status = I('student_status');
+            $user->good = I('good');
+            $user->save();
+        } else {
+            $user_id = session('user_id');
+            $user = M('e_user')->find($user_id);
+            $this->assign('user',$user);
+            $this->display('Auth/Auth');
+        }
+
     }
 }
