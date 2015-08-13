@@ -7,7 +7,7 @@ class SalonController extends AddonsController{
 	public function __construct() {
 		parent::__construct();
 		$openid = $_GET['openid'];
-		e_auth($openid);
+		//e_auth($openid);
 	}
 
 	function  instruction() {
