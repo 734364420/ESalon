@@ -32,6 +32,7 @@
     <div class="container">
         <div class="list">
             <ul>
+                <volist name="salons" id="salon">
                 <li>
                     <span class="blue-block pull-left"></span>
                     <div class="pull-left titles">
@@ -43,13 +44,14 @@
                         <span class="sub-title pull-left">&nbsp;)</span>
                     </div>
                     <div class="amount pull-left">
-                        <span class="amount-now">3</span>
+                        <span class="amount-now">{$salon.participated_number}</span>
                         <span class="amount-dig">/</span>
                         <span class="amount-total">6</span>
                         <img src="/Public/static/img/progressbar-bottom.png">
                         <img src="/Public/static/img/progressbar-top.png" class="progressbar">
                     </div>
                 </li>
+                </volist>
                 <li>
                     <span class="blue-block pull-left"></span>
                     <div class="pull-left titles">

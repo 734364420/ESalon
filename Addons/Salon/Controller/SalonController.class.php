@@ -5,7 +5,7 @@ class SalonController extends AddonsController{
 	public function __construct() {
 		parent::__construct();
 		$openid = I('openid');
-		//e_auth($openid);
+		e_auth($openid);
 	}
 
 	function  instruction() {
@@ -13,9 +13,8 @@ class SalonController extends AddonsController{
 	}
 	//ÎÒµÄEÉ³ÁúÄ£¿é
 	function MySalon() {
-		$data=M('e_salon')->where('publish_userid=1'/*.session('user_id')*/)->select();
-		var_dump($data);
-		$this->assign($data);
+		$salons=M('e_salon')->where('publish_userid='.session('user_id'))->select();
+		$this->salons=$salons;
 		$this->display('Salon/mysalon');
 	}
 
@@ -44,7 +43,7 @@ class SalonController extends AddonsController{
 			$data['participate_number']=
 			$data['type']='haohao';
 			$data['brief']='haohao';
-			$data['publish_userid']='1';
+			$data['publish_userid']=session('user_id');
 			$data['participated_number']='2';
 			$result=M('e_salon')->add($data);
 			if($result){
