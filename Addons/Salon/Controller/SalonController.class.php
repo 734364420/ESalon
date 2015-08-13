@@ -62,7 +62,7 @@ class SalonController extends AddonsController{
 	function ParticipateSalon() {
 		$id=\LfRequest::isGet('id');
 		$data['user_id']=session('user_id');
-		$data['e_id']
+		//$data['e_id']
 		$participated_number=M('e_salon')->where('id='.$id)->getField('participated_number');
 		$participate_number=M('e_salon')->where('id='.$id)->getField('participate_number');
 		if($participated_number>=$participate_number){
