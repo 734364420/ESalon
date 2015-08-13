@@ -44,20 +44,20 @@ class SalonController extends AddonsController{
 	//新建沙龙
 	function CreateSalon() {
 		//if(IS_POST) {
-			$data['title']='�ú�';
-			$data['date']='haohao';
-			$data['space']='haohao';
-			$data['participate_number']=
-			$data['type']='haohao';
-			$data['brief']='haohao';
-			$data['publish_userid']=session('user_id');
-			$data['participated_number']='2';
-			$result=M('e_salon')->add($data);
-			if($result){
-				$this->success('新建成功',addons_url('Salon://Salon/instruction'),3);
-			}else{
-				$this->error('新建失败咯，请仔细检查');
-			}
+			$data['title']='啊啊啊啊';
+		$data['date']='haohao';
+		$data['space']='haohao';
+		$data['participate_number']='aaa';
+		$data['type']='haohao';
+		$data['brief']='haohao';
+		$data['publish_userid']=session('user_id');
+		$data['participated_number']='2';
+		$result=M('e_salon')->add($data);
+		if($result){
+			$this->success('新建成功',addons_url('Salon://Salon/instruction'),3);
+		}else{
+			$this->error('新建失败咯，请仔细检查');
+		}
 //		} else {
 //			$this->display();
 //		}
