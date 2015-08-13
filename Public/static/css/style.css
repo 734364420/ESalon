@@ -48,7 +48,113 @@ textarea{
     -webkit-box-flex: 2.0;
 }
 .orange{
-    color:rgb(255,192,0)
+    color:rgb(255,192,0);
+}
+
+
+
+/*列表页*/
+#data{
+    color: #000;
+    height: 35px;
+    line-height: 35px;
+}
+#data .name{
+    position: relative;
+    left: 35px;
+    font-weight: bold;
+    font-size: 18px;
+}
+#change-data{
+    color: rgb(255,192,0);
+    padding-right: 25px;
+    font-size: 15px;
+}
+.salon-type{
+    background-color: rgb(51,153,255);
+    height: 40px;
+    line-height: 35px;
+    box-sizing: border-box;
+}
+.salon-type a{
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    border-bottom: 5px solid #ccc;
+}
+.salon-type a.active{
+    border-bottom: 5px solid rgb(255,192,0);
+}
+.select-group select{
+    margin: 5px 10px;
+    height: 25px;
+    color: #aaa;
+}
+.list li{
+    height: 60px;
+    margin-top: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.list .titles{
+    width: 65%;
+}
+.list .blue-block{
+    height: 45px!important;
+}
+.list .title{
+    font-size: 18px;
+    margin-left: 20px;
+}
+.list .sub-title{
+    display: block;
+    font-size: 12px;
+    color: #ccc;    
+    height: 20px;
+    line-height: 20px;
+}
+.list .sub-title.summ{
+    display: block;
+    float: left;
+    width: 50px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid rgb(51,153,255);
+    border-radius: 5px;
+    margin-left: 20px;
+}
+.list .see{
+    width: 20px;
+    float: left;
+    margin-top: 6px;
+    margin-left: 10px;
+}
+.list .amount{
+    position: relative;
+    width: 30%;
+    height: 100%;
+}
+.list .amount img{
+    position: absolute;
+    width: 90px;
+    margin-left: 10px;
+    top: 30px;
+    left: 0;
+}
+.list .amount img.progressbar{
+    /*clip: rect(0 60px 14px 0);*/
+}
+.list .amount span:first-child{
+    margin-left: 30px;
+}
+.list .amount .amount-now{
+    font-size: 25px;
+    color: rgb(255,192,0);
+    font-weight: bold;
+}
+.list .amount .amount-total,.list .amount .amount-dig{
+    color: grey;
+    font-weight: bold;
 }
 
 
@@ -56,11 +162,11 @@ textarea{
 .instruction{
     margin-top: 20px;
 }
-.instruction .blue-block{
+.blue-block{
     height: 40px;
     width: 15px;
     display: block;
-    background-color: rgb(0,102,255);
+    background-color: rgb(51,153,255);
     float: left;
 }
 .instruction p.big{
@@ -90,15 +196,6 @@ textarea{
     font-size: 15px;
     color: #c0c0c0;
 }
-
-
-/*列表页*/
-.list li{
-    height: 50px;
-    line-height: 50px;
-    border-bottom: 1px solid black;
-}
-
 
 /*内容页*/
 ul.detail-list li{
