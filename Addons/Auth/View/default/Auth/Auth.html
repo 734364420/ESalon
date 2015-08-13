@@ -1,0 +1,24 @@
+<include file="Public/e_header"/>
+<body>
+    <form method="post" class="data">
+        <input type="text" name="student_id" placeholder="学号">
+        <input type="text" name="student_name" placeholder="姓名">
+        <input type="text" name="major" placeholder="专业">
+        <input type="text" name="phone" placeholder="联系电话">
+        <input type="text" name="email" placeholder="常用邮箱">
+        <select name="gender">
+            <option value="男">男</option>
+            <option value="女">女</option>
+        </select>
+        <select name="school">
+            <option value="微固体与电子学院">微固体与电子学院</option>
+        </select>
+        <select name="student_status">
+            <option value="本科">本科</option>
+        </select>
+        <label class="block">个人特长</label>
+        <textarea name="good"></textarea>
+        <p>请填写您真实有效的信息，以便于在您在微沙龙和微学术中找到志同道合的人。</p>
+        <button type="submit" class="button">提交</button>
+    </form>
+<include file="Public/e_footer" />
