@@ -13,7 +13,7 @@ class SalonController extends AddonsController{
 	}
 	//我的E沙龙模块
 	function MySalon() {
-		$data=M('e_salon')->where('publish_userid='.session('user_id'))->select();
+		$data=M('e_salon')->where('publish_userid=1'/*.session('user_id')*/)->select();
 		var_dump($data);
 		$this->assign($data);
 		$this->display('Salon/mysalon');
@@ -44,9 +44,9 @@ class SalonController extends AddonsController{
 			$data['participate_number']=
 			$data['type']='haohao';
 			$data['brief']='haohao';
-			$data['publish_userid']=seesion('user_id');
-			$data['participated_number']=
-			$result=$db=M('e_salon')->add($data);
+			$data['publish_userid']='1';
+			$data['participated_number']='2';
+			$result=M('e_salon')->add($data);
 			if($result){
 				$this->success('添加成功',addons_url('Salon://Salon/instruction'),3);
 			}else{
