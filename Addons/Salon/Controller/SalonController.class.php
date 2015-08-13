@@ -1,8 +1,6 @@
 <?php
-
 namespace Addons\Salon\Controller;
 use Home\Controller\AddonsController;
-
 class SalonController extends AddonsController{
 	public function __construct() {
 		parent::__construct();
@@ -16,5 +14,17 @@ class SalonController extends AddonsController{
 
 	function MySalon() {
 		$this->display('Salon/instruction');
+	}
+
+	function CreateSalon() {
+		$this->display();
+	}
+
+	function SalonSquare() {
+		$this->display();
+	}
+
+	function Contact(){
+
 	}
 }
