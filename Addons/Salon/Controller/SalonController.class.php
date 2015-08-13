@@ -21,7 +21,6 @@ class SalonController extends AddonsController{
 				$salons[$i]['summary']='已总结';
 			}
 		}
-		var_dump($salons);
 		$this->salons=$salons;
 		$this->display('Salon/mysalon');
 	}
