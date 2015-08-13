@@ -2309,8 +2309,8 @@ function short_url($long_url) {
 		return $long_url;
 	}
 }
-function e_auth($openid) {
-	$user = M('e_user')->where(array('openid'=>$openid))->find();
+function e_auth() {
+	$user = M('e_user')->where(array('openid'=>get_openid()))->find();
 	if(empty($user)) {
 		redirect(addons_url('Auth://Auth/Auth'));
 	} else {
