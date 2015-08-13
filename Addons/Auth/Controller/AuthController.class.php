@@ -20,6 +20,7 @@ class AuthController extends AddonsController{
             $user->save();
             $this->success("认证成功");
         } else {
+            $this->assign('title',"用户认证");
             $this->display();
         }
     }
