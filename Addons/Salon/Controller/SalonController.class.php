@@ -47,11 +47,12 @@ class SalonController extends AddonsController{
 		$data['title']='啊啊啊啊';
 		$data['date']='haohao';
 		$data['space']='haohao';
-		$data['participate_number']='1';
+		$data['participate_number']=1;
 		$data['type']='haohao';
 		$data['brief']='haohao';
 		$data['publish_userid']=session('user_id');
-		$data['participated_number']='2';
+		$data['participated_number']=2;
+		$data['hits']=0;
 		$result=M('e_salon')->add($data);
 		if($result){
 			$this->success('新建成功',addons_url('Salon://Salon/instruction'),3);
