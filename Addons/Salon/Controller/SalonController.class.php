@@ -44,10 +44,10 @@ class SalonController extends AddonsController{
 	//新建沙龙
 	function CreateSalon() {
 		//if(IS_POST) {
-			$data['title']='啊啊啊啊';
+		$data['title']='啊啊啊啊';
 		$data['date']='haohao';
 		$data['space']='haohao';
-		$data['participate_number']='aaa';
+		$data['participate_number']='1';
 		$data['type']='haohao';
 		$data['brief']='haohao';
 		$data['publish_userid']=session('user_id');
