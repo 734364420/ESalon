@@ -53,11 +53,12 @@ class SalonController extends AddonsController{
 		$data['publish_userid']=session('user_id');
 		$data['participated_number']=2;
 		$data['hits']=0;
-		$result=M('e_salon')->add($data);
+		$user = M('e_salon');
+		$result=$user->add($data);
 		if($result){
 			$this->success('新建成功',addons_url('Salon://Salon/instruction'),3);
 		}else{
-			$this->error('新建失败咯，请仔细检查');
+			$this->error($user->getDbError());
 		}
 //		} else {
 //			$this->display();
