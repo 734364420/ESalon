@@ -20,7 +20,16 @@ class AuthController extends AddonsController{
             $user->add();
             $this->success("认证成功");
         } else {
-            $user = M('e_user');
+            $user = '';
+            $user['student_id'] = '';
+            $user['student_name'] = '';
+            $user['major'] = '';
+            $user['phone'] = '';
+            $user['email'] = '';
+            $user['gender'] = '';
+            $user['school'] = '';
+            $user['student_status'] = '';
+            $user['good'] = '';
             $this->assign('title',"用户认证");
             $this->assign('user',$user);
             $this->display();

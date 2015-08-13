@@ -37,7 +37,7 @@ if (! empty ( $_GET ['echostr'] ) && ! empty ( $_GET ["signature"] ) && ! empty 
  * 系统调试设置
  * 项目正式部署后请设置为false
  */
-define ( 'APP_DEBUG', false );
+define ( 'APP_DEBUG', true );
 
 /**
  * 官方远程同步服务器地址
