@@ -23,12 +23,19 @@ class SalonController extends AddonsController{
 	}
 	//查看发布沙龙详细信息
 	function CheckSalon() {
-		$id=\LfRequest::isGet('id');
+		$id=\LfRequest::inNum('id');
 		$salon=M('e_salon')->where('id='.$id)->find();
 		$this->assign($salon);
 		$this->display();
 	}
 	//总结
+	function Summary(){
+		if(IS_POST) {
+			$data['summary']=\LfRequest::inStr('summary');
+		}else{
+			$this->display();
+		}
+	}
 
 	//发起E沙龙模块
 	function CreateSalon() {
@@ -53,25 +60,40 @@ class SalonController extends AddonsController{
 	}
 	//参与E沙龙
 	function ParticipateSalon() {
-		if(IS_POST) {
-			$data['user_id']=session('user_id');
-			$data['e_id']
-			$result=M('e_participate')->add($data);
-			if($result){
-				$this->success('参与成功',addons_url('Salon://Salon/instruction'),3);
-			}else{
-				$this->error('参与失败，请检查信息填写');
-			}
+		$id=\LfRequest::isGet('id');
+		$data['user_id']=session('user_id');
+		$data['e_id']
+		$participated_number=M('e_salon')->where('id='.$id)->getField('participated_number');
+		$participate_number=M('e_salon')->where('id='.$id)->getField('participate_number');
+		if($participated_number>=$participate_number){
+			$this->error('参与人数已满，不能报名咯');
+		}
+		$result=M('e_participate')->add($data);
+		if($result){
+			$this->success('参与成功',addons_url('Salon://Salon/instruction'),3);
+		}else{
+			$this->error('参与失败，请检查信息填写');
 		}
 	}
-
+	//E沙龙广场
 	function SalonSquare() {
 		$list = M('e_salon')->limit(20)->select();
 		$this->assign($list);
 		$this->display();
 	}
-
+	//联系我们
 	function Contact() {
-		$this->display();
+		if(IS_POST){
+			$data['uid']=session('user_id');
+			$data['content']=\LfRequest::inStr('content');
+			$result=M('suggestions')->add($data);
+			if($result){
+				$this->success('留言成功，感谢您的建议',addons_url('Salon://Salon/instruction'),3);
+			}else{
+				$this->error('留言失败咯，稍后再试……');
+			}
+		}else {
+			$this->display();
+		}
 	}
 }
