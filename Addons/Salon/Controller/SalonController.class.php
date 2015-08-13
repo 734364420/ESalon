@@ -13,7 +13,7 @@ class SalonController extends AddonsController{
 	}
 	//ÎÒµÄEÉ³ÁúÄ£¿é
 	function MySalon() {
-		$data=M('e_salon')->where('publish_userid='.session('user_id'))->select();
+		$data=M('e_salon')->where('publish_userid=1'/*.session('user_id')*/)->select();
 		var_dump($data);
 		$this->assign($data);
 		$this->display('Salon/mysalon');
