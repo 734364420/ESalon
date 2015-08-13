@@ -2314,6 +2314,6 @@ function e_auth($openid) {
 	if(empty($user)) {
 		redirect(addons_url('Auth://Auth/Auth'));
 	} else {
-        session('user_id',$user->id);
+        session('user_id',$user['id']);
     }
 }

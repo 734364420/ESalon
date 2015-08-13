@@ -56,7 +56,7 @@ class SalonController extends AddonsController{
 		$user = M('e_salon');
 		$result=$user->add($data);
 		if($result){
-			$this->success('新建成功',addons_url('Salon://Salon/instruction'),3);
+			$this->success('新建成功',addons_url('Salon://Salon/MySalon'),3);
 		}else{
 			$this->error($user->getDbError());
 		}
