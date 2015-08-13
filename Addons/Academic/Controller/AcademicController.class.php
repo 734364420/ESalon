@@ -7,7 +7,7 @@ class AcademicController extends AddonsController{
 	public function __construct() {
 		parent::__construct();
 		$openid = I('openid');
-        //e_auth($openid);
+        e_auth($openid);
 	}
     //最新学术动态页面，竞赛列表页
     function LastNews() {
