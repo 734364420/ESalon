@@ -24,7 +24,6 @@ class SalonController extends AddonsController{
 		$this->display();
 	}
 
-	function Contact(){
-
+	function Contact() {
 	}
 }

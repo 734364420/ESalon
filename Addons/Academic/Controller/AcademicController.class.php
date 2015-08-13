@@ -7,8 +7,16 @@ class AcademicController extends AddonsController{
 	public function __construct() {
 		parent::__construct();
 		$openid = $_GET['openid'];
+        //e_auth($openid);
 	}
-	function  instruction() {
-		$this->success("成功了哦");
-	}
+    //最新学术动态页面
+    function LastNews() {
+
+    }
+    //我的iteam页面
+    function MyIteam() {}
+    //发起团队约
+    function Publish() {}
+    //Iteam广场
+    function Square() {}
 }
