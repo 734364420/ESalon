@@ -1,0 +1,86 @@
+<include file="Public/e_header" />
+<body>
+    <div>
+        <form action="" method="" enctype="multipart/form-data">
+            <label>活动照片上传</label>
+            <input type="file" name="" accept="image/*">
+        </form>
+    </div>
+
+    <div class="summary">
+        <p>活动总结</p>
+        <textarea name=""></textarea>
+    </div>
+
+    <div class="stars">
+        <p>活动评价</p>
+        <div class="pull-left">
+            <img src="img/star.png">
+        </div>
+        <div class="pull-left">
+            <img src="img/star.png">
+        </div>
+        <div class="pull-left">
+            <img src="img/star.png">
+        </div>
+        <div class="pull-left">
+            <img src="img/star.png">
+        </div>
+        <div class="pull-left">
+            <img src="img/star.png">
+        </div>
+    </div>
+
+    <div class="clearfix">
+        <p>成员互评</p>
+        <div class="clearfix stars">
+            <span class="pull-left">李娟</span>
+            <div class="pull-left">
+                <img src="img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="img/star.png">
+            </div>
+        </div>
+        <div class="clearfix stars">
+            <span class="pull-left">刘五</span>
+            <div class="pull-left">
+                <img src="img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="img/star.png">
+            </div>
+        </div>
+    </div>
+
+    <a href="" class="button">提交</a>
+
+<script type="text/javascript">
+    $(function(){
+        $(".stars").find("img").click(function(){
+            var index=$(this).parent().index();
+            $(this).css({"background-color":"yellow"});
+            $(this).parent().prevAll().find("img").css({"background-color":"yellow"});
+            $(this).parent().nextAll().find("img").css({"background-color":"#fff"});
+        })
+    })
+</script>
+<include file="Public/e_footer" />
