@@ -5,7 +5,7 @@ class SalonController extends AddonsController{
 	public function __construct() {
 		parent::__construct();
 		$openid = I('openid');
-		//e_auth($openid);
+		e_auth($openid);
 	}
 
 	function  instruction() {
@@ -13,14 +13,12 @@ class SalonController extends AddonsController{
 	}
 	//我的E沙龙模块
 	function MySalon() {
-		$this->display('Salon/instruction');
+		$salons=M('e_salon')->where('publish_userid=1')->select();
+		var_dump($salons);
+		$this->salons=$salons;
+		$this->display('Salon/mysalon');
 	}
-	//我发起的E沙龙列表
-	function MysSalonLists() {
-		$data=M('e_salon')->where('publish_userid='.session('user_id'))->select();
-		$this->assign($data);
-		$this->display();
-	}
+
 	//查看发布沙龙详细信息
 	function CheckSalon() {
 		$id=\LfRequest::inNum('id');
@@ -39,24 +37,24 @@ class SalonController extends AddonsController{
 
 	//发起E沙龙模块
 	function CreateSalon() {
-		if(IS_POST) {
+		//if(IS_POST) {
 			$data['title']='好好';
 			$data['date']='haohao';
 			$data['space']='haohao';
 			$data['participate_number']=
 			$data['type']='haohao';
 			$data['brief']='haohao';
-			$data['publish_userid']=seesion('user_id');
-			$data['participated_number']=
-			$result=$db=M('e_salon')->add($data);
+			$data['publish_userid']=session('user_id');
+			$data['participated_number']='2';
+			$result=M('e_salon')->add($data);
 			if($result){
 				$this->success('添加成功',addons_url('Salon://Salon/instruction'),3);
 			}else{
 				$this->error('添加失败，请检查信息填写');
 			}
-		} else {
-			$this->display();
-		}
+//		} else {
+//			$this->display();
+//		}
 	}
 	//参与E沙龙
 	function ParticipateSalon() {
