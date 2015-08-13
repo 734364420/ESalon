@@ -273,6 +273,9 @@ form .form-group input,form .form-group select,form .form-group textarea{
     opacity: 0.7;
     -webkit-opacity: 0.7;
 }
+form .form-group input{
+    padding-left: 8px;
+}
 form .form-group select{
     height: 23px;
     line-height: 23px;
