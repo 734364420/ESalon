@@ -114,7 +114,7 @@
 <?php } ?>
 
 <?php if($salon['summary']==0) { ?>
-<a href="addons_url('Salon://Salon/ParticipateSalon',array('id'=>$salon['id']))" class="button go-summary">填写活动总结</a>
+<a href="{:addons_url('Salon://Salon/ParticipateSalon',array('id'=>$salon['id']))}" class="button go-summary">报名参加</a>
 <?php } ?>
 <script type="text/javascript">
     $(function () {
