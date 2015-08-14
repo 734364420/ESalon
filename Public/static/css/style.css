@@ -102,10 +102,23 @@ a.button,button{
 .salon-type a.active{
     border-bottom: 5px solid rgb(255,192,0);
 }
+.select-group{
+    width: 90%;
+    margin: 0 auto;
+}
 .select-group select{
-    margin: 5px 10px;
+    margin: 5px 10px 5px 0;
     height: 25px;
     color: #aaa;
+}
+.select-group input[type="submit"]{
+    display: block;
+    -webkit-box-flex: 1.5;
+    text-indent: -9999px;
+    background-color: #fff;
+    border: none;
+    background: url(/Public/static/img/search.png) no-repeat 50% 50%;
+    background-size: 20px;
 }
 .list{
     position: relative;
