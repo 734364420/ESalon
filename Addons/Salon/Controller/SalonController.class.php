@@ -14,7 +14,6 @@ class SalonController extends AddonsController{
 	function MySalon() {
 		$user=M('e_user')->where('id='.session('user_id'))->getField('student_name');
 		$method=\LfRequest::inStr('sign');
-		var_dump($method);
 		if(empty($method)) {
 			$salons = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
 			$this->active1='active';
