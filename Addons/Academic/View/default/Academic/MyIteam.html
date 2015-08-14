@@ -1,8 +1,8 @@
 <include file="Public/e_header"/>
 <body>
     <div class="flex-box salon-type">
-        <a href="" class="flex-1 center active">我发起的iteam</a>
-        <a href="" class="flex-1 center">我报名的iteam</a>
+        <a href="javacript:;" class="flex-1 center active" id="myiteam-left">我发起的iteam</a>
+        <a href="javacript:;" class="flex-1 center" id="myiteam-right">我报名的iteam</a>
     </div>
 
 
@@ -33,7 +33,7 @@
 
     <div class="container">
         <div class="list">
-            <ul>
+            <ul id="myiteam-left-ul">
                 <volist name="PublishIteams" id="iteam">
                 <li>
                     <span class="blue-block pull-left"></span>
@@ -55,6 +55,29 @@
                 </li>
                 </volist>
             </ul>
+
+            <ul id="myiteam-right-ul" class="hidden">
+                <volist name="PublishIteams" id="iteam">
+                    <li>
+                        <span class="blue-block pull-left"></span>
+                        <div class="pull-left titles">
+                            <p class="title">{$iteam.title}</p>
+                            <span class="sub-title summ">{$iteam.summary}</span>
+                            <img src="/Public/static/img/see.png" class="see">
+                            <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
+                            <span class="sub-title pull-left">{$iteam.hits}</span>
+                            <span class="sub-title pull-left">&nbsp;)</span>
+                        </div>
+                        <div class="amount pull-left">
+                            <span class="amount-now">{$iteam.participated_number}</span>
+                            <span class="amount-dig">/</span>
+                            <span class="amount-total">{$iteam.participate_number}</span>
+                            <img src="/Public/static/img/progressbar-bottom.png">
+                            <img src="/Public/static/img/progressbar-top.png" class="progressbar">
+                        </div>
+                    </li>
+                </volist>
+            </ul>
         </div>
     </div>
     
@@ -69,6 +92,20 @@
             wid[i]=percent[i]*90;
             $(".list li").eq(i).find(".progressbar").css({"clip":"rect(0 " + wid[i] + "px 14px 0)"});
         }
+    })
+
+    $("#myiteam-left").click(function(){
+        $(this).addClass("active");
+        $("#myiteam-right").removeClass("active");
+        $("#myiteam-right-ul").addClass("hidden");
+        $("#myiteam-left-ul").removeClass("hidden");
+    })
+
+    $("#myiteam-right").click(function(){
+        $(this).addClass("active");
+        $("#myiteam-left").removeClass("active");
+        $("#myiteam-left-ul").addClass("hidden");
+        $("#myiteam-right-ul").removeClass("hidden");
     })
 </script>
 
