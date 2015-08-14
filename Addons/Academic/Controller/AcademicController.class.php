@@ -61,8 +61,12 @@ class AcademicController extends AddonsController{
             $iteam->type = I('type');
             $iteam->brief = I('brief');
             $iteam->publish_userid = session('user_id');
-            $iteam->save();
-            redirect(addons_url('Academic://Academic/MyIteam'));
+            $res = $iteam->add();
+	        if($res) {
+		        $this->success("添加成功",addons_url('Academic://Academic/MyIteam'));
+	        } else {
+		        $this->error("添加失败");
+	        }
         } else {
             $this->display();
         }
