@@ -8,26 +8,28 @@
 	<!--<span class="name">{$user.student_name}</span>-->
 	<!--<a href="{:addons_url('Auth://Auth/EditProfile')}" id="change-data" class="pull-right">修改资料</a>-->
 <!--</div>-->
-	<div class="flex-box select-group">
-		<select name="" class="flex-1">
-			<option>竞赛类别</option>
-			<option>数学</option>
-			<option>物理</option>
-			<option>化学</option>
-		</select>
-		<select name="" class="flex-1">
-			<option>比赛时间</option>
-			<option>今天</option>
-			<option>明天</option>
-			<option>明天</option>
-		</select>
-		<select name="" class="flex-1">
-			<option>参赛方式</option>
-			<option>线上</option>
-			<option>线下</option>
-		</select>
-		<input type="submit" value="搜索"/>
-	</div>
+	<form method="get">
+		<div class="flex-box select-group">
+			<select name="" class="flex-1">
+				<option>竞赛类别</option>
+				<option>数学</option>
+				<option>物理</option>
+				<option>化学</option>
+			</select>
+			<select name="" class="flex-1">
+				<option>比赛时间</option>
+				<option>今天</option>
+				<option>明天</option>
+				<option>明天</option>
+			</select>
+			<select name="" class="flex-1">
+				<option>参赛方式</option>
+				<option>线上</option>
+				<option>线下</option>
+			</select>
+			<input type="submit" value="搜索"/>
+		</div>
+	</form>
 
 	<div class="container">
 		<div class="list">
