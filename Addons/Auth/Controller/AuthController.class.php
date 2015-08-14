@@ -67,6 +67,7 @@ class AuthController extends AddonsController{
             $user->school = \LfRequest::inStr('school');
             $user->student_status = \LfRequest::inStr('student_status');
             $user->good = \LfRequest::inStr('good');
+	        var_dump($user);
             $res = $user->where('id = '.session('user_id'))->save();
 	        if($res) {
 		        $this->success("修改成功");
