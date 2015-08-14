@@ -13,12 +13,11 @@ class SalonController extends AddonsController{
 	//我的沙龙
 	function MySalon() {
 		if(IS_POST){
-			var_dump($_POST);
 			$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
 			$type=\LfRequest::inStr('type');
 			$salon_status=\LfRequest::inNum('salon_status');
 			$salon_summary_status=\LfRequest::inNum('salon_summary_status');
-			var_dump($tpye);
+			var_dump($type);
 			var_dump($salon_status);
 			var_dump($salon_summary_status);
 			$today = date('Y-m-d',time());
@@ -26,15 +25,19 @@ class SalonController extends AddonsController{
 			if($type != null) {
 				$data['type='] = $type;
 			}
-			if($salon_status == 1){
-				$data['date<']=$today;
-			}elseif($salon_status == 0){
-				$data['date>=']=$today;
+			if(empty(!$salon_status)){
+				if($salon_status == 1){
+					$data['date<']=$today;
+				}elseif($salon_status == 0){
+					$data['date>=']=$today;
+				}
 			}
-			if($salon_summary_status == 1){
-				$data['summary=']=1;
-			}elseif($salon_summary_status == 0){
-				$data['summary=']=0;
+			if(empty(!$salon_summary_status)) {
+				if ($salon_summary_status == 1) {
+					$data['summary='] = 1;
+				} elseif ($salon_summary_status == 0) {
+					$data['summary='] = 0;
+				}
 			}
 			$data['publish_userid']=session('user_id');
 			$salons_publish = M('e_salon')->where($data)->select();
