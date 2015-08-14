@@ -71,6 +71,7 @@ class SalonController extends AddonsController{
 			$data['publish_userid']=session('user_id');
 			$data['hits']=0;
 			var_dump($data);
+			die();
 			$user = M('e_salon');
 			$result=$user->add($data);
 			if($result){
