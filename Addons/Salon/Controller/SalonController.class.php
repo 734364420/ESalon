@@ -58,14 +58,16 @@ class SalonController extends AddonsController{
 	//新建沙龙
 	function CreateSalon() {
 		if(IS_POST) {
-			$data['title']='啊啊啊啊';
-			$data['date']='haohao';
-			$data['space']='haohao';
-			$data['participate_number']=1;
-			$data['type']='haohao';
-			$data['brief']='haohao';
+			$data['title']=\LfRequest::inStr('title');
+			$date=\LfRequest::inStr('date');
+			$time=\LfRequest::inStr('time');
+			$hour=\LfRequest::inStr('hour');
+			$data['date']=$date.' '.$time.'~'.date('H:i',strtotime($date,'+ '.$hour.' hour'));
+			$data['space']=\LfRequest::inStr('space');
+			$data['participate_number']=\LfRequest::inNum('participate_number');
+			$data['type']=\LfRequest::inStr('type');
+			$data['brief']=\LfRequest::inStr('brief');
 			$data['publish_userid']=session('user_id');
-			$data['participated_number']=2;
 			$data['hits']=0;
 			$user = M('e_salon');
 			$result=$user->add($data);
