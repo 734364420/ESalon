@@ -28,12 +28,12 @@
         </div>
         <div class="form-group">
             <label>选择地点：</label>
-            <select name="space">
+            <select name="space" id="site">
                 <option value="">自定义地点</option>
                 <option value="清水河">清水河</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group" id="mysite">
             <label>填写自定义地点：</label>
             <input type="text" name="">
         </div>
@@ -60,4 +60,14 @@
         <button type="submit" class="button">发起E沙龙</button>
     </form>
 
+<script type="text/javascript">
+    $("#site").change(function(){
+        if($("#site option:selected").text()!="自定义地点"){
+            $("#mysite").addClass("hidden");
+        }
+        else{
+            $("#mysite").removeClass("hidden");
+        }
+    });
+</script>
 <include file="Public/e_footer" />
