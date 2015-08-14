@@ -268,12 +268,12 @@ form .form-group input{
     padding-left: 8px;
 }
 form .form-group select{
-    height: 23px;
-    line-height: 23px;
-    width: 76%;
+    height: 25px;
+    line-height: 25px;
+    width: 78%;
 }
 form .form-group textarea{
-    width: 76%;
+    width: 75%;
     line-height: 23px;
     height: 80px;
     margin-top: 5px;
