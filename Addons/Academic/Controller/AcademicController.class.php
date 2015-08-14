@@ -61,11 +61,11 @@ class AcademicController extends AddonsController{
     function IteamDetail() {
         $iteam_id = intval(I('id'));
         $Miteam = M('e_iteam');
-	    $iteam = $Miteam->find($iteam_id);
 	    $Miteam->hits = $iteam->hits++;
 	    $Miteam->where('id = '.$iteam_id)->save();
 	    $this->user = M('e_user')->find($iteam->publish_userid);
 	    $this->participate_users = M('e_participate')->where('e_id = '.$iteam_id)->select();
+	    $iteam = M('e_iteam')->find();
         $this->assign('iteam',$iteam);
         $this->display();
     }
