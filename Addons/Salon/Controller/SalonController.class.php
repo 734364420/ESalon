@@ -25,15 +25,19 @@ class SalonController extends AddonsController{
 			if($type != null) {
 				$data['type='] = $type;
 			}
-			if($salon_status == 1){
-				$data['date<']=$today;
-			}elseif($salon_status == 0){
-				$data['date>=']=$today;
+			if(empty(!$salon_status)){
+				if($salon_status == 1){
+					$data['date<']=$today;
+				}elseif($salon_status == 0){
+					$data['date>=']=$today;
+				}
 			}
-			if($salon_summary_status == 1){
-				$data['summary=']=1;
-			}elseif($salon_summary_status == 0){
-				$data['summary=']=0;
+			if(empty(!$salon_summary_status)) {
+				if ($salon_summary_status == 1) {
+					$data['summary='] = 1;
+				} elseif ($salon_summary_status == 0) {
+					$data['summary='] = 0;
+				}
 			}
 			$data['publish_userid']=session('user_id');
 			$salons_publish = M('e_salon')->where($data)->select();
