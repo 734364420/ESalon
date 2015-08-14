@@ -167,6 +167,11 @@ a.button,button{
     color: grey;
     font-weight: bold;
 }
+.list .timing{
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 10px
+}
 
 
 /*说明页*/
