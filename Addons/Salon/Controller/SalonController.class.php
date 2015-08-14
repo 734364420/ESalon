@@ -76,7 +76,7 @@ class SalonController extends AddonsController{
 		$data['hits']=$salon['hits']+1;
 		$salon=M('e_salon')->where('id='.$id)->save($data);
 		$this->salon=$salon;
-		$this->display();
+		$this->display('Salon/Detail');
 	}
 	//总结
 	function Summary(){
