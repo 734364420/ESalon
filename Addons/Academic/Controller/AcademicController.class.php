@@ -36,16 +36,16 @@ class AcademicController extends AddonsController{
 		    $data['iteam_status'] = \LfRequest::inStr('iteam_status');
 		    $data['summary_status'] = \LfRequest::inStr('summary_status');
 		    if(!empty($data['type'])) {
-			    $maps .= ' type = '.$data['type'];
+			    $maps .= 'AND  type = '.$data['type'];
 		    }
-		    if($data['iteam_status'] == 0) {
-			    $maps .= ' end_date > '.date("Y-m-d");
+		    if($data['iteam_status'] == 0 && $data['iteam_status'] != '' ) {
+			    $maps .= 'AND  end_date > '.time();
 		    }
 		    if($data['iteam_status'] == 1) {
-			    $maps .= ' end_date < '.date("Y-m-d");
+			    $maps .= 'AND  end_date < '.time();
 		    }
 		    if($data['summary_status'] != '') {
-			    $maps .= ' summary_status = '.$data['summary_status'];
+			    $maps .= 'AND  summary_status = '.$data['summary_status'];
 		    }
 	    }
 	    $PublishIteams = M('e_iteam')->where($maps)->select();
@@ -74,8 +74,8 @@ class AcademicController extends AddonsController{
             }
             $iteam = M('e_iteam');
             $iteam->title = $title;
-            $iteam->start_date = I('start_date');
-            $iteam->end_date = I('end_date');
+            $iteam->start_date = strtotime(I('start_date'));
+            $iteam->end_date = strtotime(I('end_date'));
             $iteam->participate_number = I('participate_number');
             $iteam->type = I('type');
             $iteam->brief = I('brief');
