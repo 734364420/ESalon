@@ -57,8 +57,6 @@ class AuthController extends AddonsController{
     }
     function EditProfile() {
         if(IS_POST) {
-		var_dump($_POST);
-die();
             $user = M('e_user');
             $user->student_id = I('student_id');
             $user->student_name = I('student_name');
@@ -69,13 +67,11 @@ die();
             $user->school = I('school');
             $user->student_status = I('student_status');
             $user->good = I('good');
-		var_dump($user);
-		die();
             $res = $user->where('id = '.session('user_id'))->save();
 	        if($res) {
 		        $this->success("修改成功");
 	        } else {
-		        $this->error($user->getDbError());
+		        $this->error("修改失败");
 	        }
         } else {
             $user_id = session('user_id');
