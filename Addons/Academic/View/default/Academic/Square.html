@@ -40,7 +40,7 @@
 						<div class="pull-left titles">
 							<p class="title">{$iteam.title}</p>
 							<span class="sub-title pull-left name"><php>$user = M('e_user')->find($iteam['publish_userid']); echo $user['student_name'];</php></span>
-							<span class="sub-title pull-left time"><php>echo $iteam['start_date'];</php></span>
+							<span class="sub-title pull-left time"><php>echo date("Y-m-d",$iteam['start_date']);</php></span>
 							<img src="/Public/static/img/see.png" class="see">
 							<span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
 							<span class="sub-title pull-left">{$iteam.hits}</span>
