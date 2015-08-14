@@ -1,64 +1,65 @@
-<include file="Public/e_header" />
+<include file="Public/e_header"/>
 <body>
-    <div class="container">
-        <div class="summary">
-            <p>活动总结：</p>
-            <textarea name=""></textarea>
-        </div>
-
-        <div class="photo">
-            <form action="" method="" enctype="multipart/form-data">
-                <span class="pull-left">上传照片：</span>
-                <input type="file" name="" accept="image/*" class="pull-left">
-            </form>
-        </div>
-
-        <div class="stars">
-            <span class="pull-left">活动评价：</span>
-            <div class="pull-left first-star">
-                <img src="/Public/static/img/star.png">
-            </div>
-            <div class="pull-left">
-                <img src="/Public/static/img/star.png">
-            </div>
-            <div class="pull-left">
-                <img src="/Public/static/img/star.png">
-            </div>
-            <div class="pull-left">
-                <img src="/Public/static/img/star.png">
-            </div>
-            <div class="pull-left">
-                <img src="/Public/static/img/star.png">
-            </div>
-        </div>
-
-        <a href="" class="button clearfix">提交</a>
+<div class="container">
+    <div class="summary">
+        <p>活动总结：</p>
+        <textarea name=""></textarea>
     </div>
+
+    <div class="photo">
+        <form action="" method="" enctype="multipart/form-data">
+            <span class="pull-left">上传照片：</span>
+            <input type="file" name="" accept="image/*" class="pull-left">
+        </form>
+    </div>
+
+    <div class="stars">
+        <span class="pull-left">活动评价：</span>
+
+        <div class="pull-left first-star">
+            <img src="/Public/static/img/star.png">
+        </div>
+        <div class="pull-left">
+            <img src="/Public/static/img/star.png">
+        </div>
+        <div class="pull-left">
+            <img src="/Public/static/img/star.png">
+        </div>
+        <div class="pull-left">
+            <img src="/Public/static/img/star.png">
+        </div>
+        <div class="pull-left">
+            <img src="/Public/static/img/star.png">
+        </div>
+    </div>
+
+    <a href="" class="button clearfix">提交</a>
+</div>
 
 <script type="text/javascript">
     var comment = false;
-    $(function(){
-        $(".stars").find("img").click(function(){
+    $(function () {
+        $(".stars").find("img").click(function () {
             comment = true;
-            $(this).css({"background-color":"yellow"});
-            $(this).parent().prevAll().find("img").css({"background-color":"yellow"});
-            $(this).parent().nextAll().find("img").css({"background-color":"#fff"});
+            $(this).css({"background-color": "yellow"});
+            $(this).parent().prevAll().find("img").css({"background-color": "yellow"});
+            $(this).parent().nextAll().find("img").css({"background-color": "#fff"});
         })
     })
 
-    function checkSummary(){
-        if($("textarea").val() == ""){
+    function checkSummary() {
+        if ($("textarea").val() == "") {
             alert("请填写活动总结！");
             return false;
         }
-        if($("input[type='file']").val() == ""){
+        if ($("input[type='file']").val() == "") {
             alert("请上传活动照片！");
             return false;
         }
-        if(!comment){
+        if (!comment) {
             alert("请评价活动！");
             return false;
         }
     }
 </script>
-<include file="Public/e_footer" />
+<include file="Public/e_footer"/>
