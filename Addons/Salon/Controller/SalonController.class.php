@@ -60,11 +60,10 @@ class SalonController extends AddonsController{
 	function CreateSalon() {
 		if(IS_POST) {
 			$data['title']=\LfRequest::inStr('title');
-			$date=\LfRequest::inStr('date');
+			$data['date']=\LfRequest::inStr('date');
 			$time=\LfRequest::inStr('time');
 			$hour=\LfRequest::inStr('hour');
-			var_dump($time,'+'.$hour.' hour');
-			$data['date']=$date.' '.$time.'~'.date('H:i',strtotime($time)+$hour*3600);
+			$data['time_range']=$time.'~'.date('H:i',strtotime($time)+$hour*3600);
 			$data['space']=\LfRequest::inStr('space');
 			$data['participate_number']=\LfRequest::inStr('participate_number');
 			$data['type']=\LfRequest::inStr('type');

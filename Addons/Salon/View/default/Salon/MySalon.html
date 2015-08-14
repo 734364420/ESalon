@@ -9,22 +9,22 @@
         <a href="{:addons_url('Auth://Auth/EditProfile')}" id="change-data" class="pull-right">修改资料</a>
     </div>
     <div class="flex-box select-group">
-        <select name="" class="flex-1">
+        <select name="type" class="flex-1">
             <option>学科类别</option>
-            <option>微波</option>
-            <option>信息对抗</option>
-            <option>电磁场</option>
+            <option value="微波">微波</option>
+            <option value="信息对抗">信息对抗</option>
+            <option value="电磁场">电磁场</option>
         </select>
-        <select name="" class="flex-1">
-            <option>活动时间</option>
-            <option>今天</option>
-            <option>昨天</option>
-            <option>明天</option>
+        <select name="date" class="flex-1">
+            <option value="">活动时间</option>
+            <option value="1">今天</option>
+            <option value="2">昨天</option>
+            <option value="3">明天</option>
         </select>
-        <select name="" class="flex-1">
-            <option>活动地点</option>
-            <option>清水河</option>
-            <option>沙河</option>
+        <select name="space" class="flex-1">
+            <option value="">活动地点</option>
+            <option value="清水河">清水河</option>
+            <option value="沙河">沙河</option>
         </select>
     </div>
     <div class="container">
