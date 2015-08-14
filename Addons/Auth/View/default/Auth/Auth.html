@@ -3,7 +3,8 @@
 <form method="post" class="data">
     <div class="form-group">
         <label>学号:</label>
-        <input type="text" name="student_id" value="{$user.student_id}" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+        <input type="text" name="student_id" value="{$user.student_id}"
+               onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
     </div>
     <div class="form-group">
         <label>姓名:</label>
@@ -15,7 +16,8 @@
     </div>
     <div class="form-group">
         <label>电话:</label>
-        <input type="text" name="phone" value="{$user.phone}">
+        <input type="text" name="phone" value="{$user.phone}" onkeyup="this.value=this.value.replace(/\D/g,'')"
+               onafterpaste="this.value=this.value.replace(/\D/g,'')">
     </div>
     <div class="form-group">
         <label>邮箱:</label>
@@ -62,19 +64,19 @@
         }
 
         var id = $("input[name='student_id']").val();
-        if (!isNaN(id)) {
+        if (id.length != 13) {
             alert("请填写正确的学号！");
             return false;
         }
 
         var phone = $("input[name='phone']").val();
-        if (!isNaN(phone)) {
+        if (phone.length != 11 && phone.length != 8) {
             alert("请填写正确的电话号！");
             return false;
         }
 
         var email = $("input[name='email']").val();
-        if (email.indexOf("@") <= 0 || email.indexOf(".") <= 0 || email.indexOf("@") > email.indexOf(".")){
+        if (email.indexOf("@") <= 0 || email.indexOf(".") <= 0 || email.indexOf("@") > email.indexOf(".") || email.indexOf(".") - email.indexOf("@") == 1) {
             alert("请填写正确的邮箱！");
             return false;
         }
