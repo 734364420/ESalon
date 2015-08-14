@@ -68,7 +68,7 @@ class SalonController extends AddonsController{
 			$participattions = M('e_participate')->where('user_id=' . session('user_id'))->select();
 			var_dump($participattions);
 			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
-				$result= M('e_salon')->where('id='.$participattions[$i]['e_id'].'AND publish_userid!='.session('user_id'))->find();
+				$result= M('e_salon')->where("'id='.$participattions[$i]['e_id'].' AND publish_userid!='.session('user_id')")->find();
 				var_dump($result);
 				if($result){
 					$salons_participate[$j]=$result;
