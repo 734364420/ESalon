@@ -56,6 +56,7 @@
 
             <p>{$iteam.breif}</p>
         </li>
+
         <li id="comment">
             <img src="/Public/static/img/summary.jpg" class="comment">
             <span class="label">比赛总结：</span>
@@ -64,6 +65,7 @@
                 <p class="pull-left">{$user.student_name}：</p>
                 <php>
                     $summary = M('e_summary')->where('user_id ='.$user['id'])->find();
+	                if(!empty($summary)) {
                 </php>
                 <div class="pull-left">
                     <div class="clearfix">
@@ -74,6 +76,7 @@
                         <php> }</php>
                     </div>
                     <p>{$summary.comment}</p>
+	                <php> } </php>
                 </div>
             </div>
             <volist name="participate_users" id="u">
@@ -81,6 +84,7 @@
                     <p class="pull-left">{$u.student_name}：</p>
                     <php>
                         $summary = M('e_summary')->where('user_id ='.$u['id'])->find();
+	                    if(!empty($summary)) {
                     </php>
                     <div class="pull-left">
                         <div class="clearfix">
@@ -92,15 +96,19 @@
                         </div>
                         <p>{$summary.comment}</p>
                     </div>
+	                <php> } </php>
                 </div>
             </volist>
         </li>
     </ul>
 </div>
 
-
+<php>
+	$mySummary = M('e_summary')->where('user_id ='.session('user_id'))->find();
+	if(!empty($mySummary)) {
+</php>
 <a href="{:addons_url('Academic://Academic/Summary',array('e_id'=>$iteam['id']))}" class="button go-summary">填写活动总结</a>
-
+<php> } </php>
 <script type="text/javascript">
     $(function () {
         var percent;
