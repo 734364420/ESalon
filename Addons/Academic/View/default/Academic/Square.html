@@ -38,7 +38,7 @@
 					<li class="detail-title">
 						<span class="blue-block pull-left"></span>
 						<div class="pull-left titles">
-							<p class="title">{$iteam.title}</p>
+							<p class="title"><a href="{:addons_url('Academic://Academic/IteamDetail',array('id'=>$iteam['id']))}">{$iteam.title}</a></p>
 							<span class="sub-title pull-left name"><php>$user = M('e_user')->find($iteam['publish_userid']); echo $user['student_name'];</php></span>
 							<span class="sub-title pull-left time"><php>echo date("Y-m-d",$iteam['start_date']);</php></span>
 							<img src="/Public/static/img/see.png" class="see">
@@ -62,7 +62,7 @@
 					<li class="detail-title">
 						<span class="blue-block pull-left"></span>
 						<div class="pull-left titles">
-							<p class="title">{$iteam.title}</p>
+							<p class="title"><a href="{:addons_url('Academic://Academic/IteamDetail',array('id'=>$iteam['id']))}">{$iteam.title}</a></p>
 							<span class="sub-title summ">{$iteam.summary}</span>
 							<img src="/Public/static/img/see.png" class="see">
 							<span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
