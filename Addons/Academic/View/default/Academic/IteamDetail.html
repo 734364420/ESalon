@@ -99,15 +99,13 @@
 
 <script type="text/javascript">
     $(function(){
-        var percent=[];
-        var wid=[];
-        for(var i=0;i<$(".list li").length;i++){
-            var now=$(".list li").eq(i).find(".amount-now").text();
-            var total=$(".list li").eq(i).find(".amount-total").text();
-            percent[i]=now/total;
-            wid[i]=percent[i]*90;
-            $(".list li").eq(i).find(".progressbar").css({"clip":"rect(0 " + wid[i] + "px 14px 0)"});
-        }
+        var percent;
+        var wid;
+        var now=$(".list").find(".amount-now").text();
+        var total=$(".list").find(".amount-total").text();
+        percent=now/total;
+        wid=percent[i]*90;
+        $(".list ").find(".progressbar").css({"clip":"rect(0 " + wid + "px 14px 0)"});
     })
 </script>
 <include file="Public/e_footer" />
