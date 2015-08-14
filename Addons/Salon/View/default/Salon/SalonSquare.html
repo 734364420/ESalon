@@ -1,8 +1,8 @@
 <include file="Public/e_header"/>
 <body>
 <div class="flex-box salon-type">
-    <a href="{:addons_url('Salon://Salon/MySalon')}" class="flex-1 center {$active1}">可报名的的E沙龙</a>
-    <a href="{:addons_url('Salon://Salon/MySalon',array('Sign'=>true))}" class="flex-1 center {$active2}">已结束的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center active" id="salonsquare-left">可报名的的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center" id="salonsquare-right">已结束的E沙龙</a>
 </div>
 <div class="flex-box select-group">
     <select name="" class="flex-1">
@@ -25,7 +25,30 @@
 </div>
 <div class="container">
     <div class="list">
-        <ul>
+        <ul id="salonsquare-left-ul">
+            <volist name="salons" id="salon">
+                <li>
+                    <span class="blue-block pull-left"></span>
+                    <div class="pull-left titles">
+                        <p class="title">{$salon.title}</p>
+                        <span class="sub-title summ">{$salon.summary}</span>
+                        <img src="/Public/static/img/see.png" class="see">
+                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
+                        <span class="sub-title pull-left">{$salon.hits}</span>
+                        <span class="sub-title pull-left">&nbsp;)</span>
+                    </div>
+                    <div class="amount pull-left">
+                        <span class="amount-now">{$salon.participated_number}</span>
+                        <span class="amount-dig">/</span>
+                        <span class="amount-total">{$salon.participate_number}</span>
+                        <img src="/Public/static/img/progressbar-bottom.png">
+                        <img src="/Public/static/img/progressbar-top.png" class="progressbar">
+                    </div>
+                </li>
+            </volist>
+        </ul>
+
+        <ul id="salonsquare-right-ul" class="hidden">
             <volist name="salons" id="salon">
                 <li>
                     <span class="blue-block pull-left"></span>
@@ -60,6 +83,20 @@
             wid[i]=percent[i]*90;
             $(".list li").eq(i).find(".progressbar").css({"clip":"rect(0 " + wid[i] + "px 14px 0)"});
         }
+    })
+
+    $("#salonsquare-left").click(function(){
+        $(this).addClass("active");
+        $("#salonsquare-right").removeClass("active");
+        $("#salonsquare-right-ul").addClass("hidden");
+        $("#salonsquare-left-ul").removeClass("hidden");
+    })
+
+    $("#salonsquare-right").click(function(){
+        $(this).addClass("active");
+        $("#salonsquare-left").removeClass("active");
+        $("#salonsquare-left-ul").addClass("hidden");
+        $("#salonsquare-right-ul").removeClass("hidden");
     })
 </script>
 <include file="Public/e_footer" />
