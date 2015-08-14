@@ -302,10 +302,15 @@ form.start input,form.start select,form.start textarea{
     margin-left: 0;
     margin-top: 6px;
     width: 100%;
+    -webkit-border-radius: 0;
+    border-radius: 0;
 }
 form.start select.sepr{
     width: 48%;
 }
 form.start select.sepr.clearfix{
     margin-right: 4%;
+}
+form.start .button{
+    margin: 15px 0; 
 }
