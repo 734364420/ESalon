@@ -76,9 +76,12 @@ class SalonController extends AddonsController{
 		$data['hits']=$salon['hits']+1;
 		M('e_salon')->where('id='.$id)->save($data);
 		$this->salon=$salon;
-		$this->publish_name=M('e_user')->where('id='.$salon['publish_userid'])->getField('student_name');
-		var_dump($salon);
-		var_dump($this->publish_name);
+		$this->publish_user=M('e_user')->where('id='.$salon['publish_userid'])->find();
+		$participate_users=M('e_paticipate')->where('e_id='.$id)->select();
+		for($i=0;$i<count($participate_users);$i++){
+			$participate_users[$i]=M('e_user')->where('id='.$participate_users[$i]['user_id'])->find();
+		}
+		$this->participate_users=$participate_users;
 		$this->display('Salon/Detail');
 	}
 	//总结
@@ -103,6 +106,7 @@ class SalonController extends AddonsController{
 			$data['type']=\LfRequest::inStr('type');
 			$data['brief']=\LfRequest::inStr('brief');
 			$data['publish_userid']=session('user_id');
+			$data['participated_number']=1;
 			$data['hits']=0;
 			$user = M('e_salon');
 			$result=$user->add($data);
