@@ -42,7 +42,7 @@ class SalonController extends AddonsController{
 
 	//新建沙龙
 	function CreateSalon() {
-		//if(IS_POST) {
+		if(IS_POST) {
 		$data['title']='啊啊啊啊';
 		$data['date']='haohao';
 		$data['space']='haohao';
@@ -59,9 +59,9 @@ class SalonController extends AddonsController{
 		}else{
 			$this->error($user->getDbError());
 		}
-//		} else {
-//			$this->display();
-//		}
+		} else {
+			$this->display();
+		}
 	}
 	//参加沙龙
 	function ParticipateSalon() {

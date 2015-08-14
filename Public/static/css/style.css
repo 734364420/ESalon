@@ -230,15 +230,6 @@ a.button,button{
 }
 
 
-/*发起页*/
-div.form-control{
-    width: 90%;
-    margin: 10px 5%;
-}
-div.form-control input,div.form-control textarea,div.form-control select{
-    width: 100%;
-}
-
 
 /*成功页*/
 .success-content{
@@ -286,6 +277,7 @@ form .form-group textarea{
     line-height: 23px;
     height: 80px;
     margin-top: 5px;
+    padding-left: 8px;
 }
 form.data p.ins{
     color: #777;
@@ -298,4 +290,21 @@ form.data .button{
     border: none;
     font-size: 16px;
     font-weight: bold;
+}
+
+
+/*发起页*/
+form.start .form-group{
+    margin: 12px 0;
+}
+form.start input,form.start select,form.start textarea{
+    margin-left: 0;
+    margin-top: 6px;
+    width: 100%;
+}
+form.start select.sepr{
+    width: 48%;
+}
+form.start select.sepr.clearfix{
+    margin-right: 4%;
 }
