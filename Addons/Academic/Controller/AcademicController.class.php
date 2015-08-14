@@ -29,26 +29,33 @@ class AcademicController extends AddonsController{
     }
     //我的iteam页面
     function MyIteam() {
-	    $maps = 'publish_userid = '.session('user_id');
+		$maps = '';
 	    if(IS_POST) {
 		    $data['type'] = \LfRequest::inStr('type');
 		    $data['iteam_status'] = \LfRequest::inStr('iteam_status');
 		    $data['summary_status'] = \LfRequest::inStr('summary_status');
 		    if(!empty($data['type'])) {
-			    $maps .= ' AND  type = '.$data['type'];
+			    $maps .= '  type = '.$data['type'].' AND ';
 		    }
 		    if($data['iteam_status'] == 0 && $data['iteam_status'] != '' ) {
-			    $maps .= ' AND  end_date > '.strtotime(date("Y-m-d"));
+			    $maps .= '  end_date > '.strtotime(date("Y-m-d")).' AND ';
 		    }
 		    if($data['iteam_status'] == 1) {
-			    $maps .= ' AND  end_date < '.strtotime(date("Y-m-d"));
+			    $maps .= '  end_date < '.strtotime(date("Y-m-d")).' AND ';
 		    }
 		    if($data['summary_status'] != '') {
-			    $maps .= '  AND  summary = '.$data['summary_status'];
+			    $maps .= '  summary = '.$data['summary_status'].' AND ';
 		    }
 	    }
+	    $maps .= ' publish_userid = '.session('user_id');
 	    $PublishIteams = M('e_iteam')->where($maps)->select();
-	    $ParticipateIteams = M('e_iteam')->where($maps)->join('eagerfor_e_participate on eagerfor_e_participate.user_id = '.session('user_id').'  AND eagerfor_e_iteam.id = eagerfor_e_participate.e_id')->select();
+	    $participate = M('e_participate')->where('user_id = '.session('user_id'));
+	    $in=array();
+	    foreach($participate as $v) {
+		    $in[] = $v['e_id'];
+	    }
+	    $Pmaps = $maps.' id in '.$in;
+	    $ParticipateIteams= M('e_iteam')->where($Pmaps)->select();
 	    $this->assign('type',I('type',''));
 	    $this->assign('iteam_status',I('iteam_status',''));
 	    $this->assign('summary_status',I('summary_status',''));
@@ -159,6 +166,7 @@ class AcademicController extends AddonsController{
         } else {
             $id = \LfRequest::inNum('id');
             $iteam = M('e_iteam')->find($id);
+	        $this->e_id = $id;
             $this->assign('iteam',$iteam);
             $this->display();
         }
