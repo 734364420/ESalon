@@ -60,10 +60,12 @@ class SalonController extends AddonsController{
 		if(IS_POST) {
 			$data['title']=\LfRequest::inStr('title');
 			$date=\LfRequest::inStr('date');
+			var_dump($date);
 			$time=\LfRequest::inStr('time');
+			var_dump($time);
 			$hour=\LfRequest::inStr('hour');
 			$hour=str_replace("h","",$hour);
-			$data['date']=$date.' '.$time.'~'.date('H:i',strtotime($time,'+'.$hour.' hour'));
+			$data['date']=$date.' '.$time.'~'.date('H:i',strtotime($time,'-'.$hour.' hour'));
 			$data['space']=\LfRequest::inStr('space');
 			$data['participate_number']=\LfRequest::inNum('participate_number');
 			$data['type']=\LfRequest::inStr('type');
@@ -71,6 +73,7 @@ class SalonController extends AddonsController{
 			$data['publish_userid']=session('user_id');
 			$data['hits']=0;
 			var_dump($data);
+			die();
 			$user = M('e_salon');
 			$result=$user->add($data);
 			if($result){
