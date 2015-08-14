@@ -134,17 +134,16 @@ class AcademicController extends AddonsController{
     }
     //报名微团队
     function SignIteam() {
-        $iteam_id = I('id');
+        $iteam_id = \LfRequest::inNum('e_id');
         $iteam = M('e_iteam')->find($iteam_id);
         if(empty($iteam)) {
             $this->error('你要报名的iteam不存在');
         }
-        $iteam->participated_number++;
-        $iteam->save();
+        M('e_iteam')->where('id = '.$iteam_id)->save(array('participated_number'=>$iteam['participated_number']+1));
         $participate = M('e_participate');
         $participate->e_id = $iteam_id;
         $participate->user_id = session('user_id');
-        $res = $participate->save();
+        $res = $participate->add();
         if($res) {
             $this->success('报名成功');
         } else {

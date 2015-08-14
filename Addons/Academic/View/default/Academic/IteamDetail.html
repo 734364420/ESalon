@@ -54,7 +54,7 @@
             <img src="/Public/static/img/brief.png" class="brief">
             <span class="label">比赛简介：</span>
 
-            <p>{$iteam.breif}</p>
+            <p>{$iteam.brief}</p>
         </li>
 
         <li id="comment">
@@ -104,11 +104,24 @@
 </div>
 
 <php>
+	$participate = M('e_participate')->where('e_id ='.$iteam['id'].' AND user_id = '.session('user_id'))->find();
+	if(!empty($participate)) {
+</php>
+
+<php>
 	$mySummary = M('e_summary')->where('user_id ='.session('user_id'))->find();
 	if(empty($mySummary)) {
 </php>
 <a href="{:addons_url('Academic://Academic/Summary',array('e_id'=>$iteam['id']))}" class="button go-summary">填写活动总结</a>
 <php> } </php>
+<php> }  else { </php>
+<a href="{:addons_url('Academic://Academic/SignIteam',array('e_id'=>$iteam['id']))}" class="button go-summary">报名参加</a>
+<php> } </php>
+
+
+
+
+
 <script type="text/javascript">
     $(function () {
         var percent;
