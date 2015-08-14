@@ -21,7 +21,7 @@ class SalonController extends AddonsController{
 			}
 		}
 		$this->salons=$salons;
-		$this->display('Salon/MySalon');
+		$this->display('Salon/mysalon');
 	}
 
 	//查看发布沙龙详细信息
