@@ -110,7 +110,7 @@ class SalonController extends AddonsController{
 			$data['hits']=0;
 			$user = M('e_salon');
 			$result=$user->add($data);
-			var_dump($this->user->getLastInsID());
+			var_dump($result);
 			die();
 			if($result){
 				$this->success('新建成功',addons_url('Salon://Salon/MySalon'),3);
