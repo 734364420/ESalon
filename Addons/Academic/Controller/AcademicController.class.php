@@ -45,7 +45,7 @@ class AcademicController extends AddonsController{
 			    $maps .= ' AND  end_date < '.strtotime(date("Y-m-d"));
 		    }
 		    if($data['summary_status'] != '') {
-			    $maps .= ' AND  summary = '.$data['summary_status'];
+			    $maps .= '  AND  summary = '.$data['summary_status'];
 		    }
 	    }
 	    $PublishIteams = M('e_iteam')->where($maps)->select();
