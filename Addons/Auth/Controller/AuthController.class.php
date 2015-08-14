@@ -48,7 +48,7 @@ class AuthController extends AddonsController{
     }
     function UserProfile() {
         $user_id = I('uid');
-        $user = M('user_id')->find($user_id);
+        $user = M('e_user')->find($user_id);
         if(empty($user)) {
             $this->error("该用户不存在");
         }

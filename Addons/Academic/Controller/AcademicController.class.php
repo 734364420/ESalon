@@ -30,8 +30,26 @@ class AcademicController extends AddonsController{
     }
     //我的iteam页面
     function MyIteam() {
-        $PublishIteams = M('e_iteam')->where(array('publish_userid'=>session('user_id')))->select();
-        $ParticipateIteams = M('e_iteam')->where(array('publish_userid'=>session('user_id')))->join('eagerfor_e_participate on eagerfor_e_iteam.id = eagerfor_e_participate.e_id')->select();
+	    $maps = 'publish_userid = '.session('user_id');
+	    if(IS_POST) {
+		    $data['type'] = \LfRequest::inStr('type');
+		    $data['iteam_status'] = \LfRequest::inStr('iteam_status');
+		    $data['summary_status'] = \LfRequest::inStr('summary_status');
+		    if(!empty($data['type'])) {
+			    $maps .= 'type = '.$data['type'];
+		    }
+		    if($data['iteam_status'] == 0) {
+			    $maps .= 'end_date > '.date("Y-m-d");
+		    }
+		    if($data['iteam_status'] == 1) {
+			    $maps .= 'end_date < '.date("Y-m-d");
+		    }
+		    if($data['summary_status'] != '') {
+			    $maps .= 'summary_status = '.$data['summary_status'];
+		    }
+	    }
+	    $PublishIteams = M('e_iteam')->where($maps)->select();
+	    $ParticipateIteams = M('e_iteam')->where($maps)->join('eagerfor_e_participate on eagerfor_e_iteam.id = eagerfor_e_participate.e_id')->select();
         $this->assign('PublishIteams',$PublishIteams);
         $this->assign('ParticipateIteams',$ParticipateIteams);
         $this->display();
@@ -75,6 +93,21 @@ class AcademicController extends AddonsController{
     function Square() {
 	    $sign_iteams = M('e_iteam')->where('start_date > '.date("Y-m-d"))->select();
 	    $end_iteams = M('e_iteam')->where('start_date < '.date("Y-m-d"))->select();
+	    if(IS_POST) {
+		    $data['type'] = \LfRequest::inStr('type');
+		    $data['start_date'] = \LfRequest::inStr('start_date');
+		    $data['end_date'] = \LfRequest::inStr('end_date');
+		    $maps = '';
+		    if(!empty($data['type'])) {
+				$maps .= 'type = '.$data['type'];
+		    }
+		    if(!empty($data['start_date'])) {
+			    $maps .= 'start_date = '.$data['start_date'];
+		    }
+		    if(!empty($data['end_date'])) {
+			    $maps .= 'end_date = '.$data['end_date'];
+		    }
+	    }
 	    $this->assign('sign_iteams',$sign_iteams);
 	    $this->assign('end_iteams',$end_iteams);
         $this->display();

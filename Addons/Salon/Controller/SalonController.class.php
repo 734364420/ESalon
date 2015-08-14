@@ -76,7 +76,8 @@ class SalonController extends AddonsController{
 		$data['hits']=$salon['hits']+1;
 		$salon=M('e_salon')->where('id='.$id)->save($data);
 		$this->salon=$salon;
-		$this->display();
+		$this->publish_name=M('e_user')->where('id='.$salon['publish_userid'])->getField('student_name');
+		$this->display('Salon/Detail');
 	}
 	//总结
 	function Summary(){
@@ -89,7 +90,7 @@ class SalonController extends AddonsController{
 
 	//新建沙龙
 	function CreateSalon() {
-		if(IS_POST) {
+		if(IS_POST) {	
 			$data['title']=\LfRequest::inStr('title');
 			$data['date']=\LfRequest::inStr('date');
 			$time=\LfRequest::inStr('time');

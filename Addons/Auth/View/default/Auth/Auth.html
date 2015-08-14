@@ -35,7 +35,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label>学历:</label>
+            <label>学历:{:IsSelected($user.student_status,"研究生")}</label>
             <select name="student_status">
                 <option value="本科" {:IsSelected($user['student_status'],"本科")}>本科</option>
                 <option value="研究生" {:IsSelected($user['student_status'],"研究生")}>研究生</option>
