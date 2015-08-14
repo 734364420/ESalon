@@ -33,7 +33,7 @@ class SalonController extends AddonsController{
 			}
 		}
 		$this->username=$user;
-		$this->$salons_participate=$salons_participate;
+		$this->salons_participate=$salons_participate;
 		$this->salons_publish=$salons_publish;
 		$this->display();
 	}
