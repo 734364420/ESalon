@@ -73,10 +73,10 @@ class AcademicController extends AddonsController{
     }
     //Iteam广场
     function Square() {
-        $end_iteams = M('e_iteam')->where('end_date < '.date("Y-m-d H:i"))->select();
-        $sign_iteams = M('e_iteam')->where('end_date > '.date("Y-m-d H:i"))->select();
-        $this->assign('end_iteams',$end_iteams);
-        $this->assign('sign_iteams',$sign_iteams);
+	    $sign_iteams = M('e_iteam')->where('start_date > '.date("Y-m-d"))->select();
+	    $end_iteams = M('e_iteam')->where('start_date < '.date("Y-m-d"))->select();
+	    $this->assign('sign_iteams',$sign_iteams);
+	    $this->assign('end_iteams',$end_iteams);
         $this->display();
     }
     //报名微团队
