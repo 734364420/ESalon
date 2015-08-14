@@ -23,6 +23,9 @@ textarea{
     clear: both;
     overflow: hidden;
 }
+.hidden{
+    display: none;
+}
 .pull-left{
     float: left;
 }
@@ -49,6 +52,20 @@ textarea{
 }
 .orange{
     color:rgb(255,192,0);
+}
+a.button,button{
+    display: block;
+    width: 150px;
+    margin: 0 auto;
+    text-align: center;
+    height: 30px;
+    line-height: 30px;
+    background-color: deepskyblue;
+    border-radius: 10px;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 
@@ -85,10 +102,30 @@ textarea{
 .salon-type a.active{
     border-bottom: 5px solid rgb(255,192,0);
 }
+.select-group{
+    width: 90%;
+    margin: 0 auto;
+}
 .select-group select{
-    margin: 5px 10px;
+    margin: 5px 10px 5px 0;
     height: 25px;
     color: #aaa;
+}
+.select-group input[type="submit"]{
+    display: block;
+    -webkit-box-flex: 1.5;
+    text-indent: -9999px;
+    background-color: #fff;
+    border: none;
+    background: url(/Public/static/img/search.png) no-repeat 50% 50%;
+    background-size: 20px;
+}
+.list{
+    position: relative;
+}
+.list ul{
+    position: absolute;
+    width: 100%;
 }
 .list li{
     height: 60px;
@@ -141,9 +178,6 @@ textarea{
     top: 30px;
     left: 0;
 }
-.list .amount img.progressbar{
-    /*clip: rect(0 60px 14px 0);*/
-}
 .list .amount span:first-child{
     margin-left: 30px;
 }
@@ -155,6 +189,11 @@ textarea{
 .list .amount .amount-total,.list .amount .amount-dig{
     color: grey;
     font-weight: bold;
+}
+.list .timing{
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 10px
 }
 
 
@@ -197,22 +236,24 @@ textarea{
     color: #c0c0c0;
 }
 
-/*内容页*/
-ul.detail-list li{
+h2{
+    color: rgb(51,153,255);
+    text-align: center;
     margin: 10px 0;
 }
-ul.detail-list p{
-    margin-left: 27px;
+p.main-content{
+    text-indent: 28px;
+    font-size: 14px;
+    margin: 2px 0;
 }
-a.button,button{
-    display: block;
-    width: 150px;
-    margin: 0 auto;
+div.link-square{
+    margin-top: 20px;
     text-align: center;
-    height: 30px;
-    line-height: 30px;
-    background-color: deepskyblue;
-    border-radius: 10px;
+    color: #ccc;
+    font-size: 13px;
+}
+div.link-square a.orange{
+    text-decoration: underline;
 }
 
 
@@ -220,13 +261,43 @@ a.button,button{
 .summary{
     margin-top: 10px;
 }
+.summary p{
+    font-size: 15px;
+    font-weight: bold;
+}
 .summary textarea{
-    width: 90%;
+    width: 95%;
     height: 100px;
-    margin: 2% 5%;
+    margin-top: 10px;
+    padding: 5px;
+}
+div.photo{
+    margin-top: 20px;
+    overflow: hidden;
+}
+div.photo span{
+    font-size: 15px;
+    font-weight: bold;
+}
+div.photo input[type="file"]{
+    margin-left: 10px;
+}
+.stars{
+    margin-top: 20px;
+    overflow: hidden;
+}
+.stars span{
+    font-size: 15px;
+    font-weight: bold;
+}
+.stars .first-star{
+    margin-left: 10px;
 }
 .stars img{
-    width: 25px;
+    width: 22px;
+}
+.button.clearfix{
+    margin: 30px auto;
 }
 
 
@@ -241,7 +312,7 @@ a.button,button{
 form.data{
     width: 80%;
     margin: 0 10%;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 form .form-group{
     overflow: hidden;
@@ -252,6 +323,13 @@ form .form-group label{
     clear: both;
     float: left;
     color: #fff;
+}
+form .form-group label.content{
+    clear: none;
+    margin-left: 20px;
+}
+form .form-group:last-child label.content{
+    max-width: 225px;
 }
 form .form-group input,form .form-group select,form .form-group textarea{
     float: left;
@@ -287,10 +365,28 @@ form.data p.ins{
 }
 form.data .button{
     margin-top: 12px;
+}
+div.data{
+    width: 80%;
+    margin: 0 10%;
+    margin-top: 15px;
+}
+div.data .form-group{
+    overflow: hidden;
+    margin: 15px 0;
+    line-height: 25px;
+}
+div.data .form-group label{
+    clear: both;
+    float: left;
     color: #fff;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
+}
+div.data .form-group label.content{
+    clear: none;
+    margin-left: 20px;
+}
+div.data .form-group:last-child label.content{
+    max-width: 225px;
 }
 
 
@@ -313,4 +409,126 @@ form.start select.sepr.clearfix{
 }
 form.start .button{
     margin: 15px auto;
+}
+
+
+/*内容页*/
+.detail-title{
+    overflow: hidden;
+    padding: 10px 0;
+    border-bottom: 1px solid #aaa;
+}
+.detail-title p.title{
+    font-weight: bold;
+}
+.detail-title .sub-title{
+    margin-top: 2px;
+}
+.detail-title img.see{
+    margin-top: 8px;
+}
+.detail-title .sub-title.name{
+    margin-left: 20px;
+}
+.detail-title .sub-title.time{
+    margin-left: 7px;
+}
+ul.detail-list li{
+    padding: 15px 0;
+    overflow: hidden;
+    line-height: 23px;
+    border-bottom: 1px solid #ccc;
+}
+ul.detail-list li span,ul.detail-list li img,ul.detail-list li p{
+    float: left;
+}
+ul.detail-list li span,ul.detail-list li p{
+    font-size: 14px;
+}
+ul.detail-list li span{
+    color: deepskyblue;
+}
+ul.detail-list li span.label{
+    margin-left: 10px;
+    color: #333;
+}
+ul.detail-list li p{
+    clear: both;
+    margin-left: 31px;
+    color: #b5b5b5;
+}
+ul.detail-list li img.time{
+    width: 24px;
+}
+ul.detail-list li img.site{
+    width: 14px;
+    margin-left: 3px;
+    margin-right: 6px;
+}
+ul.detail-list li img.user{
+    width: 21px;
+}
+ul.detail-list li img.amount{
+    width: 22px;
+}
+ul.detail-list li img.brief{
+    width: 22px;
+}
+ul.detail-list li img.comment{
+    width: 24px;
+}
+ul.detail-list #brief p{
+    color: deepskyblue;
+}
+ul.detail-list #comment span{
+    margin-left: 7px;
+}
+ul.detail-list #comment div.comment-group{
+    overflow: hidden;
+    clear: both;
+}
+ul.detail-list #comment div.comment-group p:last-child{
+
+}
+ul.detail-list #comment p{
+    color: deepskyblue;
+}
+ul.detail-list #comment .comment-star{
+    width: 20px;
+}
+ul.detail-list #comment div.pull-left{
+    margin-left: 20px;
+}
+ul.detail-list #comment div.pull-left p{
+    margin-left: 0;
+    margin-top: 10px;
+    max-width: 220px;
+}
+ul.detail-list #comment .comment-group{
+    margin-bottom: 20px;
+}
+ul.detail-list span{
+    color: #000;
+}
+a.go-summary{
+    margin: 10px auto;
+}
+
+
+/*联系页*/
+#contact-us{
+    margin-top: 50px;
+}
+#contact-us p{
+    font-size: 16px;
+    font-weight: bold;
+}
+#contact-us textarea{
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 20px;
+    height: 150px;
+}
+#contact-us button{
+    margin-top: 30px;
 }

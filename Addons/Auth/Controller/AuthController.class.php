@@ -47,8 +47,8 @@ class AuthController extends AddonsController{
         }
     }
     function UserProfile() {
-        $user_id = I('user_id');
-        $user = M('user_id')->find($user_id);
+        $user_id = I('uid');
+        $user = M('e_user')->find($user_id);
         if(empty($user)) {
             $this->error("该用户不存在");
         }
@@ -57,18 +57,22 @@ class AuthController extends AddonsController{
     }
     function EditProfile() {
         if(IS_POST) {
-            $user_id = session('user_id');
-            $user = M('e_user')->find($user_id);
-//            $user->student_id = I('student_id');
-//            $user->student_name = I('student_name');
-            $user->major = I('major');
-            $user->phone = I('phone');
-            $user->email = I('email');
-//            $user->gender = I('gender');
-            $user->school = I('school');
-            $user->student_status = I('student_status');
-            $user->good = I('good');
-            $user->save();
+            $user = M('e_user');
+            $user->student_id = \LfRequest::inNum('student_id');
+            $user->student_name = \LfRequest::inStr('student_name');
+            $user->major = \LfRequest::inStr('major');
+            $user->phone = \LfRequest::inStr('phone');
+            $user->email = \LfRequest::inStr('email');
+            $user->gender = \LfRequest::inStr('gender');
+            $user->school = \LfRequest::inStr('school');
+            $user->student_status = \LfRequest::inStr('student_status');
+            $user->good = \LfRequest::inStr('good');
+            $res = $user->where('id = '.session('user_id'))->save();
+	        if($res) {
+		        $this->success("修改成功");
+	        } else {
+		        $this->error("修改失败");
+	        }
         } else {
             $user_id = session('user_id');
             $user = M('e_user')->find($user_id);

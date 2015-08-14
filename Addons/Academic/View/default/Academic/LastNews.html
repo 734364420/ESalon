@@ -1,0 +1,46 @@
+<include file="Public/e_header" />
+<body>
+    <div class="flex-box select-group">
+        <select name="" class="flex-1">
+            <option>竞赛类别</option>
+            <option>数学</option>
+            <option>物理</option>
+            <option>化学</option>
+        </select>
+        <select name="" class="flex-1">
+            <option>比赛时间</option>
+            <option>今天</option>
+            <option>昨天</option>
+            <option>明天</option>
+        </select>
+        <select name="" class="flex-1">
+            <option>参赛方式</option>
+            <option>线上</option>
+            <option>线下</option>
+        </select>
+    </div>
+
+    <div class="container">
+        <div class="list">
+            <ul>
+                <volist name="salons" id="salon">
+                    <li>
+                        <span class="blue-block pull-left"></span>
+                        <div class="pull-left titles">
+                            <p class="title">创新创业大赛</p>
+                            <img src="/Public/static/img/see.png" class="see">
+                            <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
+                            <span class="sub-title pull-left">237</span>
+                            <span class="sub-title pull-left">&nbsp;)</span>
+                        </div>
+                        <div class="timing pull-right">
+                            <span>2015-07-20</span>
+                        </div>
+                    </li>
+                </volist>
+            </ul>
+        </div>
+    </div>
+
+
+<include file="Public/e_footer" />

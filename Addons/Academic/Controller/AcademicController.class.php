@@ -6,8 +6,9 @@ use Home\Controller\AddonsController;
 class AcademicController extends AddonsController{
 	public function __construct() {
 		parent::__construct();
-		$openid = I('openid');
-        e_auth($openid);
+        e_auth();
+		$user = M('e_user')->find(session('user_id'));
+		$this->assign('user',$user);
 	}
     //最新学术动态页面，竞赛列表页
     function LastNews() {
@@ -29,17 +30,43 @@ class AcademicController extends AddonsController{
     }
     //我的iteam页面
     function MyIteam() {
-        $PublishIteams = M('e_iteam')->where(array('publish_userid'=>session('user_id')))->select();
-        $ParticipateIteams = M('e_iteam')->where(array('publish_userid'=>session('user_id')))->join('eagerfor_e_participate on eagerfor_e_iteam.id = eagerfor_e_participate.e_id')->select();
+	    $maps = 'publish_userid = '.session('user_id');
+	    if(IS_POST) {
+		    $data['type'] = \LfRequest::inStr('type');
+		    $data['iteam_status'] = \LfRequest::inStr('iteam_status');
+		    $data['summary_status'] = \LfRequest::inStr('summary_status');
+		    if(!empty($data['type'])) {
+			    $maps .= ' AND  type = '.$data['type'];
+		    }
+		    if($data['iteam_status'] == 0 && $data['iteam_status'] != '' ) {
+			    $maps .= ' AND  end_date > '.strtotime(date("Y-m-d"));
+		    }
+		    if($data['iteam_status'] == 1) {
+			    $maps .= ' AND  end_date < '.strtotime(date("Y-m-d"));
+		    }
+		    if($data['summary_status'] != '') {
+			    $maps .= '  AND  summary = '.$data['summary_status'];
+		    }
+	    }
+	    $PublishIteams = M('e_iteam')->where($maps)->select();
+	    $ParticipateIteams = M('e_iteam')->where($maps)->join('eagerfor_e_participate on eagerfor_e_iteam.id = eagerfor_e_participate.e_id')->select();
+	    $this->assign('type',I('type',''));
+	    $this->assign('iteam_status',I('iteam_status',''));
+	    $this->assign('summary_status',I('summary_status',''));
         $this->assign('PublishIteams',$PublishIteams);
         $this->assign('ParticipateIteams',$ParticipateIteams);
         $this->display();
     }
     //团队约详情页面
     function IteamDetail() {
-        $item_id = intval(I('id'));
-        $item = M('e_iteam')->find($item_id);
-        $this->assign('iteam',$item);
+        $iteam_id = intval(I('id'));
+        $Miteam = M('e_iteam');
+	    $iteam = $Miteam->find($iteam_id);
+	    $Miteam->hits = $iteam->hits++;
+	    $Miteam->where('id = '.$iteam_id)->save();
+	    $this->user = M('e_user')->find($iteam->publish_userid);
+	    $this->participate_users = M('e_participate')->where('e_id = '.$iteam_id)->select();
+        $this->assign('iteam',$iteam);
         $this->display();
     }
     //发起团队约,填写表单页面
@@ -54,24 +81,48 @@ class AcademicController extends AddonsController{
             }
             $iteam = M('e_iteam');
             $iteam->title = $title;
-            $iteam->start_date = I('start_date');
-            $iteam->end_date = I('end_date');
+            $iteam->start_date = strtotime(I('start_date'));
+            $iteam->end_date = strtotime(I('end_date'));
             $iteam->participate_number = I('participate_number');
             $iteam->type = I('type');
             $iteam->brief = I('brief');
             $iteam->publish_userid = session('user_id');
-            $iteam->save();
-            redirect(addons_url('Academic://Academic/MyIteam'));
+	        $iteam->participated_number = 1;
+            $res = $iteam->add();
+	        if($res) {
+		        $this->success("添加成功",addons_url('Academic://Academic/MyIteam'));
+		        $participate = M('e_participate');
+		        $participate->e_id = $res;
+		        $participate->user_id = session('user_id');
+		        $participate->add();
+	        } else {
+		        $this->error("添加失败");
+	        }
         } else {
             $this->display();
         }
     }
     //Iteam广场
     function Square() {
-        $end_iteams = M('e_iteam')->where('end_date < '.date("Y-m-d H:i"))->select();
-        $sign_iteams = M('e_iteam')->where('end_date > '.date("Y-m-d H:i"))->select();
-        $this->assign('end_iteam',$end_iteams);
-        $this->assign('sign_iteam',$sign_iteams);
+	    $sign_iteams = M('e_iteam')->where('start_date > '.date("Y-m-d"))->select();
+	    $end_iteams = M('e_iteam')->where('start_date < '.date("Y-m-d"))->select();
+	    if(IS_POST) {
+		    $data['type'] = \LfRequest::inStr('type');
+		    $data['start_date'] = \LfRequest::inStr('start_date');
+		    $data['end_date'] = \LfRequest::inStr('end_date');
+		    $maps = '';
+		    if(!empty($data['type'])) {
+				$maps .= 'type = '.$data['type'];
+		    }
+		    if(!empty($data['start_date'])) {
+			    $maps .= 'start_date = '.$data['start_date'];
+		    }
+		    if(!empty($data['end_date'])) {
+			    $maps .= 'end_date = '.$data['end_date'];
+		    }
+	    }
+	    $this->assign('sign_iteams',$sign_iteams);
+	    $this->assign('end_iteams',$end_iteams);
         $this->display();
     }
     //报名微团队

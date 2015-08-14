@@ -1,0 +1,113 @@
+<include file="Public/e_header"/>
+<body>
+	<div class="flex-box salon-type">
+		<a href="javacript:;" class="flex-1 center active" id="square-left">可报名的iteam</a>
+		<a href="javacript:;" class="flex-1 center" id="square-right">已结束的iteam</a>
+	</div>
+<!--<div class="center" id="data">-->
+	<!--<span class="name">{$user.student_name}</span>-->
+	<!--<a href="{:addons_url('Auth://Auth/EditProfile')}" id="change-data" class="pull-right">修改资料</a>-->
+<!--</div>-->
+	<form method="post">
+		<div class="flex-box select-group">
+			<select name="" class="flex-1">
+				<option>竞赛类别</option>
+				<option>数学</option>
+				<option>物理</option>
+				<option>化学</option>
+			</select>
+			<select name="" class="flex-1">
+				<option>比赛时间</option>
+				<option>今天</option>
+				<option>明天</option>
+				<option>明天</option>
+			</select>
+			<select name="" class="flex-1">
+				<option>参赛方式</option>
+				<option>线上</option>
+				<option>线下</option>
+			</select>
+			<input type="submit" value="搜索"/>
+		</div>
+	</form>
+
+	<div class="container">
+		<div class="list">
+			<ul id="square-left-ul">
+				<volist name="sign_iteams" id="iteam">
+					<li class="detail-title">
+						<span class="blue-block pull-left"></span>
+						<div class="pull-left titles">
+							<p class="title">{$iteam.title}</p>
+							<span class="sub-title pull-left name"><php>$user = M('e_user')->find($iteam['publish_userid']); echo $user['student_name'];</php></span>
+							<span class="sub-title pull-left time"><php>echo $iteam['start_date'];</php></span>
+							<img src="/Public/static/img/see.png" class="see">
+							<span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
+							<span class="sub-title pull-left">{$iteam.hits}</span>
+							<span class="sub-title pull-left">&nbsp;)</span>
+						</div>
+						<div class="amount pull-left">
+							<span class="amount-now">{$iteam.participated_number}</span>
+							<span class="amount-dig">/</span>
+							<span class="amount-total">{$iteam.participate_number}</span>
+							<img src="/Public/static/img/progressbar-bottom.png">
+							<img src="/Public/static/img/progressbar-top.png" class="progressbar">
+						</div>
+					</li>
+				</volist>
+			</ul>
+
+			<ul id="square-right-ul" class="hidden">
+				<volist name="end_iteams" id="iteam">
+					<li class="detail-title">
+						<span class="blue-block pull-left"></span>
+						<div class="pull-left titles">
+							<p class="title">{$iteam.title}</p>
+							<span class="sub-title summ">{$iteam.summary}</span>
+							<img src="/Public/static/img/see.png" class="see">
+							<span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
+							<span class="sub-title pull-left">{$iteam.hits}</span>
+							<span class="sub-title pull-left">&nbsp;)</span>
+						</div>
+						<div class="amount pull-left">
+							<span class="amount-now">{$iteam.participated_number}</span>
+							<span class="amount-dig">/</span>
+							<span class="amount-total">{$iteam.participate_number}</span>
+							<img src="/Public/static/img/progressbar-bottom.png">
+							<img src="/Public/static/img/progressbar-top.png" class="progressbar">
+						</div>
+					</li>
+				</volist>
+			</ul>
+		</div>
+	</div>
+
+<script type="text/javascript">
+	$(function(){
+		var percent=[];
+		var wid=[];
+		for(var i=0;i<$(".list li").length;i++){
+			var now=$(".list li").eq(i).find(".amount-now").text();
+			var total=$(".list li").eq(i).find(".amount-total").text();
+			percent[i]=now/total;
+			wid[i]=percent[i]*90;
+			$(".list li").eq(i).find(".progressbar").css({"clip":"rect(0 " + wid[i] + "px 14px 0)"});
+		}
+	})
+
+	$("#square-left").click(function(){
+		$(this).addClass("active");
+		$("#square-right").removeClass("active");
+		$("#square-right-ul").addClass("hidden");
+		$("#square-left-ul").removeClass("hidden");
+	})
+
+	$("#square-right").click(function(){
+		$(this).addClass("active");
+		$("#square-left").removeClass("active");
+		$("#square-left-ul").addClass("hidden");
+		$("#square-right-ul").removeClass("hidden");
+	})
+</script>
+
+<include file="Public/e_footer" />
