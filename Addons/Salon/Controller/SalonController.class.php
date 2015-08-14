@@ -13,14 +13,16 @@ class SalonController extends AddonsController{
 	//我的沙龙
 	function MySalon() {
 		$user=M('e_user')->where('id='.session('user_id'))->find();
-		$method=\LfRequest::inNum('method');
+		$method=$_POST('method');
 		if(empty($method)) {
 			$salons = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
+			$this->active1='active';
 		}else{
 			$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
 			for($i=0;$i<count($participattions);$i++){
 				$salons[$i]=M('e_salon')->where('id='.$participattions[$i]['e_id'])->find();
 			}
+			$this->active2='active';
 		}
 		for($i=0;$i<count($salons);$i++){
 			if(empty($salons[$i]['summary'])){
