@@ -8,9 +8,11 @@
         <div class="form-group">
             <label>选择起始时间：</label>
             <select name="" class="sepr clearfix">
-                <option value="">07-08</option>
+                <volist name="times" id="time">
+                <option value="">{$time}</option>
                 <option value="">07-09</option>
                 <option value="">07-10</option>
+                </volist>
             </select>
             <select name="" class="sepr">
                 <option value="">09:00</option>

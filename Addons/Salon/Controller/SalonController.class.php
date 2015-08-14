@@ -78,6 +78,7 @@ class SalonController extends AddonsController{
 			for($i=0;$i<=10;$i++){
 				$times[$i]=date("Y-m-d",strtotime("+$i day"));
 			}
+			var_dump($times);
 			$this->times=$times;
 			$this->display();
 		}
