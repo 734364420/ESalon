@@ -70,12 +70,13 @@ class SalonController extends AddonsController{
 
 	//查看发布沙龙详细信息
 	function CheckSalon() {
-		$id=\LfRequest::inStr('id');
+		$id=\LfRequest::inNum('id');
 		var_dump($id);
 		$salon=M('e_salon')->where('id='.$id)->find();
 		$data['hits']=$salon['hits']+1;
 		$salon=M('e_salon')->where('id='.$id)->save($data);
 		$this->salon=$salon;
+		$this->publish_name=M('e_user')->where('id='.$salon['publish_userid'])->getField('student_name');
 		$this->display('Salon/Detail');
 	}
 	//总结
