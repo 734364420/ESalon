@@ -23,6 +23,9 @@ textarea{
     clear: both;
     overflow: hidden;
 }
+.hidden{
+    display: none;
+}
 .pull-left{
     float: left;
 }
@@ -104,6 +107,13 @@ a.button,button{
     height: 25px;
     color: #aaa;
 }
+.list{
+    position: relative;
+}
+.list ul{
+    position: absolute;
+    width: 100%;
+}
 .list li{
     height: 60px;
     margin-top: 10px;
@@ -166,6 +176,11 @@ a.button,button{
 .list .amount .amount-total,.list .amount .amount-dig{
     color: grey;
     font-weight: bold;
+}
+.list .timing{
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 10px
 }
 
 
