@@ -23,8 +23,7 @@ class AcademicController extends AddonsController{
         if(empty($competition)) {
             $this->error("数据不存在了！");
         }
-        $competition->hits++;
-        $competition->save();
+	    M('e_competition')->where('id ='.$competition_id)->save(array('hits'=>$competition->hits++));
         $this->assign('competition',$competition);
         $this->display();
     }
@@ -60,12 +59,12 @@ class AcademicController extends AddonsController{
     //团队约详情页面
     function IteamDetail() {
         $iteam_id = intval(I('id'));
-        $Miteam = M('e_iteam');
+	    $iteam = M('e_iteam')->find($iteam_id);
+	    $Miteam = M('e_iteam');
 	    $Miteam->hits = $iteam->hits++;
 	    $Miteam->where('id = '.$iteam_id)->save();
 	    $this->user = M('e_user')->find($iteam->publish_userid);
 	    $this->participate_users = M('e_participate')->where('e_id = '.$iteam_id)->select();
-	    $iteam = M('e_iteam')->find();
         $this->assign('iteam',$iteam);
         $this->display();
     }
