@@ -23,6 +23,9 @@ textarea{
     clear: both;
     overflow: hidden;
 }
+.hidden{
+    display: none;
+}
 .pull-left{
     float: left;
 }
@@ -103,6 +106,13 @@ a.button,button{
     margin: 5px 10px;
     height: 25px;
     color: #aaa;
+}
+.list{
+    position: relative;
+}
+.list ul{
+    position: absolute;
+    width: 100%;
 }
 .list li{
     height: 60px;
