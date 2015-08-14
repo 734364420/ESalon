@@ -13,7 +13,7 @@ class SalonController extends AddonsController{
 	//我的沙龙
 	function MySalon() {
 		$user=M('e_user')->where('id='.session('user_id'))->find();
-		$method=\LfRequest::inNum('method');
+		$method=\LfRequest::inStr('Sign');
 		var_dump($method);
 		if(empty($method)) {
 			$salons = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
