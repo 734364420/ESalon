@@ -170,6 +170,9 @@ class SalonController extends AddonsController{
 		$participate_number=M('e_salon')->where('id='.$id)->getField('participate_number');
 		if($participated_number>=$participate_number){
 			$this->error('人数已满，稍后再试');
+		}else{
+			$number['participated_number']=$participated_number+1;
+			$result=M('e_salon')->where('id='.$id)->save($number);
 		}
 		$result=M('e_participate')->add($data);
 		$param ['token'] = get_token ();
