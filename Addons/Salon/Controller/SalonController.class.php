@@ -14,7 +14,6 @@ class SalonController extends AddonsController{
 	function MySalon() {
 		$user=M('e_user')->where('id='.session('user_id'))->getField('student_name');
 		$method=\LfRequest::inStr('sign');
-		var_dump($method);
 		if(empty($method)) {
 			$salons = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
 			$this->active1='active';
@@ -63,15 +62,13 @@ class SalonController extends AddonsController{
 			$time=\LfRequest::inStr('time');
 			$hour=\LfRequest::inStr('hour');
 			var_dump($time,'+'.$hour.' hour');
-			$data['date']=$date.' '.$time.'~'.date('H:i',strtotime("'-'.$hour.' hour'",$time));
+			$data['date']=$date.' '.$time.'~'.date('H:i',strtotime($time)+$hour*3600);
 			$data['space']=\LfRequest::inStr('space');
 			$data['participate_number']=\LfRequest::inStr('participate_number');
 			$data['type']=\LfRequest::inStr('type');
 			$data['brief']=\LfRequest::inStr('brief');
 			$data['publish_userid']=session('user_id');
 			$data['hits']=0;
-			var_dump($data);
-			die();
 			$user = M('e_salon');
 			$result=$user->add($data);
 			if($result){
