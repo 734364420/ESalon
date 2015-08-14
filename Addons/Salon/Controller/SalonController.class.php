@@ -16,11 +16,12 @@ class SalonController extends AddonsController{
 			var_dump($_POST);
 			$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
 			$type=\LfRequest::inStr('type');
-			$salon_status=\LfRequest::inStr('salon_status');
-			$salon_summary_status=\LfRequest::inStr('salon_summary_status');
+			$salon_status=\LfRequest::inNum('salon_status');
+			$salon_summary_status=\LfRequest::inNum('salon_summary_status');
+			var_dump($tpye);
 			var_dump($salon_status);
 			var_dump($salon_summary_status);
-			$today = date('H-m-d',time());
+			$today = date('Y-m-d',time());
 			var_dump($today);
 			if($type != null) {
 				$data['type='] = $type;
