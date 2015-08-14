@@ -112,6 +112,7 @@ a.button,button{
 }
 .list ul{
     position: absolute;
+    width: 100%;
 }
 .list li{
     height: 60px;
