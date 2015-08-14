@@ -76,7 +76,10 @@
         }
 
         var email = $("input[name='email']").val();
-        if (email.indexOf("@") <= 0 || email.indexOf(".") <= 0 || email.indexOf("@") > email.indexOf(".") || email.indexOf(".") - email.indexOf("@") == 1) {
+        if (email.indexOf("@") <= 0 || email.indexOf(".") <= 0 ||
+                email.indexOf("@") > email.indexOf(".") ||
+                email.length == email.indexOf(".") +1 ||
+                email.indexOf(".") - email.indexOf("@") == 1) {
             alert("请填写正确的邮箱！");
             return false;
         }
