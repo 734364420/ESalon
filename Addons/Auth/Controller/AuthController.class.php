@@ -6,8 +6,7 @@ use Home\Controller\AddonsController;
 class AuthController extends AddonsController{
     function __construct() {
         parent::__construct();
-        $this->model = M ( 'Model' )->getByName ( $_REQUEST ['_controller'] );
-        $this->model || $this->error ( '模型不存在！' );
+        $this->model = $this->getModel();
         $this->assign ( 'model', $this->model );
     }
     function Auth() {
