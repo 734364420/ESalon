@@ -109,10 +109,16 @@ class SalonController extends AddonsController{
 		$this->participate_users=$participate_users;
 		$this->display('Salon/Detail');
 	}
-	//总结
+	//评价
 	function Summary(){
 		if(IS_POST) {
-			$data['summary']=\LfRequest::inStr('summary');
+			$data['content']=\LfRequest::inStr('content');
+			$result=M('e_suggestions')->add($data);
+			if($result){
+				$this->success('留言成功啦，谢谢啦',addons_url('Salon://Salon/SalonSquare'),3);
+			}else{
+				$this->error('出错啦，检查下建议呗？');
+			}
 		}else{
 			$this->display();
 		}
@@ -183,7 +189,7 @@ class SalonController extends AddonsController{
 			$data['content']=\LfRequest::inStr('content');
 			$result=M('suggestions')->add($data);
 			if($result){
-				$this->success('留言成功',addons_url('Salon://Salon/instruction'),3);
+				$this->success('留言成功',addons_url('Salon://Salon/SalonSquare'),3);
 			}else{
 				$this->error('留言失败');
 			}
