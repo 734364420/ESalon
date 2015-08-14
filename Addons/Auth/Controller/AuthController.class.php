@@ -6,7 +6,7 @@ use Home\Controller\AddonsController;
 class AuthController extends AddonsController{
     function __construct() {
         parent::__construct();
-        $this->model = $this->getModel();
+        $this->model = M('Model')->getByName('e_user');
         $this->assign ( 'model', $this->model );
     }
     function Auth() {
@@ -124,5 +124,28 @@ class AuthController extends AddonsController{
         $this->assign ( 'list_grids', $grids );
         $this->assign ( 'list_data', $data );
         $this->display();
+    }
+    public function del() {
+        $ids = I ( 'id', 0 );
+        if (empty ( $ids )) {
+            $ids = array_unique ( ( array ) I ( 'ids', 0 ) );
+        }
+        if (empty ( $ids )) {
+            $this->error ( '请选择要操作的数据!' );
+        }
+
+        $Model = M ( get_table_name ( $this->model ['id'] ) );
+        $map = array (
+            'id' => array (
+                'in',
+                $ids
+            )
+        );
+        $map ['token'] = get_token ();
+        if ($Model->where ( $map )->delete ()) {
+            $this->success ( '删除成功' );
+        } else {
+            $this->error ( '删除失败！' );
+        }
     }
 }
