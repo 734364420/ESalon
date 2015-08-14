@@ -61,12 +61,12 @@
             <img src="/Public/static/img/summary.jpg" class="comment">
             <span class="label">比赛总结：</span>
 
-            <div class="comment-group">
-                <p class="pull-left">{$user.student_name}：</p>
-                <php>
-                    $summary = M('e_summary')->where('user_id ='.$user['id'])->find();
-	                if(!empty($summary)) {
-                </php>
+	        <php>
+		        $summary = M('e_summary')->where('user_id ='.$user['id'])->find();
+		        if(!empty($summary)) {
+	        </php>
+	        <div class="comment-group">
+	            <p class="pull-left">{$user.student_name}：</p>
                 <div class="pull-left">
                     <div class="clearfix">
                         <php>
@@ -76,16 +76,16 @@
                         <php> }</php>
                     </div>
                     <p>{$summary.comment}</p>
-	                <php> } </php>
                 </div>
             </div>
-            <volist name="participate_users" id="u">
-                <div class="comment-group">
-                    <p class="pull-left">{$u.student_name}：</p>
-                    <php>
-                        $summary = M('e_summary')->where('user_id ='.$u['id'])->find();
-	                    if(!empty($summary)) {
-                    </php>
+	        <php> } </php>
+	        <volist name="participate_users" id="u">
+	            <php>
+		            $summary = M('e_summary')->where('user_id ='.$u['id'])->find();
+		            if(!empty($summary)) {
+	            </php>
+	            <div class="comment-group">
+	                <p class="pull-left">{$u.student_name}：</p>
                     <div class="pull-left">
                         <div class="clearfix">
                             <php>
@@ -96,8 +96,8 @@
                         </div>
                         <p>{$summary.comment}</p>
                     </div>
-	                <php> } </php>
                 </div>
+	            <php> } </php>
             </volist>
         </li>
     </ul>
