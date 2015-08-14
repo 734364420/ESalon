@@ -90,7 +90,7 @@ class SalonController extends AddonsController{
 
 	//新建沙龙
 	function CreateSalon() {
-		if(IS_POST) {
+		if(IS_POST) {	
 			$data['title']=\LfRequest::inStr('title');
 			$data['date']=\LfRequest::inStr('date');
 			$time=\LfRequest::inStr('time');
