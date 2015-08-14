@@ -86,6 +86,33 @@ class AcademicController extends AddonsController{
         $participate = M('e_participate');
         $participate->e_id = $iteam_id;
         $participate->user_id = session('user_id');
-        $participate->save();
+        $res = $participate->save();
+        if($res) {
+            $this->success('报名成功');
+        } else {
+            $this->error('报名失败');
+        }
+    }
+    //活动总结
+    function Summary() {
+        if(IS_POST) {
+            $summary = M('e_summary');
+            $summary->user_id = session('user_id');
+            $summary->e_id = \LfRequest::inNum('e_id');
+            $summary->stars = \LfRequest::inNum('stars');
+            $summary->comment = \LfRequest::inStr('comment');
+            $summary->picture = \LfRequest::inStr('picture');
+            $res = $summary->add();
+            if($res) {
+                $this->success('总结成功');
+            } else {
+                $this->error('总结失败');
+            }
+        } else {
+            $id = \LfRequest::inNum('id');
+            $iteam = M('e_iteam')->find($id);
+            $this->assign('iteam',$iteam);
+            $this->display();
+        }
     }
 }
