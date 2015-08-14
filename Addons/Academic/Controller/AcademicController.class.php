@@ -54,7 +54,6 @@ class AcademicController extends AddonsController{
 	    }
 	    $in .= ')';
 	    $Pmaps = $maps.' id in '.$in;
-	    var_dump($Pmaps);
 	    $maps .= ' publish_userid = '.session('user_id');
 	    $PublishIteams = M('e_iteam')->where($maps)->select();
 	    $ParticipateIteams= M('e_iteam')->where($Pmaps)->select();
