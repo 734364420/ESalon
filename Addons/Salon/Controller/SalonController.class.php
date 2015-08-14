@@ -109,13 +109,13 @@ class SalonController extends AddonsController{
 			$data['participated_number']=1;
 			$data['hits']=0;
 			$user = M('e_salon');
-			$result=$user->add($data);
-			var_dump($result);
-			die();
-			if($result){
+			$id=$user->add($data);
+			if($id){
+				$data['user_id']=session('user_id');
+				$data['e_id']=$id;
 				$this->success('新建成功',addons_url('Salon://Salon/MySalon'),3);
 			}else{
-				$this->error($user->getDbError());
+				$this->error('创建失败咯，请仔细确认填写内容');
 			}
 		} else {
 			for($i=0;$i<=10;$i++){
