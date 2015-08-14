@@ -296,6 +296,9 @@ div.photo input[type="file"]{
 .stars img{
     width: 22px;
 }
+.stars img.active{
+    background-color: yellow;
+}
 .button.clearfix{
     margin: 30px auto;
 }
