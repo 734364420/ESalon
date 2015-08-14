@@ -17,9 +17,9 @@
         </select>
         <select name="date" class="flex-1">
             <option value="">活动时间</option>
-            <option value="1">今天</option>
-            <option value="2">昨天</option>
-            <option value="3">明天</option>
+            <option value="{:date('H-m-d',time()-3600)}">昨天</option>
+            <option value="{:date('H-m-d')}">今天</option>
+            <option value="{:date('H-m-d',time()+3600)}">明天</option>
         </select>
         <select name="space" class="flex-1">
             <option value="">活动地点</option>
@@ -34,7 +34,7 @@
                     <li>
                         <span class="blue-block pull-left"></span>
                         <div class="pull-left titles">
-                            <p class="title">{$salon.title}</p>
+                            <p class="title"><a href="{:addons_url('Salon://Salon/CheckSalon'),array('id'=>$salon.id)}">{$salon.title}</a></p>
                             <span class="sub-title summ">{$salon.summary}</span>
                             <img src="/Public/static/img/see.png" class="see">
                             <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
