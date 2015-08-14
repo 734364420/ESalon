@@ -18,19 +18,23 @@ class SalonController extends AddonsController{
 			$type=\LfRequest::inStr('type');
 			$salon_status=\LfRequest::inNum('salon_status');
 			$salon_summary_status=\LfRequest::inNum('salon_summary_status');
-			$today = date('H-m-d',time());
+			var_dump($tpye);
+			var_dump($salon_status);
+			var_dump($salon_summary_status);
+			$today = date('Y-m-d',time());
+			var_dump($today);
 			if($type != null) {
 				$data['type='] = $type;
 			}
 			if($salon_status == 1){
-				$data['date>=']=$today;
-			}elseif($salon_status == 0){
 				$data['date<']=$today;
+			}elseif($salon_status == 0){
+				$data['date>=']=$today;
 			}
 			if($salon_summary_status == 1){
-				$data['summary']=1;
+				$data['summary=']=1;
 			}elseif($salon_summary_status == 0){
-				$data['summary']=0;
+				$data['summary=']=0;
 			}
 			$data['publish_userid']=session('user_id');
 			$salons_publish = M('e_salon')->where($data)->select();
