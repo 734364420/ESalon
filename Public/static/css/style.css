@@ -48,7 +48,113 @@ textarea{
     -webkit-box-flex: 2.0;
 }
 .orange{
-    color:rgb(255,192,0)
+    color:rgb(255,192,0);
+}
+
+
+
+/*列表页*/
+#data{
+    color: #000;
+    height: 35px;
+    line-height: 35px;
+}
+#data .name{
+    position: relative;
+    left: 35px;
+    font-weight: bold;
+    font-size: 18px;
+}
+#change-data{
+    color: rgb(255,192,0);
+    padding-right: 25px;
+    font-size: 15px;
+}
+.salon-type{
+    background-color: rgb(51,153,255);
+    height: 40px;
+    line-height: 35px;
+    box-sizing: border-box;
+}
+.salon-type a{
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    border-bottom: 5px solid #ccc;
+}
+.salon-type a.active{
+    border-bottom: 5px solid rgb(255,192,0);
+}
+.select-group select{
+    margin: 5px 10px;
+    height: 25px;
+    color: #aaa;
+}
+.list li{
+    height: 60px;
+    margin-top: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.list .titles{
+    width: 65%;
+}
+.list .blue-block{
+    height: 45px!important;
+}
+.list .title{
+    font-size: 18px;
+    margin-left: 20px;
+}
+.list .sub-title{
+    display: block;
+    font-size: 12px;
+    color: #ccc;    
+    height: 20px;
+    line-height: 20px;
+}
+.list .sub-title.summ{
+    display: block;
+    float: left;
+    width: 50px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    border: 1px solid rgb(51,153,255);
+    border-radius: 5px;
+    margin-left: 20px;
+}
+.list .see{
+    width: 20px;
+    float: left;
+    margin-top: 6px;
+    margin-left: 10px;
+}
+.list .amount{
+    position: relative;
+    width: 30%;
+    height: 100%;
+}
+.list .amount img{
+    position: absolute;
+    width: 90px;
+    margin-left: 10px;
+    top: 30px;
+    left: 0;
+}
+.list .amount img.progressbar{
+    /*clip: rect(0 60px 14px 0);*/
+}
+.list .amount span:first-child{
+    margin-left: 30px;
+}
+.list .amount .amount-now{
+    font-size: 25px;
+    color: rgb(255,192,0);
+    font-weight: bold;
+}
+.list .amount .amount-total,.list .amount .amount-dig{
+    color: grey;
+    font-weight: bold;
 }
 
 
@@ -56,11 +162,11 @@ textarea{
 .instruction{
     margin-top: 20px;
 }
-.instruction .blue-block{
+.blue-block{
     height: 40px;
     width: 15px;
     display: block;
-    background-color: rgb(0,102,255);
+    background-color: rgb(51,153,255);
     float: left;
 }
 .instruction p.big{
@@ -90,15 +196,6 @@ textarea{
     font-size: 15px;
     color: #c0c0c0;
 }
-
-
-/*列表页*/
-.list li{
-    height: 50px;
-    line-height: 50px;
-    border-bottom: 1px solid black;
-}
-
 
 /*内容页*/
 ul.detail-list li{
@@ -133,15 +230,6 @@ a.button,button{
 }
 
 
-/*发起页*/
-div.form-control{
-    width: 90%;
-    margin: 10px 5%;
-}
-div.form-control input,div.form-control textarea,div.form-control select{
-    width: 100%;
-}
-
 
 /*成功页*/
 .success-content{
@@ -151,10 +239,78 @@ div.form-control input,div.form-control textarea,div.form-control select{
 
 /*资料页*/
 form.data{
-    width: 90%;
-    margin: 0 5%;
+    width: 80%;
+    margin: 0 10%;
+    margin-top: 10px;
 }
-form.data input,form.data textarea,form.data select{
+form .form-group{
+    overflow: hidden;
+    margin: 15px 0;
+    line-height: 25px;
+}
+form .form-group label{
+    clear: both;
+    float: left;
+    color: #fff;
+}
+form .form-group input,form .form-group select,form .form-group textarea{
+    float: left;
+    width: 75%;
+    margin-left: 5%;
+    height: 21px;
+    line-height: 21px;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    opacity: 0.7;
+    -webkit-opacity: 0.7;
+}
+form .form-group input{
+    padding-left: 8px;
+}
+form .form-group select{
+    height: 25px;
+    line-height: 25px;
+    width: 79%;
+    outline: none;
+}
+form .form-group textarea{
+    width: 75%;
+    line-height: 23px;
+    height: 80px;
+    margin-top: 5px;
+    padding-left: 8px;
+}
+form.data p.ins{
+    color: #777;
+    font-size: 13px;
+    text-align: center;
+}
+form.data .button{
+    margin-top: 12px;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+
+/*发起页*/
+form.start .form-group{
+    margin: 8px 0;
+}
+form.start input,form.start select,form.start textarea{
+    margin-left: 0;
+    margin-top: 6px;
     width: 100%;
-    margin: 10px 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+form.start select.sepr{
+    width: 48%;
+}
+form.start select.sepr.clearfix{
+    margin-right: 4%;
+}
+form.start .button{
+    margin: 15px auto;
 }
