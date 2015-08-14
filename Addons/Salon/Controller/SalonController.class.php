@@ -13,26 +13,28 @@ class SalonController extends AddonsController{
 	//我的沙龙
 	function MySalon() {
 		$user=M('e_user')->where('id='.session('user_id'))->getField('student_name');
-		$method=\LfRequest::inStr('sign');
-		if(empty($method)) {
-			$salons = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
-			$this->active1='active';
-		}else{
-			$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
-			for($i=0;$i<count($participattions);$i++){
-				$salons[$i]=M('e_salon')->where('id='.$participattions[$i]['e_id'])->find();
-			}
-			$this->active2='active';
+		$salons_publish = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
+		$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
+		for($i=0;$i<count($participattions);$i++) {
+			$salons_participate[$i] = M('e_salon')->where('id=' . $participattions[$i]['e_id'])->find();
 		}
-		for($i=0;$i<count($salons);$i++){
-			if(empty($salons[$i]['summary'])){
-				$salons[$i]['summary']='未总结';
+		for($i=0;$i<count($salons_participate);$i++){
+			if(empty($salons_participate[$i]['summary'])){
+				$salons_participate[$i]['summary']='未总结';
 			}else{
-				$salons[$i]['summary']='已总结';
+				$salons_participate[$i]['summary']='已总结';
+			}
+		}
+		for($i=0;$i<count($salons_publish);$i++){
+			if(empty($salons_publish[$i]['summary'])){
+				$salons_publish[$i]['summary']='未总结';
+			}else{
+				$salons_publish[$i]['summary']='已总结';
 			}
 		}
 		$this->username=$user;
-		$this->salons=$salons;
+		$this->$salons_participate=$salons_participate;
+		$this->salons_publish=$salons_publish;
 		$this->display();
 	}
 
