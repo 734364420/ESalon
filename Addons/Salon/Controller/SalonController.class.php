@@ -12,7 +12,7 @@ class SalonController extends AddonsController{
 	}
 	//我的沙龙
 	function MySalon() {
-		$salons=M('e_salon')->where('publish_userid=1')->select();
+		$salons=M('e_salon')->where('publish_userid='.session('user_id'))->select();
 		for($i=0;$i<count($salons);$i++){
 			if(empty($salons[$i]['summary'])){
 				$salons[$i]['summary']='未总结';
@@ -28,7 +28,9 @@ class SalonController extends AddonsController{
 	function CheckSalon() {
 		$id=\LfRequest::inNum('id');
 		$salon=M('e_salon')->where('id='.$id)->find();
-		$this->assign($salon);
+		$data['hits']=$salon['hits']+1;
+		$salon=M('e_salon')->where('id='.$id)->save($data);
+		$this->salon=$salon;
 		$this->display();
 	}
 	//总结
@@ -65,7 +67,7 @@ class SalonController extends AddonsController{
 	}
 	//参加沙龙
 	function ParticipateSalon() {
-		$id=\LfRequest::isGet('id');
+		$id=\LfRequest::inNum('id');
 		$data['user_id']=session('user_id');
 		//$data['e_id']
 		$participated_number=M('e_salon')->where('id='.$id)->getField('participated_number');
