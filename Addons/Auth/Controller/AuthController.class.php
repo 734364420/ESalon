@@ -59,12 +59,12 @@ class AuthController extends AddonsController{
         if(IS_POST) {
             $user_id = session('user_id');
             $user = M('e_user');
-//            $user->student_id = I('student_id');
-//            $user->student_name = I('student_name');
+            $user->student_id = I('student_id');
+            $user->student_name = I('student_name');
             $user->major = I('major');
             $user->phone = I('phone');
             $user->email = I('email');
-//            $user->gender = I('gender');
+            $user->gender = I('gender');
             $user->school = I('school');
             $user->student_status = I('student_status');
             $user->good = I('good');
