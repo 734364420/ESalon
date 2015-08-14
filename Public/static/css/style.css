@@ -312,7 +312,7 @@ div.photo input[type="file"]{
 form.data{
     width: 80%;
     margin: 0 10%;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 form .form-group{
     overflow: hidden;
@@ -365,6 +365,28 @@ form.data p.ins{
 }
 form.data .button{
     margin-top: 12px;
+}
+div.data{
+    width: 80%;
+    margin: 0 10%;
+    margin-top: 15px;
+}
+div.data .form-group{
+    overflow: hidden;
+    margin: 15px 0;
+    line-height: 25px;
+}
+div.data .form-group label{
+    clear: both;
+    float: left;
+    color: #fff;
+}
+div.data .form-group label.content{
+    clear: none;
+    margin-left: 20px;
+}
+div.data .form-group:last-child label.content{
+    max-width: 225px;
 }
 
 

@@ -93,4 +93,15 @@
 
     <a href="{:addons_url('Academic://Academic/Summary',array('e_id'=>$iteam['id']))}" class="button go-summary">填写活动总结</a>
 
+<script type="text/javascript">
+    $(function(){
+        var percent;
+        var wid;
+        var now=$(".list").find(".amount-now").text();
+        var total=$(".list").find(".amount-total").text();
+        percent=now/total;
+        wid=percent*90;
+        $(".list ").find(".progressbar").css({"clip":"rect(0 " + wid + "px 14px 0)"});
+    })
+</script>
 <include file="Public/e_footer" />

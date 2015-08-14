@@ -13,27 +13,27 @@ class SalonController extends AddonsController{
 	//我的沙龙
 	function MySalon() {
 		if(IS_POST){
+			var_dump($_POST);
+			$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
 			$type=\LfRequest::inStr('type');
-			$day=\LfRequest::inStr('day');
-			$space=\LfRequest::inStr('space');
-			if($space != null) {
-				$data['space='] = $space;
-			}
+			$salon_status=\LfRequest::inNum('salon_status');
+			$salon_summary_status=\LfRequest::inNum('salon_summary_status');
+			$today = date('H-m-d',time());
 			if($type != null) {
 				$data['type='] = $type;
 			}
-			if($day != null){
-				$today = date('H-m-d',time());
-				if($day>=$today){
-					$data['date>=']=$today;
-					$data['date<=']=$day;
-				}else{
-					$data['date>=']=$day;
-					$data['date<=']=$today;
-				}
+			if($salon_status == 1){
+				$data['date>=']=$today;
+			}elseif($salon_status == 0){
+				$data['date<']=$today;
 			}
+			if($salon_summary_status == 1){
+				$data['summary']=1;
+			}elseif($salon_summary_status == 0){
+				$data['summary']=0;
+			}
+			$data['publish_userid']=session('user_id');
 			$salons_publish = M('e_salon')->where($data)->select();
-			$participattions=M('e_participate')->where($data)->select();
 			for($i=0;$i<count($participattions);$i++) {
 				$salons_participate[$i] = M('e_salon')->where('id=' . $participattions[$i]['e_id'])->find();
 			}
@@ -48,14 +48,14 @@ class SalonController extends AddonsController{
 				$salons_participate[$i] = M('e_salon')->where('id=' . $participattions[$i]['e_id'])->find();
 			}
 			for ($i = 0; $i < count($salons_participate); $i++) {
-				if (empty($salons_participate[$i]['summary'])) {
+				if ($salons_participate[$i]['summary']==0) {
 					$salons_participate[$i]['summary'] = '未总结';
 				} else {
 					$salons_participate[$i]['summary'] = '已总结';
 				}
 			}
 			for ($i = 0; $i < count($salons_publish); $i++) {
-				if (empty($salons_publish[$i]['summary'])) {
+				if ($salons_participate[$i]['summary']==0) {
 					$salons_publish[$i]['summary'] = '未总结';
 				} else {
 					$salons_publish[$i]['summary'] = '已总结';
@@ -71,13 +71,12 @@ class SalonController extends AddonsController{
 	//查看发布沙龙详细信息
 	function CheckSalon() {
 		$id=\LfRequest::inNum('id');
-		var_dump($id);
 		$salon=M('e_salon')->where('id='.$id)->find();
 		$data['hits']=$salon['hits']+1;
 		M('e_salon')->where('id='.$id)->save($data);
 		$this->salon=$salon;
 		$this->publish_user=M('e_user')->where('id='.$salon['publish_userid'])->find();
-		$participate_users=M('e_paticipate')->where('e_id='.$id)->select();
+		$participate_users=M('e_participate')->where('e_id='.$id)->select();
 		for($i=0;$i<count($participate_users);$i++){
 			$participate_users[$i]=M('e_user')->where('id='.$participate_users[$i]['user_id'])->find();
 		}
@@ -109,13 +108,14 @@ class SalonController extends AddonsController{
 			$data['participated_number']=1;
 			$data['hits']=0;
 			$user = M('e_salon');
-			$result=$user->add($data);
-			var_dump($result);
-			die();
-			if($result){
+			$id=$user->add($data);
+			if($id){
+				$data['user_id']=session('user_id');
+				$data['e_id']=$id;
+				M('e_participate')->add($data);
 				$this->success('新建成功',addons_url('Salon://Salon/MySalon'),3);
 			}else{
-				$this->error($user->getDbError());
+				$this->error('创建失败咯，请仔细确认填写内容');
 			}
 		} else {
 			for($i=0;$i<=10;$i++){

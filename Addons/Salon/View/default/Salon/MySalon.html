@@ -8,24 +8,25 @@
         <span class="name">{$username}</span>
         <a href="{:addons_url('Auth://Auth/EditProfile')}" id="change-data" class="pull-right">修改资料</a>
     </div>
-    <form method="get">
+    <form method="post">
         <div class="flex-box select-group">
             <select name="type" class="flex-1">
-                <option>学科类别</option>
-                <option value="微波">微波</option>
-                <option value="信息对抗">信息对抗</option>
-                <option value="电磁场">电磁场</option>
+                <option>沙龙类别</option>
+                <option value="物联网">物联网</option>
+                <option value="互联网+">互联网+</option>
+                <option value="">全部</option>
             </select>
-            <select name="date" class="flex-1">
-                <option value="">活动时间</option>
-                <option value="{:date('H-m-d',time()-3600)}">昨天</option>
-                <option value="{:date('H-m-d')}">今天</option>
-                <option value="{:date('H-m-d',time()+3600)}">明天</option>
+            <select name="salon_status" class="flex-1">
+                <option value="">沙龙状态</option>
+                <option value="1">已结束</option>
+                <option value="0">未结束</option>
+                <option value="">全部</option>
             </select>
-            <select name="space" class="flex-1">
-                <option value="">活动地点</option>
-                <option value="清水河">清水河</option>
-                <option value="沙河">沙河</option>
+            <select name="salon_summary_status" class="flex-1">
+                <option value="">总结状态</option>
+                <option value="1">已总结</option>
+                <option value="0">未总结</option>
+                <option value="">全部</option>
             </select>
             <input type="submit" value="搜索">
         </div>
