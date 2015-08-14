@@ -17,6 +17,12 @@ class AuthController extends AddonsController{
             $user->student_status = I('student_status');
             $user->good = I('good');
             $user->openid = get_openid();
+            if(empty($user->student_id)) {
+                $this->error("请输入学号");
+            }
+            if(empty($user->student_name)) {
+                $this->error("请输入姓名");
+            }
             $user->add();
             $this->success("认证成功");
         } else {
