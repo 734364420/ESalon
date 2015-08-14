@@ -66,8 +66,10 @@ class SalonController extends AddonsController{
 			$user = M('e_user')->where('id=' . session('user_id'))->getField('student_name');
 			$salons_publish = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
 			$participattions = M('e_participate')->where('user_id=' . session('user_id'))->select();
+			var_dump($participattions);
 			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
 				$result= M('e_salon')->where('id='.$participattions[$i]['e_id'].'AND publish_userid!='.session('user_id'))->find();
+				var_dump($result);
 				if($result){
 					$salons_participate[$j]=$result;
 					$j++;
@@ -170,6 +172,9 @@ class SalonController extends AddonsController{
 		$participate_number=M('e_salon')->where('id='.$id)->getField('participate_number');
 		if($participated_number>=$participate_number){
 			$this->error('人数已满，稍后再试');
+		}else{
+			$number['participated_number']=$participated_number+1;
+			$result=M('e_salon')->where('id='.$id)->save($number);
 		}
 		$result=M('e_participate')->add($data);
 		$param ['token'] = get_token ();
