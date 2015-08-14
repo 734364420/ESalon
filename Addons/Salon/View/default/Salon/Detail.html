@@ -109,7 +109,7 @@
         var now=$(".list").find(".amount-now").text();
         var total=$(".list").find(".amount-total").text();
         percent=now/total;
-        wid=percent[i]*90;
+        wid=percent*90;
         $(".list ").find(".progressbar").css({"clip":"rect(0 " + wid + "px 14px 0)"});
     })
 </script>
