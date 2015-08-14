@@ -63,7 +63,7 @@ class SalonController extends AddonsController{
 			$time=\LfRequest::inStr('time');
 			$hour=\LfRequest::inStr('hour');
 			var_dump($time,'+'.$hour.' hour');
-			$data['date']=$date.' '.$time.'~ '.date('H:i',strtotime('+'.$hour.' hour',$time));
+			$data['date']=$date.' '.$time.'~ '.date('H:i',strtotime("'-'.$hour.' hour'",$time));
 			$data['space']=\LfRequest::inStr('space');
 			$data['participate_number']=\LfRequest::inStr('participate_number');
 			$data['type']=\LfRequest::inStr('type');
