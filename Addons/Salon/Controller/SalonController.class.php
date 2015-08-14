@@ -19,20 +19,20 @@ class SalonController extends AddonsController{
 			$salon_summary_status=\LfRequest::inNum('salon_summary_status');
 			$today = date('Y-m-d',time());
 			if($type != null) {
-				$data['type='] = $type;
+				$data['type'] = $type;
 			}
 			if(empty(!$salon_status)){
 				if($salon_status == 1){
-					$data['date<']=$today;
+					$data['date']='<'.$today;
 				}elseif($salon_status == 0){
-					$data['date>=']=$today;
+					$data['date>=']='>='.$today;
 				}
 			}
 			if(empty(!$salon_summary_status)) {
 				if ($salon_summary_status == 1) {
-					$data['summary='] = 1;
+					$data['summary'] = 1;
 				} elseif ($salon_summary_status == 0) {
-					$data['summary='] = 0;
+					$data['summary'] = 0;
 				}
 			}
 			$data['publish_userid']=session('user_id');
