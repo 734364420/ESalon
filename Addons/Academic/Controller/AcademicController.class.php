@@ -49,7 +49,7 @@ class AcademicController extends AddonsController{
 		    }
 	    }
 	    $PublishIteams = M('e_iteam')->where($maps)->select();
-	    $ParticipateIteams = M('e_iteam')->where($maps)->join('eagerfor_e_participate on eagerfor_e_iteam.id = eagerfor_e_participate.e_id')->select();
+	    $ParticipateIteams = M('e_iteam')->where($maps)->join('eagerfor_e_participate on eagerfor_e_participate.user_id = '.session('user_id').'  AND eagerfor_e_iteam.id = eagerfor_e_participate.e_id')->select();
 	    $this->assign('type',I('type',''));
 	    $this->assign('iteam_status',I('iteam_status',''));
 	    $this->assign('summary_status',I('summary_status',''));
