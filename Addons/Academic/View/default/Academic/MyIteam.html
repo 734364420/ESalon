@@ -7,7 +7,7 @@
 
 
     <div class="center" id="data">
-        <span class="name">{$user.student_name}</span>
+        <span class="name" onclick="Go({:addons_url('Auth://Auth/UserProfile',array('uid'=>$user['id']))})">{$user.student_name}</span>
         <a href="{:addons_url('Auth://Auth/EditProfile')}" id="change-data" class="pull-right">修改资料</a>
     </div>
 
@@ -37,7 +37,7 @@
                 <volist name="PublishIteams" id="iteam">
                 <li>
                     <span class="blue-block pull-left"></span>
-                    <div class="pull-left titles">
+                    <div class="pull-left titles" onclick="Go({:addons_url('Academic://Acedemic/IteamDetail',array('id'=>$item['id']))})">
                         <p class="title">{$iteam.title}</p>
                         <span class="sub-title summ">{$iteam.summary}</span>
                         <img src="/Public/static/img/see.png" class="see">
@@ -57,10 +57,10 @@
             </ul>
 
             <ul id="myiteam-right-ul" class="hidden">
-                <volist name="PublishIteams" id="iteam">
+                <volist name="ParticipateIteams" id="iteam">
                     <li>
                         <span class="blue-block pull-left"></span>
-                        <div class="pull-left titles">
+                        <div class="pull-left titles" onclick="Go({:addons_url('Academic://Acedemic/IteamDetail',array('id'=>$item['id']))})">
                             <p class="title">{$iteam.title}</p>
                             <span class="sub-title summ">{$iteam.summary}</span>
                             <img src="/Public/static/img/see.png" class="see">
