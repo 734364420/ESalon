@@ -513,6 +513,9 @@ ul.detail-list #comment .comment-group{
 ul.detail-list span{
     color: #000;
 }
+ul.detail-list li img.active{
+    background-color: yellow;
+}
 a.go-summary{
     margin: 10px auto;
 }
