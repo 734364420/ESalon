@@ -4,13 +4,10 @@
 		<a href="javacript:;" class="flex-1 center active" id="square-left">可报名的iteam</a>
 		<a href="javacript:;" class="flex-1 center" id="square-right">已结束的iteam</a>
 	</div>
-
-
-	<div class="center" id="data">
-		<span class="name">{$user.student_name}</span>
-		<a href="{:addons_url('Auth://Auth/EditProfile')}" id="change-data" class="pull-right">修改资料</a>
-	</div>
-
+<!--<div class="center" id="data">-->
+	<!--<span class="name">{$user.student_name}</span>-->
+	<!--<a href="{:addons_url('Auth://Auth/EditProfile')}" id="change-data" class="pull-right">修改资料</a>-->
+<!--</div>-->
 	<div class="flex-box select-group">
 		<select name="" class="flex-1">
 			<option>竞赛类别</option>
@@ -57,7 +54,7 @@
 			</ul>
 
 			<ul id="square-right-ul" class="hidden">
-				<volist name="sign_iteams" id="iteam">
+				<volist name="end_iteams" id="iteam">
 					<li>
 						<span class="blue-block pull-left"></span>
 						<div class="pull-left titles">
