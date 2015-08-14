@@ -49,7 +49,7 @@ class AcademicController extends AddonsController{
 	    }
 	    $maps .= ' publish_userid = '.session('user_id');
 	    $PublishIteams = M('e_iteam')->where($maps)->select();
-	    $participate = M('e_participate')->where('user_id = '.session('user_id'));
+	    $participate = M('e_participate')->where('user_id = '.session('user_id'))->select();
 	    $in='(0';
 	    foreach($participate as $v) {
 		    $in .= ','.$v['e_id'];
@@ -97,11 +97,11 @@ class AcademicController extends AddonsController{
 	        $iteam->participated_number = 1;
             $res = $iteam->add();
 	        if($res) {
-		        $this->success("添加成功",addons_url('Academic://Academic/MyIteam'));
 		        $participate = M('e_participate');
 		        $participate->e_id = $res;
 		        $participate->user_id = session('user_id');
 		        $participate->add();
+		        $this->success("添加成功",addons_url('Academic://Academic/MyIteam'));
 	        } else {
 		        $this->error("添加失败");
 	        }
@@ -134,17 +134,16 @@ class AcademicController extends AddonsController{
     }
     //报名微团队
     function SignIteam() {
-        $iteam_id = I('id');
+        $iteam_id = \LfRequest::inNum('e_id');
         $iteam = M('e_iteam')->find($iteam_id);
         if(empty($iteam)) {
             $this->error('你要报名的iteam不存在');
         }
-        $iteam->participated_number++;
-        $iteam->save();
+        M('e_iteam')->where('id = '.$iteam_id)->save(array('participated_number'=>$iteam['participated_number']+1));
         $participate = M('e_participate');
         $participate->e_id = $iteam_id;
         $participate->user_id = session('user_id');
-        $res = $participate->save();
+        $res = $participate->add();
         if($res) {
             $this->success('报名成功');
         } else {
