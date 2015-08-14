@@ -112,8 +112,12 @@ class SalonController extends AddonsController{
 	//评价
 	function Summary(){
 		if(IS_POST) {
+			$data['stars']=\LfRequest::inNum('stars');
+			$data['comment']=\LfRequest::inStr('comment');
+			$data['e_id']=$id;
+			$data['user_id']=session('user_id');
 			$data['content']=\LfRequest::inStr('content');
-			$result=M('e_suggestions')->add($data);
+			$result=M('e_suggestionscd')->add($data);
 			if($result){
 				$this->success('留言成功啦，谢谢啦',addons_url('Salon://Salon/SalonSquare'),3);
 			}else{
@@ -178,8 +182,26 @@ class SalonController extends AddonsController{
 	}
 	//沙龙广场
 	function SalonSquare() {
-		$list = M('e_salon')->limit(20)->select();
-		$this->assign($list);
+		$today=date('Y-m-d',time());
+		$salons=M('e_salon')->where('date>='.$today)->select();
+		$end_salons=M('e_salon')->where('date<'.$today)->select();
+		for ($i = 0; $i < count($salons); $i++) {
+			if ($salons[$i]['summary']==0) {
+				$salons[$i]['summary'] = '未总结';
+			} else {
+				$salons[$i]['summary'] = '已总结';
+			}
+		}
+		for ($i = 0; $i < count($end_salons); $i++) {
+			if ($end_salons[$i]['summary']==0) {
+				$end_salons[$i]['summary'] = '未总结';
+			} else {
+				$end_salons[$i]['summary'] = '已总结';
+			}
+		}
+		$this->salons = $salons;
+		$this->end_salons = $end_salons;
+		$this->end_salons =
 		$this->display();
 	}
 	//联系我们
