@@ -10,7 +10,7 @@
             <select name="start_date" class="sepr clearfix">
 	            <php>
 		            for($i=1;$i<=5;$i++) {
-                        <option value="{:date('Y-m-d',time()+$i*24*3600}">{:date("Y-m-d",time()+$i*24*3600}</option>
+                        <option value="{:date('Y-m-d',time()+$i*24*3600)}">{:date("Y-m-d",time()+$i*24*3600)}</option>
 		            }
 		        </php>
             </select>
@@ -24,7 +24,7 @@
             <label>选择比赛截止时间：</label>
             <select name="end_date" class="sepr clearfix">
 	            <?php for($i=1;$i<=5;$i++) { ?>
-		            <option value="{:date('Y-m-d',time()+$i*24*3600}">{:date("Y-m-d",time()+$i*24*3600}</option>
+		            <option value="{:date('Y-m-d',time()+$i*24*3600)}">{:date("Y-m-d",time()+$i*24*3600)}</option>
 		            }
 	            <?php } ?>
             </select>
