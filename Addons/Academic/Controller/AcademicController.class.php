@@ -97,11 +97,11 @@ class AcademicController extends AddonsController{
 	        $iteam->participated_number = 1;
             $res = $iteam->add();
 	        if($res) {
-		        $this->success("添加成功",addons_url('Academic://Academic/MyIteam'));
 		        $participate = M('e_participate');
 		        $participate->e_id = $res;
 		        $participate->user_id = session('user_id');
 		        $participate->add();
+		        $this->success("添加成功",addons_url('Academic://Academic/MyIteam'));
 	        } else {
 		        $this->error("添加失败");
 	        }
