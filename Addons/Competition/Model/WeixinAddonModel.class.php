@@ -1,14 +1,14 @@
 <?php
         	
-namespace Addons\Auth\Model;
+namespace Addons\Competition\Model;
 use Home\Model\WeixinModel;
         	
 /**
- * Auth的微信模型
+ * Competition的微信模型
  */
 class WeixinAddonModel extends WeixinModel{
 	function reply($dataArr, $keywordArr = array()) {
-		$config = getAddonConfig ( 'Auth' ); // 获取后台插件的配置参数	
+		$config = getAddonConfig ( 'Competition' ); // 获取后台插件的配置参数	
 		//dump($config);
 
 	} 

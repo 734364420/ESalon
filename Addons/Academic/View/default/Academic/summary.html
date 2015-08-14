@@ -1,0 +1,48 @@
+<include file="Public/e_header" />
+<body>
+    <div class="container">
+        <div class="summary">
+            <p>比赛总结：</p>
+            <textarea name=""></textarea>
+        </div>
+
+        <div class="photo">
+            <form action="" method="" enctype="multipart/form-data">
+                <span class="pull-left">上传照片：</span>
+                <input type="file" name="" accept="image/*" class="pull-left">
+            </form>
+        </div>
+
+        <div class="stars">
+            <span class="pull-left">比赛评价：</span>
+            <div class="pull-left first-star">
+                <img src="/Public/static/img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="/Public/static/img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="/Public/static/img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="/Public/static/img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="/Public/static/img/star.png">
+            </div>
+        </div>
+
+        <a href="" class="button clearfix">提交</a>
+    </div>
+
+<script type="text/javascript">
+    $(function(){
+        $(".stars").find("img").click(function(){
+            var index=$(this).parent().index();
+            $(this).css({"background-color":"yellow"});
+            $(this).parent().prevAll().find("img").css({"background-color":"yellow"});
+            $(this).parent().nextAll().find("img").css({"background-color":"#fff"});
+        })
+    })
+</script>
+<include file="Public/e_footer" />

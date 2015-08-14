@@ -1,35 +1,35 @@
 <?php
 
-namespace Addons\Auth;
+namespace Addons\Competition;
 use Common\Controller\Addon;
 
 /**
- * 学生认证插件
- * @author 无名
+ * 竞赛列表插件
+ * @author Hivekay
  */
 
-    class AuthAddon extends Addon{
+    class CompetitionAddon extends Addon{
 
         public $info = array(
-            'name'=>'Auth',
-            'title'=>'学生认证',
-            'description'=>'这是一个临时描述',
+            'name'=>'Competition',
+            'title'=>'竞赛列表',
+            'description'=>'竞赛列表',
             'status'=>1,
-            'author'=>'无名',
-            'version'=>'0.1',
+            'author'=>'Hivekay',
+            'version'=>'1.0',
             'has_adminlist'=>1,
             'type'=>1         
         );
 
 	public function install() {
-		$install_sql = './Addons/Auth/install.sql';
+		$install_sql = './Addons/Competition/install.sql';
 		if (file_exists ( $install_sql )) {
 			execute_sql_file ( $install_sql );
 		}
 		return true;
 	}
 	public function uninstall() {
-		$uninstall_sql = './Addons/Auth/uninstall.sql';
+		$uninstall_sql = './Addons/Competition/uninstall.sql';
 		if (file_exists ( $uninstall_sql )) {
 			execute_sql_file ( $uninstall_sql );
 		}
