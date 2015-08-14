@@ -58,6 +58,7 @@
 
             <p>{$salon['brief']}</p>
         </li>
+        <?php if($salon['summary']=='已结束') { ?>
         <li id="comment">
             <img src="/Public/static/img/summary.jpg" class="comment">
             <span class="label">活动总结：</span>
@@ -110,7 +111,11 @@
 
 
 <a href="{:addons_url('Salon://Salon/Summary',array('id'=>$salon['id']))}" class="button go-summary">填写活动总结</a>
+<?php } ?>
 
+<?php if($salon['summary']=='未总结') { ?>
+<a href="addons_url('Salon://Salon/ParticipateSalon',array('id'=>$salon['id']))" class="button go-summary">填写活动总结</a>
+<?php } ?>
 <script type="text/javascript">
     $(function () {
         var percent;
