@@ -32,17 +32,33 @@
             </div>
         </div>
 
-        <a href="" class="button clearfix">提交</a>
+        <a href="" class="button clearfix" onclick="return checkSummary();">提交</a>
     </div>
 
 <script type="text/javascript">
+    var comment = false;
     $(function(){
         $(".stars").find("img").click(function(){
-            var index=$(this).parent().index();
+            comment = true;
             $(this).css({"background-color":"yellow"});
             $(this).parent().prevAll().find("img").css({"background-color":"yellow"});
             $(this).parent().nextAll().find("img").css({"background-color":"#fff"});
         })
     })
+
+    function checkSummary() {
+        if ($("textarea").val() == "") {
+            alert("请填写比赛总结！");
+            return false;
+        }
+        if ($("input[type='file']").val() == "") {
+            alert("请上传比赛照片！");
+            return false;
+        }
+        if (!comment) {
+            alert("请评价比赛！");
+            return false;
+        }
+    }
 </script>
 <include file="Public/e_footer" />
