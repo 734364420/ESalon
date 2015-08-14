@@ -58,23 +58,28 @@ class SalonController extends AddonsController{
 	//新建沙龙
 	function CreateSalon() {
 		if(IS_POST) {
-		$data['title']='啊啊啊啊';
-		$data['date']='haohao';
-		$data['space']='haohao';
-		$data['participate_number']=1;
-		$data['type']='haohao';
-		$data['brief']='haohao';
-		$data['publish_userid']=session('user_id');
-		$data['participated_number']=2;
-		$data['hits']=0;
-		$user = M('e_salon');
-		$result=$user->add($data);
-		if($result){
-			$this->success('新建成功',addons_url('Salon://Salon/MySalon'),3);
-		}else{
-			$this->error($user->getDbError());
-		}
+			$data['title']='啊啊啊啊';
+			$data['date']='haohao';
+			$data['space']='haohao';
+			$data['participate_number']=1;
+			$data['type']='haohao';
+			$data['brief']='haohao';
+			$data['publish_userid']=session('user_id');
+			$data['participated_number']=2;
+			$data['hits']=0;
+			$user = M('e_salon');
+			$result=$user->add($data);
+			if($result){
+				$this->success('新建成功',addons_url('Salon://Salon/MySalon'),3);
+			}else{
+				$this->error($user->getDbError());
+			}
 		} else {
+			for($i=0;$i<=10;$i++){
+				$times[$i]=date("Y-m-d",strtotime("+$i day"));
+			}
+			var_dump($times);
+			$this->times=$times;
 			$this->display();
 		}
 	}
