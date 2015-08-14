@@ -7,12 +7,11 @@
         </div>
         <div class="form-group">
             <label>选择报名截止时间：</label>
-            <select name="start_date" class="sepr clearfix">
-	            <php>
-		            for($i=1;$i<=5;$i++) {
-                        <option value="{:date("Y-m-d",strtotime("+$i day"))}">{:date("Y-m-d",strtotime("+$i day"))}</option>
-		            }
-		        </php>
+            <select name="start_date" class="clearfix">
+	            <?php for($i=1;$i<=5;$i++) { ?>
+	            <option value="{:date('Y-m-d',time()+$i*24*3600)}">{:date("Y-m-d",time()+$i*24*3600)}</option>
+	            }
+	            <?php } ?>
             </select>
             <!--<select name="" class="sepr">-->
                 <!--<option value="">09:00</option>-->
@@ -22,12 +21,11 @@
         </div>
         <div class="form-group">
             <label>选择比赛截止时间：</label>
-            <select name="end_date" class="sepr clearfix">
-	            <php>
-		            for($i=1;$i<=5;$i++) {
-		            <option value="{:date("Y-m-d",time()+}">{:date("Y-m-d",strtotime("+$i day"))}</option>
+            <select name="end_date" class="clearfix">
+	            <?php for($i=1;$i<=5;$i++) { ?>
+		            <option value="{:date('Y-m-d',time()+$i*24*3600)}">{:date("Y-m-d",time()+$i*24*3600)}</option>
 		            }
-	            </php>
+	            <?php } ?>
             </select>
             <!--<select name="" class="sepr">-->
                 <!--<option value="">09:00</option>-->
