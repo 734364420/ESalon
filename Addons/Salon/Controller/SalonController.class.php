@@ -17,11 +17,7 @@ class SalonController extends AddonsController{
 			$type=\LfRequest::inStr('type');
 			$salon_status=\LfRequest::inNum('salon_status');
 			$salon_summary_status=\LfRequest::inNum('salon_summary_status');
-			var_dump($type);
-			var_dump($salon_status);
-			var_dump($salon_summary_status);
 			$today = date('Y-m-d',time());
-			var_dump($today);
 			if($type != null) {
 				$data['type='] = $type;
 			}
@@ -41,7 +37,9 @@ class SalonController extends AddonsController{
 			}
 			$data['publish_userid']=session('user_id');
 			var_dump($data);
+			echo '===========';
 			$salons_publish = M('e_salon')->where($data)->select();
+			var_dump($salons_publish);
 			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
 				$result= M('e_salon')->where('id='.$participattions[$i]['e_id'].'AND publish_userid!='.session('user_id'))->find();
 				if($result){
