@@ -1,3 +1,4 @@
+<include file="Public/e_header"/>
 <body>
     <div class="flex-box salon-type">
         <a href="" class="flex-1 center active">我发起的E沙龙</a>
@@ -32,24 +33,26 @@
     <div class="container">
         <div class="list">
             <ul>
+                <volist name="salons" id="salon">
                 <li>
                     <span class="blue-block pull-left"></span>
                     <div class="pull-left titles">
-                        <p class="title">互联网+分析及深入研究</p>
-                        <span class="sub-title summ">已总结</span>
+                        <p class="title">{$salon.title}</p>
+                        <span class="sub-title summ">{$salon.summary}</span>
                         <img src="/Public/static/img/see.png" class="see">
                         <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
                         <span class="sub-title pull-left">237</span>
                         <span class="sub-title pull-left">&nbsp;)</span>
                     </div>
                     <div class="amount pull-left">
-                        <span class="amount-now">3</span>
+                        <span class="amount-now">{$salon.participated_number}</span>
                         <span class="amount-dig">/</span>
-                        <span class="amount-total">6</span>
+                        <span class="amount-total">{$salon.participate_number}</span>
                         <img src="/Public/static/img/progressbar-bottom.png">
                         <img src="/Public/static/img/progressbar-top.png" class="progressbar">
                     </div>
                 </li>
+                </volist>
                 <li>
                     <span class="blue-block pull-left"></span>
                     <div class="pull-left titles">

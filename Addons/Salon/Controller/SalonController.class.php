@@ -4,29 +4,34 @@ use Home\Controller\AddonsController;
 class SalonController extends AddonsController{
 	public function __construct() {
 		parent::__construct();
-		$openid = I('openid');
-		//e_auth($openid);
+		e_auth();
 	}
 
 	function  instruction() {
 		$this->display();
 	}
-	//我的E沙龙模块
+	//鎴戠殑娌欓緳
 	function MySalon() {
-		$data=M('e_salon')->where('publish_userid=1'/*.session('user_id')*/)->select();
-		var_dump($data);
-		$this->assign($data);
+		$salons=M('e_salon')->where('publish_userid=1')->select();
+		for($i=0;$i<count($salons);$i++){
+			if(empty($salons[$i]['summary'])){
+				$salons[$i]['summary']='鏈�荤粨';
+			}else{
+				$salons[$i]['summary']='宸叉�荤粨';
+			}
+		}
+		$this->salons=$salons;
 		$this->display('Salon/mysalon');
 	}
 
-	//查看发布沙龙详细信息
+	//鏌ョ湅鍙戝竷娌欓緳璇︾粏淇℃伅
 	function CheckSalon() {
 		$id=\LfRequest::inNum('id');
 		$salon=M('e_salon')->where('id='.$id)->find();
 		$this->assign($salon);
 		$this->display();
 	}
-	//总结
+	//鎬荤粨
 	function Summary(){
 		if(IS_POST) {
 			$data['summary']=\LfRequest::inStr('summary');
@@ -35,28 +40,30 @@ class SalonController extends AddonsController{
 		}
 	}
 
-	//发起E沙龙模块
+	//鏂板缓娌欓緳
 	function CreateSalon() {
 		//if(IS_POST) {
-			$data['title']='好好';
-			$data['date']='haohao';
-			$data['space']='haohao';
-			$data['participate_number']=
-			$data['type']='haohao';
-			$data['brief']='haohao';
-			$data['publish_userid']='1';
-			$data['participated_number']='2';
-			$result=M('e_salon')->add($data);
-			if($result){
-				$this->success('添加成功',addons_url('Salon://Salon/instruction'),3);
-			}else{
-				$this->error('添加失败，请检查信息填写');
-			}
+		$data['title']='鍟婂晩鍟婂晩';
+		$data['date']='haohao';
+		$data['space']='haohao';
+		$data['participate_number']=1;
+		$data['type']='haohao';
+		$data['brief']='haohao';
+		$data['publish_userid']=session('user_id');
+		$data['participated_number']=2;
+		$data['hits']=0;
+		$user = M('e_salon');
+		$result=$user->add($data);
+		if($result){
+			$this->success('鏂板缓鎴愬姛',addons_url('Salon://Salon/MySalon'),3);
+		}else{
+			$this->error($user->getDbError());
+		}
 //		} else {
 //			$this->display();
 //		}
 	}
-	//参与E沙龙
+	//鍙傚姞娌欓緳
 	function ParticipateSalon() {
 		$id=\LfRequest::isGet('id');
 		$data['user_id']=session('user_id');
@@ -64,31 +71,33 @@ class SalonController extends AddonsController{
 		$participated_number=M('e_salon')->where('id='.$id)->getField('participated_number');
 		$participate_number=M('e_salon')->where('id='.$id)->getField('participate_number');
 		if($participated_number>=$participate_number){
-			$this->error('参与人数已满，不能报名咯');
+			$this->error('鍙傚姞澶辫触鍜紝绋嶅悗鍐嶈瘯');
 		}
 		$result=M('e_participate')->add($data);
+		$param ['token'] = get_token ();
+		$param ['openid'] = get_openid ();
 		if($result){
-			$this->success('参与成功',addons_url('Salon://Salon/instruction'),3);
+			$this->success('鍙傚姞鎴愬姛',addons_url('Salon://Salon/instruction',$param),3);
 		}else{
-			$this->error('参与失败，请检查信息填写');
+			$this->error('鍙傚姞澶辫触');
 		}
 	}
-	//E沙龙广场
+	//娌欓緳骞垮満
 	function SalonSquare() {
 		$list = M('e_salon')->limit(20)->select();
 		$this->assign($list);
 		$this->display();
 	}
-	//联系我们
+	//鑱旂郴鎴戜滑
 	function Contact() {
 		if(IS_POST){
 			$data['uid']=session('user_id');
 			$data['content']=\LfRequest::inStr('content');
 			$result=M('suggestions')->add($data);
 			if($result){
-				$this->success('留言成功，感谢您的建议',addons_url('Salon://Salon/instruction'),3);
+				$this->success('鐣欒█鎴愬姛',addons_url('Salon://Salon/instruction'),3);
 			}else{
-				$this->error('留言失败咯，稍后再试……');
+				$this->error('鐣欒█澶辫触');
 			}
 		}else {
 			$this->display();
