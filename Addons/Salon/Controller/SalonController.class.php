@@ -13,10 +13,11 @@ class SalonController extends AddonsController{
 	//我的沙龙
 	function MySalon() {
 		if(IS_POST){
+			var_dump($_POST);
 			$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
 			$type=\LfRequest::inStr('type');
-			$salon_status=\LfRequest::inStr('salon_status');
-			$salon_summary_status=\LfRequest::inStr('salon_summary_status');
+			$salon_status=\LfRequest::inNum('salon_status');
+			$salon_summary_status=\LfRequest::inNum('salon_summary_status');
 			$today = date('H-m-d',time());
 			if($type != null) {
 				$data['type='] = $type;
