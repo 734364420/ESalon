@@ -3,18 +3,16 @@
     <form method="post" class="data start">
         <div class="form-group">
             <label>E沙龙主题：</label>
-            <input type="text" name="">
+            <input type="text" name="title">
         </div>
         <div class="form-group">
             <label>选择起始时间：</label>
-            <select name="" class="sepr clearfix">
+            <select name="date" class="sepr clearfix">
                 <volist name="times" id="time">
                 <option value="">{$time}</option>
-                <option value="">07-09</option>
-                <option value="">07-10</option>
                 </volist>
             </select>
-            <select name="" class="sepr">
+            <select name="time" class="sepr">
                 <option value="">09:00</option>
                 <option value="">11:00</option>
                 <option value="">13:00</option>
@@ -22,7 +20,7 @@
         </div>
         <div class="form-group">
             <label>选择持续时间：</label>
-            <select name="">
+            <select name="hour">
                 <option value="">1h</option>
                 <option value="">2h</option>
                 <option value="">3h</option>
@@ -30,7 +28,7 @@
         </div>
         <div class="form-group">
             <label>选择地点：</label>
-            <select name="">
+            <select name="space">
                 <option value="">自定义地点</option>
                 <option value="">清水河</option>
                 <option value="">沙河</option>
@@ -42,7 +40,7 @@
         </div>
         <div class="form-group">
             <label>选择参与人数：</label>
-            <select name="">
+            <select name="participate_number">
                 <option value="">2人</option>
                 <option value="">3人</option>
                 <option value="">4人</option>
@@ -52,14 +50,14 @@
         </div>
         <div class="form-group">
             <label>选择类别：</label>
-            <select name="">
+            <select name="type">
                 <option value="">物联网</option>
                 <option value="">互联网+</option>
             </select>
         </div>
         <div class="form-group">
             <label>输入E沙龙简介:</label>
-            <textarea name=""></textarea>
+            <textarea name="brief"></textarea>
         </div>
         <button type="submit" class="button">发起E沙龙</button>
     </form>
