@@ -270,7 +270,8 @@ form .form-group input{
 form .form-group select{
     height: 25px;
     line-height: 25px;
-    width: 80%;
+    width: 79%;
+    outline: none;
 }
 form .form-group textarea{
     width: 75%;
