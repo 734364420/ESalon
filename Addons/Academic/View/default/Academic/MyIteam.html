@@ -19,13 +19,13 @@
 	        <option value="互联网+">互联网+</option>
 	        <option value="">全部</option>
         </select>
-        <select name="status" class="flex-1">
+        <select name="iteam_status" class="flex-1">
             <option>比赛状态</option>
             <option value="0">未结束</option>
             <option value="1">已结束</option>
             <option value="">全部</option>
         </select>
-		<select name="status" class="flex-1">
+		<select name="summary_status" class="flex-1">
 			<option>总结状态</option>
 			<option value="0">未结束</option>
 			<option value="1">已结束</option>
@@ -42,7 +42,7 @@
                 <li>
                     <span class="blue-block pull-left"></span>
                     <div class="pull-left titles">
-                        <p class="title"><a href="{:addons_url('Academic://Acedemic/IteamDetail',array('id'=>$item['id']))}">{$iteam.title}</a></p>
+                        <p class="title"><a href="{:addons_url('Academic://Academic/IteamDetail',array('id'=>$item['id']))}">{$iteam.title}</a></p>
                         <span class="sub-title summ"><php>if($iteam['summary']==1){ echo "已总结"; } else { echo "未总结";}</php></span>
                         <img src="/Public/static/img/see.png" class="see">
                         <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
@@ -65,7 +65,7 @@
                     <li>
                         <span class="blue-block pull-left"></span>
                         <div class="pull-left titles">
-                            <p class="title"><a href="{:addons_url('Academic://Acedemic/IteamDetail',array('id'=>$item['id']))}">{$iteam.title}</a></p>
+                            <p class="title"><a href="{:addons_url('Academic://Academic/IteamDetail',array('id'=>$item['id']))}">{$iteam.title}</a></p>
                             <span class="sub-title summ"><php>if($iteam['summary']==1){ echo "已总结"; } else { echo "未总结";}</php></span>
                             <img src="/Public/static/img/see.png" class="see">
                             <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>

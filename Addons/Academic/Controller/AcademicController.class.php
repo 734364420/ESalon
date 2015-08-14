@@ -30,8 +30,26 @@ class AcademicController extends AddonsController{
     }
     //我的iteam页面
     function MyIteam() {
-        $PublishIteams = M('e_iteam')->where(array('publish_userid'=>session('user_id')))->select();
-        $ParticipateIteams = M('e_iteam')->where(array('publish_userid'=>session('user_id')))->join('eagerfor_e_participate on eagerfor_e_iteam.id = eagerfor_e_participate.e_id')->select();
+	    $maps = 'publish_userid = '.session('user_id');
+	    if(IS_POST) {
+		    $data['type'] = \LfRequest::inStr('type');
+		    $data['iteam_status'] = \LfRequest::inStr('iteam_status');
+		    $data['summary_status'] = \LfRequest::inStr('summary_status');
+		    if(!empty($data['type'])) {
+			    $maps .= 'type = '.$data['type'];
+		    }
+		    if($data['iteam_status'] == 0) {
+			    $maps .= 'end_date > '.date("Y-m-d");
+		    }
+		    if($data['iteam_status'] == 1) {
+			    $maps .= 'end_date < '.date("Y-m-d");
+		    }
+		    if($data['summary_status'] != '') {
+			    $maps .= 'summary_status = '.$data['summary_status'];
+		    }
+	    }
+	    $PublishIteams = M('e_iteam')->where($maps)->select();
+	    $ParticipateIteams = M('e_iteam')->where($maps)->join('eagerfor_e_participate on eagerfor_e_iteam.id = eagerfor_e_participate.e_id')->select();
         $this->assign('PublishIteams',$PublishIteams);
         $this->assign('ParticipateIteams',$ParticipateIteams);
         $this->display();
