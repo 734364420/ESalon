@@ -75,6 +75,21 @@ class AcademicController extends AddonsController{
     function Square() {
 	    $sign_iteams = M('e_iteam')->where('start_date > '.date("Y-m-d"))->select();
 	    $end_iteams = M('e_iteam')->where('start_date < '.date("Y-m-d"))->select();
+	    if(IS_POST) {
+		    $data['type'] = \LfRequest::inStr('type');
+		    $data['start_date'] = \LfRequest::inStr('start_date');
+		    $data['end_date'] = \LfRequest::inStr('end_date');
+		    $maps = '';
+		    if(!empty($data['type'])) {
+				$maps .= 'type = '.$data['type'];
+		    }
+		    if(!empty($data['start_date'])) {
+			    $maps .= 'start_date = '.$data['start_date'];
+		    }
+		    if(!empty($data['end_date'])) {
+			    $maps .= 'end_date = '.$data['end_date'];
+		    }
+	    }
 	    $this->assign('sign_iteams',$sign_iteams);
 	    $this->assign('end_iteams',$end_iteams);
         $this->display();
