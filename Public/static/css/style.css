@@ -296,7 +296,7 @@ form.data .button{
 
 /*发起页*/
 form.start .form-group{
-    margin: 12px 0;
+    margin: 8px 0;
 }
 form.start input,form.start select,form.start textarea{
     margin-left: 0;
