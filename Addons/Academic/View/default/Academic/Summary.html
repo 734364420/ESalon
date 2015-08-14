@@ -30,6 +30,7 @@
             <div class="pull-left">
                 <img src="/Public/static/img/star.png">
             </div>
+            <input type="hidden" value="" name="stars">
         </div>
 
         <a href="" class="button clearfix" onclick="return checkSummary();">提交</a>
@@ -40,6 +41,8 @@
     $(function(){
         $(".stars").find("img").click(function(){
             comment = true;
+            var index=$(this).parent().index() + 1;
+            $("input[name='stars']").val(index);
             $(this).css({"background-color":"yellow"});
             $(this).parent().prevAll().find("img").css({"background-color":"yellow"});
             $(this).parent().nextAll().find("img").css({"background-color":"#fff"});
