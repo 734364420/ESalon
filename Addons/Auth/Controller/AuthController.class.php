@@ -68,7 +68,12 @@ class AuthController extends AddonsController{
             $user->school = I('school');
             $user->student_status = I('student_status');
             $user->good = I('good');
-            $user->where(array('id'=>$user_id))->save();
+            $res = $user->where('id = '.$user_id)->save();
+	        if($res) {
+		        $this->success("修改成功");
+	        } else {
+		        $this->error("修改失败");
+	        }
         } else {
             $user_id = session('user_id');
             $user = M('e_user')->find($user_id);
