@@ -113,6 +113,7 @@ class SalonController extends AddonsController{
 			if($id){
 				$data['user_id']=session('user_id');
 				$data['e_id']=$id;
+				M('e_participate')->add($data);
 				$this->success('新建成功',addons_url('Salon://Salon/MySalon'),3);
 			}else{
 				$this->error('创建失败咯，请仔细确认填写内容');
