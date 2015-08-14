@@ -47,14 +47,14 @@ class SalonController extends AddonsController{
 				$salons_participate[$i] = M('e_salon')->where('id=' . $participattions[$i]['e_id'])->find();
 			}
 			for ($i = 0; $i < count($salons_participate); $i++) {
-				if (empty($salons_participate[$i]['summary'])) {
+				if ($salons_participate[$i]['summary']==0) {
 					$salons_participate[$i]['summary'] = '未总结';
 				} else {
 					$salons_participate[$i]['summary'] = '已总结';
 				}
 			}
 			for ($i = 0; $i < count($salons_publish); $i++) {
-				if (empty($salons_publish[$i]['summary'])) {
+				if ($salons_participate[$i]['summary']==0) {
 					$salons_publish[$i]['summary'] = '未总结';
 				} else {
 					$salons_publish[$i]['summary'] = '已总结';
