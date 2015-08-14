@@ -1,62 +1,58 @@
 <include file="Public/e_header"/>
 <body>
-<div class="flex-box salon-type">
-    <a href="{:addons_url('Salon://Salon/MySalon')}" class="flex-1 center {$active1}">æˆ‘å‘èµ·çš„Eæ²™é¾™</a>
-    <a href="{:addons_url('Salon://Salon/MySalon',array('Sign'=>true))}" class="flex-1 center {$active2}">æˆ‘æŠ¥åçš„Eæ²™é¾™</a>
-</div>
-
-<div class="center" id="data">
-    <span class="name">{$username}</span>
-    <a href="{:addons_url('Auth://Auth/EditProfile')}" id="change-data" class="pull-right">ä¿®æ”¹èµ„æ–™</a>
-</div>
-
-<div class="flex-box select-group">
-    <select name="" class="flex-1">
-        <option>å­¦ç§‘ç±»åˆ«</option>
-        <option>å¾®æ³¢å¤©çº¿</option>
-        <option>ä¿¡æ¯å¯¹æŠ—</option>
-        <option>ç”µç£åœº</option>
-    </select>
-    <select name="" class="flex-1">
-        <option>æ´»åŠ¨æ—¶é—´</option>
-        <option>ä»Šå¤©</option>
-        <option>æ˜¨å¤©</option>
-        <option>æ˜å¤©</option>
-    </select>
-    <select name="" class="flex-1">
-        <option>æ´»åŠ¨åœ°ç‚¹</option>
-        <option>æ¸…æ°´æ²³</option>
-        <option>æ²™æ²³</option>
-    </select>
-</div>
-
-<div class="container">
-    <div class="list">
-        <ul>
-            <volist name="salons" id="salon">
-                <li>
-                    <span class="blue-block pull-left"></span>
-                    <div class="pull-left titles">
-                        <p class="title">{$salon.title}</p>
-                        <span class="sub-title summ">{$salon.summary}</span>
-                        <img src="/Public/static/img/see.png" class="see">
-                        <span class="sub-title pull-left" style="margin-left:3px;">æµè§ˆ(&nbsp;</span>
-                        <span class="sub-title pull-left">{$salon.hits}</span>
-                        <span class="sub-title pull-left">&nbsp;)</span>
-                    </div>
-                    <div class="amount pull-left">
-                        <span class="amount-now">{$salon.participated_number}</span>
-                        <span class="amount-dig">/</span>
-                        <span class="amount-total">{$salon.participate_number}</span>
-                        <img src="/Public/static/img/progressbar-bottom.png">
-                        <img src="/Public/static/img/progressbar-top.png" class="progressbar">
-                    </div>
-                </li>
-            </volist>
-        </ul>
+    <div class="flex-box salon-type">
+        <a href="{:addons_url('Salon://Salon/MySalon')}" class="flex-1 center {$active1}">ÎÒ·¢ÆğµÄEÉ³Áú</a>
+        <a href="{:addons_url('Salon://Salon/MySalon',array('Sign'=>true))}" class="flex-1 center {$active2}">ÎÒ±¨ÃûµÄEÉ³Áú</a>
     </div>
-</div>
-
+    <div class="center" id="data">
+        <span class="name">{$username}</span>
+        <a href="{:addons_url('Auth://Auth/EditProfile')}" id="change-data" class="pull-right">ĞŞ¸Ä×ÊÁÏ</a>
+    </div>
+    <div class="flex-box select-group">
+        <select name="" class="flex-1">
+            <option>Ñ§¿ÆÀà±ğ</option>
+            <option>Î¢²¨ÌìÏß</option>
+            <option>ĞÅÏ¢¶Ô¿¹</option>
+            <option>µç´Å³¡</option>
+        </select>
+        <select name="" class="flex-1">
+            <option>»î¶¯Ê±¼ä</option>
+            <option>½ñÌì</option>
+            <option>×òÌì</option>
+            <option>Ã÷Ìì</option>
+        </select>
+        <select name="" class="flex-1">
+            <option>»î¶¯µØµã</option>
+            <option>ÇåË®ºÓ</option>
+            <option>É³ºÓ</option>
+        </select>
+    </div>
+    <div class="container">
+        <div class="list">
+            <ul>
+                <volist name="salons" id="salon">
+                    <li>
+                        <span class="blue-block pull-left"></span>
+                        <div class="pull-left titles">
+                            <p class="title">{$salon.title}</p>
+                            <span class="sub-title summ">{$salon.summary}</span>
+                            <img src="/Public/static/img/see.png" class="see">
+                            <span class="sub-title pull-left" style="margin-left:3px;">ä¯ÀÀ(&nbsp;</span>
+                            <span class="sub-title pull-left">{$salon.hits}</span>
+                            <span class="sub-title pull-left">&nbsp;)</span>
+                        </div>
+                        <div class="amount pull-left">
+                            <span class="amount-now">{$salon.participated_number}</span>
+                            <span class="amount-dig">/</span>
+                            <span class="amount-total">{$salon.participate_number}</span>
+                            <img src="/Public/static/img/progressbar-bottom.png">
+                            <img src="/Public/static/img/progressbar-top.png" class="progressbar">
+                        </div>
+                    </li>
+                </volist>
+            </ul>
+        </div>
+    </div>
 <script type="text/javascript">
     $(function(){
         var percent=[];
@@ -70,5 +66,4 @@
         }
     })
 </script>
-
 <include file="Public/e_footer" />
