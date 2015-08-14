@@ -71,7 +71,7 @@ class AuthController extends AddonsController{
 	        if($res) {
 		        $this->success("修改成功");
 	        } else {
-		        $this->error("修改失败");
+		        $this->error($user->getDbError());
 	        }
         } else {
             $user_id = session('user_id');
