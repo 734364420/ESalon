@@ -50,16 +50,23 @@ class AcademicController extends AddonsController{
 	    }
 	    $PublishIteams = M('e_iteam')->where($maps)->select();
 	    $ParticipateIteams = M('e_iteam')->where($maps)->join('eagerfor_e_participate on eagerfor_e_iteam.id = eagerfor_e_participate.e_id')->select();
-	    var_dump($maps);
+	    $this->assign('type',I('type',''));
+	    $this->assign('iteam_status',I('iteam_status',''));
+	    $this->assign('summary_status',I('summary_status',''));
         $this->assign('PublishIteams',$PublishIteams);
         $this->assign('ParticipateIteams',$ParticipateIteams);
         $this->display();
     }
     //团队约详情页面
     function IteamDetail() {
-        $item_id = intval(I('id'));
-        $item = M('e_iteam')->find($item_id);
-        $this->assign('iteam',$item);
+        $iteam_id = intval(I('id'));
+        $Miteam = M('e_iteam');
+	    $iteam = $Miteam->find($iteam_id);
+	    $Miteam->hits = $iteam->hits++;
+	    $Miteam->where('id = '.$iteam_id)->save();
+	    $this->user = M('e_user')->find($iteam->publish_userid);
+	    $this->participate_users = M('e_participate')->where('e_id = '.$iteam_id)->select();
+        $this->assign('iteam',$iteam);
         $this->display();
     }
     //发起团队约,填写表单页面
@@ -80,9 +87,14 @@ class AcademicController extends AddonsController{
             $iteam->type = I('type');
             $iteam->brief = I('brief');
             $iteam->publish_userid = session('user_id');
+	        $iteam->participated_number = 1;
             $res = $iteam->add();
 	        if($res) {
 		        $this->success("添加成功",addons_url('Academic://Academic/MyIteam'));
+		        $participate = M('e_participate');
+		        $participate->e_id = $res;
+		        $participate->user_id = session('user_id');
+		        $participate->add();
 	        } else {
 		        $this->error("添加失败");
 	        }

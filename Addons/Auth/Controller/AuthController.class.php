@@ -57,18 +57,17 @@ class AuthController extends AddonsController{
     }
     function EditProfile() {
         if(IS_POST) {
-            $user_id = session('user_id');
             $user = M('e_user');
-            $user->student_id = I('student_id');
-            $user->student_name = I('student_name');
-            $user->major = I('major');
-            $user->phone = I('phone');
-            $user->email = I('email');
-            $user->gender = I('gender');
-            $user->school = I('school');
-            $user->student_status = I('student_status');
-            $user->good = I('good');
-            $res = $user->where('id = '.$user_id)->save();
+            $user->student_id = \LfRequest::inNum('student_id');
+            $user->student_name = \LfRequest::inStr('student_name');
+            $user->major = \LfRequest::inStr('major');
+            $user->phone = \LfRequest::inStr('phone');
+            $user->email = \LfRequest::inStr('email');
+            $user->gender = \LfRequest::inStr('gender');
+            $user->school = \LfRequest::inStr('school');
+            $user->student_status = \LfRequest::inStr('student_status');
+            $user->good = \LfRequest::inStr('good');
+            $res = $user->where('id = '.session('user_id'))->save();
 	        if($res) {
 		        $this->success("修改成功");
 	        } else {
