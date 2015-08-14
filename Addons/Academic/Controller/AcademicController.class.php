@@ -87,11 +87,12 @@ class AcademicController extends AddonsController{
             }
             $iteam = M('e_iteam');
             $iteam->title = $title;
-            $iteam->start_date = strtotime(I('start_date'));
-            $iteam->end_date = strtotime(I('end_date'));
-            $iteam->participate_number = I('participate_number');
-            $iteam->type = I('type');
-            $iteam->brief = I('brief');
+            $iteam->start_date = strtotime(\LfRequest::inStr('start_date'));
+            $iteam->end_date = strtotime(\LfRequest::inStr('end_date'));
+            $iteam->participate_number = \LfRequest::inStr('participate_number');
+            $iteam->type = \LfRequest::inStr('type');
+            $iteam->brief = \LfRequest::inStr('brief');
+            $iteam->publish_brief = \LfRequest::inStr('publish_brief');
             $iteam->publish_userid = session('user_id');
 	        $iteam->participated_number = 1;
             $res = $iteam->add();
