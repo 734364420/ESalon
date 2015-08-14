@@ -29,7 +29,7 @@ class AuthController extends AddonsController{
                 $this->error("请输入姓名");
             }
             $user->add();
-            $this->success("认证成功");
+            $this->success("认证成功",addons_url('Salon://Salon/instruction'));
         } else {
             $user = '';
             $user['student_id'] = '';
