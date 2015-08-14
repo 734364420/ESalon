@@ -59,6 +59,10 @@ a.button,button{
     line-height: 30px;
     background-color: deepskyblue;
     border-radius: 10px;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 
@@ -266,10 +270,6 @@ div.photo input[type="file"]{
 }
 .button.clearfix{
     margin: 30px auto;
-    color: #fff;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
 }
 
 
@@ -337,10 +337,6 @@ form.data p.ins{
 }
 form.data .button{
     margin-top: 12px;
-    color: #fff;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
 }
 
 
@@ -466,8 +462,23 @@ ul.detail-list span{
 }
 a.go-summary{
     margin: 10px auto;
-    color: #fff;
-    border: none;
+}
+
+
+/*联系页*/
+#contact-us{
+    margin-top: 50px;
+}
+#contact-us p{
     font-size: 16px;
     font-weight: bold;
+}
+#contact-us textarea{
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 20px;
+    height: 150px;
+}
+#contact-us button{
+    margin-top: 30px;
 }
