@@ -12,7 +12,7 @@ class SalonController extends AddonsController{
 	}
 	//我的沙龙
 	function MySalon() {
-		$user=M('e_user')->where('id='.session('user_id'))->find();
+		$user=M('e_user')->where('id='.session('user_id'))->getField('student_name');
 		$method=\LfRequest::inStr('sign');
 		var_dump($method);
 		if(empty($method)) {
@@ -32,7 +32,7 @@ class SalonController extends AddonsController{
 				$salons[$i]['summary']='已总结';
 			}
 		}
-		$this->user=$user;
+		$this->username=$user;
 		$this->salons=$salons;
 		$this->display();
 	}
