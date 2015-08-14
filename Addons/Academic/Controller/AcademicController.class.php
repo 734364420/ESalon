@@ -6,8 +6,9 @@ use Home\Controller\AddonsController;
 class AcademicController extends AddonsController{
 	public function __construct() {
 		parent::__construct();
-		$openid = I('openid');
-        e_auth($openid);
+        e_auth();
+		$user = M('e_user')->find(session('user_id'));
+		$this->assign('user',$user);
 	}
     //最新学术动态页面，竞赛列表页
     function LastNews() {
@@ -70,8 +71,8 @@ class AcademicController extends AddonsController{
     function Square() {
         $end_iteams = M('e_iteam')->where('end_date < '.date("Y-m-d H:i"))->select();
         $sign_iteams = M('e_iteam')->where('end_date > '.date("Y-m-d H:i"))->select();
-        $this->assign('end_iteam',$end_iteams);
-        $this->assign('sign_iteam',$sign_iteams);
+        $this->assign('end_iteams',$end_iteams);
+        $this->assign('sign_iteams',$sign_iteams);
         $this->display();
     }
     //报名微团队
