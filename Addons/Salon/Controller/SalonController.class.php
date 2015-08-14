@@ -12,30 +12,60 @@ class SalonController extends AddonsController{
 	}
 	//我的沙龙
 	function MySalon() {
-		$user=M('e_user')->where('id='.session('user_id'))->getField('student_name');
-		$salons_publish = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
-		$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
-		for($i=0;$i<count($participattions);$i++) {
-			$salons_participate[$i] = M('e_salon')->where('id=' . $participattions[$i]['e_id'])->find();
-		}
-		for($i=0;$i<count($salons_participate);$i++){
-			if(empty($salons_participate[$i]['summary'])){
-				$salons_participate[$i]['summary']='未总结';
-			}else{
-				$salons_participate[$i]['summary']='已总结';
+		if(IS_POST){
+			$type=\LfRequest::inStr('type');
+			$day=\LfRequest::inStr('day');
+			$space=\LfRequest::inStr('space');
+			if($space != null) {
+				$data['space='] = $space;
 			}
-		}
-		for($i=0;$i<count($salons_publish);$i++){
-			if(empty($salons_publish[$i]['summary'])){
-				$salons_publish[$i]['summary']='未总结';
-			}else{
-				$salons_publish[$i]['summary']='已总结';
+			if($type != null) {
+				$data['type='] = $type;
 			}
+			if($day != null){
+				$today = date('H-m-d',time());
+				if($day>=$today){
+					$data['date>=']=$today;
+					$data['date<=']=$day;
+				}else{
+					$data['date>=']=$day;
+					$data['date<=']=$today;
+				}
+			}
+			$salons_publish = M('e_salon')->where($data)->select();
+			$participattions=M('e_participate')->where($data)->select();
+			for($i=0;$i<count($participattions);$i++) {
+				$salons_participate[$i] = M('e_salon')->where('id=' . $participattions[$i]['e_id'])->find();
+			}
+			$this->salons_publish=$salons_publish;
+			$this->salons_participate=$salons_participate;
+			$this->display();
+		}else {
+			$user = M('e_user')->where('id=' . session('user_id'))->getField('student_name');
+			$salons_publish = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
+			$participattions = M('e_participate')->where('user_id=' . session('user_id'))->select();
+			for ($i = 0; $i < count($participattions); $i++) {
+				$salons_participate[$i] = M('e_salon')->where('id=' . $participattions[$i]['e_id'])->find();
+			}
+			for ($i = 0; $i < count($salons_participate); $i++) {
+				if (empty($salons_participate[$i]['summary'])) {
+					$salons_participate[$i]['summary'] = '未总结';
+				} else {
+					$salons_participate[$i]['summary'] = '已总结';
+				}
+			}
+			for ($i = 0; $i < count($salons_publish); $i++) {
+				if (empty($salons_publish[$i]['summary'])) {
+					$salons_publish[$i]['summary'] = '未总结';
+				} else {
+					$salons_publish[$i]['summary'] = '已总结';
+				}
+			}
+			$this->username = $user;
+			$this->salons_participate = $salons_participate;
+			$this->salons_publish = $salons_publish;
+			$this->display();
 		}
-		$this->username=$user;
-		$this->salons_participate=$salons_participate;
-		$this->salons_publish=$salons_publish;
-		$this->display();
 	}
 
 	//查看发布沙龙详细信息
@@ -124,5 +154,10 @@ class SalonController extends AddonsController{
 		}else {
 			$this->display();
 		}
+	}
+
+	//根据条件查找
+	function GetSalonWith() {
+
 	}
 }
