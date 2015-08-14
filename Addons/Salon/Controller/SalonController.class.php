@@ -175,7 +175,7 @@ class SalonController extends AddonsController{
 		$param ['token'] = get_token ();
 		$param ['openid'] = get_openid ();
 		if($result){
-			$this->success('参加成功',addons_url('Salon://Salon/ParticipateSalon',$param),3);
+			$this->success('参加成功',addons_url('Salon://Salon/SalonSquare',$param),3);
 		}else{
 			$this->error('参加失败');
 		}
