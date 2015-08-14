@@ -74,7 +74,7 @@ class SalonController extends AddonsController{
 		var_dump($id);
 		$salon=M('e_salon')->where('id='.$id)->find();
 		$data['hits']=$salon['hits']+1;
-		$salon=M('e_salon')->where('id='.$id)->save($data);
+		M('e_salon')->where('id='.$id)->save($data);
 		$this->salon=$salon;
 		$this->publish_name=M('e_user')->where('id='.$salon['publish_userid'])->getField('student_name');
 		var_dump($salon);
