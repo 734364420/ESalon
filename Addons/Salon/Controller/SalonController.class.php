@@ -38,7 +38,7 @@ class SalonController extends AddonsController{
 			$data['publish_userid']=session('user_id');
 			$salons_publish = M('e_salon')->where($data)->select();
 			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
-				$result= M('e_salon')->where('id='.$participattions[$i]['e_id'].'AND publish_userid!='.session('user_id'))->find();
+				$result= M('e_salon')->where('id='.$participattions[$i]['e_id'].' AND publish_userid!='.session('user_id'))->find();
 				if($result){
 					$salons_participate[$j]=$result;
 					$j++;
@@ -66,10 +66,8 @@ class SalonController extends AddonsController{
 			$user = M('e_user')->where('id=' . session('user_id'))->getField('student_name');
 			$salons_publish = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
 			$participattions = M('e_participate')->where('user_id=' . session('user_id'))->select();
-			var_dump($participattions);
 			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
-				$result= M('e_salon')->where('id='.$participattions[$i]['e_id'].'AND publish_userid!='.session('user_id'))->find();
-				var_dump($result);
+				$result= M('e_salon')->where('id='.$participattions[$i]['e_id'].' AND publish_userid!='.session('user_id'))->find();
 				if($result){
 					$salons_participate[$j]=$result;
 					$j++;
