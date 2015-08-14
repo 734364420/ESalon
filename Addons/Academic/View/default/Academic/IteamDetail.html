@@ -5,7 +5,7 @@
         <div class="pull-left titles">
             <p class="title">{$iteam.title}</p>
             <span class="sub-title pull-left name">{$user.student_name}</span>
-            <span class="sub-title pull-left time">{$user.start_date|date("Y-m-d",###)}</span>
+            <span class="sub-title pull-left time">{$user.start_date|date="Y-m-d",###}</span>
             <img src="/Public/static/img/see.png" class="see">
             <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
             <span class="sub-title pull-left">{$iteam.hits}</span>
@@ -25,7 +25,7 @@
             <li>
                 <img src="/Public/static/img/time.png" class="time">
                 <span class="label">比赛截止时间：</span>
-                <span>{$iteam.end_date|date("Y-m-d",###)}</span>
+                <span>{$iteam.end_date|date="Y-m-d",###}</span>
             </li>
             <li>
                 <img src="/Public/static/img/user.png" class="user">
