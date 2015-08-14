@@ -8,11 +8,10 @@
         <div class="form-group">
             <label>选择报名截止时间：</label>
             <select name="start_date" class="sepr clearfix">
-	            <php>
-		            for($i=1;$i<=5;$i++) {
-                        <option value="{:date('Y-m-d',time()+$i*24*3600)}">{:date("Y-m-d",time()+$i*24*3600)}</option>
-		            }
-		        </php>
+	            <?php for($i=1;$i<=5;$i++) { ?>
+	            <option value="{:date('Y-m-d',time()+$i*24*3600)}">{:date("Y-m-d",time()+$i*24*3600)}</option>
+	            }
+	            <?php } ?>
             </select>
             <!--<select name="" class="sepr">-->
                 <!--<option value="">09:00</option>-->
