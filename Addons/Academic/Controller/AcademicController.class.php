@@ -18,7 +18,7 @@ class AcademicController extends AddonsController{
     }
     //竞赛内容页
     function NewsDetail() {
-        $competition_id = intval(I('cid'));
+        $competition_id = intval(I('id'));
         $competition = M('e_competition')->find($competition_id);
         if(empty($competition)) {
             $this->error("数据不存在了！");
