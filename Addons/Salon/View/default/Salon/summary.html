@@ -36,13 +36,29 @@
     </div>
 
 <script type="text/javascript">
+    var comment = false;
     $(function(){
         $(".stars").find("img").click(function(){
-            var index=$(this).parent().index();
+            comment = true;
             $(this).css({"background-color":"yellow"});
             $(this).parent().prevAll().find("img").css({"background-color":"yellow"});
             $(this).parent().nextAll().find("img").css({"background-color":"#fff"});
         })
     })
+
+    function checkSummary(){
+        if($("textarea").val() == ""){
+            alert("请填写活动总结！");
+            return false;
+        }
+        if($("input[type='file']").val() == ""){
+            alert("请上传活动照片！");
+            return false;
+        }
+        if(!comment){
+            alert("请评价活动！");
+            return false;
+        }
+    }
 </script>
 <include file="Public/e_footer" />
