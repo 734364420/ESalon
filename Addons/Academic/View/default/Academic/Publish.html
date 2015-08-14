@@ -10,7 +10,7 @@
             <select name="start_date" class="sepr clearfix">
 	            <php>
 		            for($i=1;$i<=5;$i++) {
-                        <option value="{:date("Y-m-d",strtotime("+$i day"))}">{:date("Y-m-d",strtotime("+$i day"))}</option>
+                        <option value="{:date("Y-m-d",time()+$i*24*3600}">{:date("Y-m-d",time()+$i*24*3600}</option>
 		            }
 		        </php>
             </select>
@@ -25,7 +25,7 @@
             <select name="end_date" class="sepr clearfix">
 	            <php>
 		            for($i=1;$i<=5;$i++) {
-		            <option value="{:date("Y-m-d",time()+}">{:date("Y-m-d",strtotime("+$i day"))}</option>
+		            <option value="{:date("Y-m-d",time()+$i*24*3600}">{:date("Y-m-d",time()+$i*24*3600}</option>
 		            }
 	            </php>
             </select>
