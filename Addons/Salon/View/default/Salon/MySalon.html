@@ -1,12 +1,12 @@
 <include file="Public/e_header"/>
 <body>
 <div class="flex-box salon-type">
-    <a href="" class="flex-1 center active">我发起的E沙龙</a>
-    <a href="{:addons_url('Salon://Salon/MySalon',array('Sign'=>true))}" class="flex-1 center">我报名的E沙龙</a>
+    <a href="{:addons_url('Salon://Salon/MySalon}" class="flex-1 center {active1}">我发起的E沙龙</a>
+    <a href="{:addons_url('Salon://Salon/MySalon',array('Sign'=>true))}" class="flex-1 center {active2}">我报名的E沙龙</a>
 </div>
 
 <div class="center" id="data">
-    <span class="name">张三</span>
+    <span class="name">{user.student_name}/span>
     <a href="{:addons_url('Auth://Auth/EditProfile')}" id="change-data" class="pull-right">修改资料</a>
 </div>
 
