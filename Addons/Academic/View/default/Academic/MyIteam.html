@@ -12,23 +12,27 @@
     </div>
 
     <div class="flex-box select-group">
-        <select name="" class="flex-1">
+	    <form method="post">
+        <select name="type" class="flex-1">
             <option>竞赛类别</option>
-            <option>数学</option>
-            <option>物理</option>
-            <option>化学</option>
+	        <option value=物联网">物联网</option>
+	        <option value="互联网+">互联网+</option>
+	        <option value="">全部</option>
         </select>
-        <select name="" class="flex-1">
-            <option>比赛时间</option>
-            <option>今天</option>
-            <option>昨天</option>
-            <option>明天</option>
+        <select name="iteam_status" class="flex-1">
+            <option>比赛状态</option>
+            <option value="0">未结束</option>
+            <option value="1">已结束</option>
+            <option value="">全部</option>
         </select>
-        <select name="" class="flex-1">
-            <option>参赛方式</option>
-            <option>线上</option>
-            <option>线下</option>
-        </select>
+		<select name="summary_status" class="flex-1">
+			<option>总结状态</option>
+			<option value="0">未结束</option>
+			<option value="1">已结束</option>
+			<option value="">全部</option>
+		</select>
+		<input type="submit" value="搜索"/>
+	    </form>
     </div>
 
     <div class="container">
@@ -38,8 +42,8 @@
                 <li>
                     <span class="blue-block pull-left"></span>
                     <div class="pull-left titles">
-                        <p class="title"><a href="{:addons_url('Academic://Acedemic/IteamDetail',array('id'=>$item['id']))}">{$iteam.title}</a></p>
-                        <span class="sub-title summ"><php>if($iteam['summary']=="已总结"){ echo "已总结"; } else { echo "未总结";}</php></span>
+                        <p class="title"><a href="{:addons_url('Academic://Academic/IteamDetail',array('id'=>$item['id']))}">{$iteam.title}</a></p>
+                        <span class="sub-title summ"><php>if($iteam['summary']==1){ echo "已总结"; } else { echo "未总结";}</php></span>
                         <img src="/Public/static/img/see.png" class="see">
                         <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
                         <span class="sub-title pull-left">{$iteam.hits}</span>
@@ -61,8 +65,8 @@
                     <li>
                         <span class="blue-block pull-left"></span>
                         <div class="pull-left titles">
-                            <p class="title"><a href="{:addons_url('Academic://Acedemic/IteamDetail',array('id'=>$item['id']))}">{$iteam.title}</a></p>
-                            <span class="sub-title summ"><php>if($iteam['summary']=="已总结"){ echo "已总结"; } else { echo "未总结";}</php></span>
+                            <p class="title"><a href="{:addons_url('Academic://Academic/IteamDetail',array('id'=>$item['id']))}">{$iteam.title}</a></p>
+                            <span class="sub-title summ"><php>if($iteam['summary']==1){ echo "已总结"; } else { echo "未总结";}</php></span>
                             <img src="/Public/static/img/see.png" class="see">
                             <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
                             <span class="sub-title pull-left">{$iteam.hits}</span>
