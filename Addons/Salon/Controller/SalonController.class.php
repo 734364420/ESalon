@@ -71,6 +71,7 @@ class SalonController extends AddonsController{
 	//查看发布沙龙详细信息
 	function CheckSalon() {
 		$id=\LfRequest::inNum('id');
+		var_dump($id);
 		$salon=M('e_salon')->where('id='.$id)->find();
 		$data['hits']=$salon['hits']+1;
 		$salon=M('e_salon')->where('id='.$id)->save($data);
@@ -123,7 +124,7 @@ class SalonController extends AddonsController{
 		$participated_number=M('e_salon')->where('id='.$id)->getField('participated_number');
 		$participate_number=M('e_salon')->where('id='.$id)->getField('participate_number');
 		if($participated_number>=$participate_number){
-			$this->error('参加失败咯，稍后再试');
+			$this->error('人数已满，稍后再试');
 		}
 		$result=M('e_participate')->add($data);
 		$param ['token'] = get_token ();
