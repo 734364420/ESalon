@@ -12,7 +12,16 @@ class SalonController extends AddonsController{
 	}
 	//我的沙龙
 	function MySalon() {
-		$salons=M('e_salon')->where('publish_userid='.session('user_id'))->select();
+		$user=M('e_user')->where('id='.session('user_id'))->find();
+		$method=\LfRequest::inNum('method');
+		if(empty($method)) {
+			$salons = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
+		}else{
+			$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
+			for($i=0;$i<count($participattions);$i++){
+				$salons[$i]=M('e_salon')->where('id='.$participattions[$i]['e_id'])->find();
+			}
+		}
 		for($i=0;$i<count($salons);$i++){
 			if(empty($salons[$i]['summary'])){
 				$salons[$i]['summary']='未总结';
@@ -20,6 +29,7 @@ class SalonController extends AddonsController{
 				$salons[$i]['summary']='已总结';
 			}
 		}
+		$this->user=$user;
 		$this->salons=$salons;
 		$this->display();
 	}
