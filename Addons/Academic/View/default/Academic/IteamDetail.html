@@ -1,107 +1,115 @@
-<include file="Public/e_header" />
+<include file="Public/e_header"/>
 <body>
-    <div class="list detail-title">
-        <span class="blue-block pull-left"></span>
-        <div class="pull-left titles">
-            <p class="title">{$iteam.title}</p>
-            <span class="sub-title pull-left name">{$user.student_name}</span>
-            <span class="sub-title pull-left time">{$iteam.start_date|date="Y-m-d",###}</span>
-            <img src="/Public/static/img/see.png" class="see">
-            <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
-            <span class="sub-title pull-left">{$iteam.hits}</span>
-            <span class="sub-title pull-left">&nbsp;)</span>
-        </div>
-        <div class="amount pull-left">
-            <span class="amount-now">{$iteam.participated_number}</span>
-            <span class="amount-dig">/</span>
-            <span class="amount-total">{$iteam.participate_number}</span>
-            <img src="/Public/static/img/progressbar-bottom.png">
-            <img src="/Public/static/img/progressbar-top.png" class="progressbar">
-        </div>
-    </div>
+<div class="list detail-title">
+    <span class="blue-block pull-left"></span>
 
-    <div class="container">
-        <ul class="detail-list">
-            <li>
-                <img src="/Public/static/img/time.png" class="time">
-                <span class="label">比赛截止时间：</span>
-                <span>{$iteam.end_date|date="Y-m-d",###}</span>
-            </li>
-            <li>
-                <img src="/Public/static/img/user.png" class="user">
-                <span class="label">发起人：</span>
-                <span>{$user.student_name}</span>
-                <p>{$user.school}</p>
-                <p>{$user.phone}</p>
-                <p>{$user.email}</p>
-                <p>{$user.good}</p>
-            </li>
-            <li>
-                <img src="/Public/static/img/amount.png" class="amount">
-                <span class="label">报名人数：</span>
-                <span>{$iteam.participated_number}/{$iteam.participate_number}</span>
-	            <volist name="participate_users " id="u">
-                <p><a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$u['id']))}">{$u.student_name}</a> {$u.school}</p>
-	            </volist>
-            </li>
-            <li id="brief">
-                <img src="/Public/static/img/brief.png" class="brief">
-                <span class="label">比赛简介：</span>
-                <p>{$iteam.breif}</p>
-            </li>
-            <li id="comment">
-                <img src="/Public/static/img/summary.jpg" class="comment">
-                <span class="label">比赛总结：</span>
+    <div class="pull-left titles">
+        <p class="title">{$iteam.title}</p>
+        <span class="sub-title pull-left name">{$user.student_name}</span>
+        <span class="sub-title pull-left time">{$iteam.start_date|date="Y-m-d",###}</span>
+        <img src="/Public/static/img/see.png" class="see">
+        <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
+        <span class="sub-title pull-left">{$iteam.hits}</span>
+        <span class="sub-title pull-left">&nbsp;)</span>
+    </div>
+    <div class="amount pull-left">
+        <span class="amount-now">{$iteam.participated_number}</span>
+        <span class="amount-dig">/</span>
+        <span class="amount-total">{$iteam.participate_number}</span>
+        <img src="/Public/static/img/progressbar-bottom.png">
+        <img src="/Public/static/img/progressbar-top.png" class="progressbar">
+    </div>
+</div>
+
+<div class="container">
+    <ul class="detail-list">
+        <li>
+            <img src="/Public/static/img/time.png" class="time">
+            <span class="label">比赛截止时间：</span>
+            <span>{$iteam.end_date|date="Y-m-d",###}</span>
+        </li>
+        <li>
+            <img src="/Public/static/img/user.png" class="user">
+            <span class="label">发起人：</span>
+            <span>{$user.student_name}</span>
+
+            <p>{$user.school}</p>
+
+            <p>{$user.phone}</p>
+
+            <p>{$user.email}</p>
+
+            <p>{$user.good}</p>
+        </li>
+        <li>
+            <img src="/Public/static/img/amount.png" class="amount">
+            <span class="label">报名人数：</span>
+            <span>{$iteam.participated_number}/{$iteam.participate_number}</span>
+            <volist name="participate_users " id="u">
+                <p><a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$u['id']))}">{$u.student_name}</a>
+                    {$u.school}</p>
+            </volist>
+        </li>
+        <li id="brief">
+            <img src="/Public/static/img/brief.png" class="brief">
+            <span class="label">比赛简介：</span>
+
+            <p>{$iteam.breif}</p>
+        </li>
+        <li id="comment">
+            <img src="/Public/static/img/summary.jpg" class="comment">
+            <span class="label">比赛总结：</span>
+
+            <div class="comment-group">
+                <p class="pull-left">{$user.student_name}：</p>
+                <php>
+                    $summary = M('e_summary')->where('user_id ='.$user['id'])->find();
+                </php>
+                <div class="pull-left">
+                    <div class="clearfix">
+                        <php>
+                            for($i=0;$i<$summary['stars'];$i++) {
+                        </php>
+                        <img src="/Public/static/img/star-active.png" class="comment-star">
+                        <php> }</php>
+                    </div>
+                    <p>{$summary.comment}</p>
+                </div>
+            </div>
+            <volist name="participate_users" id="u">
                 <div class="comment-group">
-                    <p class="pull-left">{$user.student_name}：</p>
-	                <php>
-		                $summary = M('e_summary')->where('user_id ='.$user['id'])->find();
-	                </php>
+                    <p class="pull-left">{$u.student_name}：</p>
+                    <php>
+                        $summary = M('e_summary')->where('user_id ='.$u['id'])->find();
+                    </php>
                     <div class="pull-left">
                         <div class="clearfix">
-	                        <php>
-		                        for($i=0;$i<$summary['stars'];$i++) {
-	                        </php>
+                            <php>
+                                for($i=0;$i<$summary['stars'];$i++) {
+                            </php>
                             <img src="/Public/static/img/star-active.png" class="comment-star">
-	                        <php> } </php>
+                            <php> }</php>
                         </div>
                         <p>{$summary.comment}</p>
                     </div>
                 </div>
-	            <volist name="participate_users" id="u">
-                <div class="comment-group">
-                    <p class="pull-left">{$u.student_name}：</p>
-	                <php>
-		                $summary = M('e_summary')->where('user_id ='.$u['id'])->find();
-	                </php>
-                    <div class="pull-left">
-                        <div class="clearfix">
-	                        <php>
-		                        for($i=0;$i<$summary['stars'];$i++) {
-	                        </php>
-                            <img src="/Public/static/img/star-active.png" class="comment-star">
-	                        <php> } </php>
-                        </div>
-	                    <p>{$summary.comment}</p>
-                    </div>
-                </div>
-	            </volist>
-            </li>
-        </ul>
-    </div>
+            </volist>
+        </li>
+    </ul>
+</div>
 
 
-    <a href="{:addons_url('Academic://Academic/Summary',array('e_id'=>$iteam['id']))}" class="button go-summary">填写活动总结</a>
+<a href="{:addons_url('Academic://Academic/Summary',array('e_id'=>$iteam['id']))}" class="button go-summary">填写活动总结</a>
 
 <script type="text/javascript">
-    $(function(){
+    $(function () {
         var percent;
         var wid;
-        var now=$(".list").find(".amount-now").text();
-        var total=$(".list").find(".amount-total").text();
-        percent=now/total;
-        wid=percent*90;
-        $(".list ").find(".progressbar").css({"clip":"rect(0 " + wid + "px 14px 0)"});
+        var now = $(".list").find(".amount-now").text();
+        var total = $(".list").find(".amount-total").text();
+        percent = now / total;
+        wid = percent * 90;
+        $(".list ").find(".progressbar").css({"clip": "rect(0 " + wid + "px 14px 0)"});
     })
 </script>
-<include file="Public/e_footer" />
+<include file="Public/e_footer"/>

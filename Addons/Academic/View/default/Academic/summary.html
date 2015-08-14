@@ -46,16 +46,16 @@
         })
     })
 
-    function checkSummary(){
-        if($("textarea").val() == ""){
+    function checkSummary() {
+        if ($("textarea").val() == "") {
             alert("请填写比赛总结！");
             return false;
         }
-        if($("input[type='file']").val() == ""){
+        if ($("input[type='file']").val() == "") {
             alert("请上传比赛照片！");
             return false;
         }
-        if(!comment){
+        if (!comment) {
             alert("请评价比赛！");
             return false;
         }
