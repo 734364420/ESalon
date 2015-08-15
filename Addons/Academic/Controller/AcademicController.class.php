@@ -31,8 +31,7 @@ class AcademicController extends AddonsController{
 			    $maps .= ' mode = '.$mode.$and;
 		    }
 	    }
-		$maps .= 'order by id desc ';
-        $news = M('e_competition')->where($maps)->select();
+        $news = M('e_competition')->where($maps)->order('id DESC')->select();
         $this->assign('news',$news);
 	    $this->title = "最新竞赛动态";
         $this->display();
