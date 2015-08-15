@@ -90,6 +90,19 @@
         }
     })
 
+    $(function () {
+        if($("#salonsquare-left").hasClass("active")){
+            $("#salonsquare-right").removeClass("active");
+            $("#salonsquare-right-ul").addClass("hidden");
+            $("#salonsquare-left-ul").removeClass("hidden");
+        }
+        if($("#salonsquare-right").hasClass("active")){
+            $("#salonsquare-left").removeClass("active");
+            $("#salonsquare-left-ul").addClass("hidden");
+            $("#salonsquare-right-ul").removeClass("hidden");
+        }
+    })
+
     $("#salonsquare-left").click(function () {
         $(this).addClass("active");
         $("#salonsquare-right").removeClass("active");

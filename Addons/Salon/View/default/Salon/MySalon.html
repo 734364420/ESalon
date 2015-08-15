@@ -97,6 +97,19 @@
         }
     })
 
+    $(function () {
+        if($("#mysalon-left").hasClass("active")){
+            $("#mysalon-right").removeClass("active");
+            $("#mysalon-right-ul").addClass("hidden");
+            $("#mysalon-left-ul").removeClass("hidden");
+        }
+        if($("#mysalon-right").hasClass("active")){
+            $("#mysalon-left").removeClass("active");
+            $("#mysalon-left-ul").addClass("hidden");
+            $("#mysalon-right-ul").removeClass("hidden");
+        }
+    })
+
     $("#mysalon-left").click(function () {
         $(this).addClass("active");
         $("#mysalon-right").removeClass("active");
