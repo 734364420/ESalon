@@ -82,7 +82,7 @@
 	        <php> } </php>
 	        <volist name="participate_users" id="s">
 	            <php>
-		            $summary = M('e_summary')->where('e_id ='.$iteam['id'].' AND user_id = '.$s['id'])->find();
+		            $summary = M('e_summary')->where('e_id ='.$iteam['id'].' AND user_id = '.$s['user_id'])->find();
 		            if(!empty($summary)) {
 	            </php>
 	            <div class="comment-group">
