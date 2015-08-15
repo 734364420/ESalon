@@ -1,11 +1,11 @@
 <include file="Public/e_header"/>
 <body>
 <div class="flex-box salon-type">
-    <a href="javascript:;" class="flex-1 center {$active1}" id="salonsquare-left">可报名的的E沙龙</a>
-    <a href="javascript:;" class="flex-1 center {$active2}" id="salonsquare-right">已结束的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center tab-left {$active1}">可报名的的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center tab-right {$active2}">已结束的E沙龙</a>
 </div>
 
-<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" id="salonsquare-left-form">
+<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" class="tab-left-form">
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
             <option value="">沙龙类别</option>
@@ -31,7 +31,7 @@
     </div>
 </form>
 
-<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" id="salonsquare-right-form" class="hidden">
+<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" class="tab-right-form hidden">
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
             <option value="">沙龙类别</option>
@@ -59,51 +59,16 @@
 
 <div class="container">
     <div class="list">
-        <ul id="salonsquare-left-ul">
-            <volist name="salons" id="salon">
-                <li class="detail-title">
-                    <span class="blue-block pull-left"></span>
-                    <div class="pull-left titles">
-                        <p class="title"><a href="{:addons_url('Salon://Salon/CheckSalon',array('id'=>$salon['id']))}">{$salon.title}</a></p>
-                        <span class="sub-title pull-left name detail">{$salon.username}</span>
-                        <span class="sub-title pull-left time">{$salon.date}</span>
-                        <img src="/Public/static/img/see.png" class="see">
-                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
-                        <span class="sub-title pull-left">{$salon.hits}</span>
-                        <span class="sub-title pull-left">)</span>
-                    </div>
-                    <div class="amount pull-left">
-                        <span class="amount-now">{$salon.participated_number}</span>
-                        <span class="amount-dig">/</span>
-                        <span class="amount-total">{$salon.participate_number}</span>
-                        <img src="/Public/static/img/progressbar-bottom.png">
-                        <img src="/Public/static/img/progressbar-top.png" class="progressbar">
-                    </div>
-                </li>
+        <ul class="tab-left-ul">
+            <volist name="salons" id="iteam">
+                <include file="Public/e_list_square"/>
             </volist>
         </ul>
 
-        <ul id="salonsquare-right-ul" class="hidden">
-            <volist name="end_salons" id="salon">
-                <li class="detail-title">
-                    <span class="blue-block pull-left"></span>
-                    <div class="pull-left titles">
-                        <p class="title"><a href="{:addons_url('Salon://Salon/CheckSalon',array('id'=>$salon['id']))}">{$salon.title}</a></p>
-                        <span class="sub-title pull-left name detail">{$salon.username}</span>
-                        <span class="sub-title pull-left time">{$salon.date}</span>
-                        <img src="/Public/static/img/see.png" class="see">
-                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
-                        <span class="sub-title pull-left">{$salon.hits}</span>
-                        <span class="sub-title pull-left">)</span>
-                    </div>
-                    <div class="amount pull-left">
-                        <span class="amount-now">{$salon.participated_number}</span>
-                        <span class="amount-dig">/</span>
-                        <span class="amount-total">{$salon.participate_number}</span>
-                        <img src="/Public/static/img/progressbar-bottom.png">
-                        <img src="/Public/static/img/progressbar-top.png" class="progressbar">
-                    </div>
-                </li>
+
+        <ul class="tab-right-ul hidden">
+            <volist name="end_salons" id="iteam">
+                <include file="Public/e_list_square"/>
             </volist>
         </ul>
     </div>
@@ -119,41 +84,33 @@
             wid[i] = percent[i] * 90;
             $(".list li").eq(i).find(".progressbar").css({"clip": "rect(0 " + wid[i] + "px 14px 0)"});
         }
-    })
+    });                                                  //已参与人数进度条
 
     $(function () {
-        if($("#salonsquare-left").hasClass("active")){
-            $("#salonsquare-right").removeClass("active");
-            $("#salonsquare-right-ul").addClass("hidden");
-            $("#salonsquare-left-ul").removeClass("hidden");
-            $("#salonsquare-right-form").addClass("hidden");
-            $("#salonsquare-left-form").removeClass("hidden");
+        if($(".tab-left").hasClass("active")){
+            $(".tab-right").removeClass("active");
+            $(".tab-right-ul").addClass("hidden");
+            $(".tab-left-ul").removeClass("hidden");
+            $(".tab-right-form").addClass("hidden");
+            $(".tab-left-form").removeClass("hidden");
         }
-        if($("#salonsquare-right").hasClass("active")){
-            $("#salonsquare-left").removeClass("active");
-            $("#salonsquare-left-ul").addClass("hidden");
-            $("#salonsquare-right-ul").removeClass("hidden");
-            $("#salonsquare-left-form").addClass("hidden");
-            $("#salonsquare-right-form").removeClass("hidden");
+        if($(".tab-right").hasClass("active")){
+            $(".tab-left").removeClass("active");
+            $(".tab-left-ul").addClass("hidden");
+            $(".tab-right-ul").removeClass("hidden");
+            $(".tab-left-form").addClass("hidden");
+            $(".tab-right-form").removeClass("hidden");
         }
-    })
+    });                                                 //页面初始化时tab标签
 
-    $("#salonsquare-left").click(function () {
-        $(this).addClass("active");
-        $("#salonsquare-right").removeClass("active");
-        $("#salonsquare-right-ul").addClass("hidden");
-        $("#salonsquare-left-ul").removeClass("hidden");
-        $("#salonsquare-right-form").addClass("hidden");
-        $("#salonsquare-left-form").removeClass("hidden");
-    })
+    $(".tab-left").click(function () {
+        $(".tab-right-form").addClass("hidden");
+        $(".tab-left-form").removeClass("hidden");
+    });
 
-    $("#salonsquare-right").click(function () {
-        $(this).addClass("active");
-        $("#salonsquare-left").removeClass("active");
-        $("#salonsquare-left-ul").addClass("hidden");
-        $("#salonsquare-right-ul").removeClass("hidden");
-        $("#salonsquare-left-form").addClass("hidden");
-        $("#salonsquare-right-form").removeClass("hidden");
-    })
+    $(".tab-right").click(function () {
+        $(".tab-left-form").addClass("hidden");
+        $(".tab-right-form").removeClass("hidden");
+    });                                                 //tab标签切换两个不同的筛选选项
 </script>
 <include file="Public/e_footer"/>

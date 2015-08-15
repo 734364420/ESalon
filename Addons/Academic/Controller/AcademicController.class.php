@@ -90,6 +90,7 @@ class AcademicController extends AddonsController{
 	    $this->assign('summary_status',I('summary_status',''));
         $this->assign('PublishIteams',$PublishIteams);
         $this->assign('ParticipateIteams',$ParticipateIteams);
+        $this->assign('url','Academic://Academic/IteamDetail');
 	    $this->title = "我的Iteam";
         $this->display();
     }
@@ -104,7 +105,8 @@ class AcademicController extends AddonsController{
 	    $participate_users = M('e_participate')->where('e_id = '.$iteam_id)->select();
 	    $this->assign('participate_users',$participate_users);
         $this->assign('iteam',$iteam);
-	    $this->title = "Iteam详情";
+		$this->assign('sign_url','Academic://Academic/SignIteam');
+		$this->title = "Iteam详情";
         $this->display();
     }
     //发起团队约,填写表单页面
@@ -175,7 +177,8 @@ class AcademicController extends AddonsController{
 	    $this->status = \LfRequest::inStr('status')?\LfRequest::inStr('status'):'sign';
 	    $this->assign('sign_iteams',$sign_iteams);
 	    $this->assign('end_iteams',$end_iteams);
-	    $this->title = "Iteam广场";
+		$this->assign('url','Academic://Academic/IteamDetail');
+		$this->title = "Iteam广场";
         $this->display();
     }
     //报名微团队

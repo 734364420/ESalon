@@ -1,8 +1,8 @@
 <include file="Public/e_header"/>
 <body>
 <div class="flex-box salon-type">
-    <a href="javacript:;" class="flex-1 center active" id="myiteam-left">我发起的iteam</a>
-    <a href="javacript:;" class="flex-1 center" id="myiteam-right">我报名的iteam</a>
+    <a href="javacript:;" class="flex-1 center tab-left active">我发起的iteam</a>
+    <a href="javacript:;" class="flex-1 center tab-right">我报名的iteam</a>
 </div>
 
 
@@ -34,13 +34,13 @@
 
 <div class="container">
     <div class="list">
-        <ul id="myiteam-left-ul">
+        <ul class="tab-left-ul">
             <volist name="PublishIteams" id="iteam">
 			<include file="Public/e_list" />
             </volist>
         </ul>
 
-        <ul id="myiteam-right-ul" class="hidden">
+        <ul class="tab-right-ul hidden">
             <volist name="ParticipateIteams" id="iteam">
 	            <include file="Public/e_list" />
             </volist>
@@ -59,21 +59,22 @@
             wid[i] = percent[i] * 90;
             $(".list li").eq(i).find(".progressbar").css({"clip": "rect(0 " + wid[i] + "px 14px 0)"});
         }
-    })
+    });                                                  //已参与人数进度条
 
     $(function () {
-        if($("#myiteam-left").hasClass("active")){
-            $("#myiteam-right").removeClass("active");
-            $("#myiteam-right-ul").addClass("hidden");
-            $("#myiteam-left-ul").removeClass("hidden");
+        if($(".tab-left").hasClass("active")){
+            $(".tab-right").removeClass("active");
+            $(".tab-right-ul").addClass("hidden");
+            $(".tab-left-ul").removeClass("hidden");
         }
-        if($("#myiteam-right").hasClass("active")){
-            $("#myiteam-left").removeClass("active");
-            $("#myiteam-left-ul").addClass("hidden");
-            $("#myiteam-right-ul").removeClass("hidden");
+        if($(".tab-right").hasClass("active")){
+            $(".tab-left").removeClass("active");
+            $(".tab-left-ul").addClass("hidden");
+            $(".tab-right-ul").removeClass("hidden");
         }
-    })
+    });                                                  //页面初始化时tab标签
 
+<<<<<<< HEAD
 
     $("#myiteam-left").click(function () {
         $(this).addClass("active");
@@ -88,6 +89,8 @@
         $("#myiteam-left-ul").addClass("hidden");
         $("#myiteam-right-ul").removeClass("hidden");
     })
+=======
+>>>>>>> 0093c4271727acce0802cfd7072166fa346b12ac
 </script>
 
 <include file="Public/e_footer"/>

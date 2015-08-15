@@ -48,36 +48,7 @@
         <textarea name="good">{$user.good}</textarea>
     </div>
     <p class="clearfix ins">请填写您真实有效的信息，<br>以便于在您在微沙龙和微学术中找到志同道合的人。</p>
-    <button type="submit" class="button" onclick="return checkForm();">立即提交</button>
+    <button type="submit" class="button" onclick="return checkAuthForm();">立即提交</button>
 </form>
 
-<script type="text/javascript">
-    function checkForm() {
-        if ($("form.data").find("input").val() == "" || $("form.data").find("textarea").val() == "") {
-            alert("请填写完整的信息！");
-            return false;
-        }
-
-        var id = $("input[name='student_id']").val();
-        if (id.length != 13) {
-            alert("请填写正确的学号！");
-            return false;
-        }
-
-        var phone = $("input[name='phone']").val();
-        if (phone.length != 11 && phone.length != 8) {
-            alert("请填写正确的电话号！");
-            return false;
-        }
-
-        var email = $("input[name='email']").val();
-        if (email.indexOf("@") <= 0 || email.indexOf(".") <= 0 ||
-                email.indexOf("@") > email.indexOf(".") ||
-                email.length == email.indexOf(".") + 1 ||
-                email.indexOf(".") - email.indexOf("@") == 1) {
-            alert("请填写正确的邮箱！");
-            return false;
-        }
-    }
-</script>
 <include file="Public/e_footer"/>

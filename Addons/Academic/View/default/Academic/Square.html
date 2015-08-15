@@ -1,8 +1,8 @@
 <include file="Public/e_header"/>
 <body>
 	<div class="flex-box salon-type">
-		<a href="javacript:;" class="flex-1 center {:IsActive($status,'sign')}"  id="square-left">可报名的iteam</a>
-		<a href="javacript:;" class="flex-1 center {:IsActive($status,'end')}"  id="square-right">已结束的iteam</a>
+		<a href="javacript:;" class="flex-1 center tab-left {:IsActive($status,'sign')}">可报名的iteam</a>
+		<a href="javacript:;" class="flex-1 center tab-right {:IsActive($status,'end')}">已结束的iteam</a>
 	</div>
 <!--<div class="center" id="data">-->
 	<!--<span class="name">{$user.student_name}</span>-->
@@ -35,13 +35,13 @@
 
 	<div class="container">
 		<div class="list">
-			<ul id="square-left-ul">
+			<ul class="tab-left-ul">
 				<volist name="sign_iteams" id="iteam">
 					<include file="Public/e_list_square"/>
 				</volist>
 			</ul>
 
-			<ul id="square-right-ul" class="hidden">
+			<ul class="tab-right-ul hidden">
 				<volist name="end_iteams" id="iteam">
 					<include file="Public/e_list_square" />
 				</volist>
@@ -60,36 +60,21 @@
 			wid[i] = percent[i] * 90;
 			$(".list li").eq(i).find(".progressbar").css({"clip": "rect(0 " + wid[i] + "px 14px 0)"});
 		}
-	})
+	});                                                  //已参与人数进度条
 
 	$(function () {
-		if($("#square-left").hasClass("active")){
-			$("#square-right").removeClass("active");
-			$("#square-right-ul").addClass("hidden");
-			$("#square-left-ul").removeClass("hidden");
+		if($(".tab-left").hasClass("active")){
+			$(".tab-right").removeClass("active");
+			$(".tab-right-ul").addClass("hidden");
+			$(".tab-left-ul").removeClass("hidden");
 		}
-		if($("#square-right").hasClass("active")){
-			$("#square-left").removeClass("active");
-			$("#square-left-ul").addClass("hidden");
-			$("#square-right-ul").removeClass("hidden");
+		if($(".tab-right").hasClass("active")){
+			$(".tab-left").removeClass("active");
+			$(".tab-left-ul").addClass("hidden");
+			$(".tab-right-ul").removeClass("hidden");
 		}
-	})
+	});                                                 //页面初始化时tab标签
 
-	$("#square-left").click(function(){
-		$(this).addClass("active");
-		$("#square-right").removeClass("active");
-		$("#square-right-ul").addClass("hidden");
-		$("#square-left-ul").removeClass("hidden");
-		$("#status").attr('value','sign');
-	})
-
-	$("#square-right").click(function(){
-		$(this).addClass("active");
-		$("#square-left").removeClass("active");
-		$("#square-left-ul").addClass("hidden");
-		$("#square-right-ul").removeClass("hidden");
-		$("#status").attr('value','end');
-	})
 </script>
 
 <include file="Public/e_footer" />

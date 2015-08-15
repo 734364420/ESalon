@@ -1,22 +1,23 @@
 <include file="Public/e_header"/>
-<body>
-<include file="Public/e_detail_title" />
+<include file="Public/e_detail_title"/>
 <div class="container">
     <ul class="detail-list">
         <li>
             <img src="/Public/static/img/time.png" class="time">
-            <span class="label">活动截止时间：</span>
-            <span>{$iteam.end_date|date="Y-m-d",###}</span>
+            <span class="label">时间：</span>
+            <span>{$start_date|date="Y-m-d H:i",###}-{$end_date|date="H:i",###}</span>
         </li>
-		<include file="Public/e_detail"/>
-	    <include file="Public/e_summary"/>
+        <li>
+            <img src="/Public/static/img/site.png" class="site">
+            <span class="label">地点：</span>
+            <span>{$iteam['space']}</span>
+        </li>
+       <include file="Public/e_detail" />
 
+       <include file="Public/e_summary" />
     </ul>
 </div>
 <include file="Public/e_status"/>
-
-
-
 <script type="text/javascript">
     $(function () {
         var percent;

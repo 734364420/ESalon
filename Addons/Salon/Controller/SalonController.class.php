@@ -4,9 +4,11 @@ use Home\Controller\AddonsController;
 class SalonController extends AddonsController{
 	public function __construct() {
 		parent::__construct();
+		$this->model = M('Model')->getByName('e_salon');
+		$this->assign ( 'model', $this->model );
 	}
 
-	function  instruction() {
+	function  Instruction() {
 		$this->display();
 	}
 	//我的沙龙
@@ -44,25 +46,15 @@ class SalonController extends AddonsController{
 					$j++;
 				}
 			}
-			for ($i = 0; $i < count($salons_participate); $i++) {
-				if ($salons_participate[$i]['summary']==0) {
-					$salons_participate[$i]['summary'] = '未总结';
-				} else {
-					$salons_participate[$i]['summary'] = '已总结';
-				}
-			}
-			for ($i = 0; $i < count($salons_publish); $i++) {
-				if ($salons_participate[$i]['summary']==0) {
-					$salons_publish[$i]['summary'] = '未总结';
-				} else {
-					$salons_publish[$i]['summary'] = '已总结';
-				}
-			}
+			$user = M('e_user')->where('id=' . session('user_id'))->find();
+			$this->assign('user',$user);
 			$this->salons_publish=$salons_publish;
 			$this->salons_participate=$salons_participate;
+			$this->assign('url','Salon://Salon/CheckSalon');
+			$this->assign('title','我的E沙龙');
 			$this->display();
 		}else {
-			$user = M('e_user')->where('id=' . session('user_id'))->getField('student_name');
+			$user = M('e_user')->where('id=' . session('user_id'))->find();
 			$salons_publish = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
 			$participattions = M('e_participate')->where('user_id=' . session('user_id'))->select();
 			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
@@ -72,23 +64,10 @@ class SalonController extends AddonsController{
 					$j++;
 				}
 			}
-			for ($i = 0; $i < count($salons_participate); $i++) {
-				if ($salons_participate[$i]['summary']==0) {
-					$salons_participate[$i]['summary'] = '未总结';
-				} else {
-					$salons_participate[$i]['summary'] = '已总结';
-				}
-			}
-			for ($i = 0; $i < count($salons_publish); $i++) {
-				if ($salons_participate[$i]['summary']==0) {
-					$salons_publish[$i]['summary'] = '未总结';
-				} else {
-					$salons_publish[$i]['summary'] = '已总结';
-				}
-			}
-			$this->username = $user;
+			$this->assign('user',$user);
 			$this->salons_participate = $salons_participate;
 			$this->salons_publish = $salons_publish;
+			$this->assign('title','我的E沙龙');
 			$this->display();
 		}
 	}
@@ -100,15 +79,9 @@ class SalonController extends AddonsController{
 		$salon=M('e_salon')->where('id='.$id)->find();
 		$data['hits']=$salon['hits']+1;
 		M('e_salon')->where('id='.$id)->save($data);
-		$this->salon=$salon;
-		$this->publish_user=M('e_user')->where('id='.$salon['publish_userid'])->find();
+		$this->assign('iteam',$salon);
+		$this->assign('user',M('e_user')->where('id='.$salon['publish_userid'])->find());
 		$participate_users=M('e_participate')->where('e_id='.$id)->select();
-		for($i=0;$i<count($participate_users);$i++){
-			$participate_users[$i]=M('e_user')->where('id='.$participate_users[$i]['user_id'])->find();
-			if($participate_users[$i]['id']==session('user_id')){
-				$this->status='已参加';
-			}
-		}
 		$summaries=M('e_summary')->where('e_id='.$id)->select();
 		for($i=0;$i<count($summaries);$i++) {
 			$summaries_users[$i] = M('e_user')->where('id=' . $summaries[$i]['user_id'])->find();
@@ -116,26 +89,9 @@ class SalonController extends AddonsController{
 		$this->summaries_users=$summaries_users;
 		$this->summaries=$summaries;
 		$this->participate_users=$participate_users;
-		$this->display('Salon/Detail');
-	}
-	//评价
-	function Summary(){
-		e_auth();
-		if(IS_POST) {
-			$data['stars']=\LfRequest::inNum('stars');
-			$data['comment']=\LfRequest::inStr('comment');
-			$data['e_id']=$id;
-			$data['user_id']=session('user_id');
-			$data['content']=\LfRequest::inStr('content');
-			$result=M('e_suggestionscd')->add($data);
-			if($result){
-				$this->success('留言成功啦，谢谢啦',addons_url('Salon://Salon/SalonSquare'),3);
-			}else{
-				$this->error('出错啦，检查下建议呗？');
-			}
-		}else{
-			$this->display();
-		}
+		$this->assign('sign_url','Salon://Salon/ParticipateSalon');
+		$this->assign('title','沙龙活动详情');
+		$this->display();
 	}
 
 	//新建沙龙
@@ -143,10 +99,13 @@ class SalonController extends AddonsController{
 		e_auth();
 		if(IS_POST) {	
 			$data['title']=\LfRequest::inStr('title');
-			$data['date']=\LfRequest::inStr('date');
+			$date=\LfRequest::inStr('date');
 			$time=\LfRequest::inStr('time');
 			$hour=\LfRequest::inStr('hour');
-			$data['time_range']=$time.'~'.date('H:i',strtotime($time)+$hour*3600);
+			$start_date=$date.' '.$time;
+			$end_date=$date.' '.date('H:i',strtotime($time)+3600*$hour);
+			$data['start_date']=strtotime($start_date);
+			$data['end_date']=strtotime($end_date);
 			$data['space']=\LfRequest::inStr('space');
 			$data['participate_number']=\LfRequest::inStr('participate_number');
 			$data['type']=\LfRequest::inStr('type');
@@ -169,6 +128,7 @@ class SalonController extends AddonsController{
 				$times[$i]=date("Y-m-d",strtotime("+$i day"));
 			}
 			$this->times=$times;
+			$this->assign('title','新建我的E沙龙');
 			$this->display();
 		}
 	}
@@ -217,6 +177,8 @@ class SalonController extends AddonsController{
 		}else{
 			$this->active1='active';
 		}
+		$this->assign('title','E沙龙广场');
+		$this->assign('url','Salon://Salon/CheckSalon');
 		$this->display('Salon/SalonSquare');
 	}
 	//联系我们
@@ -274,6 +236,79 @@ class SalonController extends AddonsController{
 		}else{
 			$this->active1='active';
 		}
+		$this->assign('title','查询结果');
 		$this->display('Salon/SalonSquare');
+	}
+
+	function lists() {
+		$users = M('e_user');
+		$page = I ( 'p', 1, 'intval' ); // 默认显示第一页数据
+
+		// 解析列表规则
+		$list_data = $this->_list_grid ( $this->model );
+		$grids = $list_data ['list_grids'];
+		$fields = $list_data ['fields'];
+
+		// 关键字搜索
+		$map ['token'] = get_token ();
+		$key = $this->model ['search_key'] ? $this->model ['search_key'] : 'title';
+		if (isset ( $_REQUEST [$key] )) {
+			$map [$key] = array (
+				'like',
+				'%' . htmlspecialchars ( $_REQUEST [$key] ) . '%'
+			);
+			unset ( $_REQUEST [$key] );
+		}
+		// 条件搜索
+		foreach ( $_REQUEST as $name => $val ) {
+			if (in_array ( $name, $fields )) {
+				$map [$name] = $val;
+			}
+		}
+		$row = empty ( $this->model ['list_row'] ) ? 20 : $this->model ['list_row'];
+
+		// 读取模型数据列表
+
+		empty ( $fields ) || in_array ( 'id', $fields ) || array_push ( $fields, 'id' );
+		$name = parse_name ( get_table_name ( $this->model ['id'] ), true );
+		$data = M ( $name )->field ( empty ( $fields ) ? true : $fields )->where ( $map )->order ( 'id DESC' )->page ( $page, $row )->select ();
+
+		/* 查询记录总数 */
+		$count = M ( $name )->where ( $map )->count ();
+
+		// 分页
+		if ($count > $row) {
+			$page = new \Think\Page ( $count, $row );
+			$page->setConfig ( 'theme', '%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %HEADER%' );
+			$this->assign ( '_page', $page->show () );
+		}
+
+		$this->assign ( 'list_grids', $grids );
+		$this->assign ( 'list_data', $data );
+		$this->assign ( 'publish', '1' );
+		$this->display();
+	}
+	public function del() {
+		$ids = I ( 'id', 0 );
+		if (empty ( $ids )) {
+			$ids = array_unique ( ( array ) I ( 'ids', 0 ) );
+		}
+		if (empty ( $ids )) {
+			$this->error ( '请选择要操作的数据!' );
+		}
+
+		$Model = M ( get_table_name ( $this->model ['id'] ) );
+		$map = array (
+			'id' => array (
+				'in',
+				$ids
+			)
+		);
+		$map ['token'] = get_token ();
+		if ($Model->where ( $map )->delete ()) {
+			$this->success ( '删除成功' );
+		} else {
+			$this->error ( '删除失败！' );
+		}
 	}
 }
