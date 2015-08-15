@@ -9,7 +9,7 @@
 
         <div class="photo">
                 <span class="pull-left">上传照片：</span>
-                <input type="file" accept="image/*" class="pull-left" id="photo-upload">
+                <div id="filePicker">选择图片</div>
         </div>
 
         <div class="stars">
@@ -64,22 +64,27 @@
         }
     }
 </script>
-<script type="text/javascript" src="/Public/static/js/ajaxfileupload.js"></script>
+<script type="text/javascript" src="/Public/static/webuploader/webuploader.js"></script>
 <script type="text/javascript">
-    $("#photo-upload").change(function () {
-        $.ajaxFileUpload({
-            url: "http://weixin.eagerfor.com/index.php?s=/home/File/uploadPicture",
-            secureuri: false,
-            fileElementId: "photo-upload",
-            success: function (data) {
+    var uploader = WebUploader.create({
 
-                var result = eval(data);
-                console.log(result);
-            },
-            error: function (data,status,e) {
-                alert(e);
-            }
-        })
-    })
+        auto: true,
+
+        swf: "/Public/static/webuploader/Uploader.swf",
+
+        server: "http://weixin.eagerfor.com/index.php?s=/home/File/uploadPicture/s/1",
+
+        pick: '#filePicker',
+
+        accept: {
+            title: 'Images',
+            extensions: 'gif,jpg,jpeg,bmp,png',
+            mimeTypes: 'image/*'
+        }
+    });
+    uploader.on( 'uploadAccept', function(obj,data) {
+        var result = eval("("+data+")");
+        alert(result.path);
+    });
 </script>
 <include file="Public/e_footer" />

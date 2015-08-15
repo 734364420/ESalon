@@ -84,6 +84,10 @@ class FileController extends HomeController {
         }
 
         /* 返回JSON数据 */
-        $this->ajaxReturn($return);
+        if(!empty($_GET['s'])) {
+            $this->ajaxReturn(json_encode(array('path'=>$info['file']['path'])));
+        } else {
+            $this->ajaxReturn($return);
+        }
     }
 }
