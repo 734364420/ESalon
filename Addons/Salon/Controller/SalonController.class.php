@@ -212,7 +212,6 @@ class SalonController extends AddonsController{
 		$this->salons = $salons;
 		$this->end_salons = $end_salons;
 		$status=\LfRequest::inStr('status');
-		var_dump($status);
 		if($status=='right'){
 			$this->active2='active';
 		}else{
