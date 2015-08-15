@@ -55,7 +55,7 @@
     <div class="list">
         <ul id="salonsquare-left-ul">
             <volist name="salons" id="salon">
-                <li>
+                <li class="detail-title">
                     <span class="blue-block pull-left"></span>
                     <div class="pull-left titles">
                         <p class="title"><a href="{:addons_url('Salon://Salon/CheckSalon',array('id'=>$salon['id']))}">{$salon.title}</a></p>
@@ -79,7 +79,7 @@
 
         <ul id="salonsquare-right-ul" class="hidden">
             <volist name="end_salons" id="salon">
-                <li>
+                <li class="detail-title">
                     <span class="blue-block pull-left"></span>
                     <div class="pull-left titles">
                         <p class="title"><a href="{:addons_url('Salon://Salon/CheckSalon',array('id'=>$salon['id']))}">{$salon.title}</a></p>
