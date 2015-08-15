@@ -110,6 +110,7 @@ class SalonController extends AddonsController{
 				$this->status='已参加';
 			}
 		}
+		var_dump($participate_users);
 		$this->participate_users=$participate_users;
 		$this->display('Salon/Detail');
 	}
