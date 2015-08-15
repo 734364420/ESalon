@@ -230,18 +230,20 @@ class SalonController extends AddonsController{
 	}
 
 	//E沙龙广场根据条件查找
-	function GetSalonWith() {
-		$type=\LfRequest::inStr('type');
-		$day=\LfRequest::inStr('day');
-		$space=\LfRequest::inStr('space');
-		if($type != null) {
+	function GetSalonWith()
+	{
+		$type = \LfRequest::inStr('type');
+		$day = \LfRequest::inStr('day');
+		$space = \LfRequest::inStr('space');
+		if ($type != null) {
 			$data['type'] = $type;
 		}
-		if(!empty($day)){
+		if (!empty($day)) {
 			var_dump($day);
 		}
-		if($space != null){
+		if ($space != null) {
 			$data['space'] = $space;
 		}
+		$this->display('Salon/SalonSquare');
 	}
 }
