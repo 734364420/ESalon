@@ -202,7 +202,8 @@ class SalonController extends AddonsController{
 		e_auth();
 		$today=date('Y-m-d',time());
 		$user=M('e_salon');
-		$salons=M('e_salon')->where('date>='.$today)->select();
+		$map1['date']=array('egt',$today);
+		$salons=M('e_salon')->where($map1)->select();
 		echo $user->getLastSql();
 		$end_salons=M('e_salon')->where('date<'.$today)->select();
 		echo $user->getLastSql();
