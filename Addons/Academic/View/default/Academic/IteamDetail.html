@@ -48,7 +48,7 @@
             <volist name="participate_users " id="u">
 	            <php>$euser = M('e_user')->find($u['user_id'])</php>
                 <p>
-                    <a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$u['id']))}" class="block pull-left" style="width:65px;">{$euser.student_name}</a>
+                    <a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$euser['id']))}" class="block pull-left" style="width:65px;">{$euser.student_name}</a>
                     <span class="pull-left">{$euser.school}</span>
                 </p>
             </volist>
@@ -60,6 +60,10 @@
             <p>{$iteam.brief}</p>
         </li>
 
+	    <php>
+		    $isSummary = M('e_summary')->where(' e_id = '.$iteam['id'])->select();
+		    if(!empty($isSummary)) {
+	    </php>
         <li id="comment">
             <img src="/Public/static/img/summary.jpg" class="comment">
             <span class="label">比赛总结：</span>
@@ -105,6 +109,7 @@
 	            <php> } </php>
             </volist>
         </li>
+	    <php>}</php>
     </ul>
 </div>
 <!--判断是否已参加活动-->
@@ -118,7 +123,7 @@
 		if(empty($mySummary)) {
 	</php>
 		<!--正在进行中-->
-		<php>if($iteam['start_date']< time() <$iteam['end_date']) {</php>
+		<php>if($iteam['start_date']< time() && time() <$iteam['end_date']) {</php>
 			<a href="javascript:;" class="button go-summary">活动正在进行中</a>
 		<php>} else if($iteam['start_date'] > time()) { </php>
 			<a href="javascript:;" class="button go-summary">活动还未开始</a>
