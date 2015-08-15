@@ -44,13 +44,14 @@ class SalonController extends AddonsController{
 					$j++;
 				}
 			}
-			$user = M('e_user')->where('id=' . session('user_id'))->select();
+			$user = M('e_user')->where('id=' . session('user_id'))->find();
 			$this->user=$user;
 			$this->salons_publish=$salons_publish;
 			$this->salons_participate=$salons_participate;
 			$this->display();
 		}else {
-			$user = M('e_user')->where('id=' . session('user_id'))->select();
+			$user = M('e_user')->where('id=' . session('user_id'))->find();
+			var_dump($user);
 			$salons_publish = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
 			$participattions = M('e_participate')->where('user_id=' . session('user_id'))->select();
 			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
@@ -85,25 +86,6 @@ class SalonController extends AddonsController{
 		$this->summaries=$summaries;
 		$this->participate_users=$participate_users;
 		$this->display('Salon/Detail');
-	}
-	//评价
-	function Summary(){
-		e_auth();
-		if(IS_POST) {
-			$data['stars']=\LfRequest::inNum('stars');
-			$data['comment']=\LfRequest::inStr('comment');
-			$data['e_id']=$id;
-			$data['user_id']=session('user_id');
-			$data['content']=\LfRequest::inStr('content');
-			$result=M('e_suggestionscd')->add($data);
-			if($result){
-				$this->success('留言成功啦，谢谢啦',addons_url('Salon://Salon/SalonSquare'),3);
-			}else{
-				$this->error('出错啦，检查下建议呗？');
-			}
-		}else{
-			$this->display();
-		}
 	}
 
 	//新建沙龙
@@ -185,8 +167,6 @@ class SalonController extends AddonsController{
 		}else{
 			$this->active1='active';
 		}
-		$user = M('e_user')->where('id=' . session('user_id'))->select();
-		$this->user=$user;
 		$this->display('Salon/SalonSquare');
 	}
 	//联系我们
@@ -244,8 +224,6 @@ class SalonController extends AddonsController{
 		}else{
 			$this->active1='active';
 		}
-		$user = M('e_user')->where('id=' . session('user_id'))->select();
-		$this->user=$user;
 		$this->display('Salon/SalonSquare');
 	}
 }
