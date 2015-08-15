@@ -101,7 +101,8 @@ class AcademicController extends AddonsController{
 	    M('e_iteam')->where('id = '.$iteam_id)->save(array('hits'=>$iteam['hits']+1));
 	    $user = M('e_user')->find($iteam['publish_userid']);
 	    $this->assign('user',$user);
-	    $this->participate_users = M('e_participate')->where('e_id = '.$iteam_id)->select();
+	    $participate_users = M('e_participate')->where('e_id = '.$iteam_id)->select();
+	    $this->assign('participate_users',$participate_users);
         $this->assign('iteam',$iteam);
 	    $this->title = "Iteam详情";
         $this->display();
