@@ -236,6 +236,7 @@ class SalonController extends AddonsController{
 		$status=\LfRequest::inStr('status');
 		$type = \LfRequest::inStr('type');
 		$day = \LfRequest::inStr('day');
+		var_dump($day);
 		$space = \LfRequest::inStr('space');
 		if ($type != null) {
 			$data['type'] = $type;
