@@ -31,6 +31,9 @@ class AcademicController extends AddonsController{
 			    $maps .= ' mode = '.$mode.$and;
 		    }
 	    }
+	    $this->type = I('type','');
+	    $this->date = I('date','');
+	    $this->mode = I('mode','');
         $news = M('e_competition')->where($maps)->order('id DESC')->select();
         $this->assign('news',$news);
 	    $this->title = "最新竞赛动态";
@@ -134,23 +137,30 @@ class AcademicController extends AddonsController{
     }
     //Iteam广场
     function Square() {
-	    $sign_iteams = M('e_iteam')->where('start_date > '.date("Y-m-d"))->select();
-	    $end_iteams = M('e_iteam')->where('start_date < '.date("Y-m-d"))->select();
+	    $sign_maps = 'end_date > '.date("Y-m-d");
+	    $end_maps = 'end_date < '.date("Y-m-d");
+	    $and = ' AND ';
+	    $maps = '';
 	    if(IS_POST) {
 		    $data['type'] = \LfRequest::inStr('type');
-		    $data['start_date'] = \LfRequest::inStr('start_date');
-		    $data['end_date'] = \LfRequest::inStr('end_date');
+		    $data['date'] = \LfRequest::inStr('date');
+		    $data['number'] = \LfRequest::inStr('number');
 		    $maps = '';
 		    if(!empty($data['type'])) {
-				$maps .= 'type = '.$data['type'];
+				$maps .= 'type = '.$data['type'].$and;
 		    }
-		    if(!empty($data['start_date'])) {
-			    $maps .= 'start_date = '.$data['start_date'];
+		    if(!empty($data['date'])) {
+			    $maps .= 'start_date = '.$data['date'].$and;
 		    }
-		    if(!empty($data['end_date'])) {
-			    $maps .= 'end_date = '.$data['end_date'];
+		    if(!empty($data['number'])) {
+			    $maps .= 'participate_number = '.$data['number'].$and;
 		    }
 	    }
+	    $sign_maps = $maps.$sign_maps;
+	    $end_maps = $maps.$end_maps
+	    $sign_iteams = M('e_iteam')->where($sign_maps)->select();
+	    $end_iteams = M('e_iteam')->where($end_maps)->select();
+	    $this->status = I('status','sign');
 	    $this->assign('sign_iteams',$sign_iteams);
 	    $this->assign('end_iteams',$end_iteams);
 	    $this->title = "Iteam广场";
