@@ -103,8 +103,12 @@ class SalonController extends AddonsController{
 		$this->salon=$salon;
 		$this->publish_user=M('e_user')->where('id='.$salon['publish_userid'])->find();
 		$participate_users=M('e_participate')->where('e_id='.$id)->select();
+		var_dump($participate_users);
 		for($i=0;$i<count($participate_users);$i++){
 			$participate_users[$i]=M('e_user')->where('id='.$participate_users[$i]['user_id'])->find();
+			if($participate_users[$i]['user_id']==session('userid')){
+				$this->status='已参加';
+			}
 		}
 		$this->participate_users=$participate_users;
 		$this->display('Salon/Detail');
@@ -143,9 +147,6 @@ class SalonController extends AddonsController{
 			$data['publish_userid']=session('user_id');
 			$data['participated_number']=1;
 			$data['hits']=0;
-			var_dump(\LfRequest::inStr('space'));
-			var_dump($data);
-			die();
 			$user = M('e_salon');
 			$id=$user->add($data);
 			if($id){

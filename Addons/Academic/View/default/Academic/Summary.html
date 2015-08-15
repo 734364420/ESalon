@@ -9,7 +9,7 @@
 
         <div class="photo">
                 <span class="pull-left">上传照片：</span>
-                <input type="file"  accept="image/*" class="pull-left">
+                <input type="file" accept="image/*" class="pull-left" id="photo-upload">
         </div>
 
         <div class="stars">
@@ -63,5 +63,23 @@
             return false;
         }
     }
+</script>
+<script type="text/javascript" src="/Public/static/js/ajaxfileupload.js"></script>
+<script type="text/javascript">
+    $("#photo-upload").change(function () {
+        $.ajaxFileUpload({
+            url: "http://weixin.eagerfor.com/index.php?s=/home/File/uploadPicture",
+            secureuri: false,
+            fileElementId: "photo-upload",
+            success: function (data) {
+
+                var result = eval("("+data+")");
+                console.log(result.info);
+            },
+            error: function (data,status,e) {
+                alert(e);
+            }
+        })
+    })
 </script>
 <include file="Public/e_footer" />
