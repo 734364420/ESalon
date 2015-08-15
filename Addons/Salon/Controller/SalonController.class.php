@@ -203,23 +203,14 @@ class SalonController extends AddonsController{
 		$today=date('Y-m-d',time());
 		$salons=M('e_salon')->where('date>='.$today)->select();
 		$end_salons=M('e_salon')->where('date<'.$today)->select();
-		for ($i = 0; $i < count($salons); $i++) {
-			if ($salons[$i]['summary']==0) {
-				$salons[$i]['summary'] = '未总结';
-			} else {
-				$salons[$i]['summary'] = '已总结';
-			}
+		for($i=0;$i<count($salons);$i++) {
+			$salons[$i]['username'] = M('e_user')->where('id=' . $salons[$i]['publish_userid'])->getField('studentname');
 		}
-		for ($i = 0; $i < count($end_salons); $i++) {
-			if ($end_salons[$i]['summary']==0) {
-				$end_salons[$i]['summary'] = '未总结';
-			} else {
-				$end_salons[$i]['summary'] = '已总结';
-			}
+		for($i=0;$i<count($end_salons);$i++){
+			$end_salons[$i]['username'] = M('e_user')->where('id=' . $end_salons[$i]['publish_userid'])->getField('username');
 		}
 		$this->salons = $salons;
 		$this->end_salons = $end_salons;
-		$this->end_salons =
 		$this->display();
 	}
 	//联系我们
