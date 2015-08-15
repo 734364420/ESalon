@@ -16,26 +16,20 @@
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
             <option value="">竞赛类别</option>
-            <option value=物联网" {:IsSelected($type,
-            '物联网')}>物联网</option>
-            <option value="互联网+" {:IsSelected($type,
-            '互联网+')} >互联网+</option>
+            <option value="物联网" {:IsSelected($type,'物联网')}>物联网</option>
+            <option value="互联网+" {:IsSelected($type,'互联网+')} >互联网+</option>
             <option value="">全部</option>
         </select>
         <select name="iteam_status" class="flex-1">
             <option value="">比赛状态</option>
-            <option value="0" {:IsSelected($iteam_status,
-            '未结束')}>未结束</option>
-            <option value="1" {:IsSelected($iteam_status,
-            '已结束')}>已结束</option>
+            <option value="0" {:IsSelected($iteam_status,0)}>未结束</option>
+            <option value="1" {:IsSelected($iteam_status,1)}>已结束</option>
             <option value="">全部</option>
         </select>
         <select name="summary_status" class="flex-1">
             <option value="">总结状态</option>
-            <option value="0" {:IsSelected($summary_status,
-            '未总结')}>未总结</option>
-            <option value="1" {:IsSelected($summary_status,
-            '已总结')}>已总结</option>
+            <option value="0" {:IsSelected($summary_status,0)}>未总结</option>
+            <option value="1" {:IsSelected($summary_status,1)}>已总结</option>
             <option value="">全部</option>
         </select>
         <input type="submit" value="搜索"/>
@@ -53,9 +47,9 @@
                         <p class="title"><a href="{:addons_url('Academic://Academic/IteamDetail',array('id'=>$iteam['id']))}">{$iteam.title}</a></p>
                         <span class="sub-title summ"><php>if($iteam['summary']==1){ echo "已总结"; } else { echo "未总结";}</php></span>
                         <img src="/Public/static/img/see.png" class="see">
-                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
+                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
                         <span class="sub-title pull-left">{$iteam.hits}</span>
-                        <span class="sub-title pull-left">&nbsp;)</span>
+                        <span class="sub-title pull-left">)</span>
                     </div>
                     <div class="amount pull-left">
                         <span class="amount-now">{$iteam.participated_number}</span>
@@ -80,9 +74,9 @@
                         <span class="sub-title summ"><php>if($iteam['summary']==1){ echo "已总结"; } else { echo "未总结";}
                         </php></span>
                         <img src="/Public/static/img/see.png" class="see">
-                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
+                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
                         <span class="sub-title pull-left">{$iteam.hits}</span>
-                        <span class="sub-title pull-left">&nbsp;)</span>
+                        <span class="sub-title pull-left">)</span>
                     </div>
                     <div class="amount pull-left">
                         <span class="amount-now">{$iteam.participated_number}</span>
@@ -107,6 +101,19 @@
             percent[i] = now / total;
             wid[i] = percent[i] * 90;
             $(".list li").eq(i).find(".progressbar").css({"clip": "rect(0 " + wid[i] + "px 14px 0)"});
+        }
+    })
+
+    $(function () {
+        if($("#myiteam-left").hasClass("active")){
+            $("#myiteam-right").removeClass("active");
+            $("#myiteam-right-ul").addClass("hidden");
+            $("#myiteam-left-ul").removeClass("hidden");
+        }
+        if($("#myiteam-right").hasClass("active")){
+            $("#myiteam-left").removeClass("active");
+            $("#myiteam-left-ul").addClass("hidden");
+            $("#myiteam-right-ul").removeClass("hidden");
         }
     })
 

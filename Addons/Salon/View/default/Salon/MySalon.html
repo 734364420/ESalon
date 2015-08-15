@@ -44,9 +44,9 @@
                         </p>
                         <span class="sub-title summ">{$salon.summary}</span>
                         <img src="/Public/static/img/see.png" class="see">
-                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
+                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
                         <span class="sub-title pull-left">{$salon.hits}</span>
-                        <span class="sub-title pull-left">&nbsp;)</span>
+                        <span class="sub-title pull-left">)</span>
                     </div>
                     <div class="amount pull-left">
                         <span class="amount-now">{$salon.participated_number}</span>
@@ -68,9 +68,9 @@
                         <p class="title"><a href="{:addons_url('Salon://Salon/CheckSalon',array('id'=>$salon['id']))}">{$salon.title}</a></p>
                         <span class="sub-title summ">{$salon.summary}</span>
                         <img src="/Public/static/img/see.png" class="see">
-                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
+                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
                         <span class="sub-title pull-left">{$salon.hits}</span>
-                        <span class="sub-title pull-left">&nbsp;)</span>
+                        <span class="sub-title pull-left">)</span>
                     </div>
                     <div class="amount pull-left">
                         <span class="amount-now">{$salon.participated_number}</span>
@@ -94,6 +94,19 @@
             percent[i] = now / total;
             wid[i] = percent[i] * 90;
             $(".list li").eq(i).find(".progressbar").css({"clip": "rect(0 " + wid[i] + "px 14px 0)"});
+        }
+    })
+
+    $(function () {
+        if($("#mysalon-left").hasClass("active")){
+            $("#mysalon-right").removeClass("active");
+            $("#mysalon-right-ul").addClass("hidden");
+            $("#mysalon-left-ul").removeClass("hidden");
+        }
+        if($("#mysalon-right").hasClass("active")){
+            $("#mysalon-left").removeClass("active");
+            $("#mysalon-left-ul").addClass("hidden");
+            $("#mysalon-right-ul").removeClass("hidden");
         }
     })
 

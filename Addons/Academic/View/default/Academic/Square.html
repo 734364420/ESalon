@@ -1,8 +1,8 @@
 <include file="Public/e_header"/>
 <body>
 	<div class="flex-box salon-type">
-		<a href="javacript:;" class="flex-1 center" {:IsActive($status,'sign')} id="square-left">可报名的iteam</a>
-		<a href="javacript:;" class="flex-1 center" {:IsActive($status,'end')} id="square-right">已结束的iteam</a>
+		<a href="javacript:;" class="flex-1 center {:IsActive($status,'sign')}"  id="square-left">可报名的iteam</a>
+		<a href="javacript:;" class="flex-1 center {:IsActive($status,'end')}"  id="square-right">已结束的iteam</a>
 	</div>
 <!--<div class="center" id="data">-->
 	<!--<span class="name">{$user.student_name}</span>-->
@@ -28,7 +28,7 @@
 				<php> } </php>
 				<option value="">全部</option>
 			</select>
-			<input type="hidden" name="status" id="status"/>
+			<input type="hidden" name="status" value="" id="status"/>
 			<input type="submit" value="搜索"/>
 		</div>
 	</form>
@@ -44,9 +44,9 @@
 							<span class="sub-title pull-left name"><php>$user = M('e_user')->find($iteam['publish_userid']); echo $user['student_name'];</php></span>
 							<span class="sub-title pull-left time"><php>echo date("Y-m-d",$iteam['start_date']);</php></span>
 							<img src="/Public/static/img/see.png" class="see">
-							<span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
+							<span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
 							<span class="sub-title pull-left">{$iteam.hits}</span>
-							<span class="sub-title pull-left">&nbsp;)</span>
+							<span class="sub-title pull-left">)</span>
 						</div>
 						<div class="amount pull-left">
 							<span class="amount-now">{$iteam.participated_number}</span>
@@ -65,11 +65,11 @@
 						<span class="blue-block pull-left"></span>
 						<div class="pull-left titles">
 							<p class="title"><a href="{:addons_url('Academic://Academic/IteamDetail',array('id'=>$iteam['id']))}">{$iteam.title}</a></p>
-							<span class="sub-title summ">{$iteam.summary}</span>
+							<span class="sub-title summ"><php>if($iteam['summary']==1){ echo "已总结"; } else { echo "未总结";}</php></span>
 							<img src="/Public/static/img/see.png" class="see">
-							<span class="sub-title pull-left" style="margin-left:3px;">浏览(&nbsp;</span>
+							<span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
 							<span class="sub-title pull-left">{$iteam.hits}</span>
-							<span class="sub-title pull-left">&nbsp;)</span>
+							<span class="sub-title pull-left">)</span>
 						</div>
 						<div class="amount pull-left">
 							<span class="amount-now">{$iteam.participated_number}</span>
@@ -97,12 +97,25 @@
 		}
 	})
 
+	$(function () {
+		if($("#square-left").hasClass("active")){
+			$("#square-right").removeClass("active");
+			$("#square-right-ul").addClass("hidden");
+			$("#square-left-ul").removeClass("hidden");
+		}
+		if($("#square-right").hasClass("active")){
+			$("#square-left").removeClass("active");
+			$("#square-left-ul").addClass("hidden");
+			$("#square-right-ul").removeClass("hidden");
+		}
+	})
+
 	$("#square-left").click(function(){
 		$(this).addClass("active");
 		$("#square-right").removeClass("active");
 		$("#square-right-ul").addClass("hidden");
 		$("#square-left-ul").removeClass("hidden");
-		$("$status").val('sign');
+		$("#status").attr('value','sign');
 	})
 
 	$("#square-right").click(function(){
@@ -110,7 +123,7 @@
 		$("#square-left").removeClass("active");
 		$("#square-left-ul").addClass("hidden");
 		$("#square-right-ul").removeClass("hidden");
-		$("$status").val('end');
+		$("#status").attr('value','end');
 	})
 </script>
 
