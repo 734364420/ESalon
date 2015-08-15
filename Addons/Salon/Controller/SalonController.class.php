@@ -44,25 +44,13 @@ class SalonController extends AddonsController{
 					$j++;
 				}
 			}
-			for ($i = 0; $i < count($salons_participate); $i++) {
-				if ($salons_participate[$i]['summary']==0) {
-					$salons_participate[$i]['summary'] = '未总结';
-				} else {
-					$salons_participate[$i]['summary'] = '已总结';
-				}
-			}
-			for ($i = 0; $i < count($salons_publish); $i++) {
-				if ($salons_participate[$i]['summary']==0) {
-					$salons_publish[$i]['summary'] = '未总结';
-				} else {
-					$salons_publish[$i]['summary'] = '已总结';
-				}
-			}
+			$user = M('e_user')->where('id=' . session('user_id'))->select();
+			$this->user=$user;
 			$this->salons_publish=$salons_publish;
 			$this->salons_participate=$salons_participate;
 			$this->display();
 		}else {
-			$user = M('e_user')->where('id=' . session('user_id'))->getField('student_name');
+			$user = M('e_user')->where('id=' . session('user_id'))->select();
 			$salons_publish = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
 			$participattions = M('e_participate')->where('user_id=' . session('user_id'))->select();
 			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
@@ -72,21 +60,7 @@ class SalonController extends AddonsController{
 					$j++;
 				}
 			}
-			for ($i = 0; $i < count($salons_participate); $i++) {
-				if ($salons_participate[$i]['summary']==0) {
-					$salons_participate[$i]['summary'] = '未总结';
-				} else {
-					$salons_participate[$i]['summary'] = '已总结';
-				}
-			}
-			for ($i = 0; $i < count($salons_publish); $i++) {
-				if ($salons_participate[$i]['summary']==0) {
-					$salons_publish[$i]['summary'] = '未总结';
-				} else {
-					$salons_publish[$i]['summary'] = '已总结';
-				}
-			}
-			$this->username = $user;
+			$this->user = $user;
 			$this->salons_participate = $salons_participate;
 			$this->salons_publish = $salons_publish;
 			$this->display();
@@ -211,6 +185,8 @@ class SalonController extends AddonsController{
 		}else{
 			$this->active1='active';
 		}
+		$user = M('e_user')->where('id=' . session('user_id'))->select();
+		$this->user=$user;
 		$this->display('Salon/SalonSquare');
 	}
 	//联系我们
@@ -268,6 +244,8 @@ class SalonController extends AddonsController{
 		}else{
 			$this->active1='active';
 		}
+		$user = M('e_user')->where('id=' . session('user_id'))->select();
+		$this->user=$user;
 		$this->display('Salon/SalonSquare');
 	}
 }
