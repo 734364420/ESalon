@@ -63,7 +63,7 @@
             <span class="label">比赛总结：</span>
 
 	        <php>
-		        $summary = M('e_summary')->where('user_id ='.$user['id'])->find();
+		        $summary = M('e_summary')->where('user_id ='.$user['id'].' AND e_id = '.$iteam['id'])->find();
 		        if(!empty($summary)) {
 	        </php>
 	        <div class="comment-group">
@@ -82,7 +82,7 @@
 	        <php> } </php>
 	        <volist name="participate_users" id="u">
 	            <php>
-		            $summary = M('e_summary')->where('user_id ='.$u['id'])->find();
+		            $summary = M('e_summary')->where('e_id ='.$iteam['id'].' AND user_id = '.$u['id'])->find();
 		            if(!empty($summary)) {
 	            </php>
 	            <div class="comment-group">
@@ -110,7 +110,7 @@
 </php>
 <!--判断是否已总结-->
 <php>
-	$mySummary = M('e_summary')->where('user_id ='.session('user_id'))->find();
+	$mySummary = M('e_summary')->where('user_id ='.session('user_id').' AND e_id = '.$iteam['id'])->find();
 	if(empty($mySummary)) {
 </php>
 <a href="{:addons_url('Academic://Academic/Summary',array('e_id'=>$iteam['id']))}" class="button go-summary">填写活动总结</a>
@@ -119,7 +119,9 @@
 <!--判断是否已结束-->
 <php> if($iteam['end_date'] > strtotime(date("Y-m-d"))) { </php>
 <a href="{:addons_url('Academic://Academic/SignIteam',array('e_id'=>$iteam['id']))}" class="button go-summary">报名参加</a>
-<php> } </php>
+<php> } else { </php>
+<a href="javascript:;" class="button go-summary">你已参加此活动</a>
+<php>}</php>
 <php> } </php>
 
 

@@ -201,8 +201,10 @@ class SalonController extends AddonsController{
 	function SalonSquare() {
 		e_auth();
 		$today=date('Y-m-d',time());
-		$salons=M('e_salon')->where('date>='.$today)->select();
-		$end_salons=M('e_salon')->where('date<'.$today)->select();
+		$map1['date']=array('egt',$today);
+		$salons=M('e_salon')->where($map1)->select();
+		$map2['date']=array('lt',$today);
+		$end_salons=M('e_salon')->where($map2)->select();
 		for($i=0;$i<count($salons);$i++) {
 			$salons[$i]['username'] = M('e_user')->where('id=' . $salons[$i]['publish_userid'])->getField('student_name');
 		}
@@ -211,7 +213,7 @@ class SalonController extends AddonsController{
 		}
 		$this->salons = $salons;
 		$this->end_salons = $end_salons;
-		$this->display();
+		$this->display('Salon/SalonSquare');
 	}
 	//联系我们
 	function Contact() {
@@ -238,8 +240,18 @@ class SalonController extends AddonsController{
 		if ($type != null) {
 			$data['type'] = $type;
 		}
+		$today=date('Y-m-d',time());
+		if($day!=''&&$day==0) {
+			$data['date']=$day;
+		}
 		if (!empty($day)) {
-			var_dump($day);
+			if($day>=0){
+				$data['date']=array('egt',$today);
+				$data['date']=array('elt',date('Y-m-d',strtotime($today)+3600*$day));
+			}else{
+				$data['date']=array('egt',date('Y-m-d',strtotime($today)+3600*$day));
+				$data['date']=array('elt',$today);
+			}
 		}
 		if ($space != null) {
 			$data['space'] = $space;
