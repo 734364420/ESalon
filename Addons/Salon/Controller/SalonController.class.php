@@ -245,6 +245,7 @@ class SalonController extends AddonsController{
 		}
 		$today=date('Y-m-d',time());
 		if($day!=''&&$day==0) {
+			var_dump($day);
 			$data['date']=$day;
 			$this->salons=M('e_salon')->where($data)->select();
 		}
