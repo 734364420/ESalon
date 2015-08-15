@@ -1,11 +1,11 @@
 <include file="Public/e_header"/>
 <body>
 <div class="flex-box salon-type">
-    <a href="javascript:;" class="flex-1 center {$active1}" id="salonsquare-left">可报名的的E沙龙</a>
-    <a href="javascript:;" class="flex-1 center {$active2}" id="salonsquare-right">已结束的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center {$active1}" class="tab-left">可报名的的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center {$active2}" class="tab-right">已结束的E沙龙</a>
 </div>
 
-<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" id="salonsquare-left-form">
+<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" class="tab-left-form">
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
             <option value="">沙龙类别</option>
@@ -31,7 +31,7 @@
     </div>
 </form>
 
-<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" id="salonsquare-right-form" class="hidden">
+<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" class="tab-right-form" class="hidden">
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
             <option value="">沙龙类别</option>
@@ -59,13 +59,13 @@
 
 <div class="container">
     <div class="list">
-        <ul id="salonsquare-left-ul">
+        <ul class="tab-left-ul">
             <volist name="salons" id="salon">
                 <include file="Public/e_list_square"/>
             </volist>
         </ul>
 
-        <ul id="salonsquare-right-ul" class="hidden">
+        <ul class="tab-right-ul" class="hidden">
             <volist name="end_salons" id="salon">
                 <include file="Public/e_list_square"/>
             </volist>
@@ -83,41 +83,33 @@
             wid[i] = percent[i] * 90;
             $(".list li").eq(i).find(".progressbar").css({"clip": "rect(0 " + wid[i] + "px 14px 0)"});
         }
-    })
+    })                                                  //已参与人数进度条
 
     $(function () {
-        if($("#salonsquare-left").hasClass("active")){
-            $("#salonsquare-right").removeClass("active");
-            $("#salonsquare-right-ul").addClass("hidden");
-            $("#salonsquare-left-ul").removeClass("hidden");
-            $("#salonsquare-right-form").addClass("hidden");
-            $("#salonsquare-left-form").removeClass("hidden");
+        if($(".tab-left").hasClass("active")){
+            $(".tab-right").removeClass("active");
+            $(".tab-right-ul").addClass("hidden");
+            $(".tab-left-ul").removeClass("hidden");
+            $(".tab-right-form").addClass("hidden");
+            $(".tab-left-form").removeClass("hidden");
         }
-        if($("#salonsquare-right").hasClass("active")){
-            $("#salonsquare-left").removeClass("active");
-            $("#salonsquare-left-ul").addClass("hidden");
-            $("#salonsquare-right-ul").removeClass("hidden");
-            $("#salonsquare-left-form").addClass("hidden");
-            $("#salonsquare-right-form").removeClass("hidden");
+        if($(".tab-right").hasClass("active")){
+            $(".tab-left").removeClass("active");
+            $(".tab-left-ul").addClass("hidden");
+            $(".tab-right-ul").removeClass("hidden");
+            $(".tab-left-form").addClass("hidden");
+            $(".tab-right-form").removeClass("hidden");
         }
+    })                                                 //页面初始化时tab标签
+
+    $(".tab-left").click(function () {
+        $(".tab-right-form").addClass("hidden");
+        $(".tab-left-form").removeClass("hidden");
     })
 
-    $("#salonsquare-left").click(function () {
-        $(this).addClass("active");
-        $("#salonsquare-right").removeClass("active");
-        $("#salonsquare-right-ul").addClass("hidden");
-        $("#salonsquare-left-ul").removeClass("hidden");
-        $("#salonsquare-right-form").addClass("hidden");
-        $("#salonsquare-left-form").removeClass("hidden");
-    })
-
-    $("#salonsquare-right").click(function () {
-        $(this).addClass("active");
-        $("#salonsquare-left").removeClass("active");
-        $("#salonsquare-left-ul").addClass("hidden");
-        $("#salonsquare-right-ul").removeClass("hidden");
-        $("#salonsquare-left-form").addClass("hidden");
-        $("#salonsquare-right-form").removeClass("hidden");
+    $(".tab-right").click(function () {
+        $(".tab-left-form").addClass("hidden");
+        $(".tab-right-form").removeClass("hidden");
     })
 </script>
 <include file="Public/e_footer"/>
