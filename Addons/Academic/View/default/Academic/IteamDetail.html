@@ -63,7 +63,7 @@
             <span class="label">比赛总结：</span>
 
 	        <php>
-		        $summary = M('e_summary')->where('user_id ='.$user['id'])->find();
+		        $summary = M('e_summary')->where('user_id ='.$user['id'].' AND e_id = '.$iteam['id'])->find();
 		        if(!empty($summary)) {
 	        </php>
 	        <div class="comment-group">
