@@ -248,7 +248,9 @@ class SalonController extends AddonsController{
 		if($day!=''&&$day==0) {
 			var_dump($day);
 			$data['date']=$day;
+			$user=M('e_salon');
 			$this->salons=M('e_salon')->where($data)->select();
+			echo $user->getLastSql();
 		}
 		if (!empty($day)) {
 			if($day>=0){
