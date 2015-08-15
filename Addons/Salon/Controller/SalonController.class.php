@@ -50,6 +50,7 @@ class SalonController extends AddonsController{
 			$this->assign('user',$user);
 			$this->salons_publish=$salons_publish;
 			$this->salons_participate=$salons_participate;
+			$this->assign('url','Salon://Salon/CheckSalon');
 			$this->assign('title','我的E沙龙');
 			$this->display();
 		}else {
@@ -176,6 +177,7 @@ class SalonController extends AddonsController{
 			$this->active1='active';
 		}
 		$this->assign('title','E沙龙广场');
+		$this->assign('url','Salon://Salon/CheckSalon');
 		$this->display('Salon/SalonSquare');
 	}
 	//联系我们

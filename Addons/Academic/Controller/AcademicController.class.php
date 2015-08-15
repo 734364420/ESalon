@@ -90,6 +90,7 @@ class AcademicController extends AddonsController{
 	    $this->assign('summary_status',I('summary_status',''));
         $this->assign('PublishIteams',$PublishIteams);
         $this->assign('ParticipateIteams',$ParticipateIteams);
+        $this->assign('url','Academic://Academic/IteamDetail');
 	    $this->title = "我的Iteam";
         $this->display();
     }
@@ -175,7 +176,8 @@ class AcademicController extends AddonsController{
 	    $this->status = \LfRequest::inStr('status')?\LfRequest::inStr('status'):'sign';
 	    $this->assign('sign_iteams',$sign_iteams);
 	    $this->assign('end_iteams',$end_iteams);
-	    $this->title = "Iteam广场";
+		$this->assign('url','Academic://Academic/IteamDetail');
+		$this->title = "Iteam广场";
         $this->display();
     }
     //报名微团队
