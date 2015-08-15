@@ -1,5 +1,4 @@
 <include file="Public/e_header"/>
-<>
 <div class="list detail-title">
     <span class="blue-block pull-left"></span>
 
@@ -59,7 +58,7 @@
             <p>{$salon['brief']}</p>
         </li>
 
-        <?php if($salon['date'] > time('Y-m-d',time()) && $salon['summary'] == 0) { ?>
+        <?php if($salon['date'] > time('Y-m-d',time()) && $salon['summary'] == 0 && status=='已参加') { ?>
         <li id="comment">
             <img src="/Public/static/img/summary.jpg" class="comment">
             <span class="label">活动总结：</span>
@@ -114,7 +113,7 @@
 <a href="{:addons_url('Salon://Salon/Summary',array('id'=>$salon['id']))}" class="button go-summary">填写活动总结</a>
 <?php } ?>
 
-<?php if($salon['date'] <= time('Y-m-d',time()) && $status == '未参加' && $salon['participated_number'] < $salon['participated_number']) { ?>
+<?php if($salon['date'] <= time('Y-m-d',time()) && empty($status) && $salon['participated_number'] < $salon['participated_number']) { ?>
 <a href="{:addons_url('Salon://Salon/ParticipateSalon',array('id'=>$salon['id']))}" class="button go-summary">我要报名参加</a>
 <?php } ?>
 
