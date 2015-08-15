@@ -6,7 +6,7 @@ class SalonController extends AddonsController{
 		parent::__construct();
 	}
 
-	function  instruction() {
+	function  Instruction() {
 		$this->display();
 	}
 	//我的沙龙

@@ -4,10 +4,7 @@
     <a href="javascript:;" class="flex-1 center active" id="mysalon-left">我发起的E沙龙</a>
     <a href="javascript:;" class="flex-1 center" id="mysalon-right">我报名的E沙龙</a>
 </div>
-<div class="center" id="data">
-    <span class="name">{$username}</span>
-    <a href="{:addons_url('Auth://Auth/EditProfile')}" id="change-data" class="pull-right">修改资料</a>
-</div>
+<include file="Public/e_userprofile"/>
 <form method="post">
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
@@ -35,51 +32,14 @@
 <div class="container">
     <div class="list">
         <ul id="mysalon-left-ul">
-            <volist name="salons_publish" id="salon">
-                <li>
-                    <span class="blue-block pull-left"></span>
-
-                    <div class="pull-left titles">
-                        <p class="title"><a href="{:addons_url('Salon://Salon/CheckSalon',array('id'=>$salon['id']))}">{$salon.title}</a>
-                        </p>
-                        <span class="sub-title summ">{$salon.summary}</span>
-                        <img src="/Public/static/img/see.png" class="see">
-                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
-                        <span class="sub-title pull-left">{$salon.hits}</span>
-                        <span class="sub-title pull-left">)</span>
-                    </div>
-                    <div class="amount pull-left">
-                        <span class="amount-now">{$salon.participated_number}</span>
-                        <span class="amount-dig">/</span>
-                        <span class="amount-total">{$salon.participate_number}</span>
-                        <img src="/Public/static/img/progressbar-bottom.png">
-                        <img src="/Public/static/img/progressbar-top.png" class="progressbar">
-                    </div>
-                </li>
+            <volist name="salons_publish" id="iteam">
+                <include file="Public/e_list"/>
             </volist>
         </ul>
 
         <ul id="mysalon-right-ul" class="hidden">
-            <volist name="salons_participate" id="salon">
-                <li>
-                    <span class="blue-block pull-left"></span>
-
-                    <div class="pull-left titles">
-                        <p class="title"><a href="{:addons_url('Salon://Salon/CheckSalon',array('id'=>$salon['id']))}">{$salon.title}</a></p>
-                        <span class="sub-title summ">{$salon.summary}</span>
-                        <img src="/Public/static/img/see.png" class="see">
-                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
-                        <span class="sub-title pull-left">{$salon.hits}</span>
-                        <span class="sub-title pull-left">)</span>
-                    </div>
-                    <div class="amount pull-left">
-                        <span class="amount-now">{$salon.participated_number}</span>
-                        <span class="amount-dig">/</span>
-                        <span class="amount-total">{$salon.participate_number}</span>
-                        <img src="/Public/static/img/progressbar-bottom.png">
-                        <img src="/Public/static/img/progressbar-top.png" class="progressbar">
-                    </div>
-                </li>
+            <volist name="salons_participate" id="iteam">
+                <include file="Public/e_list"/>
             </volist>
         </ul>
     </div>
