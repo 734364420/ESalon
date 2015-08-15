@@ -89,10 +89,10 @@
         alert($("input#photo-path").val());
     });
     uploader.on( 'uploadProgress', function( file, percentage ) {
-        $("filePicker").text("上传中...");
+        $(".webuploader-pick").text("上传中...");
     });
     uploader.on( 'uploadSuccess', function( file ) {
-        $("filePicker").text("上传成功");
+        $(".webuploader-pick").text("上传成功");
     });
 </script>
 <include file="Public/e_footer" />
