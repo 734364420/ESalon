@@ -80,13 +80,13 @@
                 </div>
             </div>
 	        <php> } </php>
-	        <volist name="participate_users" id="u">
+	        <volist name="participate_users" id="s">
 	            <php>
-		            $summary = M('e_summary')->where('e_id ='.$iteam['id'].' AND user_id = '.$u['id'])->find();
+		            $summary = M('e_summary')->where('e_id ='.$iteam['id'].' AND user_id = '.$s['id'])->find();
 		            if(!empty($summary)) {
 	            </php>
 	            <div class="comment-group">
-	                <p class="pull-left">{$u.student_name}：</p>
+	                <p class="pull-left">{$s.student_name}：</p>
                     <div class="pull-left">
                         <div class="clearfix">
                             <php>
