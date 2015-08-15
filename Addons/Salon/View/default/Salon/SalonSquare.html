@@ -5,7 +5,7 @@
     <a href="javascript:;" class="flex-1 center" id="salonsquare-right">已结束的E沙龙</a>
 </div>
 
-<form method="post" id="salonsquare-left-form">
+<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" id="salonsquare-left-form">
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
             <option>沙龙类别</option>
@@ -28,7 +28,7 @@
     </div>
 </form>
 
-<form method="get" id="salonsquare-right-form" class="hidden">
+<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" id="salonsquare-right-form" class="hidden">
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
             <option>沙龙类别</option>
