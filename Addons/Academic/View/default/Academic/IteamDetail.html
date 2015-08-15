@@ -102,8 +102,6 @@
         </li>
     </ul>
 </div>
-<!--判断是否已结束-->
-<php> if($iteam['end_date'] > strtotime(date("Y-m-d"))) { </php>
 <!--判断是否已参加活动-->
 <php>
 	$participate = M('e_participate')->where('e_id ='.$iteam['id'].' AND user_id = '.session('user_id'))->find();
@@ -117,6 +115,8 @@
 <a href="{:addons_url('Academic://Academic/Summary',array('e_id'=>$iteam['id']))}" class="button go-summary">填写活动总结</a>
 <php> } </php>
 <php> }  else { </php>
+<!--判断是否已结束-->
+<php> if($iteam['end_date'] > strtotime(date("Y-m-d"))) { </php>
 <a href="{:addons_url('Academic://Academic/SignIteam',array('e_id'=>$iteam['id']))}" class="button go-summary">报名参加</a>
 <php> } </php>
 <php> } </php>
