@@ -1,25 +1,29 @@
 <include file="Public/e_header"/>
 <body>
+<form method="post">
 <div class="flex-box select-group">
-    <select name="" class="flex-1">
-        <option>竞赛类别</option>
-        <option>数学</option>
-        <option>物理</option>
-        <option>化学</option>
+    <select name="type" class="flex-1">
+        <option value="">竞赛类别</option>
+	    <option value="物联网">物联网</option>
+	    <option value="互联网+">互联网+</option>
+	    <option value="">全部</option>
     </select>
-    <select name="" class="flex-1">
-        <option>比赛时间</option>
-        <option>今天</option>
-        <option>昨天</option>
-        <option>明天</option>
+    <select name="date" class="flex-1">
+        <option value="">比赛时间</option>
+        <option value="0">已结束</option>
+        <option value="{:date('Y-m-d',time()+1*24*3600)}">明天</option>
+	    <option value="{:date('Y-m-d',time()+3*24*3600)}">三天后</option>
+	    <option value="">全部</option>
     </select>
-    <select name="" class="flex-1">
-        <option>参赛方式</option>
-        <option>线上</option>
-        <option>线下</option>
+    <select name="mode" class="flex-1">
+        <option value="">参赛方式</option>
+        <option value="0">个人</option>
+        <option value="1">团队</option>
+        <option value="">全部</option>
     </select>
+	<input type="submit" value="搜索"/>
 </div>
-
+</form>
 <div class="container">
     <div class="list">
         <ul>
