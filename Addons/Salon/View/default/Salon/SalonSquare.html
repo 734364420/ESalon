@@ -1,8 +1,8 @@
 <include file="Public/e_header"/>
 <body>
 <div class="flex-box salon-type">
-    <a href="javascript:;" class="flex-1 center {$active1}" class="tab-left">可报名的的E沙龙</a>
-    <a href="javascript:;" class="flex-1 center {$active2}" class="tab-right">已结束的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center tab-left {$active1}">可报名的的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center tab-right {$active2}">已结束的E沙龙</a>
 </div>
 
 <form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" class="tab-left-form">
@@ -31,7 +31,7 @@
     </div>
 </form>
 
-<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" class="tab-right-form" class="hidden">
+<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" class="tab-right-form hidden">
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
             <option value="">沙龙类别</option>
@@ -66,7 +66,7 @@
         </ul>
 
 
-        <ul class="tab-right-ul" class="hidden">
+        <ul class="tab-right-ul hidden">
             <volist name="end_salons" id="iteam">
                 <include file="Public/e_list_square"/>
             </volist>
@@ -84,7 +84,7 @@
             wid[i] = percent[i] * 90;
             $(".list li").eq(i).find(".progressbar").css({"clip": "rect(0 " + wid[i] + "px 14px 0)"});
         }
-    })                                                  //已参与人数进度条
+    });                                                  //已参与人数进度条
 
     $(function () {
         if($(".tab-left").hasClass("active")){
@@ -101,16 +101,16 @@
             $(".tab-left-form").addClass("hidden");
             $(".tab-right-form").removeClass("hidden");
         }
-    })                                                 //页面初始化时tab标签
+    });                                                 //页面初始化时tab标签
 
     $(".tab-left").click(function () {
         $(".tab-right-form").addClass("hidden");
         $(".tab-left-form").removeClass("hidden");
-    })
+    });
 
     $(".tab-right").click(function () {
         $(".tab-left-form").addClass("hidden");
         $(".tab-right-form").removeClass("hidden");
-    })
+    });                                                 //tab标签切换两个不同的筛选选项
 </script>
 <include file="Public/e_footer"/>

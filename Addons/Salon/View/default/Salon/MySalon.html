@@ -1,8 +1,8 @@
 <include file="Public/e_header"/>
 <body>
 <div class="flex-box salon-type">
-    <a href="javascript:;" class="flex-1 center active" class="tab-left">我发起的E沙龙</a>
-    <a href="javascript:;" class="flex-1 center" class="tab-right">我报名的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center tab-left active">我发起的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center tab-right">我报名的E沙龙</a>
 </div>
 <include file="Public/e_userprofile"/>
 <form method="post">
@@ -37,7 +37,7 @@
             </volist>
         </ul>
 
-        <ul class="tab-right-ul" class="hidden">
+        <ul class="tab-right-ul hidden">
             <volist name="salons_participate" id="iteam">
                 <include file="Public/e_list"/>
             </volist>
@@ -55,7 +55,7 @@
             wid[i] = percent[i] * 90;
             $(".list li").eq(i).find(".progressbar").css({"clip": "rect(0 " + wid[i] + "px 14px 0)"});
         }
-    })                                                  //已参与人数进度条
+    });                                                  //已参与人数进度条
 
     $(function () {
         if($(".tab-left").hasClass("active")){
@@ -68,7 +68,7 @@
             $(".tab-left-ul").addClass("hidden");
             $(".tab-right-ul").removeClass("hidden");
         }
-    })                                                 //页面初始化时tab标签
+    });                                                 //页面初始化时tab标签
 
 </script>
 <include file="Public/e_footer"/>
