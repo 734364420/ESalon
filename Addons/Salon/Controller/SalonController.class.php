@@ -36,7 +36,9 @@ class SalonController extends AddonsController{
 				}
 			}
 			$data['publish_userid']=session('user_id');
+			$user=M('e_salon');
 			$salons_publish = M('e_salon')->where($data)->select();
+			$user->getLastSql();
 			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
 				$result= M('e_salon')->where('id='.$participattions[$i]['e_id'].' AND publish_userid!='.session('user_id'))->find();
 				if($result){
