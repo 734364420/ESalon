@@ -148,7 +148,8 @@ class AuthController extends AddonsController{
             )
         );
         $map ['token'] = get_token ();
-        $data = M('e_iteam')->where('user_id = '.$_GET['id'])->count();
+        $data = M('e_iteam')->where('user_id = '.$_GET['id'])->select();
+        $data = array_merge($data,M('e_salon')->where('user_id = '.$_GET['id'])->select();)
         if(!empty($data)) {
             $this->error("该用户下还有数据，请先删除数据");
         }
