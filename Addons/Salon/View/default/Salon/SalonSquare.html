@@ -8,19 +8,19 @@
 <form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" id="salonsquare-left-form">
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
-            <option>沙龙类别</option>
+            <option value="">沙龙类别</option>
             <option value="物联网">物联网</option>
             <option value="互联网+">互联网+</option>
             <option value="">全部</option>
         </select>
         <select name="day" class="flex-1">
-            <option>活动时间</option>
+            <option value="">活动时间</option>
             <option value="0">今天</option>
             <option value="3">三天内</option>
             <option value="7">一周内</option>
         </select>
         <select name="space" class="flex-1">
-            <option>活动地点</option>
+            <option value="">活动地点</option>
             <option value="清水河">清水河</option>
             <option value="沙河">沙河</option>
         </select>
@@ -31,19 +31,19 @@
 <form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" id="salonsquare-right-form" class="hidden">
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
-            <option>沙龙类别</option>
+            <option value="">沙龙类别</option>
             <option value="物联网">物联网</option>
             <option value="互联网+">互联网+</option>
             <option value="">全部</option>
         </select>
         <select name="day" class="flex-1">
-            <option>活动时间</option>
+            <option value="">活动时间</option>
             <option value="-1">昨天</option>
             <option value="-3">过去三天内</option>
             <option value="-7">过去一周内</option>
         </select>
         <select name="space" class="flex-1">
-            <option>活动地点</option>
+            <option value="">活动地点</option>
             <option value="清水河">清水河</option>
             <option value="沙河">沙河</option>
         </select>
@@ -59,7 +59,7 @@
                     <span class="blue-block pull-left"></span>
                     <div class="pull-left titles">
                         <p class="title"><a href="{:addons_url('Salon://Salon/CheckSalon',array('id'=>$salon['id']))}">{$salon.title}</a></p>
-                        <span class="sub-title summ">{$salon.summary}</span>
+                        <span class="sub-title summ">{$salon.username} {$salon.date}</span>
                         <img src="/Public/static/img/see.png" class="see">
                         <span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
                         <span class="sub-title pull-left">{$salon.hits}</span>
