@@ -134,7 +134,7 @@ class SalonController extends AddonsController{
 	//参加沙龙
 	function ParticipateSalon() {
 		e_auth();
-		$id=\LfRequest::inNum('id');
+		$id=\LfRequest::inNum('e_id');
 		$data['user_id']=session('user_id');
 		$data['e_id']=$id;
 		$participated_number=M('e_salon')->where('id='.$id)->getField('participated_number');
