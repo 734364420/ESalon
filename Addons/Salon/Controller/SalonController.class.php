@@ -17,6 +17,8 @@ class SalonController extends AddonsController{
 			$type=\LfRequest::inStr('type');
 			$salon_status=\LfRequest::inNum('salon_status');
 			$salon_summary_status=\LfRequest::inNum('salon_summary_status');
+			var_dump($salon_status);
+			var_dump($salon_summary_status);
 			$today = date('Y-m-d',time());
 			if($type != null) {
 				$data['type'] = $type;
