@@ -54,10 +54,11 @@ $("#site").change(function(){
 
 
 function checkCreateSalonForm() {
-    if ($("form.data").find("input").val() == ""|| $("$mysite").find("input").val() == "" || $("form.data").find("textarea").val() == "") {
+    if ($("form.data").find("input").val() == "" || $("form.data").find("textarea").val() == "") {
         alert("请填写完整的信息！");
         return false;
     }
+    console.log( $("$mysite").find("input").val());
 }                                               //发起沙龙页面表单验证
 
 
