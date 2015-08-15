@@ -157,7 +157,7 @@ class AcademicController extends AddonsController{
 		    }
 	    }
 	    $sign_maps = $maps.$sign_maps;
-	    $end_maps = $maps.$end_maps
+	    $end_maps = $maps.$end_maps;
 	    $sign_iteams = M('e_iteam')->where($sign_maps)->select();
 	    $end_iteams = M('e_iteam')->where($end_maps)->select();
 	    $this->status = I('status','sign');
