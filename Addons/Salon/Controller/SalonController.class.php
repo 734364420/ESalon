@@ -4,7 +4,6 @@ use Home\Controller\AddonsController;
 class SalonController extends AddonsController{
 	public function __construct() {
 		parent::__construct();
-		e_auth();
 	}
 
 	function  instruction() {
@@ -12,6 +11,7 @@ class SalonController extends AddonsController{
 	}
 	//我的沙龙
 	function MySalon() {
+		e_auth();
 		if(IS_POST){
 			$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
 			$type=\LfRequest::inStr('type');
@@ -97,6 +97,7 @@ class SalonController extends AddonsController{
 
 	//查看发布沙龙详细信息
 	function CheckSalon() {
+		e_auth();
 		$id=\LfRequest::inNum('id');
 		$salon=M('e_salon')->where('id='.$id)->find();
 		$data['hits']=$salon['hits']+1;
@@ -121,6 +122,7 @@ class SalonController extends AddonsController{
 	}
 	//评价
 	function Summary(){
+		e_auth();
 		if(IS_POST) {
 			$data['stars']=\LfRequest::inNum('stars');
 			$data['comment']=\LfRequest::inStr('comment');
@@ -140,6 +142,7 @@ class SalonController extends AddonsController{
 
 	//新建沙龙
 	function CreateSalon() {
+		e_auth();
 		if(IS_POST) {	
 			$data['title']=\LfRequest::inStr('title');
 			$data['date']=\LfRequest::inStr('date');
@@ -173,6 +176,7 @@ class SalonController extends AddonsController{
 	}
 	//参加沙龙
 	function ParticipateSalon() {
+		e_auth();
 		$id=\LfRequest::inNum('id');
 		$data['user_id']=session('user_id');
 		$data['e_id']=$id;
@@ -195,6 +199,7 @@ class SalonController extends AddonsController{
 	}
 	//沙龙广场
 	function SalonSquare() {
+		e_auth();
 		$today=date('Y-m-d',time());
 		$salons=M('e_salon')->where('date>='.$today)->select();
 		$end_salons=M('e_salon')->where('date<'.$today)->select();
@@ -235,6 +240,17 @@ class SalonController extends AddonsController{
 
 	//E沙龙广场根据条件查找
 	function GetSalonWith() {
-
+		$type=\LfRequest::inStr('type');
+		$day=\LfRequest::inStr('day');
+		$space=\LfRequest::inStr('space');
+		if($type != null) {
+			$data['type'] = $type;
+		}
+		if(!empty($day)){
+			var_dump($day);
+		}
+		if($space != null){
+			$data['space'] = $space;
+		}
 	}
 }
