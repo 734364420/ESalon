@@ -240,6 +240,9 @@ class SalonController extends AddonsController{
 		if ($type != null) {
 			$data['type'] = $type;
 		}
+		if ($space != null) {
+			$data['space'] = $space;
+		}
 		$today=date('Y-m-d',time());
 		if($day!=''&&$day==0) {
 			$data['date']=$day;
@@ -248,24 +251,18 @@ class SalonController extends AddonsController{
 			if($day>=0){
 				$data['date']=array('egt',$today);
 				$data['date']=array('elt',date('Y-m-d',strtotime($today)+3600*$day));
+				$this->salons=M('e_salon')->where($data)->select();
 			}else{
 				$data['date']=array('egt',date('Y-m-d',strtotime($today)+3600*$day));
 				$data['date']=array('elt',$today);
+				$this->end_salons=M('e_salon')->where($data)->select();
 			}
-		}
-		if ($space != null) {
-			$data['space'] = $space;
 		}
 		if($status=='right'){
 			$this->active2='active';
 		}else{
 			$this->active1='active';
 		}
-		if(empty($data['date'])) {
-			$data['date'] = array('egt', $today);
-		}
-		$this->salons=M('e_salon')->where($data)->select();
-		$this->end_salons=M('e_salon')->where($data)->select();
 		$this->display('Salon/SalonSquare');
 	}
 }
