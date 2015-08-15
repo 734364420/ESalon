@@ -148,10 +148,10 @@ class AuthController extends AddonsController{
             )
         );
         $map ['token'] = get_token ();
-        $data = M('e_iteam')->where('publish_userid = '.$_GET['id'])->select();
-        $data = array_merge($data,M('e_salon')->where('publish_userid = '.$_GET['id'])->select());
-        $data = array_merge($data,M('e_participate')->where('user_id = '.$_GET['id'])->select());
-        if(!empty($data)) {
+        $data_iteam = M('e_iteam')->where('publish_userid = '.$_GET['id'])->select();
+        $data_salon = M('e_salon')->where('publish_userid = '.$_GET['id'])->select();
+        $data_sign = M('e_participate')->where('user_id = '.$_GET['id'])->select();
+        if(!empty($data_iteam)||!empty($data_salon)||!empty($data_sign)) {
             $this->error("该用户下还有数据，请先删除数据");
         }
         if ($Model->where ( $map )->delete ()) {
