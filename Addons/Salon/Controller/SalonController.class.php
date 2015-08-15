@@ -238,6 +238,9 @@ class SalonController extends AddonsController{
 		$day = \LfRequest::inStr('day');
 		var_dump($day);
 		$space = \LfRequest::inStr('space');
+		if(empty($type) && empty($day) &&empty($space)){
+			redirect(addons_url('Salon://Salon/SalonSquare'));
+		}
 		if ($type != null) {
 			$data['type'] = $type;
 		}
@@ -245,7 +248,7 @@ class SalonController extends AddonsController{
 			$data['space'] = $space;
 		}
 		$today=date('Y-m-d',time());
-		if($day!=''&&$day==0) {
+		if($day==''&&$day!=0) {
 			$data['date']=$today;
 			$user=M('e_salon');
 			$this->salons=M('e_salon')->where($data)->select();
