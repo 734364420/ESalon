@@ -76,7 +76,7 @@ class SalonController extends AddonsController{
 		$salon=M('e_salon')->where('id='.$id)->find();
 		$data['hits']=$salon['hits']+1;
 		M('e_salon')->where('id='.$id)->save($data);
-		$this->assign('salon',$salon);
+		$this->assign('iteam',$salon);
 		$this->user=M('e_user')->where('id='.$salon['publish_userid'])->find();
 		$participate_users=M('e_participate')->where('e_id='.$id)->select();
 		$summaries=M('e_summary')->where('e_id='.$id)->select();
