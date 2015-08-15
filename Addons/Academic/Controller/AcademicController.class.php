@@ -12,8 +12,29 @@ class AcademicController extends AddonsController{
 	}
     //最新学术动态页面，竞赛列表页
     function LastNews() {
-        $news = M('e_competition')->order('id')->select();
+	    if(IS_POST) {
+		    $and = ' AND ';
+		    $maps = '';
+		    $type = \LfRequest::inStr('type');
+		    $date = \LfRequest::inStr('date');
+		    $mode = \LfRequest::inStr('mode');
+		    if(!empty($type)) {
+				$maps .= ' type = '.$type.$and;
+		    }
+		    if($date != '' && $date ==0) {
+			    $maps .= ' date < '.time().$and;
+		    }
+		    if(!empty($date)) {
+			    $maps .= time().' < date < '.strtotime($date).$and;
+		    }
+		    if(!empty($mode)) {
+			    $maps .= ' mode = '.$mode.$and;
+		    }
+	    }
+		$maps .= 'order by id desc ';
+        $news = M('e_competition')->where($maps)->select();
         $this->assign('news',$news);
+	    $this->title = "最新竞赛动态";
         $this->display();
     }
     //竞赛内容页
@@ -25,6 +46,7 @@ class AcademicController extends AddonsController{
         }
 	    M('e_competition')->where('id ='.$competition_id)->save(array('hits'=>$competition['hits']+1));
         $this->assign('competition',$competition);
+	    $this->title = "竞赛详情";
         $this->display();
     }
     //我的iteam页面
@@ -62,6 +84,7 @@ class AcademicController extends AddonsController{
 	    $this->assign('summary_status',I('summary_status',''));
         $this->assign('PublishIteams',$PublishIteams);
         $this->assign('ParticipateIteams',$ParticipateIteams);
+	    $this->title = "我的Iteam";
         $this->display();
     }
     //团队约详情页面
@@ -72,6 +95,7 @@ class AcademicController extends AddonsController{
 	    $this->user = M('e_user')->find($iteam['publish_userid']);
 	    $this->participate_users = M('e_participate')->where('e_id = '.$iteam_id)->select();
         $this->assign('iteam',$iteam);
+	    $this->title = "Iteam详情";
         $this->display();
     }
     //发起团队约,填写表单页面
@@ -105,6 +129,7 @@ class AcademicController extends AddonsController{
 		        $this->error("添加失败");
 	        }
         } else {
+	        $this->title = "发起Iteam";
             $this->display();
         }
     }
@@ -129,6 +154,7 @@ class AcademicController extends AddonsController{
 	    }
 	    $this->assign('sign_iteams',$sign_iteams);
 	    $this->assign('end_iteams',$end_iteams);
+	    $this->title = "Iteam广场";
         $this->display();
     }
     //报名微团队
@@ -160,7 +186,7 @@ class AcademicController extends AddonsController{
             $summary->picture = \LfRequest::inStr('picture');
             $res = $summary->add();
             if($res) {
-                $this->success('总结成功');
+                $this->success('总结成功',addons_url('Academic://Academic/IteamDetail',array('id'=>$summary->e_id)));
             } else {
                 $this->error('总结失败');
             }
@@ -169,6 +195,7 @@ class AcademicController extends AddonsController{
             $iteam = M('e_iteam')->find($id);
 	        $this->e_id = $id;
             $this->assign('iteam',$iteam);
+	        $this->title = "活动总结";
             $this->display();
         }
     }
