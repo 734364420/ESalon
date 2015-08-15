@@ -192,7 +192,7 @@ a.button,button{
 }
 .list .timing{
     font-weight: bold;
-    font-size: 14px;
+        font-size: 14px;
     margin-top: 10px
 }
 
@@ -536,7 +536,7 @@ a.go-summary{
     font-weight: bold;
 }
 #contact-us textarea{
-    width: 100%;
+    width: 95%;
     border-radius: 5px;
     margin-top: 20px;
     height: 150px;
