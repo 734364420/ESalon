@@ -54,7 +54,7 @@ $("#site").change(function(){
 
 
 function checkCreateSalonForm() {
-    if ($("form.data").find("input").val() == "" || $("form.data").find("textarea").val() == "") {
+    if ($("form.data").find("input").val() == ""|| $("form.data").find("input#space").val() == "" || $("form.data").find("textarea").val() == "") {
         alert("请填写完整的信息！");
         return false;
     }
