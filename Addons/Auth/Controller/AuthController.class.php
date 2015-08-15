@@ -53,9 +53,11 @@ class AuthController extends AddonsController{
             $this->error("该用户不存在");
         }
         $this->assign('user',$user);
+	    $this->title = "个人资料";
         $this->display();
     }
     function EditProfile() {
+	    $this->title = "编辑个人资料";
         if(IS_POST) {
             $user = M('e_user');
             $user->student_id = I('student_id');
