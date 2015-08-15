@@ -5,7 +5,7 @@
     <a href="javascript:;" class="flex-1 center" id="salonsquare-right">已结束的E沙龙</a>
 </div>
 
-<form method="get" id="salonsquare-left-form">
+<form method="post" id="salonsquare-left-form">
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
             <option>沙龙类别</option>
@@ -15,7 +15,7 @@
         </select>
         <select name="day" class="flex-1">
             <option>活动时间</option>
-            <option value="1">今天</option>
+            <option value="0">今天</option>
             <option value="3">三天内</option>
             <option value="7">一周内</option>
         </select>
@@ -38,9 +38,9 @@
         </select>
         <select name="day" class="flex-1">
             <option>活动时间</option>
-            <option value="1">今天</option>
-            <option value="3">三天内</option>
-            <option value="7">一周内</option>
+            <option value="-1">昨天</option>
+            <option value="-3">过去三天内</option>
+            <option value="-7">过去一周内</option>
         </select>
         <select name="space" class="flex-1">
             <option>活动地点</option>
@@ -118,11 +118,15 @@
             $("#salonsquare-right").removeClass("active");
             $("#salonsquare-right-ul").addClass("hidden");
             $("#salonsquare-left-ul").removeClass("hidden");
+            $("#salonsquare-right-form").addClass("hidden");
+            $("#salonsquare-left-form").removeClass("hidden");
         }
         if($("#salonsquare-right").hasClass("active")){
             $("#salonsquare-left").removeClass("active");
             $("#salonsquare-left-ul").addClass("hidden");
             $("#salonsquare-right-ul").removeClass("hidden");
+            $("#salonsquare-left-form").addClass("hidden");
+            $("#salonsquare-right-form").removeClass("hidden");
         }
     })
 
@@ -140,6 +144,8 @@
         $("#salonsquare-left").removeClass("active");
         $("#salonsquare-left-ul").addClass("hidden");
         $("#salonsquare-right-ul").removeClass("hidden");
+        $("#salonsquare-left-form").addClass("hidden");
+        $("#salonsquare-right-form").removeClass("hidden");
     })
 </script>
 <include file="Public/e_footer"/>

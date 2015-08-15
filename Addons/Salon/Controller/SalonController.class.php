@@ -246,19 +246,11 @@ class SalonController extends AddonsController{
 		if($type != null) {
 			$data['type'] = $type;
 		}
-		if(!empty($salon_status)){
-			if($salon_status == 1){
-				$data['date']=array('lt',$today);
-			}elseif($salon_status == 2){
-				$data['date']=array('egt',$today);
-			}
+		if(!empty($day)){
+			var_dump($day);
 		}
-		if(!empty($salon_summary_status)) {
-			if ($salon_summary_status == 1) {
-				$data['summary'] = 1;
-			} elseif ($salon_summary_status == 2) {
-				$data['summary'] = 0;
-			}
+		if($space != null){
+			$data['space'] = $space;
 		}
 	}
 }
