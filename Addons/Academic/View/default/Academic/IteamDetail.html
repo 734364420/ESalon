@@ -110,7 +110,7 @@
 </php>
 <!--判断是否已总结-->
 <php>
-	$mySummary = M('e_summary')->where('user_id ='.session('user_id'))->find();
+	$mySummary = M('e_summary')->where('user_id ='.session('user_id').' AND e_id = '.$iteam['id'])->find();
 	if(empty($mySummary)) {
 </php>
 <a href="{:addons_url('Academic://Academic/Summary',array('e_id'=>$iteam['id']))}" class="button go-summary">填写活动总结</a>
