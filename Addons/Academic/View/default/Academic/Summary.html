@@ -1,5 +1,6 @@
 <include file="Public/e_header" />
 <body>
+<form method="post">
     <div class="container">
         <div class="summary">
             <p>比赛总结：</p>
@@ -7,10 +8,8 @@
         </div>
 
         <div class="photo">
-            <form action="" method="" enctype="multipart/form-data">
                 <span class="pull-left">上传照片：</span>
-                <input type="file" name="" accept="image/*" class="pull-left" id="photo-upload">
-            </form>
+                <input type="file" name="" accept="image/*" class="pull-left">
         </div>
 
         <div class="stars">
@@ -35,6 +34,7 @@
 
         <a href="" class="button clearfix" onclick="return checkSummary();">提交</a>
     </div>
+</form>
 
 <script type="text/javascript">
     var comment = false;
@@ -63,21 +63,5 @@
             return false;
         }
     }
-</script>
-<script type="text/javascript" src="/Public/static/js/ajaxfileupload.js"></script>
-<script type="text/javascript">
-    $("#photo-upload").change(function() {
-        $.ajaxFileUpload({
-            url: "http://weixin.eagerfor.com/index.php?s=/home/File/uploadPicture",
-            secureuri: false,
-            fileElementId: "photo-upload",
-            success: function (data) {
-                alert("上传成功！");
-            },
-            error: function() {
-                alert('上传失败，请检查文件或网络连接！');
-            }
-        })
-    })
 </script>
 <include file="Public/e_footer" />
