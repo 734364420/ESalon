@@ -201,8 +201,11 @@ class SalonController extends AddonsController{
 	function SalonSquare() {
 		e_auth();
 		$today=date('Y-m-d',time());
+		$user=M('e_salon');
 		$salons=M('e_salon')->where('date>='.$today)->select();
+		echo $user->getLastSql();
 		$end_salons=M('e_salon')->where('date<'.$today)->select();
+		echo $user->getLastSql();
 		for($i=0;$i<count($salons);$i++) {
 			$salons[$i]['username'] = M('e_user')->where('id=' . $salons[$i]['publish_userid'])->getField('student_name');
 		}
