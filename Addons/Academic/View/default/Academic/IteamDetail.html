@@ -67,7 +67,7 @@
 		        if(!empty($summary)) {
 	        </php>
 	        <div class="comment-group">
-	            <p class="pull-left">{$user.student_name}：</p>
+	            <p class="pull-left name">{$user.student_name}：</p>
                 <div class="pull-left">
                     <div class="clearfix">
                         <php>
@@ -80,13 +80,14 @@
                 </div>
             </div>
 	        <php> } </php>
-	        <volist name="participate_users" id="u">
+	        <volist name="participate_users" id="s">
 	            <php>
-		            $summary = M('e_summary')->where('e_id ='.$iteam['id'].' AND user_id = '.$u['id'])->find();
+		            $summary = M('e_summary')->where('e_id ='.$iteam['id'].' AND user_id = '.$s['user_id'])->find();
+		            $e_user = M('e_user')->find($s['user_id']);
 		            if(!empty($summary)) {
 	            </php>
 	            <div class="comment-group">
-	                <p class="pull-left">{$u.student_name}：</p>
+	                <p class="pull-left name">{$e_user.student_name}：</p>
                     <div class="pull-left">
                         <div class="clearfix">
                             <php>
