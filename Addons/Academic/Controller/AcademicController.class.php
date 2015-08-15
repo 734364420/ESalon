@@ -207,15 +207,28 @@ class AcademicController extends AddonsController{
     function Summary() {
 	    e_auth();
         if(IS_POST) {
+	        $e_id = \LfRequest::inNum('e_id');
             $summary = M('e_summary');
             $summary->user_id = session('user_id');
-            $summary->e_id = \LfRequest::inNum('e_id');
+            $summary->e_id = $e_id;
             $summary->stars = \LfRequest::inNum('stars');
             $summary->comment = \LfRequest::inStr('comment');
             $summary->picture = \LfRequest::inStr('picture');
             $res = $summary->add();
             if($res) {
-                $this->success('总结成功',addons_url('Academic://Academic/IteamDetail',array('id'=>$summary->e_id)));
+	            /*
+	             * 当所有人都总结后设置iteam为已总结
+	            $SummaryNumber = $summary->where('e_id = '.$e_id)->count();
+	            $iteam = M('e_iteam')->find($e_id);
+	            if($iteam['participated_number'] == $SummaryNumber) {
+		            M('e_iteam')->where('id ='.$e_id)->save(array('summary'=>1));
+	            }
+	            */
+	            /*
+	             * 暂定为有一人总结则该iteam为已总结
+	             */
+	            M('e_iteam')->where('id ='.$e_id)->save(array('summary'=>1));
+	            $this->success('总结成功',addons_url('Academic://Academic/IteamDetail',array('id'=>$e_id)));
             } else {
                 $this->error('总结失败');
             }
