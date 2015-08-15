@@ -137,8 +137,8 @@ class AcademicController extends AddonsController{
     }
     //Iteam广场
     function Square() {
-	    $sign_maps = 'end_date > '.date("Y-m-d");
-	    $end_maps = 'end_date < '.date("Y-m-d");
+	    $sign_maps = 'end_date > '.strtotime(date("Y-m-d"));
+	    $end_maps = 'end_date < '.strtotime(date("Y-m-d"));
 	    $and = ' AND ';
 	    $maps = '';
 	    if(IS_POST) {
@@ -163,10 +163,7 @@ class AcademicController extends AddonsController{
 	    $this->type = I('type','');
 	    $this->date = I('date','');
 	    $this->number = I('number','');
-	    $this->status = I('status','sign');
-	    if(empty($this->status)) {
-		    $this->status = "sign";
-	    }
+	    $this->status = \LfRequest::inStr('status')?\LfRequest::inStr('status'):'sign';
 	    $this->assign('sign_iteams',$sign_iteams);
 	    $this->assign('end_iteams',$end_iteams);
 	    $this->title = "Iteam广场";
