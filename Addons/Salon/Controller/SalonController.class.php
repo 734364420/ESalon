@@ -241,9 +241,10 @@ class SalonController extends AddonsController{
 		$status=\LfRequest::inStr('status');
 		$type = \LfRequest::inStr('type');
 		$day = \LfRequest::inStr('day');
-		var_dump($day);
+		var_dump($status);
 		$space = \LfRequest::inStr('space');
 		if(empty($type) && empty($day) &&empty($space)){
+			die();
 			redirect(addons_url('Salon://Salon/SalonSquare',array('status',$status)));
 		}
 		if ($type != null) {
