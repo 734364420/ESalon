@@ -288,6 +288,7 @@ class AcademicController extends AddonsController{
 
 		$this->assign ( 'list_grids', $grids );
 		$this->assign ( 'list_data', $data );
+		$this->assign ( 'publish', '1' );
 		$this->display(T('Competition/lists'));
 	}
 	public function del() {
