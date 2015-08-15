@@ -1,30 +1,54 @@
 <!--判断是否已参加活动-->
 <php>
-	$participate = M('e_participate')->where('e_id ='.$iteam['id'].' AND user_id = '.session('user_id'))->find();
-	if(!empty($participate)) {
-</php>
-<!--判断是否已总结-->
-<php>
-	$mySummary = M('e_summary')->where('user_id ='.session('user_id').' AND e_id = '.$iteam['id'])->find();
-	if(empty($mySummary)) {
+    $participate = M('e_participate')->where('e_id ='.$iteam['id'].' AND user_id = '.session('user_id'))->find();
+    $mySummary = M('e_summary')->where('user_id ='.session('user_id').' AND e_id = '.$iteam['id'])->find();
 </php>
 <!--正在进行中-->
 <php>if($iteam['start_date']< time() && time() <$iteam['end_date']) {</php>
-<a href="javascript:;" class="button go-summary">活动正在进行中</a>
-<php>} else if($iteam['start_date'] > time()) { </php>
-<a href="javascript:;" class="button go-summary">活动还未开始</a>
-<php>} else {</php>
-<a href="{:addons_url('Academic://Academic/Summary',array('e_id'=>$iteam['id']))}" class="button go-summary">填写活动总结</a>
-<php>}</php>
-<php> } else {</php>
-<a href="javascript:;" class="button go-summary">你已参加此活动</a>
-<php>}</php>
-
-<php> }  else { </php>
-<!--判断是否已结束-->
-<php> if($iteam['end_date'] > strtotime(date("Y-m-d"))) { </php>
-<a href="{:addons_url($sign_url,array('e_id'=>$iteam['id']))}" class="button go-summary">报名参加</a>
-<php> } else { </php>
-<a href="javascript:;" class="button go-summary">此活动已结束</a>
+    <a href="javascript:;" class="button go-summary">活动正在进行中</a>
 <php> } </php>
+<!--~~~~~~~-->
+<!--活动未开始-->
+<php> if($iteam['start_date'] > time()) {</php>
+    <a href="javascript:;" class="button go-summary">活动还未开始</a>
 <php>}</php>
+<!--~~~~~~~-->
+<!--活动已结束-->
+<php> if($iteam['end_date'] < time()) {</php>
+    <a href="javascript:;" class="button go-summary">活动已结束</a>
+<php>}</php>
+<!--~~~~~~~-->
+<br/>
+<!--已参加并且已经总结-->
+<php> if(!empty($participate)&&!empty($mySummary)) {</php>
+    <a href="javascript:;" class="button go-summary">活动已总结</a>
+<php>}</php>
+<!--~~~~~~~-->
+
+<!--已参加未总结 已结束-->
+<php> if(!empty($participate)&& empty($mySummary) && ($iteam['end_date'] < time()) ) {</php>
+    <a href="{:addons_url('Academic://Academic/Summary',array('e_id'=>$iteam['id']))}" class="button go-summary">填写活动总结</a>
+<php>}</php>
+<!--~~~~~~~-->
+
+
+<!--已参加未总结 未结束-->
+<php> if(!empty($participate)&& empty($mySummary) && ($iteam['end_date'] < time()) ) {</php>
+    <a href="javascript:;" class="button go-summary">已参加活动</a>
+<php>}</php>
+<!--~~~~~~~-->
+
+
+<!--未参加--未结束，人未满-->
+<php> if(empty($participate)&& ($iteam['end_date'] > time()) && ($iteam['participated_number'] < $iteam['participate_number']) ) {</php>
+    <a href="{:addons_url($sign_url,array('e_id'=>$iteam['id']))}" class="button go-summary">报名参加</a>
+<php>}</php>
+<!--~~~~~~~-->
+
+
+<!--未参加--未结束，人已满-->
+<php> if(empty($participate)&& ($iteam['end_date'] > time()) && ($iteam['participated_number'] >= $iteam['participate_number']) ) {</php>
+    <a href="javascript:;" class="button go-summary">活动人数已满</a>
+<php>}</php>
+<!--~~~~~~~-->
+
