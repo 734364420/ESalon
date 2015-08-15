@@ -49,7 +49,7 @@
             <span>{$salon['participated_number']}/{$salon['participate_number']}</span>
             <volist name="participate_users" id="paticipate_user">
                 <p>
-                    <a href="" class="block pull-left" style="width: 65px;">{$paticipate_user.student_name}</a>
+                    <a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$paticipate_user['id']))}" class="block pull-left" style="width: 65px;">{$paticipate_user.student_name}</a>
                     <span class="pull-left">{$paticipate_user.school}</span>
                 </p>
             </volist>
