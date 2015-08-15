@@ -209,6 +209,8 @@ class SalonController extends AddonsController{
 		for($i=0;$i<count($end_salons);$i++){
 			$end_salons[$i]['username'] = M('e_user')->where('id=' . $end_salons[$i]['publish_userid'])->getField('username');
 		}
+		var_dump($salons);
+		var_dump($end_salons);
 		$this->salons = $salons;
 		$this->end_salons = $end_salons;
 		$this->display();
