@@ -105,12 +105,18 @@ class SalonController extends AddonsController{
 		$participate_users=M('e_participate')->where('e_id='.$id)->select();
 		for($i=0;$i<count($participate_users);$i++){
 			$participate_users[$i]=M('e_user')->where('id='.$participate_users[$i]['user_id'])->find();
-			if($participate_users[$i]['user_id'] == session('userid')){
-				var_dump($participate_users[$i]);
-				var_dump(session('user_id'));
+			var_dump($participate_users[$i]['id']);
+			var_dump(session('user_id'));
+			if($participate_users[$i]['id']==session('user_id')){
 				$this->status='已参加';
 			}
 		}
+		$summaries=M('e_summary')->where('e_id='.$id)->select();
+		for($i=0;$i<count($summaries);$i++) {
+			$summaries_users[$i] = M('e_user')->where('id=' . $summaries[$i]['user_id'])->find();
+		}
+		$this->summaries_users=$summaries_users;
+		$this->summaries=$summaries;
 		$this->participate_users=$participate_users;
 		$this->display('Salon/Detail');
 	}
@@ -228,7 +234,7 @@ class SalonController extends AddonsController{
 		}
 	}
 
-	//根据条件查找
+	//E沙龙广场根据条件查找
 	function GetSalonWith() {
 
 	}
