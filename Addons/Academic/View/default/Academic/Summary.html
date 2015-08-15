@@ -86,7 +86,6 @@
     uploader.on( 'uploadAccept', function( obj , data ) {
         var result = eval("(" + data + ")");
         $("input#photo-path").val(result.path);
-        alert($("input#photo-path").val());
     });
     uploader.on( 'uploadProgress', function( file, percentage ) {
         $(".webuploader-pick").text("上传中...");
