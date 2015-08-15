@@ -70,13 +70,14 @@
         $.ajaxFileUpload({
             url: "http://weixin.eagerfor.com/index.php?s=/home/File/uploadPicture",
             secureuri: false,
+            dataType: "json",
             fileElementId: "photo-upload",
-            success: function (data) {
+            success: function (data,status) {
                 var result = eval(data);
                 console.log(result);
             },
-            error: function () {
-                alert("上传失败，请检查文件或网络连接！");
+            error: function (data,status,e) {
+                alert("e");
             }
         })
     })
