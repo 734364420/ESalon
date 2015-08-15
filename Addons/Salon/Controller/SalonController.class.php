@@ -236,7 +236,6 @@ class SalonController extends AddonsController{
 		$status=\LfRequest::inStr('status');
 		$type = \LfRequest::inStr('type');
 		$day = \LfRequest::inStr('day');
-		var_dump($day);
 		$space = \LfRequest::inStr('space');
 		if ($type != null) {
 			$data['type'] = $type;
@@ -246,11 +245,9 @@ class SalonController extends AddonsController{
 		}
 		$today=date('Y-m-d',time());
 		if($day!=''&&$day==0) {
-			var_dump($day);
-			$data['date']=$day;
+			$data['date']=$today;
 			$user=M('e_salon');
 			$this->salons=M('e_salon')->where($data)->select();
-			echo $user->getLastSql();
 		}
 		if (!empty($day)) {
 			if($day>=0){
