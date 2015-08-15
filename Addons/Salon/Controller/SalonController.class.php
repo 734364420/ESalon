@@ -21,21 +21,22 @@ class SalonController extends AddonsController{
 			if($type != null) {
 				$data['type'] = $type;
 			}
-			if(empty(!$salon_status)){
+			if(!empty($salon_status)){
 				if($salon_status == 1){
-					$data['date']='<'.$today;
-				}elseif($salon_status == 0){
-					$data['date>=']='>='.$today;
+					$data['date']=array('lt',$today);
+				}elseif($salon_status == 2){
+					$data['date']=array('egt',$today);
 				}
 			}
-			if(empty(!$salon_summary_status)) {
+			if(!empty($salon_summary_status)) {
 				if ($salon_summary_status == 1) {
 					$data['summary'] = 1;
-				} elseif ($salon_summary_status == 0) {
+				} elseif ($salon_summary_status == 2) {
 					$data['summary'] = 0;
 				}
 			}
 			$data['publish_userid']=session('user_id');
+			$user=M('e_salon');
 			$salons_publish = M('e_salon')->where($data)->select();
 			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
 				$result= M('e_salon')->where('id='.$participattions[$i]['e_id'].' AND publish_userid!='.session('user_id'))->find();
@@ -109,6 +110,12 @@ class SalonController extends AddonsController{
 				$this->status='已参加';
 			}
 		}
+		$summaries=M('e_summary')->where('e_id='.$id)->select();
+		for($i=0;$i<count($summaries);$i++) {
+			$summaries_users[$i] = M('e_user')->where('id=' . $summaries[$i]['user_id'])->find();
+		}
+		$this->summaries_users=$summaries_users;
+		$this->summaries=$summaries;
 		$this->participate_users=$participate_users;
 		$this->display('Salon/Detail');
 	}
@@ -226,7 +233,7 @@ class SalonController extends AddonsController{
 		}
 	}
 
-	//根据条件查找
+	//E沙龙广场根据条件查找
 	function GetSalonWith() {
 
 	}

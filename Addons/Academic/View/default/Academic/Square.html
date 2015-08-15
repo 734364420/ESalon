@@ -1,8 +1,8 @@
 <include file="Public/e_header"/>
 <body>
 	<div class="flex-box salon-type">
-		<a href="javacript:;" class="flex-1 center active" id="square-left">可报名的iteam</a>
-		<a href="javacript:;" class="flex-1 center" id="square-right">已结束的iteam</a>
+		<a href="javacript:;" class="flex-1 center" {:IsActive($status,'sign')} id="square-left">可报名的iteam</a>
+		<a href="javacript:;" class="flex-1 center" {:IsActive($status,'end')} id="square-right">已结束的iteam</a>
 	</div>
 <!--<div class="center" id="data">-->
 	<!--<span class="name">{$user.student_name}</span>-->
@@ -10,23 +10,25 @@
 <!--</div>-->
 	<form method="post">
 		<div class="flex-box select-group">
-			<select name="" class="flex-1">
-				<option>竞赛类别</option>
-				<option>数学</option>
-				<option>物理</option>
-				<option>化学</option>
+			<select name="type" class="flex-1">
+				<option value="">竞赛类别</option>
+				<option value="物联网" {:IsSelected($type,'物联网')}>物联网</option>
+				<option value="互联网+" {:IsSelected($type,'互联网+')}>互联网+</option>
 			</select>
-			<select name="" class="flex-1">
-				<option>比赛时间</option>
-				<option>今天</option>
-				<option>明天</option>
-				<option>明天</option>
+			<select name="date" class="flex-1">
+				<option value="">比赛时间</option>
+				<option value="{:date('Y-m-d',time())}" {:IsSelected($date,date('Y-m-d',time()))}>今天</option>
+				<option value="{:date('Y-m-d',time()+1*24*3600)}" {:IsSelected($date,date('Y-m-d',time()+1*24*3600))}>明天</option>
+				<option value="{:date('Y-m-d',time()+3*24*3600)}" {:IsSelected($date,date('Y-m-d',time()+3*24*3600))}>三天后</option>
 			</select>
-			<select name="" class="flex-1">
-				<option>参赛方式</option>
-				<option>线上</option>
-				<option>线下</option>
+			<select name="number" class="flex-1">
+				<option value="">参与人数</option>
+				<php> for($i=2;$i<7;$i++) { </php>
+				<option value="{$i}" {:IsSelected($number,$i)}>{$i}</option>
+				<php> } </php>
+				<option value="">全部</option>
 			</select>
+			<input type="hidden" name="status" id="status"/>
 			<input type="submit" value="搜索"/>
 		</div>
 	</form>
@@ -100,6 +102,7 @@
 		$("#square-right").removeClass("active");
 		$("#square-right-ul").addClass("hidden");
 		$("#square-left-ul").removeClass("hidden");
+		$("$status").val('sign');
 	})
 
 	$("#square-right").click(function(){
@@ -107,6 +110,7 @@
 		$("#square-left").removeClass("active");
 		$("#square-left-ul").addClass("hidden");
 		$("#square-right-ul").removeClass("hidden");
+		$("$status").val('end');
 	})
 </script>
 
