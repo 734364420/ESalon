@@ -238,8 +238,18 @@ class SalonController extends AddonsController{
 		if ($type != null) {
 			$data['type'] = $type;
 		}
+		$today=date('Y-m-d',time());
+		if($day!=''&&$day==0) {
+			$data['date']=$day;
+		}
 		if (!empty($day)) {
-			var_dump($day);
+			if($day>=0){
+				$data['date']=array('egt',$today);
+				$data['date']=array('elt',date('Y-m-d',strtotime($today)+3600*$day));
+			}else{
+				$data['date']=array('egt',date('Y-m-d',strtotime($today)+3600*$day));
+				$data['date']=array('elt',$today);
+			}
 		}
 		if ($space != null) {
 			$data['space'] = $space;
