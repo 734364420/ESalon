@@ -37,34 +37,6 @@
     </div>
 </form>
 
-<script type="text/javascript">
-    var comment = false;
-    $(function(){
-        $(".stars").find("img").click(function(){
-            comment = true;
-            var index=$(this).parent().index();
-            $("input[name='stars']").val(index);
-            $(this).css({"background-color":"yellow"});
-            $(this).parent().prevAll().find("img").css({"background-color":"yellow"});
-            $(this).parent().nextAll().find("img").css({"background-color":"#fff"});
-        })
-    })
-
-    function checkSummary() {
-        if ($("textarea").val() == "") {
-            alert("请填写比赛总结！");
-            return false;
-        }
-        if ($("input#photo-path").val() == "") {
-            alert("请上传比赛照片！");
-            return false;
-        }
-        if (!comment) {
-            alert("请评价比赛！");
-            return false;
-        }
-    }
-</script>
 <script type="text/javascript" src="/Public/static/webuploader/webuploader.js"></script>
 <script type="text/javascript">
     var uploader = WebUploader.create({
