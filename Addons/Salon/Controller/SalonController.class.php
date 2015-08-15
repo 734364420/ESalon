@@ -212,6 +212,7 @@ class SalonController extends AddonsController{
 		$this->salons = $salons;
 		$this->end_salons = $end_salons;
 		$status=\LfRequest::inStr('status');
+		var_dump($status);
 		if($status=='right'){
 			$this->active2='active';
 		}else{
@@ -241,7 +242,6 @@ class SalonController extends AddonsController{
 		$status=\LfRequest::inStr('status');
 		$type = \LfRequest::inStr('type');
 		$day = \LfRequest::inStr('day');
-		var_dump($status);
 		$space = \LfRequest::inStr('space');
 		if(empty($type) && empty($day) &&empty($space)){
 			die();
