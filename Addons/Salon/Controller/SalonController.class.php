@@ -95,10 +95,13 @@ class SalonController extends AddonsController{
 		e_auth();
 		if(IS_POST) {	
 			$data['title']=\LfRequest::inStr('title');
-			$data['date']=\LfRequest::inStr('date');
+			$date=\LfRequest::inStr('date');
 			$time=\LfRequest::inStr('time');
 			$hour=\LfRequest::inStr('hour');
-			$data['time_range']=$time.'~'.date('H:i',strtotime($time)+$hour*3600);
+			$start_date=$date.' '.$time;
+			$end_date=$date.' '.$date('H-m-s',strtotime($time)+3600*$hour);
+			$data['start_date']=strtotime($start_date);
+			$data['end_date']=strtotime($end_date);
 			$data['space']=\LfRequest::inStr('space');
 			$data['participate_number']=\LfRequest::inStr('participate_number');
 			$data['type']=\LfRequest::inStr('type');
