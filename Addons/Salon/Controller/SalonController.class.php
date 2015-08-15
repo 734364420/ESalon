@@ -221,7 +221,7 @@ class SalonController extends AddonsController{
 			$data['content']=\LfRequest::inStr('content');
 			$result=M('suggestions')->add($data);
 			if($result){
-				$this->success('留言成功',addons_url('Salon://Salon/SalonSquare'),3);
+				$this->success('留言成功',addons_url('Salon://Salon/SalonSquare'));
 			}else{
 				$this->error('留言失败');
 			}
