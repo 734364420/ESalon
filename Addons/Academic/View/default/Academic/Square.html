@@ -97,6 +97,19 @@
 		}
 	})
 
+	$(function () {
+		if($("#square-left").hasClass("active")){
+			$("#square-right").removeClass("active");
+			$("#square-right-ul").addClass("hidden");
+			$("#square-left-ul").removeClass("hidden");
+		}
+		if($("#square-right").hasClass("active")){
+			$("#square-left").removeClass("active");
+			$("#square-left-ul").addClass("hidden");
+			$("#square-right-ul").removeClass("hidden");
+		}
+	})
+
 	$("#square-left").click(function(){
 		$(this).addClass("active");
 		$("#square-right").removeClass("active");
