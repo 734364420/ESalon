@@ -164,6 +164,9 @@ class AcademicController extends AddonsController{
 	    $this->date = I('date','');
 	    $this->number = I('number','');
 	    $this->status = I('status','sign');
+	    if(empty($this->status)) {
+		    $this->status = "sign";
+	    }
 	    $this->assign('sign_iteams',$sign_iteams);
 	    $this->assign('end_iteams',$end_iteams);
 	    $this->title = "Iteam广场";

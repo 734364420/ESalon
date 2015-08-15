@@ -24,7 +24,7 @@
 			<select name="number" class="flex-1">
 				<option value="">参与人数</option>
 				<php> for($i=2;$i<7;$i++) { </php>
-				<option value="$i" {:IsSelected($number,$i)}>$i</option>
+				<option value="{$i}" {:IsSelected($number,$i)}>{$i}</option>
 				<php> } </php>
 				<option value="">全部</option>
 			</select>
