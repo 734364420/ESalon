@@ -110,6 +110,19 @@
         }
     })
 
+    $(function () {
+        if($("#myiteam-left").hasClass("active")){
+            $("#myiteam-right").removeClass("active");
+            $("#myiteam-right-ul").addClass("hidden");
+            $("#myiteam-left-ul").removeClass("hidden");
+        }
+        if($("#myiteam-right").hasClass("active")){
+            $("#myiteam-left").removeClass("active");
+            $("#myiteam-left-ul").addClass("hidden");
+            $("#myiteam-right-ul").removeClass("hidden");
+        }
+    })
+
     $("#myiteam-left").click(function () {
         $(this).addClass("active");
         $("#myiteam-right").removeClass("active");
