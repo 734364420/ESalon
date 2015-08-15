@@ -23,7 +23,7 @@
 <php> }  else { </php>
 <!--判断是否已结束-->
 <php> if($iteam['end_date'] > strtotime(date("Y-m-d"))) { </php>
-<a href="{:addons_url('Academic://Academic/SignIteam',array('e_id'=>$iteam['id']))}" class="button go-summary">报名参加</a>
+<a href="{:addons_url($sign_url,array('e_id'=>$iteam['id']))}" class="button go-summary">报名参加</a>
 <php> } else { </php>
 <a href="javascript:;" class="button go-summary">此活动已结束</a>
 <php> } </php>

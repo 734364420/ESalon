@@ -80,7 +80,7 @@ class SalonController extends AddonsController{
 		$data['hits']=$salon['hits']+1;
 		M('e_salon')->where('id='.$id)->save($data);
 		$this->assign('iteam',$salon);
-		$this->user=M('e_user')->where('id='.$salon['publish_userid'])->find();
+		$this->assign('user',M('e_user')->where('id='.$salon['publish_userid'])->find());
 		$participate_users=M('e_participate')->where('e_id='.$id)->select();
 		$summaries=M('e_summary')->where('e_id='.$id)->select();
 		for($i=0;$i<count($summaries);$i++) {
@@ -89,6 +89,7 @@ class SalonController extends AddonsController{
 		$this->summaries_users=$summaries_users;
 		$this->summaries=$summaries;
 		$this->participate_users=$participate_users;
+		$this->assign('sign_url','Salon://Salon/ParticipateSalon');
 		$this->assign('title','沙龙活动详情');
 		$this->display();
 	}

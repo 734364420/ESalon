@@ -105,7 +105,8 @@ class AcademicController extends AddonsController{
 	    $participate_users = M('e_participate')->where('e_id = '.$iteam_id)->select();
 	    $this->assign('participate_users',$participate_users);
         $this->assign('iteam',$iteam);
-	    $this->title = "Iteam详情";
+		$this->assign('sign_url','Academic://Academic/SignIteam');
+		$this->title = "Iteam详情";
         $this->display();
     }
     //发起团队约,填写表单页面
