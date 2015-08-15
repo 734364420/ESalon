@@ -73,7 +73,7 @@
             fileElementId: "photo-upload",
             success: function (data) {
 
-                var result = eval("'"+data+"'");
+                var result = eval("("+data+")");
                 console.log(result.info);
             },
             error: function (data,status,e) {
