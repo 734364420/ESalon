@@ -432,6 +432,12 @@ form.start .button{
 }
 .detail-title .sub-title.name{
     margin-left: 20px;
+    display: block;
+    width: 36px;
+}
+.detail-title .sub-title.name.detail{
+    display: inline;
+    width: auto;
 }
 .detail-title .sub-title.time{
     margin-left: 7px;
