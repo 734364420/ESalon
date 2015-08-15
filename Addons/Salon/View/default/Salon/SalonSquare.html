@@ -84,7 +84,7 @@
             wid[i] = percent[i] * 90;
             $(".list li").eq(i).find(".progressbar").css({"clip": "rect(0 " + wid[i] + "px 14px 0)"});
         }
-    })                                                  //已参与人数进度条
+    });                                                  //已参与人数进度条
 
     $(function () {
         if($(".tab-left").hasClass("active")){
@@ -101,16 +101,16 @@
             $(".tab-left-form").addClass("hidden");
             $(".tab-right-form").removeClass("hidden");
         }
-    })                                                 //页面初始化时tab标签
+    });                                                 //页面初始化时tab标签
 
     $(".tab-left").click(function () {
         $(".tab-right-form").addClass("hidden");
         $(".tab-left-form").removeClass("hidden");
-    })
+    });
 
     $(".tab-right").click(function () {
         $(".tab-left-form").addClass("hidden");
         $(".tab-right-form").removeClass("hidden");
-    })
+    });                                                 //tab标签切换两个不同的筛选选项
 </script>
 <include file="Public/e_footer"/>

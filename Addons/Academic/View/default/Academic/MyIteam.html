@@ -59,7 +59,7 @@
             wid[i] = percent[i] * 90;
             $(".list li").eq(i).find(".progressbar").css({"clip": "rect(0 " + wid[i] + "px 14px 0)"});
         }
-    })                                                  //已参与人数进度条
+    });                                                  //已参与人数进度条
 
     $(function () {
         if($(".tab-left").hasClass("active")){
@@ -72,7 +72,7 @@
             $(".tab-left-ul").addClass("hidden");
             $(".tab-right-ul").removeClass("hidden");
         }
-    })                                                  //页面初始化时tab标签
+    });                                                  //页面初始化时tab标签
 
 </script>
 
