@@ -45,7 +45,7 @@ class SalonController extends AddonsController{
 				}
 			}
 			$user = M('e_user')->where('id=' . session('user_id'))->find();
-			$this->user=$user;
+			$this->assign('user',$user);
 			$this->salons_publish=$salons_publish;
 			$this->salons_participate=$salons_participate;
 			$this->display();
@@ -60,7 +60,7 @@ class SalonController extends AddonsController{
 					$j++;
 				}
 			}
-			$this->user = $user;
+			$this->assign('user',$user);
 			$this->salons_participate = $salons_participate;
 			$this->salons_publish = $salons_publish;
 			$this->display();
