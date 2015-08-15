@@ -80,7 +80,8 @@ class SalonController extends AddonsController{
 		$data['hits']=$salon['hits']+1;
 		M('e_salon')->where('id='.$id)->save($data);
 		$this->assign('iteam',$salon);
-		$this->assign('user',M('e_user')->where('id='.$salon['publish_userid'])->find());
+		$user = M('e_user')->where('id='.$salon['publish_userid'])->find();
+		$this->assign('user',$user);
 		$participate_users=M('e_participate')->where('e_id='.$id)->select();
 		$summaries=M('e_summary')->where('e_id='.$id)->select();
 		for($i=0;$i<count($summaries);$i++) {
@@ -140,7 +141,7 @@ class SalonController extends AddonsController{
 		$data['e_id']=$id;
 		$participated_number=M('e_salon')->where('id='.$id)->getField('participated_number');
 		$participate_number=M('e_salon')->where('id='.$id)->getField('participate_number');
-		if($participated_number>=$participate_number){
+		if($participated_number == $participate_number){
 			$this->error('人数已满，稍后再试');
 		}else{
 			$number['participated_number']=$participated_number+1;
