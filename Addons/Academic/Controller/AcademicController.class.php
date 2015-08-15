@@ -176,12 +176,22 @@ class AcademicController extends AddonsController{
         if(empty($iteam)) {
             $this->error('你要报名的iteam不存在');
         }
-        M('e_iteam')->where('id = '.$iteam_id)->save(array('participated_number'=>$iteam['participated_number']+1));
-        $participate = M('e_participate');
-        $participate->e_id = $iteam_id;
-        $participate->user_id = session('user_id');
-        $res = $participate->add();
-        if($res) {
+	    if($iteam['publish_userid'] == session('user_id')) {
+		    $this->error('不能报名自己的iteam哦');
+	    }
+	    if($iteam['participate_number'] == $iteam['participated_number']) {
+		    $this->error("报名人数已达上限");
+	    }
+	    $isParticipate = M('e_participate')->where('user_id ='.session('user_id'))->find();
+	    if(!empty($isParticipate)) {
+		    $this->error('不能重复参加哦');
+	    }
+	    $participate = M('e_participate');
+	    $participate->e_id = $iteam_id;
+	    $participate->user_id = session('user_id');
+	    $res = $participate->add();
+	    M('e_iteam')->where('id = '.$iteam_id)->save(array('participated_number'=>$iteam['participated_number']+1));
+	    if($res) {
             $this->success('报名成功');
         } else {
             $this->error('报名失败');

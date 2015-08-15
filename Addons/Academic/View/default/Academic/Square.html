@@ -28,7 +28,7 @@
 				<php> } </php>
 				<option value="">全部</option>
 			</select>
-			<input type="hidden" name="status" id="status"/>
+			<input type="hidden" name="status" value="" id="status"/>
 			<input type="submit" value="搜索"/>
 		</div>
 	</form>
@@ -115,7 +115,7 @@
 		$("#square-right").removeClass("active");
 		$("#square-right-ul").addClass("hidden");
 		$("#square-left-ul").removeClass("hidden");
-		$("$status").val('sign');
+		$("#status").attr('value','sign');
 	})
 
 	$("#square-right").click(function(){
@@ -123,7 +123,7 @@
 		$("#square-left").removeClass("active");
 		$("#square-left-ul").addClass("hidden");
 		$("#square-right-ul").removeClass("hidden");
-		$("$status").val('end');
+		$("#status").attr('value','end');
 	})
 </script>
 
