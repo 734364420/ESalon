@@ -48,7 +48,7 @@
             <volist name="participate_users " id="u">
 	            <php>$euser = M('e_user')->find($u['user_id'])</php>
                 <p>
-                    <a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$u['id']))}" class="block pull-left" style="width:50px;">{$euser.student_name}</a>
+                    <a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$u['id']))}" class="block pull-left" style="width:65px;">{$euser.student_name}</a>
                     <span class="pull-left">{$euser.school}</span>
                 </p>
             </volist>
