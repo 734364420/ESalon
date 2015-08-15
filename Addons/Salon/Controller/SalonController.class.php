@@ -97,7 +97,6 @@ class SalonController extends AddonsController{
 	//查看发布沙龙详细信息
 	function CheckSalon() {
 		$id=\LfRequest::inNum('id');
-		var_dump($id);
 		$salon=M('e_salon')->where('id='.$id)->find();
 		$data['hits']=$salon['hits']+1;
 		M('e_salon')->where('id='.$id)->save($data);
