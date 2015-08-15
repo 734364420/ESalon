@@ -214,7 +214,7 @@ class SalonController extends AddonsController{
 		}
 		$this->salons = $salons;
 		$this->end_salons = $end_salons;
-		$this->display();
+		$this->display('Salon/SalonSquare');
 	}
 	//联系我们
 	function Contact() {
