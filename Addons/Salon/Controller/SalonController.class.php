@@ -209,8 +209,6 @@ class SalonController extends AddonsController{
 		for($i=0;$i<count($end_salons);$i++){
 			$end_salons[$i]['username'] = M('e_user')->where('id=' . $end_salons[$i]['publish_userid'])->getField('student_name');
 		}
-		var_dump($salons);
-		var_dump($end_salons);
 		$this->salons = $salons;
 		$this->end_salons = $end_salons;
 		$this->display();
@@ -232,21 +230,20 @@ class SalonController extends AddonsController{
 	}
 
 	//E沙龙广场根据条件查找
-	function GetSalonWith() {
-		$type=\LfRequest::inStr('type');
-		$day=\LfRequest::inStr('day');
-		$space=\LfRequest::inStr('space');
-		var_dump($type);
-		var_dump($day);
-		var_dump($space);
-		if($type != null) {
+	function GetSalonWith()
+	{
+		$type = \LfRequest::inStr('type');
+		$day = \LfRequest::inStr('day');
+		$space = \LfRequest::inStr('space');
+		if ($type != null) {
 			$data['type'] = $type;
 		}
-		if(!empty($day)){
+		if (!empty($day)) {
 			var_dump($day);
 		}
-		if($space != null){
+		if ($space != null) {
 			$data['space'] = $space;
 		}
+		$this->display('Salon/SalonSquare');
 	}
 }
