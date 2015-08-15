@@ -13,7 +13,6 @@ class SalonController extends AddonsController{
 	function MySalon() {
 		e_auth();
 		if(IS_POST){
-			$status=\LfRequest::inStr('status');
 			$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
 			$type=\LfRequest::inStr('type');
 			$salon_status=\LfRequest::inNum('salon_status');
@@ -37,7 +36,6 @@ class SalonController extends AddonsController{
 				}
 			}
 			$data['publish_userid']=session('user_id');
-			$user=M('e_salon');
 			$salons_publish = M('e_salon')->where($data)->select();
 			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
 				$result= M('e_salon')->where('id='.$participattions[$i]['e_id'].' AND publish_userid!='.session('user_id'))->find();
@@ -62,13 +60,7 @@ class SalonController extends AddonsController{
 			}
 			$this->salons_publish=$salons_publish;
 			$this->salons_participate=$salons_participate;
-			if($status=='right'){
-				$this->active2='active';
-			}else{
-				$this->active1='active';
-			}
 			$this->display();
-
 		}else {
 			$user = M('e_user')->where('id=' . session('user_id'))->getField('student_name');
 			$salons_publish = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
@@ -97,7 +89,6 @@ class SalonController extends AddonsController{
 			$this->username = $user;
 			$this->salons_participate = $salons_participate;
 			$this->salons_publish = $salons_publish;
-			$this->active1='active';
 			$this->display();
 		}
 	}
