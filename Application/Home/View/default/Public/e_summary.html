@@ -1,0 +1,50 @@
+<php>
+	$isSummary = M('e_summary')->where(' e_id = '.$iteam['id'])->select();
+	if(!empty($isSummary)) {
+</php>
+<li id="comment">
+	<img src="/Public/static/img/summary.jpg" class="comment">
+	<span class="label">比赛总结：</span>
+
+	<php>
+		$summary = M('e_summary')->where('user_id ='.$user['id'].' AND e_id = '.$iteam['id'])->find();
+		if(!empty($summary)) {
+	</php>
+	<div class="comment-group">
+		<p class="pull-left name">{$user.student_name}：</p>
+		<div class="pull-left">
+			<div class="clearfix">
+				<php>
+					for($i=0;$i<$summary['stars'];$i++) {
+				</php>
+				<img src="/Public/static/img/star-active.png" class="comment-star">
+				<php> }</php>
+			</div>
+			<p>{$summary.comment}</p>
+		</div>
+	</div>
+	<php> } </php>
+	<volist name="participate_users" id="s">
+		<php>
+			if($s['user_id']==$user['user_id']) continue;
+			$summary = M('e_summary')->where('e_id ='.$iteam['id'].' AND user_id = '.$s['user_id'])->find();
+			$e_user = M('e_user')->find($s['user_id']);
+			if(!empty($summary)) {
+		</php>
+		<div class="comment-group">
+			<p class="pull-left name">{$e_user.student_name}：</p>
+			<div class="pull-left">
+				<div class="clearfix">
+					<php>
+						for($i=0;$i<$summary['stars'];$i++) {
+					</php>
+					<img src="/Public/static/img/star-active.png" class="comment-star">
+					<php> }</php>
+				</div>
+				<p>{$summary.comment}</p>
+			</div>
+		</div>
+		<php> } </php>
+	</volist>
+</li>
+<php>}</php>
