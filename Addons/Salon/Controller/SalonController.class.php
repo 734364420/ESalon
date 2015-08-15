@@ -14,8 +14,8 @@ class SalonController extends AddonsController{
 	//我的沙龙
 	function MySalon() {
 		e_auth();
-		$run = new \LfRunTime();
-		$run->star();
+//		$run = new \LfRunTime();
+//		$run->star();
 		$this->assign('url','Salon://Salon/CheckSalon');
 		if(IS_POST){
 			$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
@@ -65,8 +65,8 @@ class SalonController extends AddonsController{
 		$this->salons_participate = $salons_participate;
 		$this->salons_publish = $salons_publish;
 		$this->assign('title','我的E沙龙');
-		$run->stop();
-		var_dump($run->spent());
+//		$run->stop();
+//		var_dump($run->spent());
 		$this->display();
 	}
 

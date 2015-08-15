@@ -55,8 +55,8 @@ class AcademicController extends AddonsController{
     //我的iteam页面
     function MyIteam() {
 	    e_auth();
-		$run = new \LfRunTime();
-		$run->star();
+//		$run = new \LfRunTime();
+//		$run->star();
 	    $maps = '';
 	    if(IS_POST) {
 		    $data['type'] = \LfRequest::inStr('type');
@@ -77,9 +77,9 @@ class AcademicController extends AddonsController{
 	    }
 	    $participate = M('e_participate')->where('user_id = '.session('user_id'))->select();
 	    $in='(0';
-	    foreach($participate as $v) {
-		    $in .= ','.$v['e_id'];
-	    }
+		foreach($participate as $v) {
+			$in .= ','.$v['e_id'];
+		}
 	    $in .= ')';
 	    $Pmaps = $maps.' id in '.$in.' AND publish_userid  != '.session('user_id');
 	    $maps .= ' publish_userid = '.session('user_id');
@@ -94,7 +94,7 @@ class AcademicController extends AddonsController{
         $this->assign('ParticipateIteams',$ParticipateIteams);
         $this->assign('url','Academic://Academic/IteamDetail');
 	    $this->title = "我的Iteam";
-		var_dump($run->spent());
+//		var_dump($run->spent());
         $this->display();
     }
     //团队约详情页面
