@@ -6,11 +6,7 @@
 </div>
 
 
-<div class="center" id="data">
-    <span class="name"><a
-            href="{:addons_url('Auth://Auth/UserProfile',array('uid'=>$user['id']))}">{$user.student_name}</a></span>
-    <a href="{:addons_url('Auth://Auth/EditProfile')}" id="change-data" class="pull-right">修改资料</a>
-</div>
+	<include file="Public/e_userprofile"/>
 
 <form method="post">
     <div class="flex-box select-group">
@@ -40,34 +36,13 @@
     <div class="list">
         <ul id="myiteam-left-ul">
             <volist name="PublishIteams" id="iteam">
-			<include file="Public/IteamList" />
+			<include file="Public/e_list" />
             </volist>
         </ul>
 
         <ul id="myiteam-right-ul" class="hidden">
             <volist name="ParticipateIteams" id="iteam">
-                <li>
-                    <span class="blue-block pull-left"></span>
-
-                    <div class="pull-left titles">
-                        <p class="title"><a
-                                href="{:addons_url('Academic://Academic/IteamDetail',array('id'=>$iteam['id']))}">{$iteam.title}</a>
-                        </p>
-                        <span class="sub-title summ"><php>if($iteam['summary']==1){ echo "已总结"; } else { echo "未总结";}
-                        </php></span>
-                        <img src="/Public/static/img/see.png" class="see">
-                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
-                        <span class="sub-title pull-left">{$iteam.hits}</span>
-                        <span class="sub-title pull-left">)</span>
-                    </div>
-                    <div class="amount pull-left">
-                        <span class="amount-now">{$iteam.participated_number}</span>
-                        <span class="amount-dig">/</span>
-                        <span class="amount-total">{$iteam.participate_number}</span>
-                        <img src="/Public/static/img/progressbar-bottom.png">
-                        <img src="/Public/static/img/progressbar-top.png" class="progressbar">
-                    </div>
-                </li>
+	            <include file="Public/e_list" />
             </volist>
         </ul>
     </div>
