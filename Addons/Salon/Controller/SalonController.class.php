@@ -14,6 +14,9 @@ class SalonController extends AddonsController{
 	//我的沙龙
 	function MySalon() {
 		e_auth();
+		$run = new \LfRunTime();
+		$run->star();
+		$this->assign('url','Salon://Salon/CheckSalon');
 		if(IS_POST){
 			$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
 			$type=\LfRequest::inStr('type');
@@ -46,15 +49,7 @@ class SalonController extends AddonsController{
 					$j++;
 				}
 			}
-			$user = M('e_user')->where('id=' . session('user_id'))->find();
-			$this->assign('user',$user);
-			$this->salons_publish=$salons_publish;
-			$this->salons_participate=$salons_participate;
-			$this->assign('url','Salon://Salon/CheckSalon');
-			$this->assign('title','我的E沙龙');
-			$this->display();
 		}else {
-			$user = M('e_user')->where('id=' . session('user_id'))->find();
 			$salons_publish = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
 			$participattions = M('e_participate')->where('user_id=' . session('user_id'))->select();
 			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
@@ -64,12 +59,15 @@ class SalonController extends AddonsController{
 					$j++;
 				}
 			}
-			$this->assign('user',$user);
-			$this->salons_participate = $salons_participate;
-			$this->salons_publish = $salons_publish;
-			$this->assign('title','我的E沙龙');
-			$this->display();
 		}
+		$user = M('e_user')->where('id=' . session('user_id'))->find();
+		$this->assign('user',$user);
+		$this->salons_participate = $salons_participate;
+		$this->salons_publish = $salons_publish;
+		$this->assign('title','我的E沙龙');
+		$run->stop();
+		var_dump($run->spent());
+		$this->display();
 	}
 
 	//查看发布沙龙详细信息

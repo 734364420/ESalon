@@ -55,6 +55,8 @@ class AcademicController extends AddonsController{
     //我的iteam页面
     function MyIteam() {
 	    e_auth();
+		$run = new \LfRunTime();
+		$run->star();
 	    $maps = '';
 	    if(IS_POST) {
 		    $data['type'] = \LfRequest::inStr('type');
@@ -92,6 +94,7 @@ class AcademicController extends AddonsController{
         $this->assign('ParticipateIteams',$ParticipateIteams);
         $this->assign('url','Academic://Academic/IteamDetail');
 	    $this->title = "我的Iteam";
+		var_dump($run->spent());
         $this->display();
     }
     //团队约详情页面
