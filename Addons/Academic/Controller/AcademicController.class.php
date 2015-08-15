@@ -8,6 +8,8 @@ class AcademicController extends AddonsController{
 		parent::__construct();
 		$user = M('e_user')->find(session('user_id'));
 		$this->assign('user',$user);
+		$this->model = M('Model')->getByName('e_iteam');
+		$this->assign ( 'model', $this->model );
 	}
     //最新学术动态页面，竞赛列表页
     function LastNews() {
