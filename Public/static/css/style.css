@@ -496,6 +496,7 @@ ul.detail-list li img.comment{
 }
 ul.detail-list #brief p{
     color: deepskyblue;
+    width: 45px;
 }
 ul.detail-list #comment span{
     margin-left: 7px;
