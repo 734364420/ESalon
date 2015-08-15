@@ -190,7 +190,7 @@ class AcademicController extends AddonsController{
 	    if($iteam['participate_number'] == $iteam['participated_number']) {
 		    $this->error("报名人数已达上限");
 	    }
-	    $isParticipate = M('e_participate')->where('user_id ='.session('user_id'))->find();
+	    $isParticipate = M('e_participate')->where('user_id ='.session('user_id').' AND e_id = '.$iteam_id)->find();
 	    if(!empty($isParticipate)) {
 		    $this->error('不能重复参加哦');
 	    }
