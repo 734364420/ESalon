@@ -160,6 +160,9 @@ class AcademicController extends AddonsController{
 	    $end_maps = $maps.$end_maps;
 	    $sign_iteams = M('e_iteam')->where($sign_maps)->select();
 	    $end_iteams = M('e_iteam')->where($end_maps)->select();
+	    $this->type = I('type','');
+	    $this->date = I('date','');
+	    $this->number = I('number','');
 	    $this->status = I('status','sign');
 	    $this->assign('sign_iteams',$sign_iteams);
 	    $this->assign('end_iteams',$end_iteams);
