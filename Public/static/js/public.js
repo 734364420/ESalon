@@ -93,10 +93,10 @@ function checkSummary() {
         alert("请填写比赛总结！");
         return false;
     }
-    if ($("input#photo-path").val() == "") {
-        alert("请上传比赛照片！");
-        return false;
-    }
+    //if ($("input#photo-path").val() == "") {
+    //    alert("请上传比赛照片！");
+    //    return false;
+    //}
     if (!comment) {
         alert("请评价比赛！");
         return false;
