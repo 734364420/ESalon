@@ -47,8 +47,10 @@
             <span>{$iteam.participated_number}/{$iteam.participate_number}</span>
             <volist name="participate_users " id="u">
 	            <php>$euser = M('e_user')->find($u['user_id'])</php>
-                <p><a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$u['id']))}">{$euser.student_name}</a>
-                    {$euser.school}</p>
+                <p>
+                    <a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$u['id']))}" class="block pull-left" style="width:50px;">{$euser.student_name}</a>
+                    <span class="pull-left">{$euser.school}</span>
+                </p>
             </volist>
         </li>
         <li id="brief">
@@ -67,7 +69,7 @@
 		        if(!empty($summary)) {
 	        </php>
 	        <div class="comment-group">
-	            <p class="pull-left">{$user.student_name}：</p>
+	            <p class="pull-left name">{$user.student_name}：</p>
                 <div class="pull-left">
                     <div class="clearfix">
                         <php>
@@ -87,7 +89,7 @@
 		            if(!empty($summary)) {
 	            </php>
 	            <div class="comment-group">
-	                <p class="pull-left">{$e_user.student_name}：</p>
+	                <p class="pull-left name">{$e_user.student_name}：</p>
                     <div class="pull-left">
                         <div class="clearfix">
                             <php>
