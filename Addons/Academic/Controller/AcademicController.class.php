@@ -6,8 +6,6 @@ use Home\Controller\AddonsController;
 class AcademicController extends AddonsController{
 	public function __construct() {
 		parent::__construct();
-		$user = M('e_user')->find(session('user_id'));
-		$this->assign('user',$user);
 		$this->model = M('Model')->getByName('e_iteam');
 		$this->assign ( 'model', $this->model );
 	}
@@ -85,6 +83,8 @@ class AcademicController extends AddonsController{
 	    $maps .= ' publish_userid = '.session('user_id');
 	    $PublishIteams = M('e_iteam')->where($maps)->select();
 	    $ParticipateIteams= M('e_iteam')->where($Pmaps)->select();
+	    $user = M('e_user')->find(session('user_id'));
+	    $this->assign('user',$user);
 	    $this->assign('type',I('type',''));
 	    $this->assign('iteam_status',I('iteam_status',''));
 	    $this->assign('summary_status',I('summary_status',''));
@@ -190,7 +190,7 @@ class AcademicController extends AddonsController{
 	    if($iteam['participate_number'] == $iteam['participated_number']) {
 		    $this->error("报名人数已达上限");
 	    }
-	    $isParticipate = M('e_participate')->where('user_id ='.session('user_id'))->find();
+	    $isParticipate = M('e_participate')->where('user_id ='.session('user_id').' AND e_id = '.$iteam_id)->find();
 	    if(!empty($isParticipate)) {
 		    $this->error('不能重复参加哦');
 	    }
