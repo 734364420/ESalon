@@ -42,7 +42,7 @@
     $(function () {
         $(".stars").find("img").click(function () {
             comment = true;
-            var index=$(this).parent().index() + 1;
+            var index=$(this).parent().index();
             $("input[name='stars']").val(index);
             $(this).css({"background-color": "yellow"});
             $(this).parent().prevAll().find("img").css({"background-color": "yellow"});
