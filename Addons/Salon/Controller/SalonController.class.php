@@ -100,15 +100,9 @@ class SalonController extends AddonsController{
 		$salon=M('e_salon')->where('id='.$id)->find();
 		$data['hits']=$salon['hits']+1;
 		M('e_salon')->where('id='.$id)->save($data);
-		$this->salon=$salon;
-		$this->publish_user=M('e_user')->where('id='.$salon['publish_userid'])->find();
+		$this->iteam=$salon;
+		$this->user=M('e_user')->where('id='.$salon['publish_userid'])->find();
 		$participate_users=M('e_participate')->where('e_id='.$id)->select();
-		for($i=0;$i<count($participate_users);$i++){
-			$participate_users[$i]=M('e_user')->where('id='.$participate_users[$i]['user_id'])->find();
-			if($participate_users[$i]['id']==session('user_id')){
-				$this->status='已参加';
-			}
-		}
 		$summaries=M('e_summary')->where('e_id='.$id)->select();
 		for($i=0;$i<count($summaries);$i++) {
 			$summaries_users[$i] = M('e_user')->where('id=' . $summaries[$i]['user_id'])->find();
