@@ -8,8 +8,9 @@
         </div>
 
         <div class="photo">
-                <span class="pull-left">上传照片：</span>
-                <div id="filePicker">选择图片</div>
+            <span class="pull-left">上传照片：</span>
+            <div id="filePicker">选择图片</div>
+            <input type="hidden" name="picture" id="photo-path">
         </div>
 
         <div class="stars">
@@ -82,9 +83,16 @@
             mimeTypes: 'image/*'
         }
     });
-    uploader.on( 'uploadAccept', function(obj,data) {
-        var result = eval("("+data+")");
-        alert(result.path);
+    uploader.on( 'uploadAccept', function( obj , data ) {
+        var result = eval("(" + data + ")");
+        $("input#photo-path").val(result.path);
+        alert($("input#photo-path").val());
+    });
+    uploader.on( 'uploadProgress', function( file, percentage ) {
+        $("filePicker").text("上传中...");
+    });
+    uploader.on( 'uploadSuccess', function( file ) {
+        $("filePicker").text("上传成功");
     });
 </script>
 <include file="Public/e_footer" />
