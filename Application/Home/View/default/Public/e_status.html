@@ -33,7 +33,7 @@
 
 
 <!--已参加未总结 未结束-->
-<php> if(!empty($participate)&& empty($mySummary) && ($iteam['end_date'] < time()) ) {</php>
+<php> if(!empty($participate)&& ($iteam['end_date'] > time()) ) {</php>
     <a href="javascript:;" class="button go-summary">已参加活动</a>
 <php>}</php>
 <!--~~~~~~~-->
