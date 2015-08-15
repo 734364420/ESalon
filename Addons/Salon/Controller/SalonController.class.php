@@ -13,6 +13,7 @@ class SalonController extends AddonsController{
 	function MySalon() {
 		e_auth();
 		if(IS_POST){
+			$status=\LfRequest::inStr('status');
 			$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
 			$type=\LfRequest::inStr('type');
 			$salon_status=\LfRequest::inNum('salon_status');
@@ -61,6 +62,11 @@ class SalonController extends AddonsController{
 			}
 			$this->salons_publish=$salons_publish;
 			$this->salons_participate=$salons_participate;
+			if($status=='right'){
+				$this->active2='active';
+			}else{
+				$this->active1='active';
+			}
 			$this->display();
 
 		}else {
@@ -91,6 +97,7 @@ class SalonController extends AddonsController{
 			$this->username = $user;
 			$this->salons_participate = $salons_participate;
 			$this->salons_publish = $salons_publish;
+			$this->active1='active';
 			$this->display();
 		}
 	}
