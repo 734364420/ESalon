@@ -106,8 +106,7 @@ class SalonController extends AddonsController{
 		for($i=0;$i<count($participate_users);$i++){
 			var_dump($participate_users[$i]['user_id']);
 			$participate_users[$i]=M('e_user')->where('id='.$participate_users[$i]['user_id'])->find();
-			var_dump($participate_users[$i]);
-			var_dump($participate_users[$i]['user_id']);
+			var_dump($participate_users[$i]['id']);
 			var_dump(session('user_id'));
 			if($participate_users[$i]['id']==session('user_id')){
 				$this->status='已参加';
