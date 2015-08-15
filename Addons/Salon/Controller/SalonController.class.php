@@ -261,6 +261,11 @@ class SalonController extends AddonsController{
 		}else{
 			$this->active1='active';
 		}
+		if(empty($data['date'])) {
+			$data['date'] = array('egt', $today);
+		}
+		$this->salons=M('e_salon')->where($data)->select();
+		$this->end_salons=M('e_salon')->where($data)->select();
 		$this->display('Salon/SalonSquare');
 	}
 }
