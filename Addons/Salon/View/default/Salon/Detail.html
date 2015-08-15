@@ -118,8 +118,8 @@
 <a href="{:addons_url('Salon://Salon/ParticipateSalon',array('id'=>$salon['id']))}" class="button go-summary">我要报名参加</a>
 <?php } ?>
 
-<?php if($salon['date'] <= time('Y-m-d',time())) { ?>
-<a href="#" class="button go-summary">我要报名参加</a>
+<?php if($salon['date'] > time('Y-m-d',time())) { ?>
+<a href="#" class="button go-summary">活动已过期</a>
 <?php } ?>
 
 <?php if($status == '已参加') { ?>
