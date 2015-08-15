@@ -36,7 +36,9 @@ class SalonController extends AddonsController{
 				}
 			}
 			$data['publish_userid']=session('user_id');
+			$user=M('e_salon');
 			$salons_publish = M('e_salon')->where($data)->select();
+			echo $user->getLastSql();
 			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
 				$result= M('e_salon')->where('id='.$participattions[$i]['e_id'].' AND publish_userid!='.session('user_id'))->find();
 				if($result){
@@ -104,11 +106,7 @@ class SalonController extends AddonsController{
 		$this->publish_user=M('e_user')->where('id='.$salon['publish_userid'])->find();
 		$participate_users=M('e_participate')->where('e_id='.$id)->select();
 		for($i=0;$i<count($participate_users);$i++){
-			var_dump($participate_users[$i]['user_id']);
 			$participate_users[$i]=M('e_user')->where('id='.$participate_users[$i]['user_id'])->find();
-			var_dump($participate_users[$i]);
-			var_dump($participate_users[$i]['user_id']);
-			var_dump(session('user_id'));
 			if($participate_users[$i]['id']==session('user_id')){
 				$this->status='已参加';
 			}
