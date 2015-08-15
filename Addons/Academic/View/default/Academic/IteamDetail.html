@@ -46,9 +46,9 @@
             <span class="label">报名人数：</span>
             <span>{$iteam.participated_number}/{$iteam.participate_number}</span>
             <volist name="participate_users " id="u">
-	            <php>$user = M('e_user')->find($u['user_id'])</php>
-                <p><a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$u['id']))}">{$user.student_name}</a>
-                    {$user.school}</p>
+	            <php>$euser = M('e_user')->find($u['user_id'])</php>
+                <p><a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$u['id']))}">{$euser.student_name}</a>
+                    {$euser.school}</p>
             </volist>
         </li>
         <li id="brief">
@@ -114,7 +114,10 @@
 		if(empty($mySummary)) {
 	</php>
 		<a href="{:addons_url('Academic://Academic/Summary',array('e_id'=>$iteam['id']))}" class="button go-summary">填写活动总结</a>
-	<php> } </php>
+	<php> } else {</php>
+		<a href="javascript:;" class="button go-summary">你已参加此活动</a>
+	<php>}</php>
+
 <php> }  else { </php>
 	<!--判断是否已结束-->
 	<php> if($iteam['end_date'] > strtotime(date("Y-m-d"))) { </php>
