@@ -23,9 +23,9 @@ class SalonController extends AddonsController{
 			}
 			if(empty(!$salon_status)){
 				if($salon_status == 1){
-					$data['date']='<'.$today;
+					$data['date']=array('LT',$today);
 				}elseif($salon_status == 0){
-					$data['date>=']='>='.$today;
+					$data['date>=']=array('EGT',$today);
 				}
 			}
 			if(empty(!$salon_summary_status)) {
