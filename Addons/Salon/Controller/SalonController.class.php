@@ -234,6 +234,7 @@ class SalonController extends AddonsController{
 	//E沙龙广场根据条件查找
 	function GetSalonWith()
 	{
+		$status=\LfRequest::inStr('status');
 		$type = \LfRequest::inStr('type');
 		$day = \LfRequest::inStr('day');
 		$space = \LfRequest::inStr('space');
@@ -255,6 +256,11 @@ class SalonController extends AddonsController{
 		}
 		if ($space != null) {
 			$data['space'] = $space;
+		}
+		if($status=='right'){
+			$this->active2='active';
+		}else{
+			$this->active1='active';
 		}
 		$this->display('Salon/SalonSquare');
 	}
