@@ -36,7 +36,6 @@ class SalonController extends AddonsController{
 				}
 			}
 			$data['publish_userid']=session('user_id');
-			$user=M('e_salon');
 			$salons_publish = M('e_salon')->where($data)->select();
 			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
 				$result= M('e_salon')->where('id='.$participattions[$i]['e_id'].' AND publish_userid!='.session('user_id'))->find();
@@ -62,7 +61,6 @@ class SalonController extends AddonsController{
 			$this->salons_publish=$salons_publish;
 			$this->salons_participate=$salons_participate;
 			$this->display();
-
 		}else {
 			$user = M('e_user')->where('id=' . session('user_id'))->getField('student_name');
 			$salons_publish = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
@@ -213,6 +211,7 @@ class SalonController extends AddonsController{
 		}
 		$this->salons = $salons;
 		$this->end_salons = $end_salons;
+		$this->active1='active';
 		$this->display('Salon/SalonSquare');
 	}
 	//联系我们
@@ -234,6 +233,7 @@ class SalonController extends AddonsController{
 	//E沙龙广场根据条件查找
 	function GetSalonWith()
 	{
+		$status=\LfRequest::inStr('status');
 		$type = \LfRequest::inStr('type');
 		$day = \LfRequest::inStr('day');
 		$space = \LfRequest::inStr('space');
@@ -255,6 +255,11 @@ class SalonController extends AddonsController{
 		}
 		if ($space != null) {
 			$data['space'] = $space;
+		}
+		if($status=='right'){
+			$this->active2='active';
+		}else{
+			$this->active1='active';
 		}
 		$this->display('Salon/SalonSquare');
 	}

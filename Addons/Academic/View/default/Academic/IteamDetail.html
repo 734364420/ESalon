@@ -46,9 +46,9 @@
             <span class="label">报名人数：</span>
             <span>{$iteam.participated_number}/{$iteam.participate_number}</span>
             <volist name="participate_users " id="u">
-	            <php>$user = M('e_user')->find($u['user_id'])</php>
-                <p><a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$u['id']))}">{$user.student_name}</a>
-                    {$user.school}</p>
+	            <php>$euser = M('e_user')->find($u['user_id'])</php>
+                <p><a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$u['id']))}">{$euser.student_name}</a>
+                    {$euser.school}</p>
             </volist>
         </li>
         <li id="brief">
@@ -80,13 +80,14 @@
                 </div>
             </div>
 	        <php> } </php>
-	        <volist name="participate_users" id="u">
+	        <volist name="participate_users" id="s">
 	            <php>
-		            $summary = M('e_summary')->where('e_id ='.$iteam['id'].' AND user_id = '.$u['id'])->find();
+		            $summary = M('e_summary')->where('e_id ='.$iteam['id'].' AND user_id = '.$s['user_id'])->find();
+		            $e_user = M('e_user')->find($s['user_id']);
 		            if(!empty($summary)) {
 	            </php>
 	            <div class="comment-group">
-	                <p class="pull-left">{$u.student_name}：</p>
+	                <p class="pull-left">{$e_user.student_name}：</p>
                     <div class="pull-left">
                         <div class="clearfix">
                             <php>
@@ -108,21 +109,24 @@
 	$participate = M('e_participate')->where('e_id ='.$iteam['id'].' AND user_id = '.session('user_id'))->find();
 	if(!empty($participate)) {
 </php>
-<!--判断是否已总结-->
-<php>
-	$mySummary = M('e_summary')->where('user_id ='.session('user_id').' AND e_id = '.$iteam['id'])->find();
-	if(empty($mySummary)) {
-</php>
-<a href="{:addons_url('Academic://Academic/Summary',array('e_id'=>$iteam['id']))}" class="button go-summary">填写活动总结</a>
-<php> } </php>
+	<!--判断是否已总结-->
+	<php>
+		$mySummary = M('e_summary')->where('user_id ='.session('user_id').' AND e_id = '.$iteam['id'])->find();
+		if(empty($mySummary)) {
+	</php>
+		<a href="{:addons_url('Academic://Academic/Summary',array('e_id'=>$iteam['id']))}" class="button go-summary">填写活动总结</a>
+	<php> } else {</php>
+		<a href="javascript:;" class="button go-summary">你已参加此活动</a>
+	<php>}</php>
+
 <php> }  else { </php>
-<!--判断是否已结束-->
-<php> if($iteam['end_date'] > strtotime(date("Y-m-d"))) { </php>
-<a href="{:addons_url('Academic://Academic/SignIteam',array('e_id'=>$iteam['id']))}" class="button go-summary">报名参加</a>
-<php> } else { </php>
-<a href="javascript:;" class="button go-summary">你已参加此活动</a>
+	<!--判断是否已结束-->
+	<php> if($iteam['end_date'] > strtotime(date("Y-m-d"))) { </php>
+		<a href="{:addons_url('Academic://Academic/SignIteam',array('e_id'=>$iteam['id']))}" class="button go-summary">报名参加</a>
+	<php> } else { </php>
+		<a href="javascript:;" class="button go-summary">此活动已结束</a>
+	<php> } </php>
 <php>}</php>
-<php> } </php>
 
 
 
