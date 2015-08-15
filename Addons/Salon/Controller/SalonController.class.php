@@ -143,6 +143,7 @@ class SalonController extends AddonsController{
 			$data['publish_userid']=session('user_id');
 			$data['participated_number']=1;
 			$data['hits']=0;
+			var_dump(\LfRequest::inStr('space'));
 			var_dump($data);
 			die();
 			$user = M('e_salon');
