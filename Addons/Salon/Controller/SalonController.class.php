@@ -89,7 +89,7 @@ class SalonController extends AddonsController{
 		$this->summaries=$summaries;
 		$this->participate_users=$participate_users;
 		$this->assign('title','沙龙活动详情');
-		$this->display('Salon/Detail');
+		$this->display();
 	}
 
 	//新建沙龙
