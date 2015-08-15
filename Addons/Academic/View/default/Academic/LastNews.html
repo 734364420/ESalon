@@ -25,7 +25,7 @@
 </div>
 </form>
 <div class="container">
-    <div class="list">
+    <div class="list compe">
         <ul>
             <volist name="news" id="new">
                 <li>
@@ -34,13 +34,13 @@
                     <div class="pull-left titles">
                         <p class="title"><a href="{:addons_url('Academic://Academic/NewsDetail',array('id'=>$new['id']))}">{$new.title}</a>
                         </p>
-                        <img src="/Public/static/img/see.png" class="see block" style="margin-left: 50px;">
-                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
-                        <span class="sub-title pull-left">{$new.hits}</span>
-                        <span class="sub-title pull-left">)</span>
                     </div>
                     <div class="timing pull-right">
                         <span>{$new.date|date="Y-m-d",###}</span>
+                        <img src="/Public/static/img/see.png" class="see block">
+                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
+                        <span class="sub-title pull-left">{$new.hits}</span>
+                        <span class="sub-title pull-left">)</span>
                     </div>
                 </li>
             </volist>
