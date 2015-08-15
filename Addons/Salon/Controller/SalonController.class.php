@@ -211,7 +211,12 @@ class SalonController extends AddonsController{
 		}
 		$this->salons = $salons;
 		$this->end_salons = $end_salons;
-		$this->active1='active';
+		$status=\LfRequest::inStr('status');
+		if($status=='right'){
+			$this->active2='active';
+		}else{
+			$this->active1='active';
+		}
 		$this->display('Salon/SalonSquare');
 	}
 	//联系我们
@@ -239,7 +244,7 @@ class SalonController extends AddonsController{
 		var_dump($day);
 		$space = \LfRequest::inStr('space');
 		if(empty($type) && empty($day) &&empty($space)){
-			redirect(addons_url('Salon://Salon/SalonSquare'));
+			redirect(addons_url('Salon://Salon/SalonSquare',array('status',$status)));
 		}
 		if ($type != null) {
 			$data['type'] = $type;
