@@ -48,6 +48,7 @@ class SalonController extends AddonsController{
 			$this->assign('user',$user);
 			$this->salons_publish=$salons_publish;
 			$this->salons_participate=$salons_participate;
+			$this->assign('title','我的E沙龙');
 			$this->display();
 		}else {
 			$user = M('e_user')->where('id=' . session('user_id'))->find();
@@ -63,6 +64,7 @@ class SalonController extends AddonsController{
 			$this->assign('user',$user);
 			$this->salons_participate = $salons_participate;
 			$this->salons_publish = $salons_publish;
+			$this->assign('title','我的E沙龙');
 			$this->display();
 		}
 	}
@@ -74,7 +76,7 @@ class SalonController extends AddonsController{
 		$salon=M('e_salon')->where('id='.$id)->find();
 		$data['hits']=$salon['hits']+1;
 		M('e_salon')->where('id='.$id)->save($data);
-		$this->iteam=$salon;
+		$this->assign('salon',$salon);
 		$this->user=M('e_user')->where('id='.$salon['publish_userid'])->find();
 		$participate_users=M('e_participate')->where('e_id='.$id)->select();
 		$summaries=M('e_summary')->where('e_id='.$id)->select();
@@ -84,6 +86,7 @@ class SalonController extends AddonsController{
 		$this->summaries_users=$summaries_users;
 		$this->summaries=$summaries;
 		$this->participate_users=$participate_users;
+		$this->assign('title','沙龙活动详情');
 		$this->display('Salon/Detail');
 	}
 
@@ -118,6 +121,7 @@ class SalonController extends AddonsController{
 				$times[$i]=date("Y-m-d",strtotime("+$i day"));
 			}
 			$this->times=$times;
+			$this->assign('title','新建我的E沙龙');
 			$this->display();
 		}
 	}
@@ -166,6 +170,7 @@ class SalonController extends AddonsController{
 		}else{
 			$this->active1='active';
 		}
+		$this->assign('title','E沙龙广场');
 		$this->display('Salon/SalonSquare');
 	}
 	//联系我们
@@ -223,6 +228,7 @@ class SalonController extends AddonsController{
 		}else{
 			$this->active1='active';
 		}
+		$this->assign('title','查询结果');
 		$this->display('Salon/SalonSquare');
 	}
 }
