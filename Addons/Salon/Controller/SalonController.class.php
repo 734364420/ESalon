@@ -211,7 +211,13 @@ class SalonController extends AddonsController{
 		}
 		$this->salons = $salons;
 		$this->end_salons = $end_salons;
-		$this->active1='active';
+		$status=\LfRequest::inStr('status');
+		var_dump($status);
+		if($status=='right'){
+			$this->active2='active';
+		}else{
+			$this->active1='active';
+		}
 		$this->display('Salon/SalonSquare');
 	}
 	//联系我们
@@ -237,6 +243,9 @@ class SalonController extends AddonsController{
 		$type = \LfRequest::inStr('type');
 		$day = \LfRequest::inStr('day');
 		$space = \LfRequest::inStr('space');
+		if(empty($type) && empty($day) &&empty($space)){
+			redirect(addons_url('Salon://Salon/SalonSquare',array('status'=>$status)));
+		}
 		if ($type != null) {
 			$data['type'] = $type;
 		}
@@ -244,10 +253,11 @@ class SalonController extends AddonsController{
 			$data['space'] = $space;
 		}
 		$today=date('Y-m-d',time());
-		if($day!=''&&$day==0) {
+		if($day==''&&$day!=0) {
 			$data['date']=$today;
 			$user=M('e_salon');
 			$this->salons=M('e_salon')->where($data)->select();
+			$user->getLastSql();
 		}
 		if (!empty($day)) {
 			if($day>=0){
