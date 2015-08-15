@@ -4,7 +4,16 @@
     <form action="" method="" id="contact-us">
         <p>意见建议：</p>
         <textarea name=""></textarea>
-        <button type="submit" class="button">提交</button>
+        <button type="submit" class="button" onclick="return checkForm();">提交</button>
     </form>
 </div>
+
+<script type="text/javascript">
+    function checkForm() {
+        if($("form textarea").val() == "") {
+            alert("请填写你的意见！");
+            return false;
+        }
+    }
+</script>
 <include file="Public/e_footer"/>
