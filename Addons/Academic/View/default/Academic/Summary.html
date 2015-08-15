@@ -71,11 +71,10 @@
             url: "http://weixin.eagerfor.com/index.php?s=/home/File/uploadPicture",
             secureuri: false,
             fileElementId: "photo-upload",
-	    dataType: "json",
             success: function (data) {
 
-                var result = eval("("+data+")");
-                console.log(result.info);
+                var result = eval("(" + data.body.innerHTML + ")");
+                console.log(result);
             },
             error: function (data,status,e) {
                 alert(e);
