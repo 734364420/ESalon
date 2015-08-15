@@ -1,8 +1,8 @@
 <include file="Public/e_header"/>
 <body>
 	<div class="flex-box salon-type">
-		<a href="javacript:;" class="flex-1 center" {:IsActive($status,'sign')} id="square-left">可报名的iteam</a>
-		<a href="javacript:;" class="flex-1 center" {:IsActive($status,'end')} id="square-right">已结束的iteam</a>
+		<a href="javacript:;" class="flex-1 center {:IsActive($status,'sign')}"  id="square-left">可报名的iteam</a>
+		<a href="javacript:;" class="flex-1 center {:IsActive($status,'end')}"  id="square-right">已结束的iteam</a>
 	</div>
 <!--<div class="center" id="data">-->
 	<!--<span class="name">{$user.student_name}</span>-->

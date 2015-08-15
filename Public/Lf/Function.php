@@ -46,7 +46,7 @@ function hurl($s){
 */
 function IsActive($name='',$active){
 	if($name==$active){
-		return 'class="active"';
+		return 'active';
 	}else{
 		return '';
 	}
