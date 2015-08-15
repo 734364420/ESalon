@@ -204,10 +204,10 @@ class SalonController extends AddonsController{
 		$salons=M('e_salon')->where('date>='.$today)->select();
 		$end_salons=M('e_salon')->where('date<'.$today)->select();
 		for($i=0;$i<count($salons);$i++) {
-			$salons[$i]['username'] = M('e_user')->where('id=' . $salons[$i]['publish_userid'])->getField('studentname');
+			$salons[$i]['username'] = M('e_user')->where('id=' . $salons[$i]['publish_userid'])->getField('student_name');
 		}
 		for($i=0;$i<count($end_salons);$i++){
-			$end_salons[$i]['username'] = M('e_user')->where('id=' . $end_salons[$i]['publish_userid'])->getField('username');
+			$end_salons[$i]['username'] = M('e_user')->where('id=' . $end_salons[$i]['publish_userid'])->getField('student_name');
 		}
 		var_dump($salons);
 		var_dump($end_salons);
