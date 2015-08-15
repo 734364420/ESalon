@@ -25,9 +25,9 @@ class SalonController extends AddonsController{
 			}
 			if(!empty($salon_status)){
 				if($salon_status == 1){
-					$data['date']=array('lt',strtotime($today));
+					$data['end_date']=array('lt',strtotime($today));
 				}elseif($salon_status == 2){
-					$data['date']=array('egt',strtotime($today));
+					$data['end_date']=array('egt',strtotime($today));
 				}
 			}
 			if(!empty($salon_summary_status)) {
@@ -159,9 +159,9 @@ class SalonController extends AddonsController{
 	function SalonSquare() {
 		e_auth();
 		$today=date('Y-m-d',time());
-		$map1['date']=array('egt',strtotime($today));
+		$map1['end_date']=array('egt',strtotime($today));
 		$salons=M('e_salon')->where($map1)->select();
-		$map2['date']=array('lt',strtotime($today));
+		$map2['end_date']=array('lt',strtotime($today));
 		$end_salons=M('e_salon')->where($map2)->select();
 		for($i=0;$i<count($salons);$i++) {
 			$salons[$i]['username'] = M('e_user')->where('id=' . $salons[$i]['publish_userid'])->getField('student_name');
@@ -215,19 +215,20 @@ class SalonController extends AddonsController{
 		}
 		$today=date('Y-m-d',time());
 		if($day==''&&$day!=0) {
-			$data['date']=strtotime($today);
+			$data['start_date']=array('egt',strtotime($today));
+			$data['start_date']=array('elt',strtotime($today)+3600);
 			$user=M('e_salon');
 			$this->salons=M('e_salon')->where($data)->select();
 			$user->getLastSql();
 		}
 		if (!empty($day)) {
 			if($day>=0){
-				$data['date']=array('egt',strtotime($today));
-				$data['date']=array('elt',strtotime($today)+3600*$day);
+				$data['start_date']=array('egt',strtotime($today));
+				$data['start_date']=array('elt',strtotime($today)+3600*$day);
 				$this->salons=M('e_salon')->where($data)->select();
 			}else{
-				$data['date']=array('egt',strtotime($today)+3600*$day);
-				$data['date']=array('elt',strtotime($today));
+				$data['start_date']=array('egt',strtotime($today)+3600*$day);
+				$data['start_date']=array('elt',strtotime($today));
 				$this->end_salons=M('e_salon')->where($data)->select();
 			}
 		}
