@@ -148,6 +148,10 @@ class AuthController extends AddonsController{
             )
         );
         $map ['token'] = get_token ();
+        $data = M('e_iteam')->where('user_id = '.$_GET['id'])->count();
+        if(!empty($data)) {
+            $this->error("该用户下还有数据，请先删除数据");
+        }
         if ($Model->where ( $map )->delete ()) {
             $this->success ( '删除成功' );
         } else {
