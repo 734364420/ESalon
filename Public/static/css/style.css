@@ -496,7 +496,6 @@ ul.detail-list li img.comment{
 }
 ul.detail-list #brief p{
     color: deepskyblue;
-    width: 45px;
 }
 ul.detail-list #comment span{
     margin-left: 7px;
@@ -510,6 +509,7 @@ ul.detail-list #comment div.comment-group p:last-child{
 }
 ul.detail-list #comment p{
     color: deepskyblue;
+    width: 45px;
 }
 ul.detail-list #comment .comment-star{
     width: 20px;
