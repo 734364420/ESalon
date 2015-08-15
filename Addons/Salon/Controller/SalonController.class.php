@@ -99,7 +99,7 @@ class SalonController extends AddonsController{
 			$time=\LfRequest::inStr('time');
 			$hour=\LfRequest::inStr('hour');
 			$start_date=$date.' '.$time;
-			$end_date=$date.' '.$date('H-m-s',strtotime($time)+3600*$hour);
+			$end_date=$date.' '.date('H-m-s',strtotime($time)+3600*$hour);
 			$data['start_date']=strtotime($start_date);
 			$data['end_date']=strtotime($end_date);
 			$data['space']=\LfRequest::inStr('space');
