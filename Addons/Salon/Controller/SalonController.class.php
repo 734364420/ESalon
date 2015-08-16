@@ -205,6 +205,7 @@ class SalonController extends AddonsController{
 		$status=\LfRequest::inStr('status');
 		$type = \LfRequest::inStr('type');
 		$day = \LfRequest::inStr('day');
+		var_dump($day);
 		$space = \LfRequest::inStr('space');
 		if(empty($type) && empty($day) &&empty($space)){
 			redirect(addons_url('Salon://Salon/SalonSquare',array('status'=>$status)));
@@ -223,7 +224,7 @@ class SalonController extends AddonsController{
 			$this->salons=M('e_salon')->where($data)->select();
 			$user->getLastSql();
 		}
-		if (!empty($day)&&$day!=1) {
+		if (!empty($day) && $day!=1) {
 			if($day>=0){
 				$data['start_date']=array('egt',strtotime($today));
 				$data['start_date']=array('elt',strtotime($today)+3600*$day);
@@ -243,6 +244,7 @@ class SalonController extends AddonsController{
 		$this->assign('day',I('day',''));
 		$this->assign('space',I('space',''));
 		$this->assign('title','查询结果');
+		var_dump($this->assign());
 		$this->display('Salon/SalonSquare');
 	}
 
