@@ -59,7 +59,7 @@
         var result = eval("("+data+")");
         if(result.status == 1){
             alert(result.info);
-            $("input#photo-path").val(result.path);
+            $("input#photo-path").val(result.info);
         }
         else {
             alert("上传失败！");

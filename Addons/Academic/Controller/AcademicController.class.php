@@ -213,11 +213,11 @@ class AcademicController extends AddonsController{
 					    break;
 				    //过去三天
 				    case -3 :
-					    $maps .= strtotime(date("Y-m-d",time()-3*24*3600)).' =< start_date <= '.strtotime(date("Y-m-d")).$and;
+					    $maps .= "start_date >= ".strtotime(date("Y-m-d",time()-3*24*3600)).$and."start_date <=".strtotime(date("Y-m-d")).$and;
 					    break;
 					//过去七天
 				    case -7 :
-					    $maps .= strtotime(date("Y-m-d",time()-7*24*3600)).' =< start_date <= '.strtotime(date("Y-m-d")).$and;
+					    $maps .= "start_date >= ".strtotime(date("Y-m-d",time()-7*24*3600)).$and."start_date <=".strtotime(date("Y-m-d")).$and;
 					    break;
 
 			        }
@@ -233,7 +233,7 @@ class AcademicController extends AddonsController{
 	    $param = array(
 		    'type'=>I('type',''),
 		    'date'=>I('date',''),
-		    'number'=>I('number','')
+		    'number'=>I('number',''),
 	    );
 		$SignPage = \LfPageData::Page($SignIteamsCount,addons_url('Academic://Academic/Square/status/sign',$param));
 		$EndPage = \LfPageData::Page($EndIteamCount,addons_url('Academic://Academic/Square/status/end',$param));
