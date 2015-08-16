@@ -524,6 +524,9 @@ ul.detail-list li img.comment{
 ul.detail-list #brief p{
     color: deepskyblue;
 }
+ul.detail-list #person-brief p{
+    color: deepskyblue;
+}
 ul.detail-list #comment span{
     margin-left: 7px;
 }
