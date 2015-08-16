@@ -3,8 +3,6 @@ $(".tab-left").click(function () {
     $(".tab-right").removeClass("active");
     $(".tab-right-ul").addClass("hidden");
     $(".tab-left-ul").removeClass("hidden");
-    $(".tab-right-form").addClass("hidden");
-    $(".tab-left-form").removeClass("hidden");
 });
 
 $(".tab-right").click(function () {
@@ -12,8 +10,6 @@ $(".tab-right").click(function () {
     $(".tab-left").removeClass("active");
     $(".tab-left-ul").addClass("hidden");
     $(".tab-right-ul").removeClass("hidden");
-    $(".tab-left-form").addClass("hidden");
-    $(".tab-right-form").removeClass("hidden");
 });                                             //tab标签切换
 
 
