@@ -190,6 +190,26 @@ a.button,button{
     color: grey;
     font-weight: bold;
 }
+.list ul li:last-child{
+    border-bottom: none;
+}
+.list ul.page{
+    position: static;
+    overflow: hidden;
+    margin: 0 auto;
+}
+.list ul.page li{
+    float: left;
+    padding: 0 3px;
+    border-bottom: none;
+    font-size: 13px;
+    height: 30px;
+    color: #333;
+}
+.list ul.page li.active{
+    color: lightblue;
+    text-decoration: underline;
+}
 .compe.list .title{
     font-weight: bold;
     line-height: 30px;
