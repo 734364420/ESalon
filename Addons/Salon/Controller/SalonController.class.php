@@ -51,16 +51,16 @@ class SalonController extends AddonsController{
 			$in .= ','.$v['e_id'];
 		}
 		$in .= ')';
-		$data = $data .' id in '.$in.' AND publish_userid  != '.session('user_id');
-		$Pdata = $data.' publish_userid = '.session('user_id');
-		$salons_publish = M('e_salon')->where($Pdata)->count();
-		$salons_participate= M('e_salon')->where($data)->count();
+		$Pdata = $data .' id in '.$in.' AND publish_userid  != '.session('user_id');
+		$data = $data.' publish_userid = '.session('user_id');
+		$salons_publish = M('e_salon')->where($data)->select();
+		$salons_participate= M('e_salon')->where($Pdata)->count();
 
 		$PublishPage = \LfPageData::Page($salons_publish,addons_url('Salon://Salon/MySalon/status/sign'));
 		$ParticipatePage = \LfPageData::Page($salons_participate,addons_url('Salon://Salon/MySalon/status/end'));
 
-		$salons_publish = M('e_salon')->where($Pdata)->limit($PublishPage['offset'],$PublishPage['perpagenum'])->select();
-		$salons_participate= M('e_salon')->where($data)->limit($ParticipatePage['offset'],$ParticipatePage['perpagenum'])->select();
+		$salons_publish = M('e_salon')->where($data)->limit($PublishPage['offset'],$PublishPage['perpagenum'])->select();
+		$salons_participate= M('e_salon')->where($Pdata)->limit($ParticipatePage['offset'],$ParticipatePage['perpagenum'])->select();
 		$user = M('e_user')->where('id=' . session('user_id'))->find();
 		$this->assign('status',$status);
 		$this->assign('PublishPage',$PublishPage);
