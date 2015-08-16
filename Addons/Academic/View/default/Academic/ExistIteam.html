@@ -1,0 +1,18 @@
+<include file="Public/e_header"/>
+<body>
+<div class="container">
+	<p class="main-content"> 您报名的竞赛已经有发起团队活动，先浏览看看
+		有没有想要加入的团队，或许您可以在这里找到想
+		要的队友！</p>
+	<volist name="iteams" id="iteam">
+		<include file="Public/e_list"/>
+	</volist>
+
+	<div class="link-square">
+		<span>没有想要的？再</span>
+		<a href="{:addons_url('Academic://Academic/Publish')}" class="orange">发起一个微团队</a>
+		<span>信息吧！</span>
+	</div>
+</div>
+
+<include file="Public/e_footer"/>

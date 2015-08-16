@@ -134,6 +134,8 @@ class AcademicController extends AddonsController{
                 /*
                  * todo 提示当前主题已有团队约
                  */
+	            $this->assign('iteams',$iteams);
+	            $this->display('Academic/ExistIteam');
             }
             $iteam = M('e_iteam');
             $iteam->title = $title;
