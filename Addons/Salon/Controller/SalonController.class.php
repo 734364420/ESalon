@@ -38,22 +38,19 @@ class SalonController extends AddonsController{
 			if ($salon_summary_status == 1) {
 				$data .='summary = 1 AND ';
 			} elseif ($salon_summary_status == 2) {
-				$data .='summary = 2 AND ';
+				$data .='summary = 0 AND ';
 			}
 		}
 	}
-		var_dump($participattions);
 		$in='(0';
 		foreach($participattions as $v) {
 			$in .= ','.$v['e_id'];
 		}
 		$in .= ')';
-		$Pdata = $data.' id in '.$in.' AND publish_userid  != '.session('user_id');
-		$Pdata .= ' publish_userid = '.session('user_id');
-		$user=M('e_salon');
-		$salons_publish = M('e_salon')->where($data)->select();
-		echo $user->getLastSql();
-		$salons_participate= M('e_salon')->where($Pdata)->count();
+		$data = $data .' id in '.$in.' AND publish_userid  != '.session('user_id');
+		$Pdata = $data.' publish_userid = '.session('user_id');
+		$salons_publish = M('e_salon')->where($Pdata)->count();
+		$salons_participate= M('e_salon')->where($data)->count();
 
 		$salons_publish = \LfPageData::Page($salons_publish,addons_url('Salon://Salon/MySalon/status/sign'));
 		$salons_participate = \LfPageData::Page($salons_participate,addons_url('Salon://Salon/MySalon/status/end'));
@@ -214,13 +211,13 @@ class SalonController extends AddonsController{
 		}
 		$today=date('Y-m-d',time());
 		if($day==1) {
-			$data .='start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600).' AND ';
+			$data .='start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600);
 		}
 		if (!empty($day) && $day!=1) {
 			if($day>=0){
-				$data .='start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600*$day).' AND ';
+				$data .='start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600*$day);
 			}else{
-				$data .='start_date>='.(strtotime($today)+24*3600*$day).' AND start_date<='.strtotime($today).' AND ';
+				$data .='start_date>='.(strtotime($today)+24*3600*$day).' AND start_date<='.strtotime($today);
 			}
 		}
 		if($status=='end'){
