@@ -215,6 +215,9 @@ a.button,button{
     font-weight: bold;
     line-height: 30px;
 }
+.compe.list .titles{
+    width: 64%;
+}
 .compe.list .timing{
     font-weight: bold;
     font-size: 15px;
@@ -571,6 +574,7 @@ ul.detail-list #photos{
 ul.detail-list #photos img{
     width: 31%;
     margin-right: 4px;
+    margin-top: 4px;
     height: 80px;
 }
 a.go-summary{
