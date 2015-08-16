@@ -21,11 +21,15 @@ class AcademicController extends AddonsController{
 		    if(!empty($type)) {
 				$maps .= ' type = '.$type.$and;
 		    }
-		    if($date != '' && $date ==0) {
-			    $maps .= ' date < '.strtotime(date("Y-m-d")).$and;
-		    }
-		    if(!empty($date)) {
-			    $maps .= time().' < date < '.strtotime($date).$and;
+		    switch($date) {
+			    case 1 :
+				    $maps .= ' date < '.strtotime(date("Y-m-d")).$and;
+					break;
+			    case 2:
+				    $maps .= ' date = '.strtotime(date("Y-m-d",time()+24*3600)).$and;
+				    break;
+			    case 3:
+				    $maps .= ' date >= '.strtotime(date("Y-m-d",time()+3*24*3600)).$and;
 		    }
 		    if(!empty($mode)) {
 			    $maps .= ' mode = '.$mode.$and;

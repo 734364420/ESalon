@@ -10,9 +10,9 @@
     </select>
     <select name="date" class="flex-1">
         <option value="">比赛时间</option>
-        <option value="0" {:IsSelected($type,'0')}>已结束</option>
-        <option value="{:date('Y-m-d',time()+1*24*3600)}" {:IsSelected($date,date('Y-m-d',time()+1*24*3600))}>明天</option>
-	    <option value="{:date('Y-m-d',time()+3*24*3600)}" {:IsSelected($date,date('Y-m-d',time()+3*24*3600))}>三天后</option>
+        <option value="1" {:IsSelected($type,1)}>已结束</option>
+        <option value="2" {:IsSelected($date,2)}>明天</option>
+	    <option value="3" {:IsSelected($date,3)}>三天后</option>
 	    <option value="">全部</option>
     </select>
     <select name="mode" class="flex-1">
