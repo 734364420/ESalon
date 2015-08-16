@@ -564,8 +564,9 @@ ul.detail-list #photos{
     margin-left: 31px;
 }
 ul.detail-list #photos img{
-    width: 33%;
-    margin-right: 2px;
+    width: 31%;
+    margin-right: 4px;
+    height: 80px;
 }
 a.go-summary{
     margin: 10px auto;
