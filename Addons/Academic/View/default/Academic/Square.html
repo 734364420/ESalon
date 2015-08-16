@@ -67,11 +67,15 @@
 			$(".tab-right").removeClass("active");
 			$(".tab-right-ul").addClass("hidden");
 			$(".tab-left-ul").removeClass("hidden");
+			$(".tab-right-form").addClass("hidden");
+			$(".tab-left-form").removeClass("hidden");
 		}
 		if($(".tab-right").hasClass("active")){
 			$(".tab-left").removeClass("active");
 			$(".tab-left-ul").addClass("hidden");
 			$(".tab-right-ul").removeClass("hidden");
+			$(".tab-left-form").addClass("hidden");
+			$(".tab-right-form").removeClass("hidden");
 		}
 	});                                                 //页面初始化时tab标签
 
