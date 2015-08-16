@@ -165,21 +165,27 @@ class AcademicController extends AddonsController{
 		    }
 		    if(!empty($data['date'])) {
 			    switch($data['date']) {
+				    //今天
 				    case 0 :
 					    $maps .= 'start_date = '.strtotime(date("Y-m-d")).$and;
 					    break;
+				    //明天
 				    case 1 :
 					    $maps .= 'start_date = '.strtotime(date("Y-m-d",time()+1*24*3600)).$and;
 					    break;
+				    //三天后
 				    case 3 :
 					    $maps .= 'start_date >= '.strtotime(date("Y-m-d",time()+3*24*3600)).$and;
 					    break;
+				    //昨天
 				    case -1 :
 					    $maps .= 'start_date = '.strtotime(date("Y-m-d",time()-1*24*3600)).$and;
 					    break;
+				    //过去三天
 				    case -3 :
 					    $maps .= strtotime(date("Y-m-d",time()-3*24*3600)).' =< start_date <= '.strtotime(date("Y-m-d")).$and;
 					    break;
+					//过去七天
 				    case -7 :
 					    $maps .= strtotime(date("Y-m-d",time()-7*24*3600)).' =< start_date <= '.strtotime(date("Y-m-d")).$and;
 					    break;
