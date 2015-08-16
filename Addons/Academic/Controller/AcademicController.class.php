@@ -281,6 +281,10 @@ class AcademicController extends AddonsController{
             $summary = M('e_summary');
             $summary->user_id = session('user_id');
             $summary->e_id = $e_id;
+	        $isSummary = M('e_summary')->where(array('e_id'=>$e_id,'user_id'=>session('user_id')))->find();
+	        if(!empty($isSummary)) {
+		        $this->error("你已总结该活动");
+	        }
             $summary->stars = \LfRequest::inNum('stars');
             $summary->comment = \LfRequest::inStr('comment');
             $summary->picture = \LfRequest::inStr('picture');
