@@ -214,6 +214,7 @@ a.button,button{
 .compe.list .title{
     font-weight: bold;
     line-height: 30px;
+    width: 64%;
 }
 .compe.list .timing{
     font-weight: bold;
