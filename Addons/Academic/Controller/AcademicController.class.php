@@ -26,13 +26,13 @@ class AcademicController extends AddonsController{
 				    $maps .= ' date < '.strtotime(date("Y-m-d")).$and;
 					break;
 			    case 2 :
-				    $maps .= strtotime(date("Y-m-d")).' =< date  =< '.strtotime(date("Y-m-d")+24*3600).$and;
+				    $maps .= strtotime(date("Y-m-d")).' =< date  =< '.(strtotime(date("Y-m-d"))+24*3600).$and;
 					break;
 			    case 3:
-				    $maps .= strtotime(date("Y-m-d")+24*3600). ' =<  date =< '.strtotime(date("Y-m-d",time()+2*24*3600)).$and;
+				    $maps .= (strtotime(date("Y-m-d"))+24*3600). ' =<  date =< '.(strtotime(date("Y-m-d"))+2*24*3600).$and;
 				    break;
 			    case 4:
-				    $maps .= ' date >= '.strtotime(date("Y-m-d",time()+3*24*3600)).$and;
+				    $maps .= ' date >= '.(strtotime(date("Y-m-d"))+3*24*3600).$and;
 			    default :
 				    break;
 		    }
