@@ -220,13 +220,13 @@ class SalonController extends AddonsController{
 		$today=date('Y-m-d',time());
 		var_dump(strtotime($today));
 		if($day==1) {
-			$data .='start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600);
+			$data .='start_date >= '.strtotime($today).' AND start_date <= '.(strtotime($today)+24*3600);
 		}
 		if (!empty($day) && $day!=1) {
 			if($day>=0){
-				$data .='start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600*$day);
+				$data .='start_date >= '.strtotime($today).' AND start_date <= '.(strtotime($today)+24*3600*$day);
 			}else{
-				$data .='start_date>='.(strtotime($today)+24*3600*$day).' AND start_date<='.strtotime($today);
+				$data .='start_date >= '.(strtotime($today)+24*3600*$day).' AND start_date <= '.strtotime($today);
 			}
 		}
 		$user=M('e_salon');
