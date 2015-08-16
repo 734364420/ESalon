@@ -170,8 +170,6 @@ class SalonController extends AddonsController{
 		echo $user->getLastSql();
 		$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/CheckSalon/status/end'));
 		$this->end_salons=M('e_iteam')->where($map2)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
-		$this->salons = $salons;
-		$this->end_salons = $end_salons;
 		$status=\LfRequest::inStr('status');
 		if($status=='right'){
 			$this->active2='active';
