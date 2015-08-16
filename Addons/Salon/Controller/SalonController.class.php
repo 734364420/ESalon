@@ -16,6 +16,7 @@ class SalonController extends AddonsController{
 		e_auth();
 //		$run = new \LfRunTime();
 //		$run->star();
+		$status=\LfRequest::inStr('status');
 		$this->assign('url','Salon://Salon/CheckSalon');
 		$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
 	if(IS_POST) {
@@ -58,6 +59,7 @@ class SalonController extends AddonsController{
 		$salons_publish = M('e_salon')->where($Pdata)->limit($PublishPage['offset'],$PublishPage['perpagenum'])->select();
 		$salons_participate= M('e_salon')->where($data)->limit($ParticipatePage['offset'],$ParticipatePage['perpagenum'])->select();
 		$user = M('e_user')->where('id=' . session('user_id'))->find();
+		$this->assign('status',$status);
 		$this->assign('PublishPage',$PublishPage);
 		$this->assign('ParticipatePage',$ParticipatePage);
 		$this->assign('user',$user);
@@ -159,21 +161,21 @@ class SalonController extends AddonsController{
 	//沙龙广场
 	function SalonSquare() {
 		e_auth();
+		$status=\LfRequest::inStr('status');
+		$status=\LfRequest::inStr('status');
 		$today=date('Y-m-d',time());
 		$map1['end_date']=array('egt',strtotime($today));
 		$salons=M('e_salon')->where($map1)->count();
-		$salons=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/start'));
-		$this->salons=M('e_salon')->where($map1)->limit($salons['offset'],$salons['perpagenum'])->select();
+		$SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/start'));
+		$this->salons=M('e_salon')->where($map1)->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
 		$map2['end_date']=array('lt',strtotime($today));
 		$end_salons=M('e_salon')->where($map2)->count();
-		$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
-		$this->end_salons=M('e_salon')->where($map2)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
-		$status=\LfRequest::inStr('status');
-		if($status=='right'){
-			$this->active2='active';
-		}else{
-			$this->active1='active';
-		}
+		$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
+		$this->end_salons=M('e_salon')->where($map2)->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
+		$this->assign('status',$status);
+		$this->assign('EndPage',$EndPage);
+		$this->assign('SignPage',$SignPage);
+		$this->assign('status',$status);
 		$this->assign('title','E沙龙广场');
 		$this->assign('url','Salon://Salon/CheckSalon');
 		$this->display('Salon/SalonSquare');
@@ -230,22 +232,16 @@ class SalonController extends AddonsController{
 				$data .='start_date >= '.(strtotime($today)+24*3600*$day).' AND start_date <= '.strtotime($today);
 			}
 		}
-		$user=M('e_salon');
-		if($status=='end'){
-			$this->active2='active';
-			$end_salons=M('e_salon')->where($data)->select();
-			echo '1111111111';
-			$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
-			$this->end_salons=M('e_salon')->where($data)->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
-		}else{
-			$this->active1='active';
-			$salons=M('e_salon')->where($data)->select();
-			$SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/sign'));
-			$this->salons=M('e_salon')->where($data)->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
-		}
+		$this->active2='active';
+		$end_salons=M('e_salon')->where($data)->select();
+		$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
+		$this->end_salons=M('e_salon')->where($data)->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
+		$this->active1='active';
+		$salons=M('e_salon')->where($data)->select();
+		$SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/sign'));
+		$this->salons=M('e_salon')->where($data)->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
 		$this->assign('EndPage',$EndPage);
 		$this->assign('SignPage',$SignPage);
-		echo $user->getLastSql();
 		$this->assign('url','Salon://Salon/CheckSalon');
 		$this->assign('type',I('type',''));
 		$this->assign('day',I('day',''));
