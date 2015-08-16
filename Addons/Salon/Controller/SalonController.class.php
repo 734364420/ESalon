@@ -27,16 +27,15 @@ class SalonController extends AddonsController{
 		$type = \LfRequest::inStr('type');
 		$salon_status = \LfRequest::inNum('salon_status');
 		$salon_summary_status = \LfRequest::inNum('salon_summary_status');
-		$today = date('Y-m-d', time());
 		$data='';
 		if ($type != null) {
 			$data .= 'type = '."'".$type."'".' AND ';
 		}
 		if (!empty($salon_status)) {
 			if ($salon_status == 1) {
-				$data .='end_date < '.strtotime($today).' AND ';
+				$data .='end_date < '.time().' AND ';
 			} elseif ($salon_status == 2) {
-				$data .='end_date >= '.strtotime($today).' AND ';
+				$data .='end_date >= '.time().' AND ';
 			}
 		}
 		if (!empty($salon_summary_status)) {
