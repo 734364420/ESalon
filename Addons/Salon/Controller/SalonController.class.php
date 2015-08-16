@@ -23,25 +23,25 @@ class SalonController extends AddonsController{
 		$salon_status = \LfRequest::inNum('salon_status');
 		$salon_summary_status = \LfRequest::inNum('salon_summary_status');
 		$today = date('Y-m-d', time());
+		$data='';
 		if ($type != null) {
-			$data['type'] = $type;
+			$data .= 'type = '.$type.' AND ';
 		}
 		if (!empty($salon_status)) {
 			if ($salon_status == 1) {
-				$data['end_date'] = array('lt', strtotime($today));
+				$data .='end_date < '.strtotime($today).' AND ';
 			} elseif ($salon_status == 2) {
-				$data['end_date'] = array('egt', strtotime($today));
+				$data .='end_date >= '.strtotime($today).' AND ';
 			}
 		}
 		if (!empty($salon_summary_status)) {
 			if ($salon_summary_status == 1) {
-				$data['summary'] = 1;
+				$data .='summary = 1 AND ';
 			} elseif ($salon_summary_status == 2) {
-				$data['summary'] = 0;
+				$data .='summary = 2 AND ';
 			}
 		}
 	}
-		$data['publish_userid']=session('user_id');
 		var_dump($participattions);
 		$in='(0';
 		foreach($participattions as $v) {
@@ -49,7 +49,7 @@ class SalonController extends AddonsController{
 		}
 		$in .= ')';
 		$Pdata = $data.' id in '.$in.' AND publish_userid  != '.session('user_id');
-		$data .= ' publish_userid = '.session('user_id');
+		$Pdata .= ' publish_userid = '.session('user_id');
 		$user=M('e_salon');
 		$salons_publish = M('e_salon')->where($data)->select();
 		echo $user->getLastSql();
