@@ -28,7 +28,7 @@
 
 <!--已参加未总结 已结束-->
 <php> if(!empty($participate)&& empty($mySummary) && ($iteam['end_date'] < time()) ) {</php>
-    <a href="{:addons_url('Academic://Academic/Summary',array('e_id'=>$iteam['id'],'isSalon'=>$isSalon))}" class="button go-summary">填写活动总结</a>
+    <a href="{:addons_url('Academic://Academic/Summary',array('isSalon'=>$isSalon))}" class="button go-summary">填写活动总结</a>
 <php>}</php>
 <!--~~~~~~~-->
 
