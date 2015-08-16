@@ -164,7 +164,27 @@ class AcademicController extends AddonsController{
 				$maps .= 'type = '.$data['type'].$and;
 		    }
 		    if(!empty($data['date'])) {
-			    $maps .= 'start_date = '.$data['date'].$and;
+			    switch($data['date']) {
+				    case 0 :
+					    $maps .= 'start_date = '.strtotime(date("Y-m-d")).$and;
+					    break;
+				    case 1 :
+					    $maps .= 'start_date = '.strtotime(date("Y-m-d",time()+1*24*3600)).$and;
+					    break;
+				    case 3 :
+					    $maps .= 'start_date >= '.strtotime(date("Y-m-d",time()+3*24*3600)).$and;
+					    break;
+				    case -1 :
+					    $maps .= 'start_date = '.strtotime(date("Y-m-d",time()-1*24*3600)).$and;
+					    break;
+				    case -3 :
+					    $maps .= strtotime(date("Y-m-d",time()-3*24*3600)).' =< start_date <= '.strtotime(date("Y-m-d")).$and;
+					    break;
+				    case -7 :
+					    $maps .= strtotime(date("Y-m-d",time()-7*24*3600)).' =< start_date <= '.strtotime(date("Y-m-d")).$and;
+					    break;
+
+			        }
 		    }
 		    if(!empty($data['number'])) {
 			    $maps .= 'participate_number = '.$data['number'].$and;
