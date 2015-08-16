@@ -54,10 +54,8 @@ class SalonController extends AddonsController{
 		$in .= ')';
 		$Pdata = $data .' id in '.$in.' AND publish_userid  != '.session('user_id');
 		$data = $data.' publish_userid = '.session('user_id');
-		$user=M('e_salon');
 		$salons_publish = M('e_salon')->where($data)->select();
 		$salons_participate= M('e_salon')->where($Pdata)->count();
-		echo $user->getLastSql();
 		$param = array(
 			'type'=>I('type',''),
 			'salon_status'=>I('salon_status',''),
@@ -225,7 +223,7 @@ class SalonController extends AddonsController{
 			redirect(addons_url('Salon://Salon/SalonSquare',array('status'=>$status)));
 		}
 		if ($type != null) {
-			if(empty($space) || empty($day)){
+			if(!empty($space) || !empty($day)){
 				$data .= 'type = '."'".$type."'".' AND ';
 			}else {
 				$data .= 'type = '."'".$type."'";
