@@ -48,7 +48,7 @@
 	</volist>
 </li>
 <php>
-	$summary_pic = M('e_summary')->where('e_id ='.$iteam['id'])->select();
+	$summary_pic = M('e_summary')->where('e_id ='.$iteam['id'].' AND picture != \'\' ')->select();
 	if(!empty($summary_pic)) {
 </php>
 <li>
