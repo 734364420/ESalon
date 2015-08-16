@@ -14,7 +14,8 @@ $(".tab-right").click(function () {
     $(".status").attr('value','end');
 });                                             //tab标签切换
 
-var reg = /^[\u4E00-\u9FA5]{2,7}$/;
+var student_name = /^[\u4E00-\u9FA5]{2,7}$/;
+var major_name = /^[\u4E00-\u9FA5]{2,10}$/;
 
 function checkAuthForm() {
     if ($("form.data").find("input").val() == "" || $("form.data").find("textarea").val() == "") {
@@ -22,9 +23,15 @@ function checkAuthForm() {
         return false;
     }
 
-    var name = $("input[name='student_name']").val();
-    if(!reg.test(name)){
+    var student = $("input[name='student_name']").val();
+    if(!student_name.test(student)){
         alert("请填写正确的姓名！");
+        return false;
+    }
+
+    var major = $("input[name='major']").val();
+    if(!major_name.test(major)){
+        alert("请填写正确的专业！");
         return false;
     }
 
