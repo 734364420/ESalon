@@ -14,7 +14,9 @@
 </div>
 <include file="Public/e_status"/>
 
+<div id="photo-detail" class="hidden">
 
+</div>
 
 <script type="text/javascript">
     $(function () {
@@ -26,5 +28,19 @@
         wid = percent * 90;
         $(".list ").find(".progressbar").css({"clip": "rect(0 " + wid + "px 14px 0)"});
     });                                                  //已参与人数进度条
+
+    var show = false;
+    $("#photos").find("img").click(function(){
+        if(!show){
+            var clone = $(this).clone(true);
+            $("#photo-detail").show().empty().append(clone);
+            clone.css({"width":"100%","height":"100%"});
+            show = true;
+        }
+        if(show){
+            $("#photo-detail").hide();
+        }
+    })
+
 </script>
 <include file="Public/e_footer"/>
