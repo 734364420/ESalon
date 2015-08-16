@@ -314,10 +314,6 @@ class AcademicController extends AddonsController{
             }
         } else {
             $id = \LfRequest::inNum('e_id');
-<<<<<<< HEAD
-echo I('isSalon');
-=======
->>>>>>> 9d99ad38ccf2ef8cc01c4b672bd43f3dd08b9aba
             $iteam = M('e_iteam')->find($id);
 	        $this->e_id = $id;
             $this->assign('iteam',$iteam);
