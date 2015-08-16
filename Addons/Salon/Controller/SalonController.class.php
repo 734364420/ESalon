@@ -161,6 +161,7 @@ class SalonController extends AddonsController{
 		$today=date('Y-m-d',time());
 		$map1['end_date']=array('egt',strtotime($today));
 		$salons=M('e_salon')->where($map1)->select();
+		var_dump($salons);
 		echo $user->getLastSql();
 		$salons=\LfPageData::Page(count($salons),addons_url('Salon://Salon/CheckSalon'),array('status'=>'start'));
 		$this->salon=M('e_iteam')->where($map1)->limit($salons['offset'],$salons['perpagenum'])->select();
