@@ -88,10 +88,15 @@ class AcademicController extends AddonsController{
 	    $maps .= ' publish_userid = '.session('user_id');
 	    $PublishIteamsCount = M('e_iteam')->where($maps)->count();
 	    $ParticipateIteamsCount= M('e_iteam')->where($Pmaps)->count();
-		$PublishPage = \LfPageData::Page($PublishIteamsCount,addons_url('Academic://Academic/MyIteam/status/sign'));
-		$ParticipatePage = \LfPageData::Page($ParticipateIteamsCount,addons_url('Academic://Academic/MyIteam/status/end'));
-		$PublishIteams = M('e_iteam')->where($maps)->limit($PublishPage['offset'],$PublishPage['perpagenum'])->select();
-		$ParticipateIteams= M('e_iteam')->where($Pmaps)->limit($ParticipatePage['offset'],$ParticipatePage['perpagenum'])->select();
+	    $param = array(
+		    'type'=>I('type',''),
+		    'iteam_status'=>I('iteam_status',''),
+		    'summary_status'=>I('summary_status','')
+	    );
+		$PublishPage = \LfPageData::Page($PublishIteamsCount,addons_url('Academic://Academic/MyIteam/status/sign',$param));
+		$ParticipatePage = \LfPageData::Page($ParticipateIteamsCount,addons_url('Academic://Academic/MyIteam/status/end',$param));
+		$PublishIteams = M('e_iteam')->where($maps)->limit($PublishPage['offset'],$PublishPage['perpagenum'])->order('id DESC')->select();
+		$ParticipateIteams= M('e_iteam')->where($Pmaps)->limit($ParticipatePage['offset'],$ParticipatePage['perpagenum'])->order('id DESC')->select();
 	    $status = I('status','sign');
 	    $this->assign('status',$status);
 	    $user = M('e_user')->find(session('user_id'));
@@ -215,12 +220,17 @@ class AcademicController extends AddonsController{
 	    $end_maps = $maps.$end_maps;
 	    $SignIteamsCount = M('e_iteam')->where($sign_maps)->count();
 	    $EndIteamCount = M('e_iteam')->where($end_maps)->count();
-		$SignPage = \LfPageData::Page($SignIteamsCount,addons_url('Academic://Academic/Square/status/sign'));
-		$EndPage = \LfPageData::Page($EndIteamCount,addons_url('Academic://Academic/Square/status/end'));
+	    $param = array(
+		    'type'=>I('type',''),
+		    'date'=>I('date',''),
+		    'number'=>I('number','')
+	    );
+		$SignPage = \LfPageData::Page($SignIteamsCount,addons_url('Academic://Academic/Square/status/sign',$param));
+		$EndPage = \LfPageData::Page($EndIteamCount,addons_url('Academic://Academic/Square/status/end',$param));
 
 
-	    $sign_iteams = M('e_iteam')->where($sign_maps)->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
-	    $end_iteams = M('e_iteam')->where($end_maps)->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
+	    $sign_iteams = M('e_iteam')->where($sign_maps)->limit($SignPage['offset'],$SignPage['perpagenum'])->order('id DESC')->select();
+	    $end_iteams = M('e_iteam')->where($end_maps)->limit($EndPage['offset'],$EndPage['perpagenum'])->order('id DESC')->select();
 	    $status = I('status','sign');
 	    $this->assign('status',$status);
 	    $this->type = I('type','');
