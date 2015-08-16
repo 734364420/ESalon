@@ -60,7 +60,7 @@ class SalonController extends AddonsController{
 		$PublishPage = \LfPageData::Page($salons_publish,addons_url('Salon://Salon/MySalon/status/sign'));
 		$ParticipatePage = \LfPageData::Page($salons_participate,addons_url('Salon://Salon/MySalon/status/end'));
 
-		$salons_publish = M('e_salon')->where($data)->limit($PublishPage['offset'],$PublishPage['perpagenum'])->select();
+		$salons_publish = M('e_salon')->where($data)->order('id desc')->limit($PublishPage['offset'],$PublishPage['perpagenum'])->select();
 		$salons_participate= M('e_salon')->where($Pdata)->order('id desc')->limit($ParticipatePage['offset'],$ParticipatePage['perpagenum'])->select();
 		$user = M('e_user')->where('id=' . session('user_id'))->find();
 		$this->assign('status',$status);
