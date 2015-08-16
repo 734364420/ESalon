@@ -1,16 +1,16 @@
 $(".tab-left").click(function () {
     $(this).addClass("active");
     $(".tab-right").removeClass("active");
-    $(".tab-right-ul").addClass("hidden");
     $(".tab-left-ul").removeClass("hidden");
+    $(".tab-right-ul").removeClass("hidden").addClass("hidden");
     $(".status").attr('value', 'sign');
 });
 
 $(".tab-right").click(function () {
     $(this).addClass("active");
     $(".tab-left").removeClass("active");
-    $(".tab-left-ul").addClass("hidden");
     $(".tab-right-ul").removeClass("hidden");
+    $(".tab-left-ul").removeClass("hidden").addClass("hidden");
     $(".status").attr('value', 'end');
 });                                             //tab标签切换
 
