@@ -19,20 +19,20 @@ class AcademicController extends AddonsController{
 		    $date = \LfRequest::inStr('date');
 		    $mode = \LfRequest::inStr('mode');
 		    if(!empty($type)) {
-				$maps .= ' type = '.$type.$and;
+				$maps .= ' type = '."''".$type."''".$and;
 		    }
 		    switch($date) {
 			    case 1 :
 				    $maps .= ' date < '.strtotime(date("Y-m-d")).$and;
 					break;
 			    case 2 :
-				    $maps .= strtotime(date("Y-m-d")).' =< date  =< '.strtotime(date("Y-m-d")+24*3600).$and;
+				    $maps .= strtotime(date("Y-m-d")).' =< date AND date  =< '.(strtotime(date("Y-m-d"))+24*3600).$and;
 					break;
 			    case 3:
-				    $maps .= strtotime(date("Y-m-d")+24*3600). ' =<  date =< '.strtotime(date("Y-m-d",time()+2*24*3600)).$and;
+				    $maps .= (strtotime(date("Y-m-d"))+24*3600). ' =<  date AND date  =< '.(strtotime(date("Y-m-d"))+2*24*3600).$and;
 				    break;
 			    case 4:
-				    $maps .= ' date >= '.strtotime(date("Y-m-d",time()+3*24*3600)).$and;
+				    $maps .= ' date >= '.(strtotime(date("Y-m-d"))+3*24*3600).$and;
 			    default :
 				    break;
 		    }
@@ -40,6 +40,7 @@ class AcademicController extends AddonsController{
 			    $maps .= ' mode = '.($mode-1).$and;
 		    }
 	    }
+	    $maps .= 'id != 0';
 	    $this->type = I('type','');
 	    $this->date = I('date','');
 	    $this->mode = I('mode','');
