@@ -56,11 +56,15 @@ class SalonController extends AddonsController{
 		$data = $data.' publish_userid = '.session('user_id');
 		$salons_publish = M('e_salon')->where($data)->select();
 		$salons_participate= M('e_salon')->where($Pdata)->count();
+		$param = array(
+			'type'=>I('type',''),
+			'salon_status'=>I('salon_status',''),
+			'salon_summary_status'=>I('salon_summary_status','')
+		);
+		$PublishPage = \LfPageData::Page($salons_publish,addons_url('Salon://Salon/MySalon/status/sign',$param));
+		$ParticipatePage = \LfPageData::Page($salons_participate,addons_url('Salon://Salon/MySalon/status/end',$param));
 
-		$PublishPage = \LfPageData::Page($salons_publish,addons_url('Salon://Salon/MySalon/status/sign'));
-		$ParticipatePage = \LfPageData::Page($salons_participate,addons_url('Salon://Salon/MySalon/status/end'));
-
-		$salons_publish = M('e_salon')->where($data)->limit($PublishPage['offset'],$PublishPage['perpagenum'])->select();
+		$salons_publish = M('e_salon')->where($data)->order('id desc')->limit($PublishPage['offset'],$PublishPage['perpagenum'])->select();
 		$salons_participate= M('e_salon')->where($Pdata)->order('id desc')->limit($ParticipatePage['offset'],$ParticipatePage['perpagenum'])->select();
 		$user = M('e_user')->where('id=' . session('user_id'))->find();
 		$this->assign('status',$status);
@@ -209,6 +213,11 @@ class SalonController extends AddonsController{
 		$type = \LfRequest::inStr('type');
 		$day = \LfRequest::inStr('day');
 		$space = \LfRequest::inStr('space');
+		$param = array(
+			'type'=>I('type',''),
+			'day'=>I('day',''),
+			'space'=>I('space','')
+		);
 		$data='';
 		if(empty($type) && empty($day) &&empty($space)){
 			redirect(addons_url('Salon://Salon/SalonSquare',array('status'=>$status)));
@@ -240,12 +249,11 @@ class SalonController extends AddonsController{
 		}
 		$this->active2='active';
 		$end_salons=M('e_salon')->where($data)->select();
-		$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
+		$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/GetSalonWith/status/end',$param));
 		$this->end_salons=M('e_salon')->where($data)->order('id desc')->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
 		$this->active1='active';
 		$salons=M('e_salon')->where($data)->select();
-		$SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/sign'));
-		$this->salons=M('e_salon')->where($data)->order('id desc')->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
+		$SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/GetSalonWith/status/sign',$param));
 		$this->salons=M('e_salon')->where($data)->order('id desc')->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
 		$this->assign('status',$status);
 		$this->assign('EndPage',$EndPage);
