@@ -52,12 +52,14 @@ class SalonController extends AddonsController{
 		$salons_publish = M('e_salon')->where($Pdata)->count();
 		$salons_participate= M('e_salon')->where($data)->count();
 
-		$this->PublishPage = \LfPageData::Page($salons_publish,addons_url('Salon://Salon/MySalon/status/sign'));
-		$this->ParticipatePage = \LfPageData::Page($salons_participate,addons_url('Salon://Salon/MySalon/status/end'));
+		$PublishPage = \LfPageData::Page($salons_publish,addons_url('Salon://Salon/MySalon/status/sign'));
+		$ParticipatePage = \LfPageData::Page($salons_participate,addons_url('Salon://Salon/MySalon/status/end'));
 
 		$salons_publish = M('e_salon')->where($data)->limit($salons_publish['offset'],$salons_publish['perpagenum'])->select();
 		$salons_participate= M('e_salon')->where($Pdata)->limit($salons_participate['offset'],$salons_participate['perpagenum'])->select();
 		$user = M('e_user')->where('id=' . session('user_id'))->find();
+		$this->assign('PublishPage',$PublishPage);
+		$this->assign('ParticipatePage',$ParticipatePage);
 		$this->assign('user',$user);
 		$this->assign('type',I('type',''));
 		$this->assign('salon_status',I('salon_status',''));
@@ -233,14 +235,16 @@ class SalonController extends AddonsController{
 			$this->active2='active';
 			$end_salons=M('e_salon')->where($data)->select();
 			echo '1111111111';
-			$this->EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
+			$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
 			$this->end_salons=M('e_salon')->where($data)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
 		}else{
 			$this->active1='active';
 			$salons=M('e_salon')->where($data)->select();
-			$this->SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/sign'));
+			$SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/sign'));
 			$this->salons=M('e_salon')->where($data)->limit($salons['offset'],$salons['perpagenum'])->select();
 		}
+		$this->assign('EndPage',$EndPage);
+		$this->assign('SignPage',$SignPage);
 		echo $user->getLastSql();
 		$this->assign('url','Salon://Salon/CheckSalon');
 		$this->assign('type',I('type',''));
