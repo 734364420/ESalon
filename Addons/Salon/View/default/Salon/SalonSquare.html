@@ -13,8 +13,14 @@
             <option value="互联网+">互联网+</option>
             <option value="">全部</option>
         </select>
-
-        <select name="space" class="flex-1 last">
+        <select name="day" class="flex-1">
+            <option value="">活动时间</option>
+            <option value="0">今天</option>
+            <option value="3">三天内</option>
+            <option value="7">一周内</option>
+            <option value="0">全部</option>
+        </select>
+        <select name="space" class="flex-1">
             <option value="">活动地点</option>
             <option value="清水河">清水河</option>
             <option value="沙河">沙河</option>
@@ -25,21 +31,31 @@
     </div>
 </form>
 
-<select name="day" class="flex-1 hidden select-left">
-    <option value="">活动时间</option>
-    <option value="0">今天</option>
-    <option value="3">三天内</option>
-    <option value="7">一周内</option>
-    <option value="0">全部</option>
-</select>
-
-<select name="day" class="flex-1 hidden select-right">
-    <option value="">活动时间</option>
-    <option value="-1">昨天</option>
-    <option value="-3">过去三天内</option>
-    <option value="-7">过去一周内</option>
-    <option value="">全部</option>
-</select>
+<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" class="tab-right-form hidden">
+    <div class="flex-box select-group">
+        <select name="type" class="flex-1">
+            <option value="">沙龙类别</option>
+            <option value="物联网">物联网</option>
+            <option value="互联网+">互联网+</option>
+            <option value="">全部</option>
+        </select>
+        <select name="day" class="flex-1">
+            <option value="">活动时间</option>
+            <option value="-1">昨天</option>
+            <option value="-3">过去三天内</option>
+            <option value="-7">过去一周内</option>
+            <option value="">全部</option>
+        </select>
+        <select name="space" class="flex-1">
+            <option value="">活动地点</option>
+            <option value="清水河">清水河</option>
+            <option value="沙河">沙河</option>
+            <option value="">全部</option>
+        </select>
+        <input type="hidden" name="status" value="right">
+        <input type="submit" value="搜索">
+    </div>
+</form>
 
 <div class="container">
     <div class="list">
@@ -75,26 +91,26 @@
             $(".tab-right").removeClass("active");
             $(".tab-right-ul").addClass("hidden");
             $(".tab-left-ul").removeClass("hidden");
-            $(".select-right").remove();
-            $(".select-left").removeClass("hidden").remove().insertBefore("select.last");
+            $(".tab-right-form").addClass("hidden");
+            $(".tab-left-form").removeClass("hidden");
         }
         if($(".tab-right").hasClass("active")){
             $(".tab-left").removeClass("active");
             $(".tab-left-ul").addClass("hidden");
             $(".tab-right-ul").removeClass("hidden");
-            $(".select-left").remove();
-            $(".select-right").removeClass("hidden").remove().insertBefore("select.last");
+            $(".tab-left-form").addClass("hidden");
+            $(".tab-right-form").removeClass("hidden");
         }
     });                                                 //页面初始化时tab标签
 
     $(".tab-left").click(function () {
-        $(".select-right").remove();
-        $(".select-left").removeClass("hidden").remove().insertBefore("select.last");
+        $(".tab-right-form").addClass("hidden");
+        $(".tab-left-form").removeClass("hidden");
     });
 
     $(".tab-right").click(function () {
-        $(".select-left").remove();
-        $(".select-right").removeClass("hidden").remove().insertBefore("select.last");
+        $(".tab-left-form").addClass("hidden");
+        $(".tab-right-form").removeClass("hidden");
     });                                                 //tab标签切换两个不同的筛选选项
 </script>
 <include file="Public/e_footer"/>
