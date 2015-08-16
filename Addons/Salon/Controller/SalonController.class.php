@@ -25,20 +25,20 @@ class SalonController extends AddonsController{
 		$today = date('Y-m-d', time());
 		$data='';
 		if ($type != null) {
-			$data .= "'type = '.$type.' AND '";
+			$data .= 'type = '.$type.' AND ';
 		}
 		if (!empty($salon_status)) {
 			if ($salon_status == 1) {
-				$data .="'end_date < '.strtotime($today).' AND '";
+				$data .='end_date < \''.'strtotime($today).'\' AND ';
 			} elseif ($salon_status == 2) {
-				$data .="'end_date >= '.strtotime($today).' AND '";
+				$data .='end_date >= '.strtotime($today).' AND ';
 			}
 		}
 		if (!empty($salon_summary_status)) {
 			if ($salon_summary_status == 1) {
-				$data .="'summary = 1 AND '";
+				$data .='summary = 1 AND ';
 			} elseif ($salon_summary_status == 2) {
-				$data .="'summary = 2 AND '";
+				$data .='summary = 2 AND ';
 			}
 		}
 	}
