@@ -242,6 +242,7 @@ class SalonController extends AddonsController{
 		$salons=M('e_salon')->where($data)->select();
 		$SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/sign'));
 		$this->salons=M('e_salon')->where($data)->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
+		$this->assign('status',$status);
 		$this->assign('EndPage',$EndPage);
 		$this->assign('SignPage',$SignPage);
 		$this->assign('url','Salon://Salon/CheckSalon');
