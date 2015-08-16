@@ -57,6 +57,7 @@
     });
     uploader.on( 'uploadAccept', function( obj , data ) {
         var result = eval("(" + data + ")");
+        alert(result.path);
         $("input#photo-path").val(result.path);
     });
     uploader.on( 'uploadProgress', function( file, percentage ) {
