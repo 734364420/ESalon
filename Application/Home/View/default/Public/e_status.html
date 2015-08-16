@@ -41,7 +41,7 @@
 
 
 <!--未参加--未结束，人未满-->
-<php> if(empty($participate)&& ($iteam['end_date'] > time()) && ($iteam['participated_number'] < $iteam['participate_number']) ) {</php>
+<php> if(empty($participate) && ($iteam['end_date'] > time()) && ($iteam['participated_number'] < $iteam['participate_number']) ) {</php>
     <a href="{:addons_url($sign_url,array('e_id'=>$iteam['id']))}" class="button go-summary">报名参加</a>
 <php>}</php>
 <!--~~~~~~~-->
