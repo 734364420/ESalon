@@ -33,7 +33,7 @@
 
 	<div class="container">
 		<div class="list">
-			<ul class="tab-left-ul">
+			<ul class="tab-left-ul <?php if($status!='sign') echo 'hidden'; ?>">
 				<volist name="sign_iteams" id="iteam">
 					<include file="Public/e_list_square"/>
 				</volist>
@@ -41,7 +41,7 @@
 				<include file="Public/e_page"/>
 			</ul>
 
-			<ul class="tab-right-ul hidden">
+			<ul class="tab-right-ul <?php if($status!='sign') echo 'hidden'; ?>">
 				<volist name="end_iteams" id="iteam">
 					<include file="Public/e_list_square" />
 				</volist>
