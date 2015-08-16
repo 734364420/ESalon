@@ -9,20 +9,20 @@
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
             <option value="">沙龙类别</option>
-            <option value="物联网">物联网</option>
-            <option value="互联网+">互联网+</option>
+            <option value="物联网" {:IsSelected($type,'物联网')}>物联网</option>
+            <option value="互联网+" {:IsSelected($type,'互联网+')}>互联网+</option>
             <option value="">全部</option>
         </select>
         <select name="salon_status" class="flex-1">
             <option value="">沙龙状态</option>
-            <option value="1">已结束</option>
-            <option value="2">未结束</option>
+            <option value="1" {:IsSelected($salon_status,1)}>已结束</option>
+            <option value="2" {:IsSelected($salon_status,2)}>未结束</option>
             <option value="">全部</option>
         </select>
         <select name="salon_summary_status" class="flex-1">
             <option value="">总结状态</option>
-            <option value="1">已总结</option>
-            <option value="2">未总结</option>
+            <option value="1" {:IsSelected($salon_summary_status,1)}>已总结</option>
+            <option value="2" {:IsSelected($salon_summary_status,2)}>未总结</option>
             <option value="">全部</option>
         </select>
         <input type="submit" value="搜索">
