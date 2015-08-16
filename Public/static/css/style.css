@@ -161,10 +161,10 @@ a.button,button{
     margin-left: 20px;
 }
 .list .see{
-    width: 20px;
+    width: 18px;
     float: left;
     margin-top: 4px;
-    margin-left: 10px;
+    margin-left: 5px;
 }
 .list .amount{
     position: relative;
@@ -458,7 +458,7 @@ form.start .button{
     margin-top: 3.5px;
 }
 .detail-title img.see{
-    margin-top: 9.5px;
+    margin-top: 10px;
 }
 .detail-title .sub-title.name{
     margin-left: 20px;
