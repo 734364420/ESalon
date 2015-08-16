@@ -222,6 +222,7 @@ class SalonController extends AddonsController{
 			'day'=>I('day',''),
 			'space'=>I('space','')
 		);
+		var_dump($param);
 		$data='';
 		if(empty($type) && empty($day) &&empty($space)){
 			die();
