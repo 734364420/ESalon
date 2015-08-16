@@ -157,7 +157,7 @@ class SalonController extends AddonsController{
 	//沙龙广场
 	function SalonSquare() {
 		e_auth();
-		$user=M('e)_salon');
+		$user=M('e_salon');
 		$today=date('Y-m-d',time());
 		$map1['end_date']=array('egt',strtotime($today));
 		$salons=M('e_salon')->where($map1)->select();
