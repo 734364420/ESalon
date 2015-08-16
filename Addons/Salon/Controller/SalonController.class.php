@@ -204,10 +204,18 @@ class SalonController extends AddonsController{
 			redirect(addons_url('Salon://Salon/SalonSquare',array('status'=>$status)));
 		}
 		if ($type != null) {
-			$data .= 'type = '.$type.' AND ';
+			if(empty($space) || empty($day)){
+				$data .= 'type = '.$type.' AND ';
+			}else {
+				$data .= 'type = ' . $type;
+			}
 		}
 		if ($space != null) {
-			$data .= 'space = '.$space.' AND ';
+			if(!empty($day)){
+				$data .= 'space = '.$space.' AND ';
+		}	else {
+				$data .= 'space = ' . $space;
+			}
 		}
 		$today=date('Y-m-d',time());
 		if($day==1) {
@@ -220,6 +228,7 @@ class SalonController extends AddonsController{
 				$data .='start_date>='.(strtotime($today)+24*3600*$day).' AND start_date<='.strtotime($today);
 			}
 		}
+		$user=M('e_salon');
 		if($status=='end'){
 			$this->active2='active';
 			$end_salons=M('e_salon')->where($data)->select();
@@ -231,7 +240,7 @@ class SalonController extends AddonsController{
 			$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/sign'));
 			$this->end_salon=M('e_iteam')->where($data)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
 		}
-
+		echo $user->getLastSql();
 		$this->assign('url','Salon://Salon/CheckSalon');
 		$this->assign('type',I('type',''));
 		$this->assign('day',I('day',''));
