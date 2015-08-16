@@ -1,10 +1,10 @@
 <?php
-define('filepath', DIR_APPLICATION);
+define('filepath', __ROOT__.'Uploads');
 class LfUpload {
 	protected $allowExt = array('jpg', 'jpeg', 'doc', 'docx', 'png', 'exel', 'ppt', 'zip', 'pdf', 'rp');
 	protected $allowSize = 100; // 最大上传大小,单位为M
 	private $path;
-	private $img_r_all;
+//	private $img_r_all;
 	protected $errno = 0;
 	protected $error = array(
 		0 => '上传完成',
@@ -128,7 +128,7 @@ class LfUpload {
 		return $path;
 	}
 
-	// 获取错误的接口
+// 获取错误的接口
 	public function getErr() {
 		return $this->error[$this->errno];
 	}
