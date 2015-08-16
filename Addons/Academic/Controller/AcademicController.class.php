@@ -166,11 +166,11 @@ class AcademicController extends AddonsController{
 		    if(!empty($data['date'])) {
 			    switch($data['date']) {
 				    //今天
-				    case 0 :
+				    case 1 :
 					    $maps .= 'start_date = '.strtotime(date("Y-m-d")).$and;
 					    break;
 				    //明天
-				    case 1 :
+				    case 2 :
 					    $maps .= 'start_date = '.strtotime(date("Y-m-d",time()+1*24*3600)).$and;
 					    break;
 				    //三天后
