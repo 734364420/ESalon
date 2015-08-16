@@ -276,7 +276,8 @@ class AcademicController extends AddonsController{
     //活动总结
     function Summary() {
 	    e_auth();
-        if(IS_POST) {
+	    $isSalon = \LfRequest::inStr('isSalon');
+	    if(IS_POST) {
 	        $e_id = \LfRequest::inNum('e_id');
             $summary = M('e_summary');
             $summary->user_id = session('user_id');
@@ -303,7 +304,6 @@ class AcademicController extends AddonsController{
 	             */
 	            M('e_iteam')->where('id ='.$e_id)->save(array('summary'=>1));
 	            $url = addons_url('Academic://Academic/IteamDetail',array('id'=>$e_id));
-	            $isSalon = \LfRequest::inStr('isSalon');
 	            if($isSalon == '1') {
 		            M('e_salon')->where('id ='.$e_id)->save(array('summary'=>1));
 		            $url = addons_url('Salon://Salon/CheckSalon',array('id'=>$e_id));
@@ -317,6 +317,7 @@ class AcademicController extends AddonsController{
             $iteam = M('e_iteam')->find($id);
 	        $this->e_id = $id;
             $this->assign('iteam',$iteam);
+		    $this->assign('isSalon',$isSalon);
 	        $this->title = "活动总结";
             $this->display();
         }
