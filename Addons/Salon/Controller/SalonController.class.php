@@ -213,6 +213,11 @@ class SalonController extends AddonsController{
 		$type = \LfRequest::inStr('type');
 		$day = \LfRequest::inStr('day');
 		$space = \LfRequest::inStr('space');
+		$param = array(
+			'type'=>I('type',''),
+			'day'=>I('day',''),
+			'space'=>I('space','')
+		);
 		$data='';
 		if(empty($type) && empty($day) &&empty($space)){
 			redirect(addons_url('Salon://Salon/SalonSquare',array('status'=>$status)));
@@ -244,12 +249,8 @@ class SalonController extends AddonsController{
 		}
 		$this->active2='active';
 		$end_salons=M('e_salon')->where($data)->select();
-		$param = array(
-			'type'=>I('type',''),
-			'space'=>I('space',''),
-			'day'=>I('day','')
-		);
 		$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end',$param));
+		var_dump($EndPage);
 		$this->end_salons=M('e_salon')->where($data)->order('id desc')->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
 		$this->active1='active';
 		$salons=M('e_salon')->where($data)->select();
