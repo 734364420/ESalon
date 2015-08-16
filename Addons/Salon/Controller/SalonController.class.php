@@ -223,7 +223,7 @@ class SalonController extends AddonsController{
 			redirect(addons_url('Salon://Salon/SalonSquare',array('status'=>$status)));
 		}
 		if ($type != null) {
-			if(empty($space) || empty($day)){
+			if(!empty($space) || !empty($day)){
 				$data .= 'type = '."'".$type."'".' AND ';
 			}else {
 				$data .= 'type = '."'".$type."'";
