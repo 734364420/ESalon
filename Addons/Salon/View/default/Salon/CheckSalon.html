@@ -36,16 +36,16 @@
     $("#photos").find("img").click(function(){
         $("#wrap").append(container);
         var clone = $(this).clone();
-        $("#photo-detail").show().empty().append(clone);
         clone.css({"width":"100%","height":"100%"});
-        $("#wrap").css({"z-index":"1"});
+        $("#photo-detail").show().empty().append(clone);
+        $("#wrap").css({"z-index":"1","background-color":"rgba(0,0,0,0.6)"});
         show = true;
     });
     $("#wrap").click(function(){
         if(show){
             $("#wrap").empty();
             $("#photo-detail").hide();
-            $("#wrap").css({"z-index":"-1"});
+            $("#wrap").css({"z-index":"-1","background-color":"transparent"});
             show = false;
         }
     })
