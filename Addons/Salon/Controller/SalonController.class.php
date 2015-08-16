@@ -218,7 +218,6 @@ class SalonController extends AddonsController{
 			}
 		}
 		$today=date('Y-m-d',time());
-		var_dump(strtotime($today));
 		if($day==1) {
 			$data .='start_date >= '.strtotime($today).' AND start_date <= '.(strtotime($today)+24*3600);
 		}
@@ -233,14 +232,12 @@ class SalonController extends AddonsController{
 		if($status=='end'){
 			$this->active2='active';
 			$end_salons=M('e_salon')->where($data)->select();
-			var_dump($end_salons);
 			echo '1111111111';
 			$this->EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
 			$this->end_salons=M('e_salon')->where($data)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
 		}else{
 			$this->active1='active';
 			$salons=M('e_salon')->where($data)->select();
-			var_dump($salons);
 			$this->SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/sign'));
 			$this->salons=M('e_salon')->where($data)->limit($salons['offset'],$salons['perpagenum'])->select();
 		}
