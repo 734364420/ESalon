@@ -91,12 +91,12 @@ class FileController extends HomeController {
         }
     }
     function gugooUpload() {
-        $upload =new \LfUpload('Picture');
+        $upload =new \LfUpload('/Picture');
         $path = $upload->upload('file');
         if(!$path) {
             $return = array('status'=>0,'info'=>$upload->getErr());
         } else {
-            $return = array('status' => 1, 'info' => $path);
+            $return = array('status' => 1, 'info' => 'Uploads'.$path);
         }
         $this->ajaxReturn(json_encode($return));
     }
