@@ -313,7 +313,8 @@ class AcademicController extends AddonsController{
                 $this->error('总结失败');
             }
         } else {
-            $id = \LfRequest::inNum('id');
+            $id = \LfRequest::inNum('e_id');
+echo I('isSalon');
             $iteam = M('e_iteam')->find($id);
 	        $this->e_id = $id;
             $this->assign('iteam',$iteam);
