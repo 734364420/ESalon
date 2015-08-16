@@ -34,8 +34,11 @@ class AcademicController extends AddonsController{
 	    $this->type = I('type','');
 	    $this->date = I('date','');
 	    $this->mode = I('mode','');
-        $news = M('e_competition')->where($maps)->order('id DESC')->select();
+        $count = M('e_competition')->where($maps)->order('id DESC')->count();
+		$page = \LfPageData::Page($count,addons_url('Academic://Academic/LastNews'));
+        $news = M('e_competition')->where($maps)->limit($page['offset'],$page['perpagenum'] )->order('id DESC')->select();
         $this->assign('news',$news);
+	    $this->assign('page',$page);
 	    $this->title = "最新竞赛动态";
         $this->display();
     }
@@ -83,8 +86,13 @@ class AcademicController extends AddonsController{
 	    $in .= ')';
 	    $Pmaps = $maps.' id in '.$in.' AND publish_userid  != '.session('user_id');
 	    $maps .= ' publish_userid = '.session('user_id');
-	    $PublishIteams = M('e_iteam')->where($maps)->select();
-	    $ParticipateIteams= M('e_iteam')->where($Pmaps)->select();
+	    $PublishIteamsCount = M('e_iteam')->where($maps)->count();
+	    $ParticipateIteamsCount= M('e_iteam')->where($Pmaps)->count();
+		$PublishPage = \LfPageData::Page($PublishIteamsCount,addons_url('Academic://Academic/MyIteam/status/sign'));
+		$ParticipatePage = \LfPageData::Page($ParticipateIteamsCount,addons_url('Academic://Academic/MyIteam/status/end'));
+
+	    $PublishIteams = M('e_iteam')->where($maps)->limit($PublishPage['offset'],$PublishPage['perpagenum'])->select();
+	    $ParticipateIteams= M('e_iteam')->where($Pmaps)->limit($ParticipatePage['offset'],$ParticipatePage['perpagenum'])->select();
 	    $user = M('e_user')->find(session('user_id'));
 	    $this->assign('user',$user);
 	    $this->assign('type',I('type',''));
@@ -93,6 +101,8 @@ class AcademicController extends AddonsController{
         $this->assign('PublishIteams',$PublishIteams);
         $this->assign('ParticipateIteams',$ParticipateIteams);
         $this->assign('url','Academic://Academic/IteamDetail');
+	    $this->assign('PublishPage',$PublishPage);
+	    $this->assign('ParticipatePage',$ParticipatePage);
 	    $this->title = "我的Iteam";
 //		var_dump($run->spent());
         $this->display();
@@ -198,8 +208,14 @@ class AcademicController extends AddonsController{
 	    }
 	    $sign_maps = $maps.$sign_maps;
 	    $end_maps = $maps.$end_maps;
-	    $sign_iteams = M('e_iteam')->where($sign_maps)->select();
-	    $end_iteams = M('e_iteam')->where($end_maps)->select();
+	    $SignIteamsCount = M('e_iteam')->where($sign_maps)->count();
+	    $EndIteamCount = M('e_iteam')->where($end_maps)->count();
+		$SignPage = \LfPageData::Page($SignIteamsCount,addons_url('Academic://Academic/Square/status/sign'));
+		$EndPage = \LfPageData::Page($EndIteamCount,addons_url('Academic://Academic/Square/status/end'));
+
+
+	    $sign_iteams = M('e_iteam')->where($sign_maps)->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
+	    $end_iteams = M('e_iteam')->where($end_maps)->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
 	    $this->type = I('type','');
 	    $this->date = I('date','');
 	    $this->number = I('number','');
@@ -207,6 +223,8 @@ class AcademicController extends AddonsController{
 	    $this->assign('sign_iteams',$sign_iteams);
 	    $this->assign('end_iteams',$end_iteams);
 		$this->assign('url','Academic://Academic/IteamDetail');
+	    $this->assign('SignPage',$SignPage);
+	    $this->assign('EndPage',$EndPage);
 		$this->title = "Iteam广场";
         $this->display();
     }

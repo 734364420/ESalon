@@ -2,7 +2,7 @@
 	<span class="blue-block pull-left"></span>
 
 	<div class="pull-left titles">
-		<p class="title"><a href="{:addons_url($url,array('id'=>$iteam['id']))}">{$iteam.title}</a></p>
+		<p class="title"><a href="{:addons_url($url,array('id'=>$iteam['id']))}">{:str_cut($iteam['title'],30)}</a></p>
 		<span class="sub-title summ"><php>if($iteam['summary']==1){ echo "已总结"; } else { echo "未总结";}</php></span>
 		<img src="/Public/static/img/see.png" class="see">
 		<span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
