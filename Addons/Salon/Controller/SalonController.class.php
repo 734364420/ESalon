@@ -170,12 +170,11 @@ class SalonController extends AddonsController{
 		if(empty($status)){
 			$status='sign';
 		}
-		$today=date('Y-m-d',time());
-		$map1['end_date']=array('egt',strtotime($today));
+		$map1['end_date']=array('egt',time());
 		$salons=M('e_salon')->where($map1)->count();
 		$SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/sign'));
 		$this->salons=M('e_salon')->where($map1)->order('id desc')->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
-		$map2['end_date']=array('lt',strtotime($today));
+		$map2['end_date']=array('lt',time());
 		$end_salons=M('e_salon')->where($map2)->count();
 		$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
 		$this->end_salons=M('e_salon')->where($map2)->order('id desc')->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
