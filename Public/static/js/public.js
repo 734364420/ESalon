@@ -14,10 +14,17 @@ $(".tab-right").click(function () {
     $(".status").attr('value','end');
 });                                             //tab标签切换
 
+var reg = /^[\u4E00-\u9FA5]{2,7}$/;
 
 function checkAuthForm() {
     if ($("form.data").find("input").val() == "" || $("form.data").find("textarea").val() == "") {
         alert("请填写完整的信息！");
+        return false;
+    }
+
+    var name = $("input[name='student_name']").val();
+    if(!reg.test(name)){
+        alert("请填写正确的姓名！");
         return false;
     }
 
