@@ -63,31 +63,27 @@
     var selectLeft = '<option value=\"\">活动时间</option><option value=\"1\" {:IsSelected($day,1)}>今天</option><option value=\"3\" {:IsSelected($day,3)}>三天内</option><option value=\"7\" {:IsSelected($day,7)}>一周内</option><option value=\"\">全部</option>';
     var selectRight = '<option value=\"\">活动时间</option><option value=\"-1\" {:IsSelected($day,-1)}>昨天</option><option value=\"-3\" {:IsSelected($day,-3)}>过去三天</option><option value=\"-7\" {:IsSelected($day,-7)}>过去一周</option><option value=\"\">全部</option>';
 
-//    $(function () {
-//        if($(".tab-left").hasClass("active")){
-//            $(".tab-right").removeClass("active");
-//            $(".tab-right-ul").addClass("hidden");
-//            $(".tab-left-ul").removeClass("hidden");
-//            $(".different").empty();
-//            $(".different").append(selectLeft);
-//        }
-//        if($(".tab-right").hasClass("active")){
-//            $(".tab-left").removeClass("active");
-//            $(".tab-left-ul").addClass("hidden");
-//            $(".tab-right-ul").removeClass("hidden");
-//            $(".different").empty();
-//            $(".different").append(selectRight);
-//        }
-//    });                                                 //页面初始化时tab标签
+    $(function () {
+        if($(".tab-left").hasClass("active")){
+            $(".tab-right").removeClass("active");
+            $(".tab-right-ul").addClass("hidden");
+            $(".tab-left-ul").removeClass("hidden");
+            $(".different").empty().append(selectLeft);
+        }
+        if($(".tab-right").hasClass("active")){
+            $(".tab-left").removeClass("active");
+            $(".tab-left-ul").addClass("hidden");
+            $(".tab-right-ul").removeClass("hidden");
+            $(".different").empty().append(selectRight);
+        }
+    });                                                 //页面初始化时tab标签
 
     $(".tab-left").click(function () {
-        $(".different").empty();
-        $(".different").append(selectLeft);
+        $(".different").empty().append(selectLeft);
     });
 
     $(".tab-right").click(function () {
-        $(".different").empty();
-        $(".different").append(selectRight);
+        $(".different").empty().append(selectRight);
     });                                                 //tab标签切换两个不同的筛选选项
 </script>
 <include file="Public/e_footer"/>
