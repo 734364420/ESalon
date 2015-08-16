@@ -35,6 +35,7 @@
             <volist name="salons_publish" id="iteam">
                 <include file="Public/e_list"/>
             </volist>
+            <php>$page = $PublishPage;</php>
             <include file="Public/e_page"/>
         </ul>
 
@@ -42,6 +43,7 @@
             <volist name="salons_participate" id="iteam">
                 <include file="Public/e_list"/>
             </volist>
+            <php>$page = $ParticipatePage;</php>
             <include file="Public/e_page"/>
         </ul>
     </div>
