@@ -62,6 +62,9 @@ class SalonController extends AddonsController{
 		}
 		$user = M('e_user')->where('id=' . session('user_id'))->find();
 		$this->assign('user',$user);
+		$this->assign('type',I('type',''));
+		$this->assign('salon_status',I('salon_status',''));
+		$this->assign('salon_summary_status',I('salon_summary_status',''));
 		$this->salons_participate = $salons_participate;
 		$this->salons_publish = $salons_publish;
 		$this->assign('title','我的E沙龙');
