@@ -66,7 +66,7 @@ class AcademicController extends AddonsController{
 		    $data['iteam_status'] = \LfRequest::inStr('iteam_status');
 		    $data['summary_status'] = \LfRequest::inStr('summary_status');
 		    if(!empty($data['type'])) {
-			    $maps .= '  type = '.$data['type'].' AND ';
+			    $maps .= '  type = '."'".$data['type']."'".' AND ';
 		    }
 		    if($data['iteam_status'] == 0 && $data['iteam_status'] != '' ) {
 			    $maps .= '  end_date > '.strtotime(date("Y-m-d")).' AND ';
@@ -92,6 +92,8 @@ class AcademicController extends AddonsController{
 		$ParticipatePage = \LfPageData::Page($ParticipateIteamsCount,addons_url('Academic://Academic/MyIteam/status/end'));
 		$PublishIteams = M('e_iteam')->where($maps)->limit($PublishPage['offset'],$PublishPage['perpagenum'])->select();
 		$ParticipateIteams= M('e_iteam')->where($Pmaps)->limit($ParticipatePage['offset'],$ParticipatePage['perpagenum'])->select();
+	    $status = I('status','sign');
+	    $this->assign('status',$status);
 	    $user = M('e_user')->find(session('user_id'));
 	    $this->assign('user',$user);
 	    $this->assign('type',I('type',''));
@@ -170,7 +172,7 @@ class AcademicController extends AddonsController{
 		    $data['number'] = \LfRequest::inStr('number');
 		    $maps = '';
 		    if(!empty($data['type'])) {
-				$maps .= 'type = '.$data['type'].$and;
+				$maps .= 'type = '."'".$data['type']."'".$and;
 		    }
 		    if(!empty($data['date'])) {
 			    switch($data['date']) {
@@ -215,10 +217,11 @@ class AcademicController extends AddonsController{
 
 	    $sign_iteams = M('e_iteam')->where($sign_maps)->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
 	    $end_iteams = M('e_iteam')->where($end_maps)->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
+	    $status = I('status','sign');
+	    $this->assign('status',$status);
 	    $this->type = I('type','');
 	    $this->date = I('date','');
 	    $this->number = I('number','');
-	    $this->status = \LfRequest::inStr('status')?\LfRequest::inStr('status'):'sign';
 	    $this->assign('sign_iteams',$sign_iteams);
 	    $this->assign('end_iteams',$end_iteams);
 		$this->assign('url','Academic://Academic/IteamDetail');

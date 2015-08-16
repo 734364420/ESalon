@@ -1,8 +1,8 @@
 <include file="Public/e_header"/>
 <body>
 <div class="flex-box salon-type">
-    <a href="javacript:;" class="flex-1 center tab-left active">我发起的iteam</a>
-    <a href="javacript:;" class="flex-1 center tab-right">我报名的iteam</a>
+    <a href="javacript:;" class="flex-1 center tab-left {:IsActive($status,'sign')}">我发起的iteam</a>
+    <a href="javacript:;" class="flex-1 center tab-right {:IsActive($status,'end')}">我报名的iteam</a>
 </div>
 
 
@@ -39,14 +39,16 @@
             <volist name="PublishIteams" id="iteam">
 			<include file="Public/e_list" />
             </volist>
-            <include file="Public/e_page" page="{$PublishPage}"/>
+	        <php>$page = $PublishPage;</php>
+            <include file="Public/e_page"/>
         </ul>
 
         <ul class="tab-right-ul hidden">
             <volist name="ParticipateIteams" id="iteam">
 	            <include file="Public/e_list" />
             </volist>
-            <include file="Public/e_page" page="{$ParticipatePage}"/>
+	        <php>$page = $ParticipatePage;</php>
+	        <include file="Public/e_page"/>
         </ul>
     </div>
 </div>
