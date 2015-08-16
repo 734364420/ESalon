@@ -558,6 +558,15 @@ ul.detail-list span{
 ul.detail-list li img.active{
     background-color: yellow;
 }
+ul.detail-list #photos{
+    clear: both;
+    overflow: hidden;
+    margin-left: 31px;
+}
+ul.detail-list #photos img{
+    width: 33%;
+    margin-right: 2px;
+}
 a.go-summary{
     margin: 10px auto;
 }
