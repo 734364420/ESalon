@@ -53,9 +53,7 @@ class SalonController extends AddonsController{
 		$in .= ')';
 		$Pdata = $data .' id in '.$in.' AND publish_userid  != '.session('user_id');
 		$data = $data.' publish_userid = '.session('user_id');
-		$user=M('e_salon');
 		$salons_publish = M('e_salon')->where($data)->select();
-		echo $user->getLastSql();
 		$salons_participate= M('e_salon')->where($Pdata)->count();
 
 		$PublishPage = \LfPageData::Page($salons_publish,addons_url('Salon://Salon/MySalon/status/sign'));

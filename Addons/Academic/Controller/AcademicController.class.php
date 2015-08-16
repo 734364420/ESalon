@@ -120,6 +120,7 @@ class AcademicController extends AddonsController{
 	    $this->assign('participate_users',$participate_users);
         $this->assign('iteam',$iteam);
 		$this->assign('sign_url','Academic://Academic/SignIteam');
+	    $this->assign('isSalon','0');
 		$this->title = "Iteam详情";
         $this->display();
     }
@@ -284,7 +285,12 @@ class AcademicController extends AddonsController{
 	             * 暂定为有一人总结则该iteam为已总结
 	             */
 	            M('e_iteam')->where('id ='.$e_id)->save(array('summary'=>1));
-	            $this->success('总结成功',addons_url('Academic://Academic/IteamDetail',array('id'=>$e_id)));
+	            $url = addons_url('Academic://Academic/IteamDetail',array('id'=>$e_id));
+	            $isSalon = \LfRequest::inStr('isSalon');
+	            if($isSalon == '1') {
+		            $url = addons_url('Salon://Salon/CheckSalon',array('id'=>$e_id));
+	            }
+	            $this->success('总结成功',$url);
             } else {
                 $this->error('总结失败');
             }
