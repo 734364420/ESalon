@@ -18,7 +18,6 @@ class SalonController extends AddonsController{
 //		$run = new \LfRunTime();
 //		$run->star();
 		$status=\LfRequest::inStr('status');
-		var_dump($status);
 		if(empty($status)){
 			$status='sign';
 		}
