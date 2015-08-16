@@ -171,7 +171,7 @@ class SalonController extends AddonsController{
 		var_dump($end_salons);
 		echo $user->getLastSql();
 		$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/CheckSalon',array('status'=>'end')));
-		$this->end_salons=M('e_iteam')->where($map2)->limit($end_salons['perpagenum'],$end_salons['offset'])->select();
+		$this->end_salons=M('e_iteam')->limit($end_salons['perpagenum'],$end_salons['offset'])->where($map2)->select();
 		var_dump($this->salons);
 		$status=\LfRequest::inStr('status');
 		if($status=='right'){
