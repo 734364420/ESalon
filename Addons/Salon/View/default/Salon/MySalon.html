@@ -25,6 +25,7 @@
             <option value="2" {:IsSelected($salon_summary_status,2)}>未总结</option>
             <option value="">全部</option>
         </select>
+        <input type="hidden" name="status" value="{$status}" class="status">
         <input type="submit" value="搜索">
     </div>
 </form>
@@ -61,18 +62,18 @@
         }
     });                                                  //已参与人数进度条
 
-//    $(function () {
-//        if($(".tab-left").hasClass("active")){
-//            $(".tab-right").removeClass("active");
-//            $(".tab-right-ul").addClass("hidden");
-//            $(".tab-left-ul").removeClass("hidden");
-//        }
-//        if($(".tab-right").hasClass("active")){
-//            $(".tab-left").removeClass("active");
-//            $(".tab-left-ul").addClass("hidden");
-//            $(".tab-right-ul").removeClass("hidden");
-//        }
-//    });                                                 //页面初始化时tab标签
+    $(function () {
+        if($(".tab-left").hasClass("active")){
+            $(".tab-right").removeClass("active");
+            $(".tab-right-ul").addClass("hidden");
+            $(".tab-left-ul").removeClass("hidden");
+        }
+        if($(".tab-right").hasClass("active")){
+            $(".tab-left").removeClass("active");
+            $(".tab-left-ul").addClass("hidden");
+            $(".tab-right-ul").removeClass("hidden");
+        }
+    });                                                 //页面初始化时tab标签
 
 </script>
 <include file="Public/e_footer"/>

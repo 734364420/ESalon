@@ -216,16 +216,16 @@ class SalonController extends AddonsController{
 		}
 		if ($type != null) {
 			if(empty($space) || empty($day)){
-				$data .= 'type = '.$type.' AND ';
+				$data .= 'type = '."'".$type."'".' AND ';
 			}else {
-				$data .= 'type = ' . $type;
+				$data .= 'type = '."'".$type."'";
 			}
 		}
 		if ($space != null) {
 			if(!empty($day)){
-				$data .= 'space = '.$space.' AND ';
+				$data .= 'space = '."'".$space."'".' AND ';
 		}	else {
-				$data .= 'space = ' . $space;
+				$data .= 'space = '."'".$space."'";
 			}
 		}
 		$today=date('Y-m-d',time());
