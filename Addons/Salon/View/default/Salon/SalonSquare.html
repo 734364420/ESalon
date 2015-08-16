@@ -1,8 +1,8 @@
 <include file="Public/e_header"/>
 <body>
 <div class="flex-box salon-type">
-    <a href="javascript:;" class="flex-1 center tab-left {$active1}">可报名的的E沙龙</a>
-    <a href="javascript:;" class="flex-1 center tab-right {$active2}">已结束的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center tab-left {:IsActive($status,'sign')}">可报名的的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center tab-right {:IsActive($status,'end')}">已结束的E沙龙</a>
 </div>
 
 <form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post">
