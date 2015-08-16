@@ -45,7 +45,7 @@
 
         swf: "/Public/static/webuploader/Uploader.swf",
 
-        server: "http://weixin.eagerfor.com/index.php?s=/home/File/uploadPicture/s/1",
+        server: "http://weixin.eagerfor.com/index.php?s=/home/File/e_upload",
 
         pick: '#filePicker',
 
@@ -56,9 +56,15 @@
         }
     });
     uploader.on( 'uploadAccept', function( obj , data ) {
-        var result = eval("(" + data + ")");
-        alert(result.path);
-        $("input#photo-path").val(result.path);
+        var result = eval("("+data+")");
+        if(result.status == 1){
+            alert(result.info);
+            $("input#photo-path").val(result.path);
+        }
+        else {
+            alert("上传失败！");
+        }
+
     });
     uploader.on( 'uploadProgress', function( file, percentage ) {
         $(".webuploader-pick").text("上传中...");
