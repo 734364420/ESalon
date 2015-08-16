@@ -29,7 +29,7 @@ class SalonController extends AddonsController{
 		}
 		if (!empty($salon_status)) {
 			if ($salon_status == 1) {
-				$data .='end_date < \''.'strtotime($today).'\' AND ';
+				$data .='end_date < '.strtotime($today).' AND ';
 			} elseif ($salon_status == 2) {
 				$data .='end_date >= '.strtotime($today).' AND ';
 			}
