@@ -162,6 +162,9 @@ class SalonController extends AddonsController{
 	function SalonSquare() {
 		e_auth();
 		$status=\LfRequest::inStr('status');
+		if(!empty($status)){
+			$status='sign';
+		}
 		$today=date('Y-m-d',time());
 		$map1['end_date']=array('egt',strtotime($today));
 		$salons=M('e_salon')->where($map1)->count();
