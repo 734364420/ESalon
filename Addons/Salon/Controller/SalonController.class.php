@@ -139,8 +139,6 @@ class SalonController extends AddonsController{
 		$data['e_id']=$id;
 		$participated_number=M('e_salon')->where('id='.$id)->getField('participated_number');
 		$participate_number=M('e_salon')->where('id='.$id)->getField('participate_number');
-		var_dump($participated_number.'----'.$participate_number);
-		die();
 		if($participated_number == $participate_number){
 			$this->error('人数已满，稍后再试');
 		}else{
