@@ -202,11 +202,13 @@ a.button,button{
     float: left;
     padding: 0 3px;
     border-bottom: none;
-    font-size: 13px;
     height: 30px;
-    color: #333;
 }
-.list ul.page li.active{
+.list ul.page li a{
+    color: #333;
+    font-size: 13px;
+}
+.list ul.page li.active a{
     color: lightblue;
     text-decoration: underline;
 }
