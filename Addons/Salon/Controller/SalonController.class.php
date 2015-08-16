@@ -160,10 +160,10 @@ class SalonController extends AddonsController{
 		$user=M('e_salon');
 		$today=date('Y-m-d',time());
 		$map1['end_date']=array('egt',strtotime($today));
-		$salons=M('e_salon')->where($map1)->select();
+		$salons=M('e_salon')->where($map1)->count();
 		var_dump($salons);
 		echo $user->getLastSql();
-		$salons=\LfPageData::Page(count($salons),addons_url('Salon://Salon/CheckSalon'),array('status'=>'start'));
+		$salons=\LfPageData::Page($salons,addons_url('Salon://Salon/CheckSalon'),array('status'=>'start'));
 		$this->salons=M('e_iteam')->where($map1)->limit($salons['perpagenum'],$salons['offset'])->select();
 		echo $user->getLastSql();
 		$map2['end_date']=array('lt',strtotime($today));
