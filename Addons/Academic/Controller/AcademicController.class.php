@@ -168,6 +168,9 @@ class AcademicController extends AddonsController
 			$iteam->title = $title;
 			$iteam->start_date = strtotime(\LfRequest::inStr('start_date'));
 			$iteam->end_date = strtotime(\LfRequest::inStr('end_date'));
+			if($iteam->start_date == $iteam->end_date) {
+				$this->error("比赛开始时间和结束时间不能为同一天");
+			}
 			$iteam->participate_number = \LfRequest::inStr('participate_number');
 			$iteam->type = \LfRequest::inStr('type');
 			$iteam->brief = \LfRequest::inStr('brief');
