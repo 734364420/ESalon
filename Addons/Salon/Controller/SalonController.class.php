@@ -211,13 +211,13 @@ class SalonController extends AddonsController{
 		}
 		$today=date('Y-m-d',time());
 		if($day==1) {
-			$data .='start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600).' AND ';
+			$data .='start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600);
 		}
 		if (!empty($day) && $day!=1) {
 			if($day>=0){
-				$data .='start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600*$day).' AND ';
+				$data .='start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600*$day);
 			}else{
-				$data .='start_date>='.(strtotime($today)+24*3600*$day).' AND start_date<='.strtotime($today).' AND ';
+				$data .='start_date>='.(strtotime($today)+24*3600*$day).' AND start_date<='.strtotime($today);
 			}
 		}
 		if($status=='end'){
