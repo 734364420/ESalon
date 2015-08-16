@@ -42,6 +42,7 @@ class SalonController extends AddonsController{
 		}
 	}
 		$data['publish_userid']=session('user_id');
+		var_dump($participattions);
 		$in='(0';
 		foreach($participattions as $v) {
 			$in .= ','.$v['e_id'];
@@ -49,14 +50,16 @@ class SalonController extends AddonsController{
 		$in .= ')';
 		$Pdata = $data.' id in '.$in.' AND publish_userid  != '.session('user_id');
 		$data .= ' publish_userid = '.session('user_id');
-		$salons_publish = M('e_iteam')->where($data)->count();
-		$salons_participate= M('e_iteam')->where($Pdata)->count();
+		$user=M('e_salon');
+		$salons_publish = M('e_salon')->where($data)->select();
+		echo $user->getLastSql();
+		$salons_participate= M('e_salon')->where($Pdata)->count();
 
 		$salons_publish = \LfPageData::Page($salons_publish,addons_url('Salon://Salon/MySalon/status/sign'));
 		$salons_participate = \LfPageData::Page($salons_participate,addons_url('Salon://Salon/MySalon/status/end'));
 
-		$salons_publish = M('e_iteam')->where($data)->limit($salons_publish['offset'],$salons_publish['perpagenum'])->select();
-		$salons_participate= M('e_iteam')->where($Pdata)->limit($salons_participate['offset'],$salons_participate['perpagenum'])->select();
+		$salons_publish = M('e_salon')->where($data)->limit($salons_publish['offset'],$salons_publish['perpagenum'])->select();
+		$salons_participate= M('e_salon')->where($Pdata)->limit($salons_participate['offset'],$salons_participate['perpagenum'])->select();
 		$user = M('e_user')->where('id=' . session('user_id'))->find();
 		$this->assign('user',$user);
 		$this->assign('type',I('type',''));
@@ -157,21 +160,14 @@ class SalonController extends AddonsController{
 	//沙龙广场
 	function SalonSquare() {
 		e_auth();
-		$user=M('e_salon');
 		$today=date('Y-m-d',time());
 		$map1['end_date']=array('egt',strtotime($today));
 		$salons=M('e_salon')->where($map1)->count();
-		var_dump($salons);
-		echo $user->getLastSql();
-		$salons=\LfPageData::Page($salons,addons_url('Salon://Salon/CheckSalon'),array('status'=>'start'));
+		$salons=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/start'));
 		$this->salons=M('e_salon')->where($map1)->limit($salons['offset'],$salons['perpagenum'])->select();
-		var_dump($salons);
-		echo $user->getLastSql();
 		$map2['end_date']=array('lt',strtotime($today));
 		$end_salons=M('e_salon')->where($map2)->count();
-		var_dump($end_salons);
-		echo $user->getLastSql();
-		$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/CheckSalon',array('status'=>'end')));
+		$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
 		$this->end_salons=M('e_salon')->where($map2)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
 		$status=\LfRequest::inStr('status');
 		if($status=='right'){
@@ -230,14 +226,12 @@ class SalonController extends AddonsController{
 		if($status=='end'){
 			$this->active2='active';
 			$end_salons=M('e_salon')->where($data)->select();
-			$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/CheckSalon/status/end'));
+			$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
 			$this->end_salon=M('e_iteam')->where($data)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
 		}else{
 			$this->active1='active';
-			$user=M('e_salon');
 			$end_salons=M('e_salon')->where($data)->select();
-			echo $user->getLastSql();
-			$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/CheckSalon/status/sign'));
+			$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/sign'));
 			$this->end_salon=M('e_iteam')->where($data)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
 		}
 
