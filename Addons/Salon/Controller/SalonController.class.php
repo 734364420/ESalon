@@ -234,7 +234,6 @@ class SalonController extends AddonsController{
 				$this->end_salons=M('e_salon')->where($data)->select();
 			}
 		}
-		var_dump($status);
 		if($status=='end'){
 			$this->active2='active';
 		}else{
