@@ -22,7 +22,7 @@ class AcademicController extends AddonsController{
 				$maps .= ' type = '.$type.$and;
 		    }
 		    if($date != '' && $date ==0) {
-			    $maps .= ' date < '.time().$and;
+			    $maps .= ' date < '.strtotime(date("Y-m-d")).$and;
 		    }
 		    if(!empty($date)) {
 			    $maps .= time().' < date < '.strtotime($date).$and;
