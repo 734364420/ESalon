@@ -159,9 +159,13 @@ class SalonController extends AddonsController{
 		e_auth();
 		$today=date('Y-m-d',time());
 		$map1['end_date']=array('egt',strtotime($today));
-		$salons=M('e_salon')->where($map1)->select();
+		$salons=M('e_salon')->where($map1)->count();
+		$salons=\LfPageData::Page($salons,addons_url('Salon://Salon/CheckSalon/status/end'));
+		$this->salon=M('e_iteam')->where($map1)->limit($salons['offset'],$salons['perpagenum'])->select();
 		$map2['end_date']=array('lt',strtotime($today));
-		$end_salons=M('e_salon')->where($map2)->select();
+		$end_salons=M('e_salon')->where($map2)->count();
+		$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/CheckSalon/status/end'));
+		$this->end_salons=M('e_iteam')->where($map2)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
 		$this->salons = $salons;
 		$this->end_salons = $end_salons;
 		$status=\LfRequest::inStr('status');
@@ -197,33 +201,40 @@ class SalonController extends AddonsController{
 		$type = \LfRequest::inStr('type');
 		$day = \LfRequest::inStr('day');
 		$space = \LfRequest::inStr('space');
+		$data='';
 		if(empty($type) && empty($day) &&empty($space)){
 			redirect(addons_url('Salon://Salon/SalonSquare',array('status'=>$status)));
 		}
 		if ($type != null) {
-			$data['type'] = $type;
+			$data .= 'type = '.$type.' AND ';
 		}
 		if ($space != null) {
-			$data['space'] = $space;
+			$data .= 'space = '.$space.' AND ';
 		}
 		$today=date('Y-m-d',time());
 		if($day==1) {
-			$this->salons=M('e_salon')->where('start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600))->select();
+			$data .='start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600).' AND ';
 		}
 		if (!empty($day) && $day!=1) {
 			if($day>=0){
-				$this->salons=M('e_salon')->where('start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600*$day))->select();
+				$data .='start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600*$day).' AND ';
 			}else{
-				$data['start_date']=array('egt',strtotime($today)+3600*$day);
-				$data['start_date']=array('elt',strtotime($today));
-				$this->end_salons=M('e_salon')->where('start_date>='.(strtotime($today)+24*3600*$day).' AND start_date<='.strtotime($today))->select();
+				$data .='start_date>='.(strtotime($today)+24*3600*$day).' AND start_date<='.strtotime($today).' AND ';
 			}
 		}
 		if($status=='end'){
 			$this->active2='active';
+			$end_salons=M('e_salon')->where($data)->select();
+			$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/CheckSalon/status/end'));
+			$this->end_salon=M('e_iteam')->where($data)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
 		}else{
 			$this->active1='active';
+			$this->salon=M('e_salon')->where($data)->select();
+			$salons=M('e_salon')->where($data)->select();
+			$salons=\LfPageData::Page($salons,addons_url('Salon://Salon/CheckSalon/status/sign'));
+			$this->end_salon=M('e_iteam')->where($data)->limit($salons['offset'],$salons['perpagenum'])->select();
 		}
+
 		$this->assign('url','Salon://Salon/CheckSalon');
 		$this->assign('type',I('type',''));
 		$this->assign('day',I('day',''));
