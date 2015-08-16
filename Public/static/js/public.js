@@ -90,6 +90,7 @@ function checkContactForm() {
         alert("请填写你的意见！");
         return false;
     }
+    return checkForbiddenString($("form textarea").val());
 }                                                //联系我们页面表单验证
 
 
@@ -127,3 +128,22 @@ $(function(){
     }
     $("ul.page").css({"width":width});
 });                                             //分页ul宽度
+
+
+var forbiddenArray =['xx','<','>','黄色'];
+function checkForbiddenString(str){
+    var re = '';
+
+    for(var i=0;i<forbiddenArray.length;i++){
+        if(i==forbiddenArray.length-1)
+            re+=forbiddenArray[i];
+        else
+            re+=forbiddenArray[i]+"|";
+    }
+
+    var pattern = new RegExp(re,"g");
+
+    if(pattern.test(str)){
+        return false;
+    }
+}
