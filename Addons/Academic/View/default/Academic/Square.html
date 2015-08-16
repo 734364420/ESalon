@@ -15,11 +15,8 @@
 				<option value="物联网" {:IsSelected($type,'物联网')}>物联网</option>
 				<option value="互联网+" {:IsSelected($type,'互联网+')}>互联网+</option>
 			</select>
-			<select name="date" class="flex-1">
-				<option value="">比赛时间</option>
-				<option value="{:date('Y-m-d',time())}" {:IsSelected($date,date('Y-m-d',time()))}>今天</option>
-				<option value="{:date('Y-m-d',time()+1*24*3600)}" {:IsSelected($date,date('Y-m-d',time()+1*24*3600))}>明天</option>
-				<option value="{:date('Y-m-d',time()+3*24*3600)}" {:IsSelected($date,date('Y-m-d',time()+3*24*3600))}>三天后</option>
+			<select name="date" class="flex-1 different">
+				
 			</select>
 			<select name="number" class="flex-1">
 				<option value="">参与人数</option>
@@ -28,10 +25,11 @@
 				<php> } </php>
 				<option value="">全部</option>
 			</select>
-			<input type="hidden" name="status" value="" id="status"/>
+			<input type="hidden" name="status" value="" class="status"/>
 			<input type="submit" value="搜索"/>
 		</div>
 	</form>
+
 
 	<div class="container">
 		<div class="list">
@@ -62,22 +60,35 @@
 		}
 	});                                                  //已参与人数进度条
 
+	var selectLeft = '<option value=\"\">比赛时间</option><option value=\"{:date(\'Y-m-d\',time())}\" {:IsSelected($date,date(\'Y-m-d\',time()))}>今天</option><option value=\"{:date(\'Y-m-d\',time()+1*24*3600)}\" {:IsSelected($date,date(\'Y-m-d\',time()+1*24*3600))}>明天</option><option value=\"{:date(\'Y-m-d\',time()+3*24*3600)}\" {:IsSelected($date,date(\'Y-m-d\',time()+3*24*3600))}>三天后</option><option value=\"\">全部</option>';
+	var selectRight = '<option value=\"\">比赛时间</option><option value=\"{:date(\'Y-m-d\',time()-1*24*3600)}\">昨天</option><option value=\"{:date(\'Y-m-d\',time()-3*24*3600)}\">过去三天内</option><option value=\"{:date(\'Y-m-d\',time()-7*24*3600)}\">过去一周内</option><option value=\"\">全部</option>';
+
 	$(function () {
 		if($(".tab-left").hasClass("active")){
 			$(".tab-right").removeClass("active");
 			$(".tab-right-ul").addClass("hidden");
 			$(".tab-left-ul").removeClass("hidden");
-			$(".tab-right-form").addClass("hidden");
-			$(".tab-left-form").removeClass("hidden");
+			$(".different").empty();
+			$(".different").append(selectLeft);
 		}
 		if($(".tab-right").hasClass("active")){
 			$(".tab-left").removeClass("active");
 			$(".tab-left-ul").addClass("hidden");
 			$(".tab-right-ul").removeClass("hidden");
-			$(".tab-left-form").addClass("hidden");
-			$(".tab-right-form").removeClass("hidden");
+			$(".different").empty();
+			$(".different").append(selectRight);
 		}
 	});                                                 //页面初始化时tab标签
+
+	$(".tab-left").click(function () {
+		$(".different").empty();
+		$(".different").append(selectLeft);
+	});
+
+	$(".tab-right").click(function () {
+		$(".different").empty();
+		$(".different").append(selectRight);
+	});
 
 </script>
 

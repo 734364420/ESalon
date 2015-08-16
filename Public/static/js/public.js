@@ -5,6 +5,7 @@ $(".tab-left").click(function () {
     $(".tab-left-ul").removeClass("hidden");
     $(".tab-right-form").addClass("hidden");
     $(".tab-left-form").removeClass("hidden");
+    $(".status").attr('value','sign');
 });
 
 $(".tab-right").click(function () {
@@ -14,6 +15,7 @@ $(".tab-right").click(function () {
     $(".tab-right-ul").removeClass("hidden");
     $(".tab-left-form").addClass("hidden");
     $(".tab-right-form").removeClass("hidden");
+    $(".status").attr('value','end');
 });                                             //tab标签切换
 
 
