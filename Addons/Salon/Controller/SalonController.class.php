@@ -221,7 +221,7 @@ class SalonController extends AddonsController{
 		}
 		if (!empty($day) && $day!=1) {
 			if($day>=0){
-				$this->salons=M('e_salon')->where(where('start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600*$day)))->select();
+				$this->salons=M('e_salon')->where('start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600*$day))->select();
 			}else{
 				$data['start_date']=array('egt',strtotime($today)+3600*$day);
 				$data['start_date']=array('elt',strtotime($today));
