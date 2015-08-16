@@ -1,8 +1,8 @@
 <include file="Public/e_header"/>
 <body>
 <div class="flex-box salon-type">
-    <a href="javascript:;" class="flex-1 center tab-left active">我发起的E沙龙</a>
-    <a href="javascript:;" class="flex-1 center tab-right">我报名的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center tab-left {:IsActive($status,'sign')}"">我发起的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center tab-right {:IsActive($status,'end')}"">我报名的E沙龙</a>
 </div>
 <include file="Public/e_userprofile"/>
 <form method="post">
