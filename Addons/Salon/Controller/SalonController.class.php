@@ -9,6 +9,7 @@ class SalonController extends AddonsController{
 	}
 
 	function  Instruction() {
+		$this->assign('title','教你玩转E沙龙');
 		$this->display();
 	}
 	//我的沙龙
