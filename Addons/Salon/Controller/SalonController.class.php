@@ -236,7 +236,7 @@ class SalonController extends AddonsController{
 			$this->active1='active';
 			$user=M('e_salon');
 			$end_salons=M('e_salon')->where($data)->select();
-			$user->getLastSql();
+			echo $user->getLastSql();
 			$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/CheckSalon/status/sign'));
 			$this->end_salon=M('e_iteam')->where($data)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
 		}
