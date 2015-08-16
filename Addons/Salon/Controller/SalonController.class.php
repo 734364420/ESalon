@@ -160,16 +160,19 @@ class SalonController extends AddonsController{
 		$user=M('e_salon');
 		$today=date('Y-m-d',time());
 		$map1['end_date']=array('egt',strtotime($today));
-		$salons=M('e_salon')->where($map1)->select();
+		$salons=M('e_salon')->where($map1)->count();
+		var_dump($salons);
 		echo $user->getLastSql();
-		$salons=\LfPageData::Page(count($salons),addons_url('Salon://Salon/CheckSalon/status/end'));
-		$this->salon=M('e_iteam')->where($map1)->limit($salons['offset'],$salons['perpagenum'])->select();
+		$salons=\LfPageData::Page($salons,addons_url('Salon://Salon/CheckSalon'),array('status'=>'start'));
+		$this->salons=M('e_salon')->where($map1)->select();
+		var_dump($salons);
 		echo $user->getLastSql();
 		$map2['end_date']=array('lt',strtotime($today));
 		$end_salons=M('e_salon')->where($map2)->count();
+		var_dump($end_salons);
 		echo $user->getLastSql();
-		$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/CheckSalon/status/end'));
-		$this->end_salons=M('e_iteam')->where($map2)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
+		$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/CheckSalon',array('status'=>'end')));
+		$this->end_salons=M('e_salon')->limit($end_salons['perpagenum'],$end_salons['offset'])->where($map2)->select();
 		$status=\LfRequest::inStr('status');
 		if($status=='right'){
 			$this->active2='active';
