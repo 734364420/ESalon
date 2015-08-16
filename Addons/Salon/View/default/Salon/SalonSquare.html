@@ -56,8 +56,8 @@
         }
     });                                                  //已参与人数进度条
 
-    var selectLeft = '<option value=\"\">活动时间</option><option value=\"0\" <php>IsSelected($day,0)</php>>今天</option><option value=\"3\" {:IsSelected($day,3)}>三天内</option><option value=\"7\" {:IsSelected($day,7)}>一周内</option><option value=\"\">全部</option><input type="hidden" value="" name="status">';
-    var selectRight = '<option value=\"\">活动时间</option><option value=\"-1\" {:IsSelected($day,-1)}>昨天</option><option value=\"-3\" {:IsSelected($day,-3)}>过去三天</option><option value=\"-7\" {:IsSelected($day,-7)}>过去一周</option><option value=\"\">全部</option><input type="hidden" value="right" name="status">';
+    var selectLeft = '<option value=\"\">活动时间</option><option value=\"0\" <php>IsSelected($day,0)</php>>今天</option><option value=\"3\" {:IsSelected($day,3)}>三天内</option><option value=\"7\" {:IsSelected($day,7)}>一周内</option><option value=\"\">全部</option>';
+    var selectRight = '<option value=\"\">活动时间</option><option value=\"-1\" {:IsSelected($day,-1)}>昨天</option><option value=\"-3\" {:IsSelected($day,-3)}>过去三天</option><option value=\"-7\" {:IsSelected($day,-7)}>过去一周</option><option value=\"\">全部</option>';
 
     $(function () {
         if($(".tab-left").hasClass("active")){
