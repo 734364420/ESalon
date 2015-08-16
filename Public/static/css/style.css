@@ -573,6 +573,16 @@ ul.detail-list #photos img{
 a.go-summary{
     margin: 10px auto;
 }
+#photo-detail{
+    position: absolute;
+    width: 80%;
+    height: 45%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    margin: auto;
+}
 
 
 /*联系页*/
