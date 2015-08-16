@@ -25,7 +25,7 @@ class SalonController extends AddonsController{
 		$today = date('Y-m-d', time());
 		$data='';
 		if ($type != null) {
-			$data .= 'type = '.$type.' AND ';
+			$data .= 'type = '."'".$type."'".' AND ';
 		}
 		if (!empty($salon_status)) {
 			if ($salon_status == 1) {
@@ -55,8 +55,8 @@ class SalonController extends AddonsController{
 		$PublishPage = \LfPageData::Page($salons_publish,addons_url('Salon://Salon/MySalon/status/sign'));
 		$ParticipatePage = \LfPageData::Page($salons_participate,addons_url('Salon://Salon/MySalon/status/end'));
 
-		$salons_publish = M('e_salon')->where($data)->limit($salons_publish['offset'],$salons_publish['perpagenum'])->select();
-		$salons_participate= M('e_salon')->where($Pdata)->limit($salons_participate['offset'],$salons_participate['perpagenum'])->select();
+		$salons_publish = M('e_salon')->where($Pdata)->limit($PublishPage['offset'],$PublishPage['perpagenum'])->select();
+		$salons_participate= M('e_salon')->where($data)->limit($ParticipatePage['offset'],$ParticipatePage['perpagenum'])->select();
 		$user = M('e_user')->where('id=' . session('user_id'))->find();
 		$this->assign('PublishPage',$PublishPage);
 		$this->assign('ParticipatePage',$ParticipatePage);
@@ -236,12 +236,12 @@ class SalonController extends AddonsController{
 			$end_salons=M('e_salon')->where($data)->select();
 			echo '1111111111';
 			$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
-			$this->end_salons=M('e_salon')->where($data)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
+			$this->end_salons=M('e_salon')->where($data)->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
 		}else{
 			$this->active1='active';
 			$salons=M('e_salon')->where($data)->select();
 			$SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/sign'));
-			$this->salons=M('e_salon')->where($data)->limit($salons['offset'],$salons['perpagenum'])->select();
+			$this->salons=M('e_salon')->where($data)->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
 		}
 		$this->assign('EndPage',$EndPage);
 		$this->assign('SignPage',$SignPage);
