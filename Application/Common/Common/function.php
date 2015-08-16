@@ -2312,8 +2312,10 @@ function short_url($long_url) {
 function e_auth() {
 	$user = M('e_user')->where(array('openid'=>get_openid()))->find();
 	if(!in_array($user['id'],array(27,28,29,30))) {
-		echo "系统正在内部测试中";
-		die();
+		get_instance()->error("系统正在内部测试中");
+	}
+	if(!LfRequest::isMobile()) {
+		get_instance()->error("请使用微信访问该页面");
 	}
 	if(empty($user)) {
 		redirect(addons_url('Auth://Auth/Auth'));
