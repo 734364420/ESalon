@@ -162,7 +162,7 @@ class SalonController extends AddonsController{
 	function SalonSquare() {
 		e_auth();
 		$status=\LfRequest::inStr('status');
-		if(!empty($status)){
+		if(empty($status)){
 			$status='sign';
 		}
 		$today=date('Y-m-d',time());
