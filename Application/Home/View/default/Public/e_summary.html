@@ -47,4 +47,18 @@
 		<php> } </php>
 	</volist>
 </li>
+<php>
+	$summary_pic = M('e_summary')->where('e_id ='.$iteam['id'])->select();
+	if(!empty($summary_pic)) {
+</php>
+<li>
+	<img src="/Public/static/img/photo.png" class="comment">
+	<span class="label">活动照片：</span>
+	<div id="photos">
+		<volist name="summary_pic" id="sum">
+			<img src="{$sum.picture}">
+		</volist>
+	</div>
+</li>
+<php>}</php>
 <php>}</php>
