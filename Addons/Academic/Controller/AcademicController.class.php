@@ -40,6 +40,7 @@ class AcademicController extends AddonsController{
 			    $maps .= ' mode = '.($mode-1).$and;
 		    }
 	    }
+	    $maps .= 'id != 0';
 	    $this->type = I('type','');
 	    $this->date = I('date','');
 	    $this->mode = I('mode','');
