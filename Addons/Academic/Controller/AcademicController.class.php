@@ -305,6 +305,7 @@ class AcademicController extends AddonsController{
 	            $url = addons_url('Academic://Academic/IteamDetail',array('id'=>$e_id));
 	            $isSalon = \LfRequest::inStr('isSalon');
 	            if($isSalon == '1') {
+		            M('e_salon')->where('id ='.$e_id)->save(array('summary'=>1));
 		            $url = addons_url('Salon://Salon/CheckSalon',array('id'=>$e_id));
 	            }
 	            $this->success('总结成功',$url);
