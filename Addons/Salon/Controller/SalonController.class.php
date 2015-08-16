@@ -222,7 +222,7 @@ class SalonController extends AddonsController{
 			$data['start_date']=array('elt',strtotime($today)+24*3600);
 			$user=M('e_salon');
 			$this->salons=M('e_salon')->where($data)->select();
-			$user->getLastSql();
+			echo $user->getLastSql();
 		}
 		if (!empty($day) && $day!=1) {
 			if($day>=0){

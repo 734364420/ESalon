@@ -482,6 +482,9 @@ ul.detail-list li img.site{
     margin-left: 3px;
     margin-right: 6px;
 }
+ul.detail-list li img.class{
+    width: 21px;
+}
 ul.detail-list li img.user{
     width: 21px;
 }
