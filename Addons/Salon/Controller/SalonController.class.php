@@ -205,7 +205,6 @@ class SalonController extends AddonsController{
 		$status=\LfRequest::inStr('status');
 		$type = \LfRequest::inStr('type');
 		$day = \LfRequest::inStr('day');
-		var_dump($day);
 		$space = \LfRequest::inStr('space');
 		if(empty($type) && empty($day) &&empty($space)){
 			redirect(addons_url('Salon://Salon/SalonSquare',array('status'=>$status)));
@@ -218,21 +217,15 @@ class SalonController extends AddonsController{
 		}
 		$today=date('Y-m-d',time());
 		if($day==1) {
-			$data['start_date']=array('egt',strtotime($today));
-			$data['start_date']=array('elt',strtotime($today)+3600);
-			$user=M('e_salon');
-			$this->salons=M('e_salon')->where($data)->select();
-			$user->getLastSql();
+			$this->salons=M('e_salon')->where('start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600))->select();
 		}
 		if (!empty($day) && $day!=1) {
 			if($day>=0){
-				$data['start_date']=array('egt',strtotime($today));
-				$data['start_date']=array('elt',strtotime($today)+3600*$day);
-				$this->salons=M('e_salon')->where($data)->select();
+				$this->salons=M('e_salon')->where('start_date>='.strtotime($today).' AND start_date<='.(strtotime($today)+24*3600*$day))->select();
 			}else{
 				$data['start_date']=array('egt',strtotime($today)+3600*$day);
 				$data['start_date']=array('elt',strtotime($today));
-				$this->end_salons=M('e_salon')->where($data)->select();
+				$this->end_salons=M('e_salon')->where('start_date>='.(strtotime($today)+24*3600*$day).' AND start_date<='.strtotime($today))->select();
 			}
 		}
 		if($status=='end'){
@@ -240,11 +233,11 @@ class SalonController extends AddonsController{
 		}else{
 			$this->active1='active';
 		}
+		$this->assign('url','Salon://Salon/CheckSalon');
 		$this->assign('type',I('type',''));
 		$this->assign('day',I('day',''));
 		$this->assign('space',I('space',''));
 		$this->assign('title','查询结果');
-		var_dump($this->assign());
 		$this->display('Salon/SalonSquare');
 	}
 
