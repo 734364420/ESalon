@@ -162,15 +162,21 @@ class SalonController extends AddonsController{
 	function SalonSquare() {
 		e_auth();
 		$status=\LfRequest::inStr('status');
+		if(!empty($status)){
+			$status='sign';
+		}
 		$today=date('Y-m-d',time());
 		$map1['end_date']=array('egt',strtotime($today));
 		$salons=M('e_salon')->where($map1)->count();
-		$salons=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/start'));
-		$this->salons=M('e_salon')->where($map1)->limit($salons['offset'],$salons['perpagenum'])->select();
+		$SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/sign'));
+		$this->salons=M('e_salon')->where($map1)->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
 		$map2['end_date']=array('lt',strtotime($today));
 		$end_salons=M('e_salon')->where($map2)->count();
-		$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
-		$this->end_salons=M('e_salon')->where($map2)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
+		$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
+		$this->end_salons=M('e_salon')->where($map2)->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
+		$this->assign('status',$status);
+		$this->assign('EndPage',$EndPage);
+		$this->assign('SignPage',$SignPage);
 		$this->assign('status',$status);
 		$this->assign('title','E沙龙广场');
 		$this->assign('url','Salon://Salon/CheckSalon');
