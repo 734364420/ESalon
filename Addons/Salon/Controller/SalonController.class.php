@@ -205,7 +205,6 @@ class SalonController extends AddonsController{
 		$status=\LfRequest::inStr('status');
 		$type = \LfRequest::inStr('type');
 		$day = \LfRequest::inStr('day');
-		var_dump($day);
 		$space = \LfRequest::inStr('space');
 		if(empty($type) && empty($day) &&empty($space)){
 			redirect(addons_url('Salon://Salon/SalonSquare',array('status'=>$status)));
@@ -244,7 +243,6 @@ class SalonController extends AddonsController{
 		$this->assign('day',I('day',''));
 		$this->assign('space',I('space',''));
 		$this->assign('title','查询结果');
-		var_dump($this->assign());
 		$this->display('Salon/SalonSquare');
 	}
 
