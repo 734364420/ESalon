@@ -37,8 +37,7 @@
     var show = false;
     $("#photos").find("img").click(function(){
         if(!show){
-            var cloned = $(this).clone(true);
-            $("#photo-detail").show().empty().append(cloned);
+            $("#photo-detail").show().empty().append($(this).clone(true));
             $(this).css({"width":"100%","height":"100%"});
             show = true;
         }
