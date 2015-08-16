@@ -250,7 +250,7 @@ class SalonController extends AddonsController{
 		$this->active2='active';
 		$user=M('e_salon');
 		$end_salons=M('e_salon')->where($data)->select();
-		$user->getLastSql();
+		echo $user->getLastSql();
 		$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/GetSalonWith/status/end',$param));
 		$this->end_salons=M('e_salon')->where($data)->order('id desc')->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
 		$this->active1='active';
