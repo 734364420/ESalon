@@ -28,7 +28,7 @@
 		<php>
 			$summary = M('e_summary')->where('e_id ='.$iteam['id'].' AND user_id = '.$s['user_id'])->find();
 			$e_user = M('e_user')->find($s['user_id']);
-			if(!empty($summary)&&($s['user_id']!=$user['user_id'])) {
+			if(!empty($summary)&&($s['user_id']!=$iteam['publish_userid'])) {
 		</php>
 		<div class="comment-group">
 			<p class="pull-left name">{$e_user.student_name}：</p>
