@@ -95,6 +95,7 @@ class SalonController extends AddonsController{
 		$this->summaries_users=$summaries_users;
 		$this->summaries=$summaries;
 		$this->participate_users=$participate_users;
+		$this->assign('isSalon',1);
 		$this->assign('sign_url','Salon://Salon/ParticipateSalon');
 		$this->assign('title','沙龙活动详情');
 		$this->display();
