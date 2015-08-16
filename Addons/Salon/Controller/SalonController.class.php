@@ -241,9 +241,9 @@ class SalonController extends AddonsController{
 		}
 		if (!empty($day) && $day!=1) {
 			if($day>=0){
-				$data .='start_date >= '.strtotime($today).' AND start_date <= '.(strtotime($today)+24*3600*$day);
+				$data .='start_date >= '.strtotime($today).' AND start_date <= '.(strtotime($today)+24*3600*$day).' AND end_date >= '.time();
 			}else{
-				$data .='start_date >= '.(strtotime($today)+24*3600*$day).' AND start_date <= '.strtotime($today);
+				$data .='start_date >= '.(strtotime($today)+24*3600*$day).' AND start_date <= '.strtotime($today).' AND end_date <'.time();
 			}
 		}
 		$this->active2='active';
