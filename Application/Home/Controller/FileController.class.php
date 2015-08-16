@@ -95,8 +95,9 @@ class FileController extends HomeController {
         $path = $upload->upload('file');
         if(!$path) {
             $return = array('status'=>0,'info'=>$upload->getErr());
+        } else {
+            $return = array('status' => 1, 'info' => $path);
         }
-        $return = array('status'=>1,'info'=>$path);
         $this->ajaxReturn(json_encode($return));
     }
 }
