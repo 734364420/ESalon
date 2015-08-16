@@ -75,22 +75,22 @@
 						'<option value=\"-7\" {:IsSelected($date,-7)}>过去一周</option>' +
 						'<option value=\"\">全部</option>';
 
-	$(function () {
-		if($(".tab-left").hasClass("active")){
-			$(".tab-right").removeClass("active");
-			$(".tab-right-ul").addClass("hidden");
-			$(".tab-left-ul").removeClass("hidden");
-			$(".different").empty();
-			$(".different").append(selectLeft);
-		}
-		if($(".tab-right").hasClass("active")){
-			$(".tab-left").removeClass("active");
-			$(".tab-left-ul").addClass("hidden");
-			$(".tab-right-ul").removeClass("hidden");
-			$(".different").empty();
-			$(".different").append(selectRight);
-		}
-	});                                                 //页面初始化时tab标签
+//	$(function () {
+//		if($(".tab-left").hasClass("active")){
+//			$(".tab-right").removeClass("active");
+//			$(".tab-right-ul").addClass("hidden");
+//			$(".tab-left-ul").removeClass("hidden");
+//			$(".different").empty();
+//			$(".different").append(selectLeft);
+//		}
+//		if($(".tab-right").hasClass("active")){
+//			$(".tab-left").removeClass("active");
+//			$(".tab-left-ul").addClass("hidden");
+//			$(".tab-right-ul").removeClass("hidden");
+//			$(".different").empty();
+//			$(".different").append(selectRight);
+//		}
+//	});                                                 //页面初始化时tab标签
 
 	$(".tab-left").click(function () {
 		$(".different").empty();
