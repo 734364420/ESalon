@@ -136,6 +136,7 @@ class AcademicController extends AddonsController{
                  */
 	            $this->assign('iteams',$iteams);
 	            $this->display('Academic/ExistIteam');
+	            exit();
             }
             $iteam = M('e_iteam');
             $iteam->title = $title;
