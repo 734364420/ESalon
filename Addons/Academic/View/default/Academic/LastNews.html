@@ -4,20 +4,20 @@
 <div class="flex-box select-group">
     <select name="type" class="flex-1">
         <option value="">竞赛类别</option>
-	    <option value="物联网" {:IsSelected($type,'')}>物联网</option>
-	    <option value="互联网+" {:IsSelected($type,'')}>互联网+</option>
+	    <option value="物联网" {:IsSelected($type,'物联网')}>物联网</option>
+	    <option value="互联网+" {:IsSelected($type,'互联网+')}>互联网+</option>
 	    <option value="">全部</option>
     </select>
     <select name="date" class="flex-1">
         <option value="">比赛时间</option>
-        <option value="0" {:IsSelected($type,'')}>已结束</option>
-        <option value="{:date('Y-m-d',time()+1*24*3600)}" {:IsSelected($date,date('Y-m-d',time()+1*24*3600))}>明天</option>
-	    <option value="{:date('Y-m-d',time()+3*24*3600)}" {:IsSelected($date,date('Y-m-d',time()+3*24*3600))}>三天后</option>
+        <option value="1" {:IsSelected($type,1)}>已结束</option>
+        <option value="2" {:IsSelected($date,2)}>明天</option>
+	    <option value="3" {:IsSelected($date,3)}>三天后</option>
 	    <option value="">全部</option>
     </select>
     <select name="mode" class="flex-1">
         <option value="">参赛方式</option>
-        <option value="0" {:IsSelected($mode,0)}>个人</option>
+        <option value="0" {:IsSelected($mode,'0')}>个人</option>
         <option value="1" {:IsSelected($mode,1)}>团队</option>
         <option value="">全部</option>
     </select>
