@@ -203,11 +203,15 @@ class SalonController extends AddonsController{
 		if(empty($type) && empty($day) &&empty($space)){
 			redirect(addons_url('Salon://Salon/SalonSquare',array('status'=>$status)));
 		}
-		if ($type != null) {
+		if ($type != null && empty($space) && empty($day)) {
 			$data .= 'type = '.$type.' AND ';
+		}else{
+			$data .= 'type = '.$type;
 		}
-		if ($space != null) {
+		if ($space != null && empty($day)) {
 			$data .= 'space = '.$space.' AND ';
+		}else{
+			$data .= 'space = '.$space;
 		}
 		$today=date('Y-m-d',time());
 		if($day==1) {
