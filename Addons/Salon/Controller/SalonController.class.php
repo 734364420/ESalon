@@ -246,10 +246,8 @@ class SalonController extends AddonsController{
 				$data .='start_date >= '.(strtotime($today)+24*3600*$day).' AND start_date <= '.strtotime($today).' AND end_date <'.time();
 			}
 		}
-		$user=M('e_salon');
 		$map2 = $data.' AND end_date < '.time();
 		$end_salons=M('e_salon')->where($map2)->select();
-		echo $user->getLastSql();
 		$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/GetSalonWith/status/end',$param));
 		$this->end_salons=M('e_salon')->where($map2)->order('id desc')->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
 		$map1 = $data.' AND end_date >= '.time();
