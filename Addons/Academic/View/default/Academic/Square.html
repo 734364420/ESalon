@@ -21,6 +21,15 @@
 				<option value="{:date('Y-m-d',time()+1*24*3600)}" {:IsSelected($date,date('Y-m-d',time()+1*24*3600))}>明天</option>
 				<option value="{:date('Y-m-d',time()+3*24*3600)}" {:IsSelected($date,date('Y-m-d',time()+3*24*3600))}>三天后</option>
 			</select>
+
+			<select name="date" class="flex-1 ">
+				<option value="">活动时间</option>
+				<option value="{:date('Y-m-d',time()-1*24*3600)}">昨天</option>
+				<option value="{:date('Y-m-d',time()-3*24*3600)}">过去三天内</option>
+				<option value="{:date('Y-m-d',time()-7*24*3600)}">过去一周内</option>
+				<option value="">全部</option>
+			</select>
+
 			<select name="number" class="flex-1">
 				<option value="">参与人数</option>
 				<php> for($i=2;$i<7;$i++) { </php>
@@ -28,10 +37,11 @@
 				<php> } </php>
 				<option value="">全部</option>
 			</select>
-			<input type="hidden" name="status" value="" id="status"/>
+			<input type="hidden" name="status" value="" class="status"/>
 			<input type="submit" value="搜索"/>
 		</div>
 	</form>
+
 
 	<div class="container">
 		<div class="list">
