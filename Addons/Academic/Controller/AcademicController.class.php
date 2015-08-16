@@ -91,8 +91,8 @@ class AcademicController extends AddonsController{
 		$PublishPage = \LfPageData::Page($PublishIteamsCount,addons_url('Academic://Academic/MyIteam/status/sign'));
 		$ParticipatePage = \LfPageData::Page($ParticipateIteamsCount,addons_url('Academic://Academic/MyIteam/status/end'));
 
-	    $PublishIteams = M('e_iteam')->where($maps)->limit($PublishPage['offset'],$PublishPage['perpagenum'])->select();
-	    $ParticipateIteams= M('e_iteam')->where($Pmaps)->limit($ParticipatePage['offset'],$ParticipatePage['perpagenum'])->select();
+		$PublishIteams = M('e_iteam')->where($maps)->limit($PublishPage['offset'],$PublishPage['perpagenum'])->select();
+		$ParticipateIteams= M('e_iteam')->where($Pmaps)->limit($ParticipatePage['offset'],$ParticipatePage['perpagenum'])->select();
 	    $user = M('e_user')->find(session('user_id'));
 	    $this->assign('user',$user);
 	    $this->assign('type',I('type',''));
