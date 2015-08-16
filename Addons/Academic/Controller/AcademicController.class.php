@@ -41,7 +41,6 @@ class AcademicController extends AddonsController{
 		    }
 	    }
 	    $maps .= 'id != 0';
-		var_dump($maps);
 	    $this->type = I('type','');
 	    $this->date = I('date','');
 	    $this->mode = I('mode','');
@@ -240,6 +239,7 @@ class AcademicController extends AddonsController{
 		$EndPage = \LfPageData::Page($EndIteamCount,addons_url('Academic://Academic/Square/status/end',$param));
 
 
+	    var_dump($sign_maps);
 	    $sign_iteams = M('e_iteam')->where($sign_maps)->limit($SignPage['offset'],$SignPage['perpagenum'])->order('id DESC')->select();
 	    $end_iteams = M('e_iteam')->where($end_maps)->limit($EndPage['offset'],$EndPage['perpagenum'])->order('id DESC')->select();
 	    $status = I('status','sign');
