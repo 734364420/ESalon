@@ -17,6 +17,9 @@ class SalonController extends AddonsController{
 //		$run = new \LfRunTime();
 //		$run->star();
 		$status=\LfRequest::inStr('status');
+		if(empty($status)){
+			$status='sign';
+		}
 		$this->assign('url','Salon://Salon/CheckSalon');
 		$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
 	if(IS_POST) {
