@@ -17,7 +17,7 @@ class AcademicController extends AddonsController{
 		    $maps = '';
 		    $type = \LfRequest::inStr('type');
 		    $date = \LfRequest::inStr('date');
-		    $mode = \LfRequest::inStr('mode');
+		    $mode = \LfRequest::inStr('mode')-1;
 		    if(!empty($type)) {
 				$maps .= ' type = '.$type.$and;
 		    }
@@ -25,10 +25,13 @@ class AcademicController extends AddonsController{
 			    case 1 :
 				    $maps .= ' date < '.strtotime(date("Y-m-d")).$and;
 					break;
-			    case 2:
-				    $maps .= ' date = '.strtotime(date("Y-m-d",time()+24*3600)).$and;
-				    break;
+			    case 2 :
+				    $maps .= strtotime(date("Y-m-d")).' =< date  =< '.strtotime(date("Y-m-d")+24*3600).$and;
+					break;
 			    case 3:
+				    $maps .= strtotime(date("Y-m-d")+24*3600). ' =<  date =< '.strtotime(date("Y-m-d",time()+2*24*3600)).$and;
+				    break;
+			    case 4:
 				    $maps .= ' date >= '.strtotime(date("Y-m-d",time()+3*24*3600)).$and;
 		    }
 		    if(!empty($mode)) {
@@ -37,7 +40,7 @@ class AcademicController extends AddonsController{
 	    }
 	    $this->type = I('type','');
 	    $this->date = I('date','');
-	    $this->mode = I('mode','');
+	    $this->mode = I('mode','')-1;
         $count = M('e_competition')->where($maps)->order('id DESC')->count();
 		$page = \LfPageData::Page($count,addons_url('Academic://Academic/LastNews'));
         $news = M('e_competition')->where($maps)->limit($page['offset'],$page['perpagenum'] )->order('id DESC')->select();
