@@ -60,6 +60,9 @@ class SalonController extends AddonsController{
 				}
 			}
 		}
+		$perpagenum = 15;
+		$url = site_url("Lost/filter");
+		$page = $this->lfpagedata->page($totalnum, $perpagenum, $url);
 		$user = M('e_user')->where('id=' . session('user_id'))->find();
 		$this->assign('user',$user);
 		$this->assign('type',I('type',''));
@@ -165,12 +168,6 @@ class SalonController extends AddonsController{
 		$salons=M('e_salon')->where($map1)->select();
 		$map2['end_date']=array('lt',strtotime($today));
 		$end_salons=M('e_salon')->where($map2)->select();
-		for($i=0;$i<count($salons);$i++) {
-			$salons[$i]['username'] = M('e_user')->where('id=' . $salons[$i]['publish_userid'])->getField('student_name');
-		}
-		for($i=0;$i<count($end_salons);$i++){
-			$end_salons[$i]['username'] = M('e_user')->where('id=' . $end_salons[$i]['publish_userid'])->getField('student_name');
-		}
 		$this->salons = $salons;
 		$this->end_salons = $end_salons;
 		$status=\LfRequest::inStr('status');

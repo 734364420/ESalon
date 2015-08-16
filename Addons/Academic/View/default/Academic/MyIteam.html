@@ -18,16 +18,17 @@
         </select>
         <select name="iteam_status" class="flex-1">
             <option value="">比赛状态</option>
-            <option value="0" {:IsSelected($iteam_status,0)}>未结束</option>
+            <option value="0" {:IsSelected($iteam_status,'0')}>未结束</option>
             <option value="1" {:IsSelected($iteam_status,1)}>已结束</option>
             <option value="">全部</option>
         </select>
         <select name="summary_status" class="flex-1">
             <option value="">总结状态</option>
-            <option value="0" {:IsSelected($summary_status,0)}>未总结</option>
+            <option value="0" {:IsSelected($summary_status,'0')}>未总结</option>
             <option value="1" {:IsSelected($summary_status,1)}>已总结</option>
             <option value="">全部</option>
         </select>
+	    <input type="hidden" name="status" class="status" value=""/>
         <input type="submit" value="搜索"/>
     </div>
 </form>

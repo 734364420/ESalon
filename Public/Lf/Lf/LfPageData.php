@@ -1,6 +1,6 @@
 <?php
 class LfPageData {
-	static function Page($totalnum, $perpagenum, $url) {
+	static function Page($totalnum,$url,$perpagenum=10) {
 		$page = new LfPage;
 		$page->totalnum = $totalnum;
 		$page->perpagenum = $perpagenum;
