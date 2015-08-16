@@ -2312,7 +2312,7 @@ function short_url($long_url) {
 function e_auth() {
 	$user = M('e_user')->where(array('openid'=>get_openid()))->find();
 	if(!in_array($user['id'],array(27,28,29,30))) {
-		$this->error("系统正在内部测试中");
+		die("系统正在内部测试中");
 	}
 	if(empty($user)) {
 		redirect(addons_url('Auth://Auth/Auth'));
