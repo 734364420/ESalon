@@ -224,6 +224,9 @@ a.button,button{
 .compe.list .see{
     margin-top: 6px;
 }
+.detail-list.square .sub-title{
+    margin-top: 5px;
+}
 
 
 /*说明页*/
