@@ -66,7 +66,7 @@ class AcademicController extends AddonsController{
 		    $data['iteam_status'] = \LfRequest::inStr('iteam_status');
 		    $data['summary_status'] = \LfRequest::inStr('summary_status');
 		    if(!empty($data['type'])) {
-			    $maps .= '  type = '.$data['type'].' AND ';
+			    $maps .= '  type = '."'".$data['type']."'".' AND ';
 		    }
 		    if($data['iteam_status'] == 0 && $data['iteam_status'] != '' ) {
 			    $maps .= '  end_date > '.strtotime(date("Y-m-d")).' AND ';
@@ -170,7 +170,7 @@ class AcademicController extends AddonsController{
 		    $data['number'] = \LfRequest::inStr('number');
 		    $maps = '';
 		    if(!empty($data['type'])) {
-				$maps .= 'type = '.$data['type'].$and;
+				$maps .= 'type = '."'".$data['type']."'".$and;
 		    }
 		    if(!empty($data['date'])) {
 			    switch($data['date']) {
