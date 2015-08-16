@@ -216,14 +216,14 @@ class SalonController extends AddonsController{
 			$data['space'] = $space;
 		}
 		$today=date('Y-m-d',time());
-		if($day==''&&$day!=0) {
+		if($day==1) {
 			$data['start_date']=array('egt',strtotime($today));
 			$data['start_date']=array('elt',strtotime($today)+3600);
 			$user=M('e_salon');
 			$this->salons=M('e_salon')->where($data)->select();
 			$user->getLastSql();
 		}
-		if (!empty($day)) {
+		if (!empty($day)&&$day!=1) {
 			if($day>=0){
 				$data['start_date']=array('egt',strtotime($today));
 				$data['start_date']=array('elt',strtotime($today)+3600*$day);
