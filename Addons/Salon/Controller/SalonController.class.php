@@ -38,7 +38,7 @@ class SalonController extends AddonsController{
 			if ($salon_summary_status == 1) {
 				$data .='summary = 1 AND ';
 			} elseif ($salon_summary_status == 2) {
-				$data .='summary = 2 AND ';
+				$data .='summary = 0 AND ';
 			}
 		}
 	}
