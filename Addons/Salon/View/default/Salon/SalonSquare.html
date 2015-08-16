@@ -5,12 +5,12 @@
     <a href="javascript:;" class="flex-1 center tab-right {$active2}">已结束的E沙龙</a>
 </div>
 
-<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post" class="tab-left-form">
+<form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post">
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
             <option value="">沙龙类别</option>
-            <option value="物联网">物联网</option>
-            <option value="互联网+">互联网+</option>
+            <option value="物联网" {:IsSelected($type,'物联网')}>物联网</option>
+            <option value="互联网+" {:IsSelected($type,'互联网+')}>互联网+</option>
             <option value="">全部</option>
         </select>
         <select name="day" class="flex-1 different">
@@ -18,11 +18,11 @@
         </select>
         <select name="space" class="flex-1">
             <option value="">活动地点</option>
-            <option value="清水河">清水河</option>
-            <option value="沙河">沙河</option>
+            <option value="清水河" {:IsSelected($space,'清水河')}>清水河</option>
+            <option value="沙河" {:IsSelected($space,'沙河')}>沙河</option>
             <option value="">全部</option>
         </select>
-        <input type="hidden" name="status" value="">
+        <input type="hidden" name="status" value="" class="status">
         <input type="submit" value="搜索">
     </div>
 </form>
@@ -56,8 +56,8 @@
         }
     });                                                  //已参与人数进度条
 
-    var selectLeft = '<option value=\"\">活动时间</option><option value=\"0\">今天</option><option value=\"3\">三天内</option><option value=\"7\">一周内</option><option value=\"0\">全部</option>';
-    var selectRight = '<option value=\"\">活动时间</option><option value=\"-1\">昨天</option><option value=\"-3\">过去三天内</option><option value=\"-7\">过去一周内</option><option value=\"\">全部</option>';
+    var selectLeft = '<option value=\"\">活动时间</option><option value=\"0\" <php>IsSelected($day,0)</php>>今天</option><option value=\"3\" {:IsSelected($day,3)}>三天内</option><option value=\"7\" {:IsSelected($day,7)}>一周内</option><option value=\"\">全部</option>';
+    var selectRight = '<option value=\"\">活动时间</option><option value=\"-1\" {:IsSelected($day,-1)}>昨天</option><option value=\"-3\" {:IsSelected($day,-3)}>过去三天</option><option value=\"-7\" {:IsSelected($day,-7)}>过去一周</option><option value=\"\">全部</option>';
 
     $(function () {
         if($(".tab-left").hasClass("active")){
