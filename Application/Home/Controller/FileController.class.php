@@ -90,7 +90,7 @@ class FileController extends HomeController {
             $this->ajaxReturn($return);
         }
     }
-    function gugooUpload() {
+    public function e_upload() {
         $upload =new \LfUpload('Picture');
         $path = $upload->upload('file');
         if(!$path) {
