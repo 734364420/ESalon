@@ -2315,10 +2315,10 @@ function e_auth() {
 //		echo "系统正在内部测试中";
 //		die();
 //	}
-	if(!LfRequest::isMobile()) {
-		echo "请使用微信访问该页面";
-		die();
-	}
+//	if(!LfRequest::isMobile()) {
+//		echo "请使用微信访问该页面";
+//		die();
+//	}
 	if(empty($user)) {
 		redirect(addons_url('Auth://Auth/Auth'));
 	} else {
