@@ -17,52 +17,45 @@ class SalonController extends AddonsController{
 //		$run = new \LfRunTime();
 //		$run->star();
 		$this->assign('url','Salon://Salon/CheckSalon');
-		if(IS_POST){
-			$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
-			$type=\LfRequest::inStr('type');
-			$salon_status=\LfRequest::inNum('salon_status');
-			$salon_summary_status=\LfRequest::inNum('salon_summary_status');
-			$today = date('Y-m-d',time());
-			if($type != null) {
-				$data['type'] = $type;
-			}
-			if(!empty($salon_status)){
-				if($salon_status == 1){
-					$data['end_date']=array('lt',strtotime($today));
-				}elseif($salon_status == 2){
-					$data['end_date']=array('egt',strtotime($today));
-				}
-			}
-			if(!empty($salon_summary_status)) {
-				if ($salon_summary_status == 1) {
-					$data['summary'] = 1;
-				} elseif ($salon_summary_status == 2) {
-					$data['summary'] = 0;
-				}
-			}
-			$data['publish_userid']=session('user_id');
-			$salons_publish = M('e_salon')->where($data)->select();
-			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
-				$result= M('e_salon')->where('id='.$participattions[$i]['e_id'].' AND publish_userid!='.session('user_id'))->find();
-				if($result){
-					$salons_participate[$j]=$result;
-					$j++;
-				}
-			}
-		}else {
-			$salons_publish = M('e_salon')->where('publish_userid=' . session('user_id'))->select();
-			$participattions = M('e_participate')->where('user_id=' . session('user_id'))->select();
-			for ($i = 0,$j = 0; $i < count($participattions); $i++) {
-				$result= M('e_salon')->where('id='.$participattions[$i]['e_id'].' AND publish_userid!='.session('user_id'))->find();
-				if($result){
-					$salons_participate[$j]=$result;
-					$j++;
-				}
+		$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
+	if(IS_POST){
+		$type=\LfRequest::inStr('type');
+		$salon_status=\LfRequest::inNum('salon_status');
+		$salon_summary_status=\LfRequest::inNum('salon_summary_status');
+		$today = date('Y-m-d',time());
+		if($type != null) {
+			$data['type'] = $type;
+		}
+		if(!empty($salon_status)){
+			if($salon_status == 1){
+				$data['end_date']=array('lt',strtotime($today));
+			}elseif($salon_status == 2){
+				$data['end_date']=array('egt',strtotime($today));
 			}
 		}
-		$perpagenum = 15;
-		$url = site_url("Lost/filter");
-		$page = $this->lfpagedata->page($totalnum, $perpagenum, $url);
+		if(!empty($salon_summary_status)) {
+			if ($salon_summary_status == 1) {
+				$data['summary'] = 1;
+			} elseif ($salon_summary_status == 2) {
+				$data['summary'] = 0;
+			}
+		}
+		$data['publish_userid']=session('user_id');
+		$in='(0';
+		foreach($participattions as $v) {
+			$in .= ','.$v['e_id'];
+		}
+		$in .= ')';
+		$Pdata = $data.' id in '.$in.' AND publish_userid  != '.session('user_id');
+		$data .= ' publish_userid = '.session('user_id');
+		$salons_publish = M('e_iteam')->where($data)->count();
+		$salons_participate= M('e_iteam')->where($Pdata)->count();
+
+		$salons_publish = \LfPageData::Page($salons_publish,addons_url('Salon://Salon/MySalon/status/sign'));
+		$salons_participate = \LfPageData::Page($salons_participate,addons_url('Salon://Salon/MySalon/status/end'));
+
+		$salons_publish = M('e_iteam')->where($data)->limit($salons_publish['offset'],$salons_publish['perpagenum'])->select();
+		$salons_participate= M('e_iteam')->where($Pdata)->limit($salons_participate['offset'],$salons_participate['perpagenum'])->select();
 		$user = M('e_user')->where('id=' . session('user_id'))->find();
 		$this->assign('user',$user);
 		$this->assign('type',I('type',''));
