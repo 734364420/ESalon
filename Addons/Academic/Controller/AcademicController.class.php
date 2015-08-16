@@ -316,7 +316,12 @@ class AcademicController extends AddonsController
 			}
 			$summary->stars = \LfRequest::inNum('stars');
 			$summary->comment = \LfRequest::inStr('comment');
-			$summary->picture = \LfRequest::inStr('picture');
+			$upload =new \LfUpload('/Picture');
+			$path = $upload->upload('file');
+			if(!$path) {
+				$this->error($upload->getErr());
+			}
+			$summary->picture = $path;
 			$res = $summary->add();
 			if ($res) {
 				/*
