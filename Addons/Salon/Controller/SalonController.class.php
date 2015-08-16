@@ -233,12 +233,12 @@ class SalonController extends AddonsController{
 			$this->active2='active';
 			$end_salons=M('e_salon')->where($data)->select();
 			$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
-			$this->end_salon=M('e_iteam')->where($data)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
+			$this->end_salon=M('e_salon')->where($data)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
 		}else{
 			$this->active1='active';
 			$end_salons=M('e_salon')->where($data)->select();
 			$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/sign'));
-			$this->end_salon=M('e_iteam')->where($data)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
+			$this->end_salon=M('e_salon')->where($data)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
 		}
 		echo $user->getLastSql();
 		$this->assign('url','Salon://Salon/CheckSalon');
