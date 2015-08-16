@@ -321,7 +321,7 @@ class AcademicController extends AddonsController
 			if(!$path) {
 				$this->error($upload->getErr());
 			}
-			$summary->picture = $path;
+			$summary->picture = '/Uploads'.$path;
 			$res = $summary->add();
 			if ($res) {
 				/*
