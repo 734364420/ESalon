@@ -162,6 +162,7 @@ class SalonController extends AddonsController{
 	function SalonSquare() {
 		e_auth();
 		$status=\LfRequest::inStr('status');
+		$status=\LfRequest::inStr('status');
 		$today=date('Y-m-d',time());
 		$map1['end_date']=array('egt',strtotime($today));
 		$salons=M('e_salon')->where($map1)->count();
@@ -171,6 +172,7 @@ class SalonController extends AddonsController{
 		$end_salons=M('e_salon')->where($map2)->count();
 		$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
 		$this->end_salons=M('e_salon')->where($map2)->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
+		$this->assign('status',$status);
 		$this->assign('EndPage',$EndPage);
 		$this->assign('SignPage',$SignPage);
 		$this->assign('status',$status);
