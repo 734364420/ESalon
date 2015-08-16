@@ -55,6 +55,7 @@ function checkAuthForm() {
         alert("请填写正确的邮箱！");
         return false;
     }
+    return checkForbiddenString();
 }                                               //认证页面表单验证
 
 
@@ -74,6 +75,7 @@ function checkCreateSalonForm() {
         alert("请填写完整的信息！");
         return false;
     }
+    return checkForbiddenString();
 }                                               //发起沙龙页面表单验证
 
 
@@ -82,6 +84,7 @@ function checkCreateAcademicForm() {
         alert("请填写完整的信息！");
         return false;
     }
+    return checkForbiddenString();
 }                                               //发起学术页面表单验证
 
 
@@ -90,7 +93,7 @@ function checkContactForm() {
         alert("请填写你的意见！");
         return false;
     }
-    return checkForbiddenString($("form textarea").val());
+    return checkForbiddenString();
 }                                                //联系我们页面表单验证
 
 
@@ -131,7 +134,7 @@ $(function(){
 
 
 var forbiddenArray =['xx','<','>','黄色'];
-function checkForbiddenString(str){
+function checkForbiddenString(){
     var re = '';
 
     for(var i=0;i<forbiddenArray.length;i++){
@@ -143,7 +146,8 @@ function checkForbiddenString(str){
 
     var pattern = new RegExp(re,"g");
 
-    if(pattern.test(str)){
+    if(pattern.test( $("form input").val() ) || pattern.test( $("form textarea").val() )){
+        alert("您输入的内容包含敏感字符，请修改！");
         return false;
     }
 }
