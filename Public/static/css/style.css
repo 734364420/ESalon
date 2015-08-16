@@ -174,12 +174,11 @@ a.button,button{
 .list .amount img{
     position: absolute;
     width: 90px;
-    margin-left: 10px;
     top: 30px;
-    left: 0;
+    right: 0;
 }
 .list .amount span:first-child{
-    margin-left: 30px;
+    margin-left: 20px;
 }
 .list .amount .amount-now{
     font-size: 25px;

@@ -2,7 +2,7 @@
     <ul class="page">
         <li><a href="{$page.prev}">上一页</a></li>
 	    <volist name="page.page" id="p">
-            <li ><a href="{$p.url}" <?php if($p['isnow']) echo 'class="active"'; ?> >{$p.num}</a></li>
+            <li <?php if($p['isnow']) echo 'class="active"'; ?>><a href="{$p.url}" >{$p.num}</a></li>
 	    </volist>
         <li><a href="{$page.next}">下一页</a></li>
     </ul>
