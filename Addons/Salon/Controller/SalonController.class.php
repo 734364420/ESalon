@@ -213,19 +213,13 @@ class SalonController extends AddonsController{
 		$type = \LfRequest::inStr('type');
 		$day = \LfRequest::inStr('day');
 		$space = \LfRequest::inStr('space');
-		var_dump($day);
-		var_dump($status);
-		var_dump($type);
-		var_dump($space);
 		$param = array(
 			'type'=>I('type',''),
 			'day'=>I('day',''),
 			'space'=>I('space','')
 		);
-		var_dump($param);
 		$data='';
 		if(empty($type) && empty($day) &&empty($space)){
-			die();
 			redirect(addons_url('Salon://Salon/SalonSquare',array('status'=>$status)));
 		}
 		if ($type != null) {
@@ -255,12 +249,11 @@ class SalonController extends AddonsController{
 		}
 		$this->active2='active';
 		$end_salons=M('e_salon')->where($data)->select();
-		$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end',$param));
-		var_dump($EndPage);
+		$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/GetSalonWith/status/end',$param));
 		$this->end_salons=M('e_salon')->where($data)->order('id desc')->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
 		$this->active1='active';
 		$salons=M('e_salon')->where($data)->select();
-		$SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/SalonSquare/status/sign',$param));
+		$SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/GetSalonWith/status/sign',$param));
 		$this->salons=M('e_salon')->where($data)->order('id desc')->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
 		$this->assign('status',$status);
 		$this->assign('EndPage',$EndPage);
