@@ -318,7 +318,7 @@ class AcademicController extends AddonsController
 			$summary->comment = \LfRequest::inStr('comment');
 			$upload =new \LfUpload('/Picture');
 			$path = $upload->upload('file');
-			$summary->picture = $path;
+			$summary->picture = '/Uploads'.$path;
 			$res = $summary->add();
 			if ($res) {
 				/*
