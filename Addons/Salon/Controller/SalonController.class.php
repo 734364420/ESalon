@@ -157,7 +157,7 @@ class SalonController extends AddonsController{
 	//沙龙广场
 	function SalonSquare() {
 		e_auth();
-		$user=M('salon');
+		$user=M('e)_salon');
 		$today=date('Y-m-d',time());
 		$map1['end_date']=array('egt',strtotime($today));
 		$salons=M('e_salon')->where($map1)->select();
@@ -167,6 +167,7 @@ class SalonController extends AddonsController{
 		echo $user->getLastSql();
 		$map2['end_date']=array('lt',strtotime($today));
 		$end_salons=M('e_salon')->where($map2)->count();
+		echo $user->getLastSql();
 		$end_salons=\LfPageData::Page($end_salons,addons_url('Salon://Salon/CheckSalon/status/end'));
 		$this->end_salons=M('e_iteam')->where($map2)->limit($end_salons['offset'],$end_salons['perpagenum'])->select();
 		$this->salons = $salons;
