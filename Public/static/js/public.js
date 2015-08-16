@@ -3,7 +3,7 @@ $(".tab-left").click(function () {
     $(".tab-right").removeClass("active");
     $(".tab-right-ul").addClass("hidden");
     $(".tab-left-ul").removeClass("hidden");
-    $(".status").attr('value','sign');
+    $(".status").attr('value', 'sign');
 });
 
 $(".tab-right").click(function () {
@@ -11,7 +11,7 @@ $(".tab-right").click(function () {
     $(".tab-left").removeClass("active");
     $(".tab-left-ul").addClass("hidden");
     $(".tab-right-ul").removeClass("hidden");
-    $(".status").attr('value','end');
+    $(".status").attr('value', 'end');
 });                                             //tab标签切换
 
 var student_name = /^[\u4E00-\u9FA5]{2,7}$/;
@@ -24,13 +24,13 @@ function checkAuthForm() {
     }
 
     var student = $("input[name='student_name']").val();
-    if(!student_name.test(student)){
+    if (!student_name.test(student)) {
         alert("请填写正确的姓名！");
         return false;
     }
 
     var major = $("input[name='major']").val();
-    if(!major_name.test(major)){
+    if (!major_name.test(major)) {
         alert("请填写正确的专业！");
         return false;
     }
@@ -59,12 +59,12 @@ function checkAuthForm() {
 }                                               //认证页面表单验证
 
 
-$("#site").change(function(){
-    if($("#site option:selected").text()!="自定义地点"){
+$("#site").change(function () {
+    if ($("#site option:selected").text() != "自定义地点") {
         $("#mysite").addClass("hidden");
         $("input#space").val($("#site option:selected").text());
     }
-    else{
+    else {
         $("#mysite").removeClass("hidden");
     }
 });                                             //发起沙龙页面自定义地点显示与隐藏
@@ -89,7 +89,7 @@ function checkCreateAcademicForm() {
 
 
 function checkContactForm() {
-    if($("form textarea").val() == "") {
+    if ($("form textarea").val() == "") {
         alert("请填写你的意见！");
         return false;
     }
@@ -99,13 +99,13 @@ function checkContactForm() {
 
 var comment = false;
 
-$(".stars").find("img").click(function(){
+$(".stars").find("img").click(function () {
     comment = true;
-    var index=$(this).parent().index();
+    var index = $(this).parent().index();
     $("input[name='stars']").val(index);
-    $(this).css({"background-color":"yellow"});
-    $(this).parent().prevAll().find("img").css({"background-color":"yellow"});
-    $(this).parent().nextAll().find("img").css({"background-color":"#fff"});
+    $(this).css({"background-color": "yellow"});
+    $(this).parent().prevAll().find("img").css({"background-color": "yellow"});
+    $(this).parent().nextAll().find("img").css({"background-color": "#fff"});
 });                                             //总结界面评星
 
 function checkSummary() {
@@ -124,30 +124,30 @@ function checkSummary() {
 }                                               //总结页面表单验证
 
 
-$(function(){
+$(function () {
     var width = 0;
-    for(var i=0;i<$("ul.page").find("li").length;i++){
+    for (var i = 0; i < $("ul.page").find("li").length; i++) {
         width += $("ul.page").find("li").eq(i).width() + 6;
     }
-    $("ul.page").css({"width":width});
+    $("ul.page").css({"width": width});
 });                                             //分页ul宽度
 
 
-var forbiddenArray =['xx','<','>','黄色'];
-function checkForbiddenString(){
+var forbiddenArray = ['xx', '<', '>', '黄色'];
+function checkForbiddenString() {
     var re = '';
 
-    for(var i=0;i<forbiddenArray.length;i++){
-        if(i==forbiddenArray.length-1)
-            re+=forbiddenArray[i];
+    for (var i = 0; i < forbiddenArray.length; i++) {
+        if (i == forbiddenArray.length - 1)
+            re += forbiddenArray[i];
         else
-            re+=forbiddenArray[i]+"|";
+            re += forbiddenArray[i] + "|";
     }
 
-    var pattern = new RegExp(re,"g");
+    var pattern = new RegExp(re, "g");
 
-    if(pattern.test( $("form input").val() ) || pattern.test( $("form textarea").val() )){
+    if (pattern.test($("form input").val()) || pattern.test($("form textarea").val())) {
         alert("您输入的内容包含敏感字符，请修改！");
         return false;
     }
-}
+}                                               //屏蔽敏感字符
