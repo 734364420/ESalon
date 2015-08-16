@@ -241,19 +241,19 @@ class SalonController extends AddonsController{
 		}
 		if (!empty($day) && $day!=1) {
 			if($day>=0){
-				$data .='start_date >= '.strtotime($today).' AND start_date <= '.(strtotime($today)+24*3600*$day);
+				$data .='start_date >= '.strtotime($today).' AND start_date <= '.(strtotime($today)+24*3600*$day).' AND end_date >= '.time();
 			}else{
-				$data .='start_date >= '.(strtotime($today)+24*3600*$day).' AND start_date <= '.strtotime($today);
+				$data .='start_date >= '.(strtotime($today)+24*3600*$day).' AND start_date <= '.strtotime($today).' AND end_date <'.time();
 			}
 		}
-		$this->active2='active';
-		$end_salons=M('e_salon')->where($data)->select();
+		$map2 = $data.' AND end_date < '.time();
+		$end_salons=M('e_salon')->where($map2)->select();
 		$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/GetSalonWith/status/end',$param));
-		$this->end_salons=M('e_salon')->where($data)->order('id desc')->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
-		$this->active1='active';
-		$salons=M('e_salon')->where($data)->select();
+		$this->end_salons=M('e_salon')->where($map2)->order('id desc')->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
+		$map1 = $data.' AND end_date >= '.time();
+		$salons=M('e_salon')->where($map1)->select();
 		$SignPage=\LfPageData::Page($salons,addons_url('Salon://Salon/GetSalonWith/status/sign',$param));
-		$this->salons=M('e_salon')->where($data)->order('id desc')->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
+		$this->salons=M('e_salon')->where($map1)->order('id desc')->limit($SignPage['offset'],$SignPage['perpagenum'])->select();
 		$this->assign('status',$status);
 		$this->assign('EndPage',$EndPage);
 		$this->assign('SignPage',$SignPage);
