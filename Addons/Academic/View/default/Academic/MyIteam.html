@@ -35,7 +35,7 @@
 
 <div class="container">
     <div class="list">
-        <ul class="tab-left-ul">
+        <ul class="tab-left-ul <?php if($status!='sign') echo 'hidden'; ?>">
             <volist name="PublishIteams" id="iteam">
 			<include file="Public/e_list" />
             </volist>
@@ -43,7 +43,7 @@
             <include file="Public/e_page"/>
         </ul>
 
-        <ul class="tab-right-ul hidden">
+        <ul class="tab-right-ul <?php if($status!='end') echo 'hidden'; ?> ">
             <volist name="ParticipateIteams" id="iteam">
 	            <include file="Public/e_list" />
             </volist>
@@ -79,20 +79,6 @@
         }
     });                                                  //页面初始化时tab标签
 
-
-    $("#myiteam-left").click(function () {
-        $(this).addClass("active");
-        $("#myiteam-right").removeClass("active");
-        $("#myiteam-right-ul").addClass("hidden");
-        $("#myiteam-left-ul").removeClass("hidden");
-    })
-
-    $("#myiteam-right").click(function () {
-        $(this).addClass("active");
-        $("#myiteam-left").removeClass("active");
-        $("#myiteam-left-ul").addClass("hidden");
-        $("#myiteam-right-ul").removeClass("hidden");
-    })
 </script>
 
 <include file="Public/e_footer"/>

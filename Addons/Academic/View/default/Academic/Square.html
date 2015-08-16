@@ -33,7 +33,7 @@
 
 	<div class="container">
 		<div class="list">
-			<ul class="tab-left-ul">
+			<ul class="tab-left-ul <?php if($status!='sign') echo 'hidden'; ?>">
 				<volist name="sign_iteams" id="iteam">
 					<include file="Public/e_list_square"/>
 				</volist>
@@ -41,7 +41,7 @@
 				<include file="Public/e_page"/>
 			</ul>
 
-			<ul class="tab-right-ul hidden">
+			<ul class="tab-right-ul <?php if($status!='sign') echo 'hidden'; ?>">
 				<volist name="end_iteams" id="iteam">
 					<include file="Public/e_list_square" />
 				</volist>
@@ -80,26 +80,22 @@
 			$(".tab-right").removeClass("active");
 			$(".tab-right-ul").addClass("hidden");
 			$(".tab-left-ul").removeClass("hidden");
-			$(".different").empty();
-			$(".different").append(selectLeft);
+			$(".different").empty().append(selectLeft);
 		}
 		if($(".tab-right").hasClass("active")){
 			$(".tab-left").removeClass("active");
 			$(".tab-left-ul").addClass("hidden");
 			$(".tab-right-ul").removeClass("hidden");
-			$(".different").empty();
-			$(".different").append(selectRight);
+			$(".different").empty().append(selectRight);
 		}
 	});                                                 //页面初始化时tab标签
 
 	$(".tab-left").click(function () {
-		$(".different").empty();
-		$(".different").append(selectLeft);
+		$(".different").empty().append(selectLeft);
 	});
 
 	$(".tab-right").click(function () {
-		$(".different").empty();
-		$(".different").append(selectRight);
+		$(".different").empty().append(selectRight);
 	});
 
 </script>
