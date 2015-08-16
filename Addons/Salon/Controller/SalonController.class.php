@@ -239,6 +239,9 @@ class SalonController extends AddonsController{
 		}else{
 			$this->active1='active';
 		}
+		$this->assign('type',I('type',''));
+		$this->assign('day',I('day',''));
+		$this->assign('space',I('space',''));
 		$this->assign('title','查询结果');
 		$this->display('Salon/SalonSquare');
 	}
