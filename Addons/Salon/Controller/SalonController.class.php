@@ -233,6 +233,7 @@ class SalonController extends AddonsController{
 		}else{
 			$this->active1='active';
 		}
+		$this->assign('url','Salon://Salon/CheckSalon');
 		$this->assign('type',I('type',''));
 		$this->assign('day',I('day',''));
 		$this->assign('space',I('space',''));
