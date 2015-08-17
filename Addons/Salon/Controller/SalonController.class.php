@@ -108,7 +108,7 @@ class SalonController extends AddonsController{
 	//新建沙龙
 	function CreateSalon() {
 		e_auth();
-		if(IS_POST) {	
+		if(IS_POST) {
 			$data['title']=\LfRequest::inStr('title');
 			$date=\LfRequest::inStr('date');
 			$time=\LfRequest::inStr('time');
@@ -117,6 +117,9 @@ class SalonController extends AddonsController{
 			$end_date=$date.' '.date('H:i',strtotime($time)+3600*$hour);
 			$data['start_date']=strtotime($start_date);
 			$data['end_date']=strtotime($end_date);
+			if($data['end_date']<=time()){
+				$this->error('活动时间应结束咯，请检查活动时间');
+			}
 			$data['space']=\LfRequest::inStr('space');
 			$data['participate_number']=\LfRequest::inStr('participate_number');
 			$data['type']=\LfRequest::inStr('type');
