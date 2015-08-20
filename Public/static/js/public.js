@@ -127,7 +127,7 @@ function checkSummary() {
 $(function () {
     var width = 0;
     for (var i = 0; i < $("ul.page").find("li").length; i++) {
-        width += $("ul.page").find("li").eq(i).width();
+        width += $("ul.page").find("li").eq(i).width() + 3;
     }
     $("ul.page").css({"width": width});
 });                                             //分页ul宽度
