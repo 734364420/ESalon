@@ -429,4 +429,12 @@ class AcademicController extends AddonsController
 			$this->error('删除失败！');
 		}
 	}
+
+	function show() {
+		$id=I('id');
+		$data=M('e_iteam')->where('id='.$id)->find();
+		
+		$this->assign('data',$data);
+		$this->display();
+	}
 }
