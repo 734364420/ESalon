@@ -79,7 +79,7 @@ class AcademicController extends AddonsController
 		e_auth();
 //		$run = new \LfRunTime();
 //		$run->star();
-		$maps = '';
+			$maps = '';
 		$data['type'] = \LfRequest::inStr('type');
 		$data['iteam_status'] = \LfRequest::inStr('iteam_status');
 		$data['summary_status'] = \LfRequest::inStr('summary_status');

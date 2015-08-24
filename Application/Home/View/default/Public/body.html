@@ -36,7 +36,7 @@ foreach($categorys as &$cate){
     	<ul class="sidenav">
           <li>
               <a class="sidenav_parent" href="javascript:;"><b class="ficon fa fa-plus-square"></b>帐号管理</a>
-              <ul class="sidenav_sub" style="display:none">
+              <ul class="sidenav_sub" style="display:none" >
                   <li class="{$navClass['home_memberpublic']}"> <a href="{:U('Home/MemberPublic/lists')}">公众号管理 </a> <b class="active_arrow"></b></li>
                   <li class="{$navClass['home_index_main']}"> <a href="{:U('Home/Index/main')}">插件管理 </a> <b class="active_arrow"></b></li>
                   <li class="{$navClass['home_creditconfig_lists']}"> <a href="{:U('Home/CreditConfig/lists')}">积分配置 </a> <b class="active_arrow"></b></li>
@@ -59,7 +59,7 @@ foreach($categorys as &$cate){
           </volist>
           
           <li>
-              <a class="sidenav_parent" href="javascript:;"><b class="ficon fa fa-plus-square "></b>其它功能</a>
+              <a class="sidenav_parent" href="javascript:;"><b class="ficon fa fa-plus-square "></b>成电约吧</a>
               <ul class="sidenav_sub" style="display:none">
               <volist name='addonList' id='vo'>
               <li class="{$navClass[$vo[name]]}"> <a href="{$vo[addons_url]}" title="{$vo.description}"> 
