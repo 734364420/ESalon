@@ -6,6 +6,7 @@ class SalonController extends AddonsController{
 		parent::__construct();
 		$this->model = M('Model')->getByName('e_salon');
 		$this->assign ( 'model', $this->model );
+		$this->assign('is_iteam',0);
 	}
 
 	function  Instruction() {
@@ -22,7 +23,7 @@ class SalonController extends AddonsController{
 			$status='sign';
 		}
 		$this->assign('url','Salon://Salon/CheckSalon');
-		$participattions=M('e_participate')->where('user_id='.session('user_id'))->select();
+		$participattions=M('e_participate')->where('user_id='.session('user_id').' and is_iteam=0')->select();
 	if(IS_POST) {
 		$type = \LfRequest::inStr('type');
 		$salon_status = \LfRequest::inNum('salon_status');
@@ -51,8 +52,8 @@ class SalonController extends AddonsController{
 			$in .= ','.$v['e_id'];
 		}
 		$in .= ')';
-		$Pdata = $data .' id in '.$in.' AND publish_userid  != '.session('user_id');
-		$data = $data.' publish_userid = '.session('user_id');
+		$Pdata = $data .' id in '.$in.' AND publish_userid  != '.session('user_id').' and is_iteam=0';
+		$data = $data.' publish_userid = '.session('user_id').' and is_iteam=0';
 		$salons_publish = M('e_salon')->where($data)->select();
 		$salons_participate= M('e_salon')->where($Pdata)->count();
 		$param = array(
@@ -91,8 +92,8 @@ class SalonController extends AddonsController{
 		$this->assign('iteam',$salon);
 		$user = M('e_user')->where('id='.$salon['publish_userid'])->find();
 		$this->assign('user',$user);
-		$participate_users=M('e_participate')->where('e_id='.$id)->select();
-		$summaries=M('e_summary')->where('e_id='.$id)->select();
+		$participate_users=M('e_participate')->where('e_id='.$id.' and is_iteam=0')->select();
+		$summaries=M('e_summary')->where('e_id='.$id.' and is_iteam=0')->select();
 		for($i=0;$i<count($summaries);$i++) {
 			$summaries_users[$i] = M('e_user')->where('id=' . $summaries[$i]['user_id'])->find();
 		}
@@ -347,7 +348,7 @@ class SalonController extends AddonsController{
 		$this->assign('iteam',$salon);
 		$user = M('e_user')->where('id='.$salon['publish_userid'])->find();
 		$this->assign('publisher',$user);
-		$participates=M('e_participate')->where('is_iteam=0 and e_id='.$id)->select();
+		$participates=M('e_participate')->where('is_iteam=0 and e_id='.$id.' and is_iteam=0')->select();
 		for($i=0;$i<count($participates);$i++){
 			$participates[$i]=M('e_user')->where('id='.$participates[$i]['user_id'])->find();
 		}
