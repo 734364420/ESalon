@@ -433,12 +433,12 @@ class AcademicController extends AddonsController
 	function show() {
 		$id=I('id');
 		$iteam=M('e_iteam')->where('id='.$id)->find();
-		$publish_username=M('e_user')->where('id='.$iteam['publish_userid'])->find();
+		$publisher=M('e_user')->where('id='.$iteam['publish_userid'])->find();
 		$participates=M('e_participate')->where('is_iteam=1 and e_id='.$id);
 		for($i=0;$i<count($participates);$i++){
 			$participates[$i]=M('e_user')->where('id='.$participates[$i]['user_id'])->find();
 		}
-		$this->assign('username',$publish_username);
+		$this->assign('publisher',$publisher);
 		$this->assign('iteam',$iteam);
 		$this->assign('participates',$participates);
 		$this->display();
