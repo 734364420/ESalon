@@ -156,7 +156,7 @@ class CompetitionController extends AddonsController{
     public function show(){
         $id=I('id');
         $data=M('e_competition')->where('id='.$id)->find();
-        $data['date']=date('Y-m-d H-i-s',$data['date']);
+        $data['date']=date('Y-m-d H:i:s',$data['date']);
         $this->assign('data',$data);
         $this->display();
     }
