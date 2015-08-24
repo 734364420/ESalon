@@ -52,8 +52,8 @@ class SalonController extends AddonsController{
 			$in .= ','.$v['e_id'];
 		}
 		$in .= ')';
-		$Pdata = $data .' id in '.$in.' AND publish_userid  != '.session('user_id').' and is_iteam=0';
-		$data = $data.' publish_userid = '.session('user_id').' and is_iteam=0';
+		$Pdata = $data .' id in '.$in.' AND publish_userid  != '.session('user_id');
+		$data = $data.' publish_userid = '.session('user_id');
 		$salons_publish = M('e_salon')->where($data)->select();
 		$salons_participate= M('e_salon')->where($Pdata)->count();
 		$param = array(
