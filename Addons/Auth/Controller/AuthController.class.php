@@ -163,9 +163,7 @@ class AuthController extends AddonsController{
 
     function show() {
         $id=I('id');
-        var_dump($id);
-        $data=M('user')->where('id='.$id)->find();
-        var_dump($data);
+        $data=M('e_user')->where('id='.$id)->find();
         $this->assign('data',$data);
         $this->display();
     }
