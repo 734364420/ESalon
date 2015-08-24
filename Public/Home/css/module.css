@@ -1262,3 +1262,19 @@ label.textarea ~ .check-tips {
 	background-color: #eee;
 	color: #333
 }
+
+.data-detail{
+	width: 50%;
+	margin: 50px auto 0 auto;
+}
+.data-detail .detail-group{
+	margin: 15px 0;
+}
+.data-detail .detail-group span{
+	font-size: 18px;
+	font-weight: bold;
+	display: inline-block;
+}
+.data-detail .detail-group span.cont{
+	margin-left: 20px;
+}
