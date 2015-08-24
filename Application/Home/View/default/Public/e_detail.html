@@ -1,30 +1,30 @@
 <li>
 	<img src="/Public/static/img/class.png" class="class">
 	<span class="label">类别：</span>
-	<span>{$iteam.type}</span>
+	<span>{$iteam.type|h}</span>
 </li>
 <li>
 	<img src="/Public/static/img/user.png" class="user">
 	<span class="label">发起人：</span>
-	<span>{$user.student_name}</span>
+	<span>{$user.student_name|h}</span>
 
-	<p>{$user.school}</p>
+	<p>{$user.school|h}</p>
 
-	<p>{$user.phone}</p>
+	<p>{$user.phone|h}</p>
 
-	<p>{$user.email}</p>
+	<p>{$user.email|h}</p>
 
-	<p>{$user.good}</p>
+	<p>{$user.good|h}</p>
 </li>
 <li>
 	<img src="/Public/static/img/amount.png" class="amount">
 	<span class="label">报名人数：</span>
-	<span>{$iteam.participated_number}/{$iteam.participate_number}</span>
+	<span>{$iteam.participated_number|h}/{$iteam.participate_number|h}</span>
 	<volist name="participate_users " id="u">
 		<php>$euser = M('e_user')->find($u['user_id'])</php>
 		<p>
-			<a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$euser['id']))}" class="block pull-left" style="width:65px;">{$euser.student_name}</a>
-			<span class="pull-left">{$euser.school}</span>
+			<a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$euser['id']))}" class="block pull-left" style="width:65px;">{$euser.student_name|h}</a>
+			<span class="pull-left">{$euser.school|h}</span>
 		</p>
 	</volist>
 </li>
@@ -32,13 +32,13 @@
 	<img src="/Public/static/img/brief.png" class="brief">
 	<span class="label">比赛简介：</span>
 
-	<p>{$iteam.brief}</p>
+	<p>{$iteam.brief|h}</p>
 </li>
 <if condition="!empty($iteam['publish_brief'])">
 <li id="person-brief">
 	<img src="/Public/static/img/brief.png" class="brief">
 	<span class="label">发布者个人简介：</span>
 
-	<p>{$iteam.publish_brief}</p>
+	<p>{$iteam.publish_brief|h}</p>
 </li>
 </if>

@@ -11,7 +11,7 @@
 		if(!empty($summary)) {
 	</php>
 	<div class="comment-group">
-		<p class="pull-left name">{$user.student_name}：</p>
+		<p class="pull-left name">{$user.student_name|h}：</p>
 		<div class="pull-left">
 			<div class="clearfix">
 				<php>
@@ -20,7 +20,7 @@
 				<img src="/Public/static/img/star-active.png" class="comment-star">
 				<php> }</php>
 			</div>
-			<p>{$summary.comment}</p>
+			<p>{$summary.comment|h}</p>
 		</div>
 	</div>
 	<php> } </php>
@@ -31,7 +31,7 @@
 			if(!empty($summary)&&($s['user_id']!=$iteam['publish_userid'])) {
 		</php>
 		<div class="comment-group">
-			<p class="pull-left name">{$e_user.student_name}：</p>
+			<p class="pull-left name">{$e_user.student_name|h}：</p>
 			<div class="pull-left">
 				<div class="clearfix">
 					<php>
@@ -40,7 +40,7 @@
 					<img src="/Public/static/img/star-active.png" class="comment-star">
 					<php> }</php>
 				</div>
-				<p>{$summary.comment}</p>
+				<p>{$summary.comment|h}</p>
 			</div>
 		</div>
 		<php> } </php>

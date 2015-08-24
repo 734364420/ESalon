@@ -6,13 +6,13 @@
 		<span class="sub-title pull-left time"><php>echo date("Y-m-d",$iteam['start_date']);</php></span>
 		<img src="/Public/static/img/see.png" class="see">
 		<span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
-		<span class="sub-title pull-left">{$iteam.hits}</span>
+		<span class="sub-title pull-left">{$iteam.hits|h}</span>
 		<span class="sub-title pull-left">)</span>
 	</div>
 	<div class="amount pull-right">
-		<span class="amount-now">{$iteam.participated_number}</span>
+		<span class="amount-now">{$iteam.participated_number|h}</span>
 		<span class="amount-dig">/</span>
-		<span class="amount-total">{$iteam.participate_number}</span>
+		<span class="amount-total">{$iteam.participate_number|h}</span>
 		<img src="/Public/static/img/progressbar-bottom.png">
 		<img src="/Public/static/img/progressbar-top.png" class="progressbar">
 	</div>
