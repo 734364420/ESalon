@@ -153,6 +153,7 @@ class SalonController extends AddonsController{
 		$id=\LfRequest::inNum('e_id');
 		$data['user_id']=session('user_id');
 		$data['e_id']=$id;
+		$data['is_iteam']=0;
 		$participated_number=M('e_salon')->where('id='.$id)->getField('participated_number');
 		$participate_number=M('e_salon')->where('id='.$id)->getField('participate_number');
 		if($participated_number == $participate_number){
