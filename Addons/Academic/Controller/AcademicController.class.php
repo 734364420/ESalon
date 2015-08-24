@@ -11,6 +11,7 @@ class AcademicController extends AddonsController
 		parent::__construct();
 		$this->model = M('Model')->getByName('e_iteam');
 		$this->assign('model', $this->model);
+		$this->assign('is_iteam',1);
 	}
 
 	//最新学术动态页面，竞赛列表页
@@ -182,6 +183,7 @@ class AcademicController extends AddonsController
 				$participate = M('e_participate');
 				$participate->e_id = $res;
 				$participate->user_id = session('user_id');
+				$participate->is_iteam = 1;
 				$participate->add();
 				$this->success("添加成功", addons_url('Academic://Academic/MyIteam'));
 			} else {
