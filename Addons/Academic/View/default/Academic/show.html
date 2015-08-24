@@ -18,8 +18,8 @@
                     <span class="label">报名人数：</span>
                     <span class="cont">{$iteam.participated_number}/{$iteam.participate_number}</span>
                     <span class="label">报名人员：</span>
-                    <volist>
-                    <span class="cont">{$participates}  </span>
+                    <volist name="participates" id="participate">
+                    <span class="cont">{$participate}  </span>
                     </volist>
                     <span class="label">比赛简介：</span>
                     <span class="cont">{$iteam.brief}</span>
