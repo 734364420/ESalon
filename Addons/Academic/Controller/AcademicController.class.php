@@ -95,7 +95,7 @@ class AcademicController extends AddonsController
 		if ($data['summary_status'] != '') {
 			$maps .= '  summary = ' . $data['summary_status'] . ' AND ';
 		}
-		$participate = M('e_participate')->where('user_id = ' . session('user_id'))->select();
+		$participate = M('e_participate')->where('user_id = ' . session('user_id').' AND is_iteam = 1')->select();
 		$in = '(0';
 		foreach ($participate as $v) {
 			$in .= ',' . $v['e_id'];
@@ -140,7 +140,7 @@ class AcademicController extends AddonsController
 		M('e_iteam')->where('id = ' . $iteam_id)->save(array('hits' => $iteam['hits'] + 1));
 		$user = M('e_user')->find($iteam['publish_userid']);
 		$this->assign('user', $user);
-		$participate_users = M('e_participate')->where('e_id = ' . $iteam_id)->select();
+		$participate_users = M('e_participate')->where('e_id = ' . $iteam_id.' AND is_iteam = 1')->select();
 		$this->assign('participate_users', $participate_users);
 		$this->assign('iteam', $iteam);
 		$this->assign('sign_url', 'Academic://Academic/SignIteam');
@@ -291,6 +291,7 @@ class AcademicController extends AddonsController
 		$participate = M('e_participate');
 		$participate->e_id = $iteam_id;
 		$participate->user_id = session('user_id');
+		$participate->is_iteam = 1;
 		$res = $participate->add();
 		M('e_iteam')->where('id = ' . $iteam_id)->save(array('participated_number' => $iteam['participated_number'] + 1));
 		if ($res) {
@@ -316,6 +317,7 @@ class AcademicController extends AddonsController
 			}
 			$summary->stars = \LfRequest::inNum('stars');
 			$summary->comment = \LfRequest::inStr('comment');
+			$summary->is_iteam = 1;
 			$upload =new \LfUpload('/Picture');
 			$path = $upload->upload('file');
 			if(!$path) {
