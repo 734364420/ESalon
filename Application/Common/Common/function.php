@@ -2311,14 +2311,10 @@ function short_url($long_url) {
 }
 function e_auth() {
 	$user = M('e_user')->where(array('openid'=>get_openid()))->find();
-	if(!in_array($user['id'],array(27,28,29,30,34,33,34))) {
-		echo "系统正在内部测试中";
+	if(!LfRequest::isMobile()) {
+		echo "请使用微信访问该页面";
 		die();
 	}
-//	if(!LfRequest::isMobile()) {
-//		echo "请使用微信访问该页面";
-//		die();
-//	}
 	if(empty($user)) {
 		redirect(addons_url('Auth://Auth/Auth'));
 	} else {
