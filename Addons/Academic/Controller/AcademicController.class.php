@@ -191,6 +191,9 @@ class AcademicController extends AddonsController
 				$this->error("添加失败");
 			}
 		} else {
+			$IteamType = M('e_iteam_type');
+			$types = $IteamType->select();
+			$this->assign('types',$types);
 			$this->title = "发起Iteam";
 			$this->display();
 		}
@@ -259,6 +262,9 @@ class AcademicController extends AddonsController
 		$sign_iteams = M('e_iteam')->where($sign_maps)->limit($SignPage['offset'], $SignPage['perpagenum'])->order('id DESC')->select();
 		$end_iteams = M('e_iteam')->where($end_maps)->limit($EndPage['offset'], $EndPage['perpagenum'])->order('id DESC')->select();
 		$status = I('status', 'sign');
+		$IteamType = M('e_iteam_type');
+		$types = $IteamType->select();
+		$this->assign('types',$types);
 		$this->assign('status', $status);
 		$this->type = I('type', '');
 		$this->date = I('date', '');
@@ -320,7 +326,11 @@ class AcademicController extends AddonsController
 			}
 			$summary->stars = \LfRequest::inNum('stars');
 			$summary->comment = \LfRequest::inStr('comment');
-			$summary->is_iteam = 1;
+			if ($isSalon == '1') {
+				$summary->is_iteam = 0;
+			} else {
+				$summary->is_iteam = 1;
+			}
 			$upload =new \LfUpload('/Picture');
 			$path = $upload->upload('file');
 			if(!$path) {
