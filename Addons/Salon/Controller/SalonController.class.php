@@ -340,4 +340,18 @@ class SalonController extends AddonsController{
 			$this->error ( '删除失败！' );
 		}
 	}
+
+	public function show(){
+		$id=I('id');
+		$salon=M('e_salon')->where('id='.$id)->find();
+		$this->assign('iteam',$salon);
+		$user = M('e_user')->where('id='.$salon['publish_userid'])->find();
+		$this->assign('publisher',$user);
+		$participates=M('e_participate')->where('is_iteam=0 and e_id='.$id)->select();
+		for($i=0;$i<count($participates);$i++){
+			$participates[$i]=M('e_user')->where('id='.$participates[$i]['user_id'])->find();
+		}
+		$this->assign('participates',$participates);
+		$this->display();
+	}
 }
