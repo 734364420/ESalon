@@ -125,7 +125,7 @@ function checkSummary() {
 
 
 $(function () {
-    var width = 0;
+    var width = 1;
     for (var i = 0; i < $("ul.page").find("li").length; i++) {
         width += $("ul.page").find("li").eq(i).width() + 3;
     }
@@ -133,7 +133,7 @@ $(function () {
 });                                             //分页ul宽度
 
 
-var forbiddenArray = ['xx', '<', '>', '黄色'];
+var forbiddenArray = ['script', 'alert', '法轮功'];
 function checkForbiddenString() {
     var re = '';
 
