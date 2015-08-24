@@ -432,6 +432,7 @@ class AcademicController extends AddonsController
 
 	function show() {
 		$id=I('id');
+		var_dump($id);
 		$iteam=M('e_iteam')->where('id='.$id)->find();
 		$publisher=M('e_user')->where('id='.$iteam['publish_userid'])->find();
 		$participates=M('e_participate')->where('is_iteam=1 and e_id='.$id)->select();
