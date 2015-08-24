@@ -435,12 +435,10 @@ class AcademicController extends AddonsController
 		var_dump($id);
 		$iteam=M('e_iteam')->where('id='.$id)->find();
 		$publisher=M('e_user')->where('id='.$iteam['publish_userid'])->find();
-		$participates=M('e_participate')->where('is_iteam=0 and e_id='.$id)->select();
+		$participates=M('e_participate')->where('is_iteam=1 and e_id='.$id)->select();
 		for($i=0;$i<count($participates);$i++){
 			$participates[$i]=M('e_user')->where('id='.$participates[$i]['user_id'])->find();
 		}
-		var_dump($participates);
-		die();
 		$this->assign('publisher',$publisher);
 		$this->assign('iteam',$iteam);
 		$this->assign('participates',$participates);
