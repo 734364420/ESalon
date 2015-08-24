@@ -439,6 +439,7 @@ class AcademicController extends AddonsController
 		for($i=0;$i<count($participates);$i++){
 			$participates[$i]=M('e_user')->where('id='.$participates[$i]['user_id'])->find();
 		}
+		var_dump($participates);
 		$this->assign('publisher',$publisher);
 		$this->assign('iteam',$iteam);
 		$this->assign('participates',$participates);
