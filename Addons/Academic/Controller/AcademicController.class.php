@@ -441,7 +441,6 @@ class AcademicController extends AddonsController
 		$this->assign('publisher',$publisher);
 		$this->assign('iteam',$iteam);
 		$this->assign('participates',$participates);
-		var_dump($this->assign());
 		$this->display();
 	}
 }
