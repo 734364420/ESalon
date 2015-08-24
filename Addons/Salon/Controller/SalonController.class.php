@@ -24,6 +24,7 @@ class SalonController extends AddonsController{
 		}
 		$this->assign('url','Salon://Salon/CheckSalon');
 		$participattions=M('e_participate')->where('user_id='.session('user_id').' and is_iteam=0')->select();
+		var_dump($participattions);
 	if(IS_POST) {
 		$type = \LfRequest::inStr('type');
 		$salon_status = \LfRequest::inNum('salon_status');
