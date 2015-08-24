@@ -160,4 +160,11 @@ class AuthController extends AddonsController{
             $this->error ( '删除失败！' );
         }
     }
+
+    function show() {
+        $id=I('id');
+        $data=M('user')->where('id='.$id)->find();
+        $this->assign('data',$data);
+        $this->display();
+    }
 }
