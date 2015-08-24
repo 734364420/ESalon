@@ -230,6 +230,17 @@ a.button,button{
 .detail-list.square .sub-title{
     margin-top: 7px;
 }
+.page-container{
+    text-align: center;
+}
+ul.page{
+    width: auto;
+    display: inline-block;
+}
+ul.page li{
+    display: inline;
+}
+
 
 
 /*说明页*/
