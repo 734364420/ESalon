@@ -1,0 +1,67 @@
+<extend name="Base/common" />
+<block name="body">
+    <div class="span9 page_message">
+        <section id="contents">
+            <ul class="tab-nav nav">
+                <li class="current"><a href="{:U('lists')}">学生认证列表<b class="arrow fa fa-sort-up"></b></a></li>
+            </ul>
+            <div class="data-detail">
+                <div class="detail-group">
+                    <span class="label">ID：</span>
+                    <span class="cont">{$data.id}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">标题：</span>
+                    <span class="cont">{$data.title}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">添加日期：</span>
+                    <span class="cont">{date('Y-m-d H-i-s',$data.school)}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">点击量：</span>
+                    <span class="cont">{$data.hits}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">类别：</span>
+                    <span class="cont">{$data.type}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">参赛方式：</span>
+                    <span class="cont">{$data.mode}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">内容：</span>
+                    <span class="cont">{$data.content}</span>
+                </div>
+            </div>
+        </section>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+            //搜索功能
+            $("#search").click(function(){
+                var url = $(this).attr('url');
+                var query  = $('.search-form').find('input').serialize();
+                query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+                query = query.replace(/^&/g,'');
+                if( url.indexOf('?')>0 ){
+                    url += '&' + query;
+                }else{
+                    url += '?' + query;
+                }
+                window.location.href = url;
+            });
+
+            //回车自动提交
+            $('.search-form').find('input').keyup(function(event){
+                if(event.keyCode===13){
+                    $("#search").click();
+                }
+            });
+
+        })
+    </script>
+</block>
