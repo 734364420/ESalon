@@ -124,13 +124,13 @@ function checkSummary() {
 }                                               //总结页面表单验证
 
 
-$(function () {
-    var width = 0;
-    for (var i = 0; i < $("ul.page").find("li").length; i++) {
-        width += $("ul.page").find("li").eq(i).width() + 6;
-    }
-    $("ul.page").css({"width": width});
-});                                             //分页ul宽度
+// $(function () {
+//     var width = 0;
+//     for (var i = 0; i < $("ul.page").find("li").length; i++) {
+//         width += $("ul.page").find("li").eq(i).width() + 6;
+//     }
+//     $("ul.page").css({"width": width});
+// });                                             //分页ul宽度
 
 
 var forbiddenArray = ['script', 'alert', '法轮功'];
