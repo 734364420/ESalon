@@ -12,7 +12,7 @@ use Common\Controller\Addon;
 
         public $info = array(
             'name'=>'HelloWorld',
-            'title'=>'啊啊啊',
+            'title'=>'微信入门案例',
             'description'=>'这是一个简单的入门案例',
             'status'=>1,
             'author'=>'凡星',
