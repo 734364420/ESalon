@@ -7,7 +7,7 @@
 	<span class="label">比赛总结：</span>
 
 	<php>
-		$summary = M('e_summary')->where('user_id ='.$user['id'].' AND e_id = '.$iteam['id'])->find();
+		$summary = M('e_summary')->where('user_id ='.$user['id'].' AND e_id = '.$iteam['id'].' AND is_iteam = '.$is_iteam)->find();
 		if(!empty($summary)) {
 	</php>
 	<div class="comment-group">
@@ -26,7 +26,7 @@
 	<php> } </php>
 	<volist name="participate_users" id="s">
 		<php>
-			$summary = M('e_summary')->where('e_id ='.$iteam['id'].' AND user_id = '.$s['user_id'])->find();
+			$summary = M('e_summary')->where('e_id ='.$iteam['id'].' AND user_id = '.$s['user_id'].' AND is_iteam = '.$is_iteam)->find();
 			$e_user = M('e_user')->find($s['user_id']);
 			if(!empty($summary)&&($s['user_id']!=$iteam['publish_userid'])) {
 		</php>
@@ -47,7 +47,7 @@
 	</volist>
 </li>
 <php>
-	$summary_pic = M('e_summary')->where('e_id ='.$iteam['id'].' AND picture != \'\' ')->select();
+	$summary_pic = M('e_summary')->where('e_id ='.$iteam['id'].' AND picture != \'\' '.' AND is_iteam = '.$is_iteam)->select();
 	if(!empty($summary_pic)) {
 </php>
 <li>

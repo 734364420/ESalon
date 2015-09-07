@@ -272,4 +272,5 @@ class AddonsController extends Controller {
 		$model = D ( 'Addons://' . $_addon . '/WeixinAddon' );
 		$model->reply ( $dataArr, $keywordArr );
 	}
+
 }

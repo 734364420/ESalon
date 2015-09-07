@@ -7,7 +7,7 @@
 
 <form action="{:addons_url('Salon://Salon/GetSalonWith')}" method="post">
     <div class="flex-box select-group">
-        <select name="type" class="flex-1">
+        <select name="type" class="flex-1" >
             <option value="">沙龙类别</option>
             <option value="物联网" {:IsSelected($type,'物联网')}>物联网</option>
             <option value="互联网+" {:IsSelected($type,'互联网+')}>互联网+</option>
@@ -29,7 +29,7 @@
 
 <div class="container">
     <div class="list">
-        <ul class="tab-left-ul">
+        <ul class="tab-left-ul <?php if($status!='sign') echo 'hidden'; ?>">
             <volist name="salons" id="iteam">
                 <include file="Public/e_list_square"/>
             </volist>
@@ -38,7 +38,7 @@
         </ul>
 
 
-        <ul class="tab-right-ul hidden">
+        <ul class="tab-right-ul <?php if($status!='end') echo 'hidden'; ?>">
             <volist name="end_salons" id="iteam">
                 <include file="Public/e_list_square"/>
             </volist>

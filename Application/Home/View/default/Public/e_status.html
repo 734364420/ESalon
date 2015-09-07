@@ -1,7 +1,7 @@
 <!--判断是否已参加活动-->
 <php>
-    $participate = M('e_participate')->where('e_id ='.$iteam['id'].' AND user_id = '.session('user_id'))->find();
-    $mySummary = M('e_summary')->where('user_id ='.session('user_id').' AND e_id = '.$iteam['id'])->find();
+    $participate = M('e_participate')->where('e_id ='.$iteam['id'].' AND user_id = '.session('user_id').' AND is_iteam = '.$is_iteam)->find();
+    $mySummary = M('e_summary')->where('user_id ='.session('user_id').' AND e_id = '.$iteam['id'].' AND is_iteam = '.$is_iteam)->find();
 </php>
 <!--正在进行中-->
 <php>if($iteam['start_date']< time() && time() <$iteam['end_date']) {</php>

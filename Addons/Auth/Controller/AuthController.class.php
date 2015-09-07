@@ -28,6 +28,10 @@ class AuthController extends AddonsController{
             if(empty($user->student_name)) {
                 $this->error("请输入姓名");
             }
+	    $isAuth = M('e_user')->where('openid = '.get_openid())->find();
+	    if(!empty($isAuth)) {
+	    	$this->error("不能重复认证");
+	    }
             $user->add();
             $this->success("认证成功",addons_url('Salon://Salon/Instruction'));
         } else {
@@ -159,5 +163,12 @@ class AuthController extends AddonsController{
         } else {
             $this->error ( '删除失败！' );
         }
+    }
+
+    function show() {
+        $id=I('id');
+        $data=M('e_user')->where('id='.$id)->find();
+        $this->assign('data',$data);
+        $this->display();
     }
 }

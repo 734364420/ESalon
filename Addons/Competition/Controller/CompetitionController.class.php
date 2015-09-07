@@ -152,4 +152,12 @@ class CompetitionController extends AddonsController{
             $this->display ();
         }
     }
+
+    public function show(){
+        $id=I('id');
+        $data=M('e_competition')->where('id='.$id)->find();
+        $data['date']=date('Y-m-d H:i:s',$data['date']);
+        $this->assign('data',$data);
+        $this->display();
+    }
 }

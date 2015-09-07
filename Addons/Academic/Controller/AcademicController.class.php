@@ -11,6 +11,7 @@ class AcademicController extends AddonsController
 		parent::__construct();
 		$this->model = M('Model')->getByName('e_iteam');
 		$this->assign('model', $this->model);
+		$this->assign('is_iteam',1);
 	}
 
 	//最新学术动态页面，竞赛列表页
@@ -79,7 +80,7 @@ class AcademicController extends AddonsController
 		e_auth();
 //		$run = new \LfRunTime();
 //		$run->star();
-		$maps = '';
+			$maps = '';
 		$data['type'] = \LfRequest::inStr('type');
 		$data['iteam_status'] = \LfRequest::inStr('iteam_status');
 		$data['summary_status'] = \LfRequest::inStr('summary_status');
@@ -95,7 +96,7 @@ class AcademicController extends AddonsController
 		if ($data['summary_status'] != '') {
 			$maps .= '  summary = ' . $data['summary_status'] . ' AND ';
 		}
-		$participate = M('e_participate')->where('user_id = ' . session('user_id'))->select();
+		$participate = M('e_participate')->where('user_id = ' . session('user_id').' AND is_iteam = 1')->select();
 		$in = '(0';
 		foreach ($participate as $v) {
 			$in .= ',' . $v['e_id'];
@@ -140,7 +141,7 @@ class AcademicController extends AddonsController
 		M('e_iteam')->where('id = ' . $iteam_id)->save(array('hits' => $iteam['hits'] + 1));
 		$user = M('e_user')->find($iteam['publish_userid']);
 		$this->assign('user', $user);
-		$participate_users = M('e_participate')->where('e_id = ' . $iteam_id)->select();
+		$participate_users = M('e_participate')->where('e_id = ' . $iteam_id.' AND is_iteam = 1')->select();
 		$this->assign('participate_users', $participate_users);
 		$this->assign('iteam', $iteam);
 		$this->assign('sign_url', 'Academic://Academic/SignIteam');
@@ -161,6 +162,7 @@ class AcademicController extends AddonsController
 				 * todo 提示当前主题已有团队约
 				 */
 				$this->assign('iteams', $iteams);
+				$this->assign('url', 'Academic://Academic/IteamDetail');
 				$this->display('Academic/ExistIteam');
 				exit();
 			}
@@ -182,12 +184,16 @@ class AcademicController extends AddonsController
 				$participate = M('e_participate');
 				$participate->e_id = $res;
 				$participate->user_id = session('user_id');
+				$participate->is_iteam = 1;
 				$participate->add();
 				$this->success("添加成功", addons_url('Academic://Academic/MyIteam'));
 			} else {
 				$this->error("添加失败");
 			}
 		} else {
+			$IteamType = M('e_iteam_type');
+			$types = $IteamType->select();
+			$this->assign('types',$types);
 			$this->title = "发起Iteam";
 			$this->display();
 		}
@@ -256,6 +262,9 @@ class AcademicController extends AddonsController
 		$sign_iteams = M('e_iteam')->where($sign_maps)->limit($SignPage['offset'], $SignPage['perpagenum'])->order('id DESC')->select();
 		$end_iteams = M('e_iteam')->where($end_maps)->limit($EndPage['offset'], $EndPage['perpagenum'])->order('id DESC')->select();
 		$status = I('status', 'sign');
+		$IteamType = M('e_iteam_type');
+		$types = $IteamType->select();
+		$this->assign('types',$types);
 		$this->assign('status', $status);
 		$this->type = I('type', '');
 		$this->date = I('date', '');
@@ -291,6 +300,7 @@ class AcademicController extends AddonsController
 		$participate = M('e_participate');
 		$participate->e_id = $iteam_id;
 		$participate->user_id = session('user_id');
+		$participate->is_iteam = 1;
 		$res = $participate->add();
 		M('e_iteam')->where('id = ' . $iteam_id)->save(array('participated_number' => $iteam['participated_number'] + 1));
 		if ($res) {
@@ -316,6 +326,11 @@ class AcademicController extends AddonsController
 			}
 			$summary->stars = \LfRequest::inNum('stars');
 			$summary->comment = \LfRequest::inStr('comment');
+			if ($isSalon == '1') {
+				$summary->is_iteam = 0;
+			} else {
+				$summary->is_iteam = 1;
+			}
 			$upload =new \LfUpload('/Picture');
 			$path = $upload->upload('file');
 			if(!$path) {
@@ -428,5 +443,19 @@ class AcademicController extends AddonsController
 		} else {
 			$this->error('删除失败！');
 		}
+	}
+
+	function show() {
+		$id=I('id');
+		$iteam=M('e_iteam')->where('id='.$id)->find();
+		$publisher=M('e_user')->where('id='.$iteam['publish_userid'])->find();
+		$participates=M('e_participate')->where('is_iteam=1 and e_id='.$id)->select();
+		for($i=0;$i<count($participates);$i++){
+			$participates[$i]=M('e_user')->where('id='.$participates[$i]['user_id'])->find();
+		}
+		$this->assign('publisher',$publisher);
+		$this->assign('iteam',$iteam);
+		$this->assign('participates',$participates);
+		$this->display();
 	}
 }
