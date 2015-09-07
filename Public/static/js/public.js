@@ -36,7 +36,7 @@ function checkAuthForm() {
     }
 
     var id = $("input[name='student_id']").val();
-    if (id.length != 13) {
+    if (id.length != 13 && id.length != 12) {
         alert("请填写正确的学号！");
         return false;
     }
