@@ -45,18 +45,18 @@ foreach($categorys as &$cate){
              <!--</ul>-->
           <!--</li>-->
           
-          <volist name='categorys' id='ca'>
-          <li>
-              <a class="sidenav_parent" href="javascript:;"><b class="ficon fa fa-plus-square"></b>{$ca.title}</a>
-              <ul class="sidenav_sub" style="display:none">
-                  <volist name='ca.addons' id='vo'>
-                      <li class="{$navClass[$vo[name]]}"> <a href="{$vo[addons_url]}" title="{$vo.description}">
-                      <i class="icon-chevron-right"><php>if(!empty($vo['icon'])) { </php> <img src="{$vo.icon}" /> <php> } </php> </i>
-                      {$vo.title} </a><b class="active_arrow"></b></li>
-                  </volist>
-             </ul>
-          </li>
-          </volist>
+          <!--<volist name='categorys' id='ca'>-->
+          <!--<li>-->
+              <!--<a class="sidenav_parent" href="javascript:;"><b class="ficon fa fa-plus-square"></b>{$ca.title}</a>-->
+              <!--<ul class="sidenav_sub" style="display:none">-->
+                  <!--<volist name='ca.addons' id='vo'>-->
+                      <!--<li class="{$navClass[$vo[name]]}"> <a href="{$vo[addons_url]}" title="{$vo.description}">-->
+                      <!--<i class="icon-chevron-right"><php>if(!empty($vo['icon'])) { </php> <img src="{$vo.icon}" /> <php> } </php> </i>-->
+                      <!--{$vo.title} </a><b class="active_arrow"></b></li>-->
+                  <!--</volist>-->
+             <!--</ul>-->
+          <!--</li>-->
+          <!--</volist>-->
           
           <li>
               <a class="sidenav_parent" href="javascript:;"><b class="ficon fa fa-plus-square "></b>成电约吧</a>
