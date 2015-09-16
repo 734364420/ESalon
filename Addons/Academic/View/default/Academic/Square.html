@@ -55,11 +55,12 @@
 	$(function () {
 		var percent = [];
 		var wid = [];
+		var all = $(".list .amount img").width();
 		for (var i = 0; i < $(".list li").length; i++) {
 			var now = $(".list li").eq(i).find(".amount-now").text();
 			var total = $(".list li").eq(i).find(".amount-total").text();
 			percent[i] = now / total;
-			wid[i] = percent[i] * 90;
+			wid[i] = percent[i] * all;
 			$(".list li").eq(i).find(".progressbar").css({"clip": "rect(0 " + wid[i] + "px 14px 0)"});
 		}
 	});                                                  //已参与人数进度条

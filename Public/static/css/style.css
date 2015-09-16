@@ -133,7 +133,7 @@ a.button,button{
     border-bottom: 1px solid #ccc;
 }
 .list .titles{
-    width: 67%;
+    width: 66%;
 }
 .list .blue-block{
     height: 45px!important;
@@ -173,7 +173,7 @@ a.button,button{
 }
 .list .amount img{
     position: absolute;
-    width: 90px;
+    width: 100%;
     top: 30px;
     right: 0;
 }
