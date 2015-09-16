@@ -146,7 +146,7 @@ a.button,button{
 and (max-device-width: 320px)
 and (-webkit-min-device-pixel-ratio: 2) {
     .list .titles{
-        width: 70%;
+        width: 73%;
     }
     .list .title{
         font-size: 16px;
