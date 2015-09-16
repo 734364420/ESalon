@@ -145,12 +145,18 @@ a.button,button{
 @media only screen
 and (max-device-width: 320px)
 and (-webkit-min-device-pixel-ratio: 2) {
+    .list .titles{
+        width: 70%;
+    }
     .list .title{
         font-size: 16px;
         margin-left: 0;
     }
     .detail-title .sub-title.name{
         margin-left: 0!important;
+    }
+    .blue-block{
+        width: 0 !important;
     }
 }
 .list .sub-title{
