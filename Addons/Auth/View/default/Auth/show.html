@@ -1,0 +1,79 @@
+<extend name="Base/common" />
+<block name="body">
+    <div class="span9 page_message">
+        <section id="contents">
+            <ul class="tab-nav nav">
+                <li class="current"><a href="{:U('lists')}">学生认证列表<b class="arrow fa fa-sort-up"></b></a></li>
+            </ul>
+            <div class="data-detail">
+                <div class="detail-group">
+                    <span class="label">ID：</span>
+                    <span class="cont">{$data.id}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">学号：</span>
+                    <span class="cont">{$data.student_id}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">姓名：</span>
+                    <span class="cont">{$data.student_name}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">性别：</span>
+                    <span class="cont">{$data.gender}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">学籍：</span>
+                    <span class="cont">{$data.student_status}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">学院：</span>
+                    <span class="cont">{$data.school}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">专业：</span>
+                    <span class="cont">{$data.major}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">邮箱：</span>
+                    <span class="cont">{$data.email}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">联系方式：</span>
+                    <span class="cont">{$data.phone}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">特长优势：</span>
+                    <span class="cont">{$data.good}</span>
+                </div>
+            </div>
+        </section>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+            //搜索功能
+            $("#search").click(function(){
+                var url = $(this).attr('url');
+                var query  = $('.search-form').find('input').serialize();
+                query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+                query = query.replace(/^&/g,'');
+                if( url.indexOf('?')>0 ){
+                    url += '&' + query;
+                }else{
+                    url += '?' + query;
+                }
+                window.location.href = url;
+            });
+
+            //回车自动提交
+            $('.search-form').find('input').keyup(function(event){
+                if(event.keyCode===13){
+                    $("#search").click();
+                }
+            });
+
+        })
+    </script>
+</block>

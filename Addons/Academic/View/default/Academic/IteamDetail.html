@@ -1,0 +1,51 @@
+<include file="Public/e_header"/>
+<body>
+<include file="Public/e_detail_title" />
+<div class="container">
+    <ul class="detail-list">
+        <li>
+            <img src="/Public/static/img/time.png" class="time">
+            <span class="label">活动截止时间：</span>
+            <span>{$iteam.end_date|date="Y-m-d",###}</span>
+        </li>
+		<include file="Public/e_detail"/>
+	    <include file="Public/e_summary"/>
+    </ul>
+</div>
+<include file="Public/e_status"/>
+
+<div id="wrap"></div>
+
+<script type="text/javascript">
+    $(function () {
+        var percent;
+        var wid;
+        var now = $(".list").find(".amount-now").text();
+        var total = $(".list").find(".amount-total").text();
+        var all = $(".list .amount img").width();
+        percent = now / total;
+        wid = percent * all;
+        $(".list ").find(".progressbar").css({"clip": "rect(0 " + wid + "px 14px 0)"});
+    });                                                  //已参与人数进度条
+
+    var show = false;
+    var container = '<div id="photo-detail" class="hidden"></div>';
+    $("#photos").find("img").click(function(){
+        $("#wrap").append(container);
+        var clone = $(this).clone();
+        $("#photo-detail").show().empty().append(clone);
+        clone.css({"width":"100%","height":"100%"});
+        $("#wrap").css({"z-index":"1","background-color":"rgba(0,0,0,0.6)"});
+        show = true;
+    });
+    $("#wrap").click(function(){
+        if(show){
+            $("#wrap").empty();
+            $("#photo-detail").hide();
+            $("#wrap").css({"z-index":"-1","background-color":"transparent"});
+            show = false;
+        }
+    })
+
+</script>
+<include file="Public/e_footer"/>

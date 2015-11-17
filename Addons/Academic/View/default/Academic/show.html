@@ -1,0 +1,73 @@
+<extend name="Base/common" />
+<block name="body">
+    <div class="span9 page_message">
+        <section id="contents">
+            <ul class="tab-nav nav">
+                <li class="current"><a href="{:U('lists')}">学生认证列表<b class="arrow fa fa-sort-up"></b></a></li>
+            </ul>
+            <div class="data-detail">
+                <div class="detail-group">
+                    <span class="label">ID：</span>
+                    <span class="cont">{$iteam.id}</span>
+                </div>
+                <div class="detail-group">
+                <span class="label">主题：</span>
+                <span class="cont">{$iteam.title}</span>
+                </div>
+                <div class="detail-group">
+                <span class="label">发布者：</span>
+                <span class="cont">{$publisher.student_name}</span>
+                </div>
+                <div class="detail-group">
+                <span class="label">发布者信息：</span>
+                <span class="cont">{$publisher.school}|{$publisher.phone}|{$publisher.email}</span>
+                </div>
+                <div class="detail-group">
+                <span class="label">报名人数：</span>
+                <span class="cont">{$iteam.participated_number}/{$iteam.participate_number}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">报名人员：</span>
+                    <volist name="participates" id="participate">
+                    <span class="cont">{$participate.student_name}  </span>
+                    </volist>
+                </div>
+                <div class="detail-group">
+                    <span class="label">比赛简介：</span>
+                    <span class="cont">{$iteam.brief}</span>
+                </div>
+                <div class="detail-group">
+                    <span class="label">发布者个人简介：</span>
+                    <span class="cont">{$iteam.publish_brief}</span>
+                </div>
+            </div>
+        </section>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        $(function(){
+            //搜索功能
+            $("#search").click(function(){
+                var url = $(this).attr('url');
+                var query  = $('.search-form').find('input').serialize();
+                query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
+                query = query.replace(/^&/g,'');
+                if( url.indexOf('?')>0 ){
+                    url += '&' + query;
+                }else{
+                    url += '?' + query;
+                }
+                window.location.href = url;
+            });
+
+            //回车自动提交
+            $('.search-form').find('input').keyup(function(event){
+                if(event.keyCode===13){
+                    $("#search").click();
+                }
+            });
+
+        })
+    </script>
+</block>

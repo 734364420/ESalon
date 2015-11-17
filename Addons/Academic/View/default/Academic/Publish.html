@@ -1,0 +1,56 @@
+<include file="Public/e_header"/>
+<body style="background-image:url(/Public/static/img/data-bg-2.png)">
+    <form method="post" class="data start">
+        <div class="form-group">
+            <label>iteam主题：</label>
+            <input type="text" name="title">
+        </div>
+        <div class="form-group">
+            <label>选择报名截止时间：</label>
+            <select name="start_date" class="clearfix">
+                <?php for($i=0;$i<=5;$i++) { ?>
+                <option value="{:date('Y-m-d',time()+$i*24*3600)}">{:date("Y-m-d",time()+$i*24*3600)}</option>
+                }
+                <?php } ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>选择比赛截止时间：</label>
+            <select name="end_date" class="clearfix">
+                <?php for($i=1;$i<=5;$i++) { ?>
+                <option value="{:date('Y-m-d',time()+$i*24*3600)}">{:date("Y-m-d",time()+$i*24*3600)}</option>
+                }
+                <?php } ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>选择参与人数：</label>
+            <select name="participate_number">
+                <option value="2">2人</option>
+                <option value="3">3人</option>
+                <option value="4">4人</option>
+                <option value="5">5人</option>
+                <option value="6">6人</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>选择类别：</label>
+            <select name="type">
+                <volist name="types" id="type">
+                    <option value="{$type.name}">{$type.name}</option>
+                    <option value="{$type.name}">{$type.name}</option>
+                </volist>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>输入iteam简介:</label>
+            <textarea name="brief"></textarea>
+        </div>
+        <div class="form-group">
+            <label>输入个人简介:</label>
+            <textarea name="publish_brief"></textarea>
+        </div>
+        <button type="submit" class="button" onclick="return checkCreateAcademicForm();">发起iteam</button>
+    </form>
+
+<include file="Public/e_footer"/>

@@ -1,0 +1,54 @@
+<include file="Public/e_header"/>
+<body>
+<form method="post">
+<div class="flex-box select-group">
+    <select name="type" class="flex-1">
+        <option value="">竞赛类别</option>
+	    <option value="物联网" {:IsSelected($type,'物联网')}>物联网</option>
+	    <option value="互联网+" {:IsSelected($type,'互联网+')}>互联网+</option>
+	    <option value="">全部</option>
+    </select>
+    <select name="date" class="flex-1">
+        <option value="">比赛时间</option>
+        <option value="1" {:IsSelected($type,1)}>已结束</option>
+        <option value="2" {:IsSelected($date,2)}>今天</option>
+        <option value="3" {:IsSelected($date,3)}>明天</option>
+	    <option value="4" {:IsSelected($date,4)}>三天后</option>
+	    <option value="">全部</option>
+    </select>
+    <select name="mode" class="flex-1">
+        <option value="">参赛方式</option>
+        <option value="1" {:IsSelected($mode,1)}>个人</option>
+        <option value="2" {:IsSelected($mode,2)}>团队</option>
+        <option value="">全部</option>
+    </select>
+	<input type="submit" value="搜索"/>
+</div>
+</form>
+<div class="container">
+    <div class="list compe">
+        <ul>
+            <volist name="news" id="new">
+                <li>
+                    <span class="blue-block pull-left"></span>
+
+                    <div class="pull-left titles">
+                        <p class="title"><a href="{:addons_url('Academic://Academic/NewsDetail',array('id'=>$new['id']))}">{$new.title|h}</a>
+                        </p>
+                    </div>
+                    <div class="timing pull-right">
+                        <span class="pull-left">{$new.date|date="Y-m-d",###}</span>
+                        <img src="/Public/static/img/see.png" class="see block">
+                        <span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
+                        <span class="sub-title pull-left">{$new.hits}</span>
+                        <span class="sub-title pull-left">)</span>
+                    </div>
+                </li>
+            </volist>
+            <include file="Public/e_page"/>
+        </ul>
+    </div>
+</div>
+
+
+<include file="Public/e_footer"/>

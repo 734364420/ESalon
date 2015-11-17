@@ -1,0 +1,41 @@
+<include file="Public/e_header" />
+<body>
+<form method="post" enctype="multipart/form-data">
+    <div class="container">
+        <div class="summary">
+            <p>比赛总结：</p>
+            <textarea name="comment"></textarea>
+        </div>
+
+        <div class="photo">
+            <span class="pull-left">上传照片（可选）：</span>
+            <div id="filePicker"></div>
+            <input type="file" name="file" id="photo-path">
+        </div>
+
+        <div class="stars">
+            <span class="pull-left">比赛评价：</span>
+            <div class="pull-left first-star">
+                <img src="/Public/static/img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="/Public/static/img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="/Public/static/img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="/Public/static/img/star.png">
+            </div>
+            <div class="pull-left">
+                <img src="/Public/static/img/star.png">
+            </div>
+            <input type="hidden" value="" name="stars">
+        </div>
+
+        <button type="submit" class="button clearfix" onclick="return checkSummary();">提交{$isSalon}</button>
+    </div>
+</form>
+
+<script type="text/javascript" src="/Public/static/webuploader/webuploader.js"></script>
+<include file="Public/e_footer" />

@@ -1,0 +1,63 @@
+<php>
+	$isSummary = M('e_summary')->where(' e_id = '.$iteam['id'])->select();
+	if(!empty($isSummary)) {
+</php>
+<li id="comment">
+	<img src="/Public/static/img/summary.jpg" class="comment">
+	<span class="label">比赛总结：</span>
+
+	<php>
+		$summary = M('e_summary')->where('user_id ='.$user['id'].' AND e_id = '.$iteam['id'].' AND is_iteam = '.$is_iteam)->find();
+		if(!empty($summary)) {
+	</php>
+	<div class="comment-group">
+		<p class="pull-left name">{$user.student_name|h}：</p>
+		<div class="pull-left">
+			<div class="clearfix">
+				<php>
+					for($i=0;$i<$summary['stars'];$i++) {
+				</php>
+				<img src="/Public/static/img/star-active.png" class="comment-star">
+				<php> }</php>
+			</div>
+			<p>{$summary.comment|h}</p>
+		</div>
+	</div>
+	<php> } </php>
+	<volist name="participate_users" id="s">
+		<php>
+			$summary = M('e_summary')->where('e_id ='.$iteam['id'].' AND user_id = '.$s['user_id'].' AND is_iteam = '.$is_iteam)->find();
+			$e_user = M('e_user')->find($s['user_id']);
+			if(!empty($summary)&&($s['user_id']!=$iteam['publish_userid'])) {
+		</php>
+		<div class="comment-group">
+			<p class="pull-left name">{$e_user.student_name|h}：</p>
+			<div class="pull-left">
+				<div class="clearfix">
+					<php>
+						for($i=0;$i<$summary['stars'];$i++) {
+					</php>
+					<img src="/Public/static/img/star-active.png" class="comment-star">
+					<php> }</php>
+				</div>
+				<p>{$summary.comment|h}</p>
+			</div>
+		</div>
+		<php> } </php>
+	</volist>
+</li>
+<php>
+	$summary_pic = M('e_summary')->where('e_id ='.$iteam['id'].' AND picture != \'\' '.' AND is_iteam = '.$is_iteam)->select();
+	if(!empty($summary_pic)) {
+</php>
+<li>
+	<img src="/Public/static/img/photo.png" class="comment">
+	<span class="label">活动照片：</span>
+	<div id="photos">
+		<volist name="summary_pic" id="sum">
+			<img src="{$sum.picture}">
+		</volist>
+	</div>
+</li>
+<php>}</php>
+<php>}</php>

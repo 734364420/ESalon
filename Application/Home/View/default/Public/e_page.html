@@ -1,0 +1,9 @@
+<li class="page-container">
+    <ul class="page">
+        <li><a href="{$page.prev}">上一页</a></li>
+	    <volist name="page.page" id="p">
+            <li <?php if($p['isnow']) echo 'class="active"'; ?>><a href="{$p.url}" >{$p.num|h}</a></li>
+	    </volist>
+        <li><a href="{$page.next}">下一页</a></li>
+    </ul>
+</li>

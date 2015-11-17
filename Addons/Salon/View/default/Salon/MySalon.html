@@ -1,0 +1,80 @@
+<include file="Public/e_header"/>
+<body>
+<div class="flex-box salon-type">
+    <a href="javascript:;" class="flex-1 center tab-left {:IsActive($status,'sign')}"">我发起的E沙龙</a>
+    <a href="javascript:;" class="flex-1 center tab-right {:IsActive($status,'end')}"">我报名的E沙龙</a>
+</div>
+<include file="Public/e_userprofile"/>
+<form method="post">
+    <div class="flex-box select-group">
+        <select name="type" class="flex-1">
+            <option value="">沙龙类别</option>
+            <option value="物联网" {:IsSelected($type,'物联网')}>物联网</option>
+            <option value="互联网+" {:IsSelected($type,'互联网+')}>互联网+</option>
+            <option value="">全部</option>
+        </select>
+        <select name="salon_status" class="flex-1">
+            <option value="">沙龙状态</option>
+            <option value="1" {:IsSelected($salon_status,1)}>已结束</option>
+            <option value="2" {:IsSelected($salon_status,2)}>未结束</option>
+            <option value="">全部</option>
+        </select>
+        <select name="salon_summary_status" class="flex-1">
+            <option value="">总结状态</option>
+            <option value="1" {:IsSelected($salon_summary_status,1)}>已总结</option>
+            <option value="2" {:IsSelected($salon_summary_status,2)}>未总结</option>
+            <option value="">全部</option>
+        </select>
+        <input type="hidden" name="status" value="{$status}" class="status">
+        <input type="submit" value="搜索">
+    </div>
+</form>
+
+<div class="container">
+    <div class="list">
+        <ul class="tab-left-ul <?php if($status!='sign') echo 'hidden'; ?>">
+            <volist name="salons_publish" id="iteam">
+                <include file="Public/e_list"/>
+            </volist>
+            <php>$page = $PublishPage;</php>
+            <include file="Public/e_page"/>
+        </ul>
+
+        <ul class="tab-right-ul <?php if($status!='end') echo 'hidden'; ?> ">
+            <volist name="salons_participate" id="iteam">
+                <include file="Public/e_list"/>
+            </volist>
+            <php>$page = $ParticipatePage;</php>
+            <include file="Public/e_page"/>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var percent = [];
+        var wid = [];
+        var all = $(".list .amount img").width();
+        for (var i = 0; i < $(".list li").length; i++) {
+            var now = $(".list li").eq(i).find(".amount-now").text();
+            var total = $(".list li").eq(i).find(".amount-total").text();
+            percent[i] = now / total;
+            wid[i] = percent[i] * all;
+            $(".list li").eq(i).find(".progressbar").css({"clip": "rect(0 " + wid[i] + "px 14px 0)"});
+        }
+    });                                                  //已参与人数进度条
+
+    $(function () {
+        if($(".tab-left").hasClass("active")){
+            $(".tab-right").removeClass("active");
+            $(".tab-right-ul").addClass("hidden");
+            $(".tab-left-ul").removeClass("hidden");
+        }
+        if($(".tab-right").hasClass("active")){
+            $(".tab-left").removeClass("active");
+            $(".tab-left-ul").addClass("hidden");
+            $(".tab-right-ul").removeClass("hidden");
+        }
+    });                                                 //页面初始化时tab标签
+
+</script>
+<include file="Public/e_footer"/>

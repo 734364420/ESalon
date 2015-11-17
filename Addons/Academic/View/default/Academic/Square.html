@@ -1,0 +1,104 @@
+<include file="Public/e_header"/>
+<body>
+	<div class="flex-box salon-type">
+		<a href="javacript:;" class="flex-1 center tab-left {:IsActive($status,'sign')}">可报名的iteam</a>
+		<a href="javacript:;" class="flex-1 center tab-right {:IsActive($status,'end')}">已结束的iteam</a>
+	</div>
+<!--<div class="center" id="data">-->
+	<!--<span class="name">{$user.student_name}</span>-->
+	<!--<a href="{:addons_url('Auth://Auth/EditProfile')}" id="change-data" class="pull-right">修改资料</a>-->
+<!--</div>-->
+	<form action="{:addons_url('Academic://Academic/Square')}" method="post">
+		<div class="flex-box select-group">
+			<select name="type" class="flex-1">
+				<option value="">竞赛类别</option>
+				<option value="物联网" {:IsSelected($type,'物联网')}>物联网</option>
+				<option value="互联网+" {:IsSelected($type,'互联网+')}>互联网+</option>
+			</select>
+			<select name="date" class="flex-1 different">
+
+			</select>
+			<select name="number" class="flex-1">
+				<option value="">参与人数</option>
+				<php> for($i=2;$i<7;$i++) { </php>
+				<option value="{$i}" {:IsSelected($number,$i)}>{$i}</option>
+				<php> } </php>
+				<option value="">全部</option>
+			</select>
+			<input type="hidden" name="status" value="{$status}" class="status"/>
+			<input type="submit" value="搜索"/>
+		</div>
+	</form>
+
+
+	<div class="container">
+		<div class="list">
+			<ul class="tab-left-ul <?php if($status!='sign') echo 'hidden'; ?>">
+				<volist name="sign_iteams" id="iteam">
+					<include file="Public/e_list_square"/>
+				</volist>
+				<php>$page = $SignPage;</php>
+				<include file="Public/e_page"/>
+			</ul>
+
+			<ul class="tab-right-ul <?php if($status!='end') echo 'hidden'; ?>">
+				<volist name="end_iteams" id="iteam">
+					<include file="Public/e_list_square" />
+				</volist>
+				<php>$page = $EndPage;</php>
+				<include file="Public/e_page"/>
+			</ul>
+		</div>
+	</div>
+
+<script type="text/javascript">
+	$(function () {
+		var percent = [];
+		var wid = [];
+		var all = $(".list .amount img").width();
+		for (var i = 0; i < $(".list li").length; i++) {
+			var now = $(".list li").eq(i).find(".amount-now").text();
+			var total = $(".list li").eq(i).find(".amount-total").text();
+			percent[i] = now / total;
+			wid[i] = percent[i] * all;
+			$(".list li").eq(i).find(".progressbar").css({"clip": "rect(0 " + wid[i] + "px 14px 0)"});
+		}
+	});                                                  //已参与人数进度条
+
+	var selectLeft = '<option value=\"\">比赛时间</option>' +
+					'<option value=\"1\" {:IsSelected($date,1)}>今天</option>' +
+					'<option value=\"2\" {:IsSelected($date,2)}>明天</option>' +
+					'<option value=\"3\" {:IsSelected($date,3)}>三天后</option>' +
+					'<option value=\"\">全部</option>';
+	var selectRight = '<option value=\"\">比赛时间</option>' +
+						'<option value=\"-1\" {:IsSelected($date,-1)}>昨天</option>' +
+						'<option value=\"-3\" {:IsSelected($date,-3)}>过去三天</option>' +
+						'<option value=\"-7\" {:IsSelected($date,-7)}>过去一周</option>' +
+						'<option value=\"\">全部</option>';
+
+	$(function () {
+		if($(".tab-left").hasClass("active")){
+			$(".tab-right").removeClass("active");
+			$(".tab-right-ul").addClass("hidden");
+			$(".tab-left-ul").removeClass("hidden");
+			$(".different").empty().append(selectLeft);
+		}
+		if($(".tab-right").hasClass("active")){
+			$(".tab-left").removeClass("active");
+			$(".tab-left-ul").addClass("hidden");
+			$(".tab-right-ul").removeClass("hidden");
+			$(".different").empty().append(selectRight);
+		}
+	});                                                 //页面初始化时tab标签
+
+	$(".tab-left").click(function () {
+		$(".different").empty().append(selectLeft);
+	});
+
+	$(".tab-right").click(function () {
+		$(".different").empty().append(selectRight);
+	});
+
+</script>
+
+<include file="Public/e_footer" />

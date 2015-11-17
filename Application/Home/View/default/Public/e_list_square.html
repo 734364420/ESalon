@@ -1,0 +1,19 @@
+<li class="detail-title square">
+	<span class="blue-block pull-left"></span>
+	<div class="pull-left titles">
+		<p class="title"><a href="{:addons_url($url,array('id'=>$iteam['id']))}">{:str_cut($iteam['title'],30)}</a></p>
+		<span class="sub-title pull-left name"><php>$user = M('e_user')->find($iteam['publish_userid']); echo $user['student_name'];</php></span>
+		<span class="sub-title pull-left time"><php>echo date("Y-m-d",$iteam['start_date']);</php></span>
+		<img src="/Public/static/img/see.png" class="see">
+		<span class="sub-title pull-left" style="margin-left:3px;">浏览(</span>
+		<span class="sub-title pull-left">{$iteam.hits|h}</span>
+		<span class="sub-title pull-left">)</span>
+	</div>
+	<div class="amount pull-right">
+		<span class="amount-now">{$iteam.participated_number|h}</span>
+		<span class="amount-dig">/</span>
+		<span class="amount-total">{$iteam.participate_number|h}</span>
+		<img src="/Public/static/img/progressbar-bottom.png">
+		<img src="/Public/static/img/progressbar-top.png" class="progressbar">
+	</div>
+</li>
