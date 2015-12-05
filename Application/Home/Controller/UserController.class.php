@@ -80,7 +80,7 @@ class UserController extends HomeController {
 						Cookie ( '__forward__', null );
 					} else {
 						$url = addons_url('Salon://Salon/lists');
-                    }
+					}
 					
 					session ( 'is_follow_login', null );
 					
