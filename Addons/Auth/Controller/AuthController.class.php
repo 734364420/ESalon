@@ -2,6 +2,7 @@
 
 namespace Addons\Auth\Controller;
 use Home\Controller\AddonsController;
+use Overtrue\Wechat\Notice;
 
 class AuthController extends AddonsController{
     function __construct() {

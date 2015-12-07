@@ -1,5 +1,6 @@
 <?php
 namespace Addons\Salon\Controller;
+use Addons\Coupons\Model\CouponsModel;
 use Home\Controller\AddonsController;
 class SalonController extends AddonsController{
 	public function __construct() {
@@ -93,7 +94,7 @@ class SalonController extends AddonsController{
 		$user = M('e_user')->where('id='.$salon['publish_userid'])->find();
 		$this->assign('user',$user);
 		$participate_users=M('e_participate')->where('e_id='.$id.' and is_iteam=0')->select();
-		$summaries=M('e_summary')->where('e_id='.$id.' and is_iteam=0')->select();
+		$summaries=M('e_summary')->where('e_id='.$id.' and is_iteam=0'.' and is_pass=1')->select();
 		for($i=0;$i<count($summaries);$i++) {
 			$summaries_users[$i] = M('e_user')->where('id=' . $summaries[$i]['user_id'])->find();
 		}
@@ -134,14 +135,22 @@ class SalonController extends AddonsController{
 				$data['user_id']=session('user_id');
 				$data['e_id']=$id;
 				M('e_participate')->add($data);
-				$this->success('新建成功',addons_url('Salon://Salon/MySalon'),3);
+                /*
+                 * 活动发起人获得20元代金劵
+                 */
+                $this->createCoupons(session('user_id'),$id,20);
+                $this->success('新建成功',addons_url('Salon://Salon/MySalon'),3);
 			}else{
 				$this->error('创建失败咯，请仔细确认填写内容');
 			}
 		} else {
-			for($i=0;$i<=10;$i++){
+			//只能预约创建七天之内的salon
+			for($i=0;$i<=7;$i++){
 				$times[$i]=date("Y-m-d",strtotime("+$i day"));
 			}
+			$IteamType = M('e_iteam_type');
+			$types = $IteamType->select();
+			$this->assign('types',$types);
 			$this->times=$times;
 			$this->assign('title','新建我的E沙龙');
 			$this->display();
@@ -166,6 +175,10 @@ class SalonController extends AddonsController{
 		$param ['token'] = get_token ();
 		$param ['openid'] = get_openid ();
 		if($result){
+            /*
+             * 活动参与人获得10元代金劵
+             */
+            $this->createCoupons(session('user_id'),$id,10);
 			$this->success('参加成功',addons_url('Salon://Salon/SalonSquare',$param),3);
 		}else{
 			$this->error('参加失败');
@@ -269,6 +282,18 @@ class SalonController extends AddonsController{
 		$this->assign('title','查询结果');
 		$this->display('Salon/SalonSquare');
 	}
+    /*
+     * 活动代金劵
+     */
+    private function createCoupons($uid,$sid,$money) {
+        $coupons = new CouponsModel();
+        if(!$coupons->create($uid,$sid,$money)) $this->error("啊哦,获得代金劵失败了!");
+    }
+
+
+
+
+
 
 	function lists()
 	{
@@ -301,9 +326,19 @@ class SalonController extends AddonsController{
 		// 读取模型数据列表
 
 		empty ($fields) || in_array('id', $fields) || array_push($fields, 'id');
+		if(\LfRequest::inNum('summary')&&in_array(\LfRequest::inNum('summary'),[1,2])) {
+			$map['summary'] = \LfRequest::inNum('summary')-1;
+		}
 		$name = parse_name(get_table_name($this->model ['id']), true);
 		$data = M($name)->field(empty ($fields) ? true : $fields)->where($map)->order('id DESC')->page($page, $row)->select();
-
+		foreach($data as $i=>$d) {
+			if($d['summary'] == 0) {
+				$data[$i]['summary'] = "否";
+			}
+			if($d['type'] == 2) {
+				$data[$i]['summary'] = "是";
+			}
+		}
 		/* 查询记录总数 */
 		$count = M($name)->where($map)->count();
 

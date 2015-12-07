@@ -16,7 +16,7 @@ class IndexController extends HomeController {
 	
 	// 系统首页
 	public function index() {
-		redirect ( addons_url('Salon://Salon/lists') );
+		redirect ( U('User/login') );
 	}
 	// 系统介绍
 	public function introduction() {

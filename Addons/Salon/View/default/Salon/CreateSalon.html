@@ -13,9 +13,13 @@
                 </volist>
             </select>
             <select name="time" class="sepr">
-                <option value="09:00">09:00</option>
-                <option value="11:00">11:00</option>
-                <option value="13:00">13:00</option>
+                <option value="15:00">15:00</option>
+                <option value="16:00">16:00</option>
+                <option value="17:00">17:00</option>
+                <option value="18:00">18:00</option>
+                <option value="19:00">19:00</option>
+                <option value="20:00">20:00</option>
+                <option value="21:00">21:00</option>
             </select>
         </div>
         <div class="form-group">
@@ -51,12 +55,9 @@
         <div class="form-group">
             <label>选择类别：</label>
             <select name="type">
-                <option value="艺海遨游">艺海遨游</option>
-                <option value="学术论剑">学术论剑</option>
-                <option value="创新创业">创新创业</option>
-                <option value="经济政治">经济政治</option>
-                <option value="史观杂谈">史观杂谈</option>
-                <option value="其他">其他</option>
+                <volist name="types" id="type">
+                    <option value="{$type.name}">{$type.name}</option>
+                </volist>
             </select>
         </div>
         <div class="form-group">
