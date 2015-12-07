@@ -3,7 +3,7 @@
     <div class="span9 page_message">
         <section id="contents">
             <ul class="tab-nav nav">
-                <li class="current"><a href="{:U('lists')}">学生认证列表<b class="arrow fa fa-sort-up"></b></a></li>
+                <li class="current"><a href="{:U('lists')}">E沙龙详情<b class="arrow fa fa-sort-up"></b></a></li>
             </ul>
             <div class="data-detail">
                 <div class="detail-group">
@@ -37,8 +37,43 @@
                     </volist>
                 </div>
                 <div class="detail-group">
-                    <span class="label">比赛简介：</span>
+                    <span class="label">活动时间：</span>
+                    <span>{$iteam['start_date']|date="Y-m-d H:i",###}-{$iteam['end_date']|date="H:i",###}</span>
+                </div>
+
+                <div class="detail-group">
+                    <span class="label">活动简介：</span>
                     <span class="cont">{$iteam.brief}</span>
+                </div>
+
+                <div class="detail-group">
+                    <span class="label">活动总结：</span>
+                    <hr>
+                    <php>
+                        $summarys = M('e_summary')->where(['e_id'=>$iteam['id']])->select();
+                    </php>
+                    <volist name="summarys" id="summary">
+                        <div class="detail-group" style="margin-left: 20px;">
+                            <span class="label">评价星星数：</span>
+                            <span class="cont">{$summary.stars}颗心</span>
+                        </div>
+                        <div class="detail-group" style="margin-left: 20px;">
+                            <span class="label">评价内容：</span>
+                            <span class="cont">{$summary.comment}</span>
+                        </div>
+                        <php>if(!empty($summary['picture'])) {</php>
+                        <div class="detail-group" style="margin-left: 20px;">
+                            <span class="label">活动图片：</span>
+                            <a class="btn" data-src="{$summary.picture}">查看</a>
+                        </div>
+                        <php>}</php>
+                        <div class="detail-group" style="margin-left: 20px;">
+                            <span class="label">操作：</span>
+                            <a class="btn" href="">通过</a>
+                            <a class="btn btn-danger" href="">删除</a>
+                        </div>
+                        <hr>
+                    </volist>
                 </div>
             </div>
         </section>

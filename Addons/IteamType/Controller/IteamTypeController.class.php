@@ -9,27 +9,27 @@ class IteamTypeController extends AddonsController{
 		$this->model = M('Model')->getByName('e_iteam_type');
 		$this->assign ( 'model', $this->model );
 	}
-	//¾ºÈüÁĞ±í
+	//ç«èµ›åˆ—è¡¨
 	function lists() {
 		$users = M('e_user');
-		$page = I ( 'p', 1, 'intval' ); // Ä¬ÈÏÏÔÊ¾µÚÒ»Ò³Êı¾İ
+		$page = I ( 'p', 1, 'intval' ); // é»˜è®¤æ˜¾ç¤ºç¬¬ä¸€é¡µæ•°æ®
 
-		// ½âÎöÁĞ±í¹æÔò
+		// è§£æåˆ—è¡¨è§„åˆ™
 		$list_data = $this->_list_grid ( $this->model );
 		$grids = $list_data ['list_grids'];
 		$fields = $list_data ['fields'];
 
-		// ¹Ø¼ü×ÖËÑË÷
+		// å…³é”®å­—æœç´¢
 		$map ['token'] = get_token ();
 		$key = $this->model ['search_key'] ? $this->model ['search_key'] : 'title';
 		if (isset ( $_REQUEST [$key] )) {
 			$map [$key] = array (
-				'like',
-				'%' . htmlspecialchars ( $_REQUEST [$key] ) . '%'
+					'like',
+					'%' . htmlspecialchars ( $_REQUEST [$key] ) . '%'
 			);
 			unset ( $_REQUEST [$key] );
 		}
-		// Ìõ¼şËÑË÷
+		// æ¡ä»¶æœç´¢
 		foreach ( $_REQUEST as $name => $val ) {
 			if (in_array ( $name, $fields )) {
 				$map [$name] = $val;
@@ -37,16 +37,16 @@ class IteamTypeController extends AddonsController{
 		}
 		$row = empty ( $this->model ['list_row'] ) ? 20 : $this->model ['list_row'];
 
-		// ¶ÁÈ¡Ä£ĞÍÊı¾İÁĞ±í
+		// è¯»å–æ¨¡å‹æ•°æ®åˆ—è¡¨
 
 		empty ( $fields ) || in_array ( 'id', $fields ) || array_push ( $fields, 'id' );
 		$name = parse_name ( get_table_name ( $this->model ['id'] ), true );
 		$data = M ( $name )->field ( empty ( $fields ) ? true : $fields )->where ( $map )->order ( 'id DESC' )->page ( $page, $row )->select ();
 
-		/* ²éÑ¯¼ÇÂ¼×ÜÊı */
+		/* æŸ¥è¯¢è®°å½•æ€»æ•° */
 		$count = M ( $name )->where ( $map )->count ();
 
-		// ·ÖÒ³
+		// åˆ†é¡µ
 		if ($count > $row) {
 			$page = new \Think\Page ( $count, $row );
 			$page->setConfig ( 'theme', '%FIRST% %UP_PAGE% %LINK_PAGE% %DOWN_PAGE% %END% %HEADER%' );
@@ -63,54 +63,54 @@ class IteamTypeController extends AddonsController{
 			$ids = array_unique ( ( array ) I ( 'ids', 0 ) );
 		}
 		if (empty ( $ids )) {
-			$this->error ( 'ÇëÑ¡ÔñÒª²Ù×÷µÄÊı¾İ!' );
+			$this->error ( 'è¯·é€‰æ‹©è¦æ“ä½œçš„æ•°æ®!' );
 		}
 
 		$Model = M ( get_table_name ( $this->model ['id'] ) );
 		$map = array (
-			'id' => array (
-				'in',
-				$ids
-			)
+				'id' => array (
+						'in',
+						$ids
+				)
 		);
 		$map ['token'] = get_token ();
 		if ($Model->where ( $map )->delete ()) {
-			$this->success ( 'É¾³ı³É¹¦' );
+			$this->success ( 'åˆ é™¤æˆåŠŸ' );
 		} else {
-			$this->error ( 'É¾³ıÊ§°Ü£¡' );
+			$this->error ( 'åˆ é™¤å¤±è´¥ï¼' );
 		}
 	}
 	public function edit() {
-		// »ñÈ¡Ä£ĞÍĞÅÏ¢
+		// è·å–æ¨¡å‹ä¿¡æ¯
 		$id = I ( 'id', 0, 'intval' );
 
 		if (IS_POST) {
 			$_POST ['mTime'] = time ();
 
 			$Model = D ( parse_name ( get_table_name ( $this->model ['id'] ), 1 ) );
-			// »ñÈ¡Ä£ĞÍµÄ×Ö¶ÎĞÅÏ¢
+			// è·å–æ¨¡å‹çš„å­—æ®µä¿¡æ¯
 			$Model = $this->checkAttr ( $Model, $this->model ['id'] );
 			if ($Model->create () && $Model->save ()) {
-				// Ôö¼ÓÑ¡Ïî
+				// å¢åŠ é€‰é¡¹
 				D ( 'Addons://Vote/VoteOption' )->set ( I ( 'post.id' ), I ( 'post.' ) );
 
-				// ±£´æ¹Ø¼ü´Ê
+				// ä¿å­˜å…³é”®è¯
 				D ( 'Common/Keyword' )->set ( I ( 'post.keyword' ), 'Vote', I ( 'post.id' ) );
 
-				$this->success ( '±£´æ' . $this->model ['title'] . '³É¹¦£¡', U ( 'lists?model=' . $this->model ['name'] ) );
+				$this->success ( 'ä¿å­˜' . $this->model ['title'] . 'æˆåŠŸï¼', U ( 'lists?model=' . $this->model ['name'] ) );
 			} else {
 				$this->error ( $Model->getError () );
 			}
 		} else {
 			$fields = get_model_attribute ( $this->model ['id'] );
 
-			// »ñÈ¡Êı¾İ
+			// è·å–æ•°æ®
 			$data = M ( get_table_name ( $this->model ['id'] ) )->find ( $id );
-			$data || $this->error ( 'Êı¾İ²»´æÔÚ£¡' );
+			$data || $this->error ( 'æ•°æ®ä¸å­˜åœ¨ï¼' );
 
 			$token = get_token ();
 			if (isset ( $data ['token'] ) && $token != $data ['token'] && defined ( 'ADDON_PUBLIC_PATH' )) {
-				$this->error ( '·Ç·¨·ÃÎÊ£¡' );
+				$this->error ( 'éæ³•è®¿é—®ï¼' );
 			}
 
 			$option_list = M ( 'vote_option' )->where ( 'vote_id=' . $id )->order ( '`order` asc' )->select ();
@@ -118,25 +118,25 @@ class IteamTypeController extends AddonsController{
 
 			$this->assign ( 'fields', $fields );
 			$this->assign ( 'data', $data );
-			$this->meta_title = '±à¼­' . $this->model ['title'];
-			$this->display ('Competition/edit');
+			$this->meta_title = 'ç¼–è¾‘' . $this->model ['title'];
+			$this->display ();
 		}
 	}
 	public function add() {
 		if (IS_POST) {
-			// ×Ô¶¯²¹³ätoken
+			// è‡ªåŠ¨è¡¥å……token
 			$_POST ['token'] = get_token ();
 			$Model = D ( parse_name ( get_table_name ( $this->model ['id'] ), 1 ) );
-			// »ñÈ¡Ä£ĞÍµÄ×Ö¶ÎĞÅÏ¢
+			// è·å–æ¨¡å‹çš„å­—æ®µä¿¡æ¯
 			$Model = $this->checkAttr ( $Model, $this->model ['id'] );
 			if ($Model->create () && $vote_id = $Model->add ()) {
-				// Ôö¼ÓÑ¡Ïî
+				// å¢åŠ é€‰é¡¹
 				D ( 'Addons://Vote/VoteOption' )->set ( $vote_id, I ( 'post.' ) );
 
-				// ±£´æ¹Ø¼ü´Ê
+				// ä¿å­˜å…³é”®è¯
 				D ( 'Common/Keyword' )->set ( I ( 'keyword' ), 'Vote', $vote_id );
 
-				$this->success ( 'Ìí¼Ó' . $this->model ['title'] . '³É¹¦£¡', U ( 'lists?model=' . $this->model ['name'] ) );
+				$this->success ( 'æ·»åŠ ' . $this->model ['title'] . 'æˆåŠŸï¼', U ( 'lists?model=' . $this->model ['name'] ) );
 			} else {
 				$this->error ( $Model->getError () );
 			}
@@ -144,18 +144,18 @@ class IteamTypeController extends AddonsController{
 
 			$vote_fields = get_model_attribute ( $this->model ['id'] );
 			$this->assign ( 'fields', $vote_fields );
-			// Ñ¡Ïî±í
+			// é€‰é¡¹è¡¨
 			$option_fields = get_model_attribute ( $this->option ['id'] );
 			$this->assign ( 'option_fields', $option_fields );
 
-			$this->meta_title = 'ĞÂÔö' . $this->model ['title'];
-			$this->display ('Competition/add');
+			$this->meta_title = 'æ–°å¢' . $this->model ['title'];
+			$this->display ();
 		}
 	}
 
 	public function show(){
 		$id=I('id');
-		$data=M('e_iteam_type')->where('id='.$id)->find();
+		$data=M('e_competition')->where('id='.$id)->find();
 		$data['date']=date('Y-m-d H:i:s',$data['date']);
 		$this->assign('data',$data);
 		$this->display();

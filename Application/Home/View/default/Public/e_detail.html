@@ -7,14 +7,10 @@
 	<img src="/Public/static/img/user.png" class="user">
 	<span class="label">发起人：</span>
 	<span>{$user.student_name|h}</span>
-
+	<span style="margin-left: 10px;">{$user.phone|h}</span>
+	<p>{$user.student_id|h}</p>
 	<p>{$user.school|h}</p>
 
-	<p>{$user.phone|h}</p>
-
-	<p>{$user.email|h}</p>
-
-	<p>{$user.good|h}</p>
 </li>
 <li>
 	<img src="/Public/static/img/amount.png" class="amount">
@@ -24,13 +20,16 @@
 		<php>$euser = M('e_user')->find($u['user_id'])</php>
 		<p>
 			<a href="{:addons_url('Auth://Auth/UserProfile',array('id'=>$euser['id']))}" class="block pull-left" style="width:65px;">{$euser.student_name|h}</a>
-			<span class="pull-left">{$euser.school|h}</span>
+			<span class="pull-left">{$euser.phone|h}</span>
+
+		<p class="pull-left">{$euser.student_id|h}</p>
+		<p class="pull-left">{$euser.school|h}</p>
 		</p>
 	</volist>
 </li>
 <li id="brief">
 	<img src="/Public/static/img/brief.png" class="brief">
-	<span class="label">比赛简介：</span>
+	<span class="label">活动简介：</span>
 
 	<p>{$iteam.brief|h}</p>
 </li>
