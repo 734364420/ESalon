@@ -10,6 +10,8 @@ class CouponsController extends AddonsController{
         $this->model = M('Model')->getByName('coupons');
     }
     public function showCoupon() {
+        $this->display();
+        die();
         $code = \LfRequest::inStr('code');
         $coupon = M('coupons')->where(['code'=>$code])->find();
         if(!$coupon) $this->error("该代金劵不存在!");
@@ -24,7 +26,6 @@ class CouponsController extends AddonsController{
          * 再页面中判断是否已使用
          * 如果已使用,则不显示使用代金劵的按钮
          */
-        $this->display();
     }
     public function useCoupon() {
         $id = \LfRequest::inNum('id');

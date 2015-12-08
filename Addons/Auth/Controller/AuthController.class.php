@@ -172,4 +172,8 @@ class AuthController extends AddonsController{
         $this->assign('data',$data);
         $this->display();
     }
+
+    function myCoupon() {
+        $this->display();
+    }
 }

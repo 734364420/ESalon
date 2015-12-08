@@ -15,6 +15,9 @@ li{
 textarea{
     resize: none;
 }
+html{
+    min-height: 100%;
+}
 .container{
     width: 90%;
     margin: 0 5%;
@@ -647,4 +650,52 @@ a.go-summary{
 }
 #contact-us button{
     margin-top: 30px;
+}
+
+
+#show-coupon ul{
+    width: 85%;
+    margin: 40px auto;
+}
+#show-coupon ul li{
+    margin: 18px 0;
+    overflow: hidden;
+}
+#show-coupon span{
+    color: #fff;
+}
+#show-coupon label,b{
+    color: #333;
+    font-weight: bold;
+    width: 105px;
+    display: inline-block;
+    float: left;
+}
+#show-coupon input,#show-coupon select{
+    width: 52%;
+    padding-left: 8px;
+    box-sizing: content-box;
+    outline: none;
+}
+
+
+#my-coupon #code{
+    margin-top: 40px;
+}
+#my-coupon #code canvas{
+    display: block;
+    width: 80%;
+    margin: 0 auto 20px;
+}
+#my-coupon ul{
+    width: 80%;
+    margin: 20px auto;
+    border-top: 1px solid transparent;
+}
+#my-coupon ul li{
+    margin: 18px 0;
+    overflow: hidden;
+}
+#my-coupon ul li span{
+    color: deepskyblue;
 }

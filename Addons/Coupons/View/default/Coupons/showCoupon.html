@@ -1,0 +1,41 @@
+<include file="Public/e_header"/>
+
+<body style="background: -webkit-linear-gradient(lightskyblue,lightgreen) no-repeat;min-height: 100%" id="show-coupon">
+<form action="$url">
+    <ul>
+        <li>
+            <b>代金券金额：</b>
+            <span>{$coupon.money}</span>
+            <input type="hidden" name="id" value="{$coupon.id}"/>
+        </li>
+        <li>
+            <b>活动名称：</b>
+            <span>{$salon.title}</span>
+            <input type="hidden" name="salon_id" value="{$salon.id}"/>
+        </li>
+        <li>
+            <b>活动时间：</b>
+            <span>{$salon.start_date}</span>
+        </li>
+        <li>
+            <b>用户信息：</b>
+            <span>{$user.student_name}</span>
+            <input type="hidden" name="user_id" value="{user.id}"/>
+        </li>
+        <li class="form-group">
+            <label>选择地点：</label>
+            <select name="address" id="">
+                <option value="【清】淘学驿站">【清】淘学驿站</option>
+                <option value="【沙】红咖啡">【沙】红咖啡</option>
+            </select>
+        </li>
+        <li class="form-group">
+            <label>输入密码：</label>
+            <input type="password" name="password"/>
+        </li>
+    </ul>
+    <button type="submit">提交</button>
+</form>
+</body>
+
+<include file="Public/e_footer"/>

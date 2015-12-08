@@ -1,0 +1,27 @@
+<include file="Public/e_header"/>
+
+<body style="background: #dedede;min-height: 100%" id="my-coupon">
+    <div id="code"></div>
+    <ul>
+        <li>
+            <b>活动名称：</b>
+            <span>{$salon.title}</span>
+        </li>
+        <li>
+            <b>活动时间：</b>
+            <span>{$salon.start_date}</span>
+        </li>
+        <li>
+            <b>用户信息：</b>
+            <span>{$user.student_name}</span>
+        </li>
+    </ul>
+</body>
+
+
+<script type="text/javascript" src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+<script>
+    var text = '{$url}';
+    $('#code').qrcode(text);
+</script>
+<include file="Public/e_footer"/>
