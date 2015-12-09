@@ -27,7 +27,7 @@ class CouponsModel extends Model{
         $coupons->created_at = time();
         $coupons->is_used = 0;
         $coupons->money = $money;
-        return $coupons->create();
+        return $coupons->add();
     }
     public function useCoupons($cid,$address) {
         $coupon = M('coupons');

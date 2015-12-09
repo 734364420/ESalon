@@ -7,3 +7,14 @@
     * 在根目录下建立Runtime文件夹并赋予写权限
 # 微信配置
     * 在/Application/Common/Common/function.php中进行微信参数配置
+    
+# 初始化
+    TRUNCATE TABLE `eagerfor_e_user`;
+    TRUNCATE TABLE `eagerfor_e_salon`;
+    TRUNCATE TABLE `eagerfor_e_participate`;
+    TRUNCATE TABLE `eagerfor_e_iteam`;
+    TRUNCATE TABLE `eagerfor_e_competition`;
+    TRUNCATE TABLE `eagerfor_e_summary`;
+    TRUNCATE TABLE `eagerfor_credit`;
+    TRUNCATE TABLE `eagerfor_coupons`;
+    TRUNCATE TABLE `eagerfor_weixin_log`;

@@ -9,10 +9,10 @@
         </li>
         <li>
             <b>活动时间：</b>
-            <span>{$salon.start_date}</span>
+            <span>{$salon.start_date|date="Y-m-d H:i",###}</span>
         </li>
         <li>
-            <b>用户信息：</b>
+            <b>学生姓名：</b>
             <span>{$user.student_name}</span>
         </li>
     </ul>

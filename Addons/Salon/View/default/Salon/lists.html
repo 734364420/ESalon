@@ -12,6 +12,8 @@
 				<if condition="$del_button"><php> $del_url || $del_url = U('del?model='.$model['id'], $get_param);</php><button class="btn ajax-post confirm" target-form="ids" url="{$del_url}">删 除</button></if>    
                 <a class="btn  confirm" href="<?php echo addons_url('Salon://Salon/lists',array('summary'=>1));?>">未总结</a>
                 <a class="btn  confirm" href="<?php echo addons_url('Salon://Salon/lists',array('summary'=>2));?>">已总结</a>
+                <a class="btn  confirm" href="<?php echo addons_url('Salon://Salon/lists',array('summary'=>3));?>">已通过</a>
+                <a class="btn  confirm" href="<?php echo addons_url('Salon://Salon/export');?>">导出Excel</a>
                 <volist name="top_more_button" id="vo">
                 <if condition="$vo[is_buttion]">
                 <button class="btn {$vo.class}" target-form="ids" url="{$vo.url}">{$vo.title}</button>

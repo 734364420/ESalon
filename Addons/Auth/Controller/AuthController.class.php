@@ -1,6 +1,7 @@
 <?php
 
 namespace Addons\Auth\Controller;
+use Addons\Credit\Model\CreditModel;
 use Home\Controller\AddonsController;
 use Overtrue\Wechat\Notice;
 
@@ -33,7 +34,9 @@ class AuthController extends AddonsController{
 	    if(!empty($isAuth)) {
 	    	$this->error("不能重复认证");
 	    }
-            $user->add();
+            $id = $user->add();
+            $credit = new CreditModel();
+            $credit->createCredit($id);
             $this->success("认证成功",addons_url('Salon://Salon/Instruction'));
         } else {
             $user = '';
@@ -88,6 +91,32 @@ class AuthController extends AddonsController{
         }
 
     }
+    /*
+     * 显示当前活动代金劵
+     */
+    public function myCoupon() {
+        $sid = \LfRequest::inNum('id');
+        $uid = session('user_id');
+        $coupon = M('coupons')->where(['salon_id'=>$sid,'user_id'=>$uid])->find();
+        if(!$coupon) {
+            $this->error("您还没有代金劵");
+            exit();
+        }
+        $user = M('e_user')->find($coupon['user_id']);
+        $salon = M('e_salon')->find($coupon['salon_id']);
+        if(!$user || !$salon) $this->error("该代金劵信息有误,请核实!");
+        $this->assign('coupon',$coupon);
+        $this->assign('user',$user);
+        $this->assign('salon',$salon);
+        $this->assign('url',addons_url('Coupons://Coupons/showCoupon',['code'=>$coupon['code']]));
+        $this->assign("coupon",$coupon);
+        $this->display();
+    }
+
+
+
+
+
     //list列表，已认证学生列表
     function lists() {
         $users = M('e_user');
@@ -173,7 +202,45 @@ class AuthController extends AddonsController{
         $this->display();
     }
 
-    function myCoupon() {
-        $this->display();
+    public function export() {
+        $data = M('e_user')->select();
+        $objPHPExcel = new \PHPExcel();
+        // 设置excel文档的属性
+        $objPHPExcel->getProperties()->setCreator("GuGoo.Ltd")
+            ->setLastModifiedBy("GuGoo.Ltd")
+            ->setTitle("Excel数据导出")
+            ->setSubject("Excel数据导出")
+            ->setDescription("Excel数据导出")
+            ->setKeywords("excel")
+            ->setCategory("result file");
+        $objPHPExcel->setActiveSheetIndex(0)
+            //Excel的第A列，uid是你查出数组的键值，下面以此类推
+            ->setCellValue('A1', "姓名")
+            ->setCellValue('B1', "学号")
+            ->setCellValue('C1', "专业")
+            ->setCellValue('D1', "学历")
+            ->setCellValue('E1', "性别")
+            ->setCellValue('F1', "联系电话")
+            ->setCellValue('G1', "邮箱");
+        foreach($data as $k => $v){
+            $num=$k+2;
+            $objPHPExcel->setActiveSheetIndex(0)
+                //Excel的第A列，uid是你查出数组的键值，下面以此类推
+                ->setCellValue('A'.$num, $v['student_name'])
+                ->setCellValue('B'.$num, $v['student_id'])
+                ->setCellValue('C'.$num, $v['major'])
+                ->setCellValue('D'.$num, $v['student_status'])
+                ->setCellValue('E'.$num, $v['gender'])
+                ->setCellValue('F'.$num, $v['phone'])
+                ->setCellValue('G'.$num, $v['email']);
+        }
+        $objPHPExcel->getActiveSheet()->setTitle('User');
+        $objPHPExcel->setActiveSheetIndex(0);
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="export.xls"');
+        header('Cache-Control: max-age=0');
+        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
+        exit;
     }
 }

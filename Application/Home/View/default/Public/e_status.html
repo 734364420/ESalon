@@ -40,6 +40,13 @@
 <!--~~~~~~~-->
 
 
+<!--已参加未结束,显示代金劵-->
+<php> if(!empty($participate)&&($iteam['end_date'] > time()) ) {</php>
+    <a href="{:addons_url('Auth://Auth/myCoupon',array('id'=>$iteam['id']))}" class="button">我的代金劵</a>
+<php>}</php>
+<!--~~~~~~~-->
+
+
 <!--未参加--未结束，人未满-->
 <php> if(empty($participate) && ($iteam['end_date'] > time()) && ($iteam['participated_number'] < $iteam['participate_number']) ) {</php>
     <a href="{:addons_url($sign_url,array('e_id'=>$iteam['id']))}" class="button go-summary">报名参加</a>

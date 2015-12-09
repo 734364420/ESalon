@@ -1,6 +1,7 @@
 <?php
 namespace Addons\Salon\Controller;
 use Addons\Coupons\Model\CouponsModel;
+use Addons\Credit\Model\CreditModel;
 use Home\Controller\AddonsController;
 class SalonController extends AddonsController{
 	public function __construct() {
@@ -120,9 +121,19 @@ class SalonController extends AddonsController{
 			$data['start_date']=strtotime($start_date);
 			$data['end_date']=strtotime($end_date);
 			if($data['end_date']<=time()){
-				$this->error('活动时间应结束咯，请检查活动时间');
+				$this->error('活动时间已结束咯，请检查活动时间');
 			}
 			$data['space']=\LfRequest::inStr('space');
+			$room = M('room')->where(array('name'=>$data['space']))->find();
+			if($room) {
+                if($data['start_date'] < $room['end_time'] && $data['start_date'] > $room['start_time'])
+                    $this->error($data['space']."已被借用");
+                if($data['end_date'] < $room['end_time'] && $data['end_date'] > $room['start_time'])
+                    $this->error($data['space']."已被借用");
+                if($data['end_date'] > $room['end_time'] && $data['start_date'] > $room['start_time'])
+                    $this->error($data['space']."已被借用");
+                exit();
+            }
 			$data['participate_number']=\LfRequest::inStr('participate_number');
 			$data['type']=\LfRequest::inStr('type');
 			$data['brief']=\LfRequest::inStr('brief');
@@ -326,7 +337,7 @@ class SalonController extends AddonsController{
 		// 读取模型数据列表
 
 		empty ($fields) || in_array('id', $fields) || array_push($fields, 'id');
-		if(\LfRequest::inNum('summary')&&in_array(\LfRequest::inNum('summary'),[1,2])) {
+		if(\LfRequest::inNum('summary')&&in_array(\LfRequest::inNum('summary'),[1,2,3])) {
 			$map['summary'] = \LfRequest::inNum('summary')-1;
 		}
 		$name = parse_name(get_table_name($this->model ['id']), true);
@@ -391,4 +402,91 @@ class SalonController extends AddonsController{
 		$this->assign('participates',$participates);
 		$this->display();
 	}
+	public function passSummary() {
+		$id = \LfRequest::inNum('id');
+		$salon=M('e_salon')->where('id='.$id)->find();
+		if($salon['summary']==0) $this->error("未总结");
+		if($salon['summary']==2) $this->error("已经审核通过");
+		$res = M('e_salon')->where('id='.$id)->save(['summary'=>2]);
+		if($res) {
+			$summarys = M('e_summary')->where(array('e_id'=>$id))->select();
+			foreach($summarys as $s) {
+				if($s['user_id']==$salon['publish_userid']) {
+					$creditValue = 10;
+				} else {
+					$creditValue = 2;
+				}
+				$credit = new CreditModel();
+				$credit->updateCredit($s['user_id'],$creditValue);
+			}
+			$this->success("审核成功!");
+		} else {
+			$this->error("审核失败,请重试");
+		}
+	}
+    public function deleteSummary() {
+        $id = \LfRequest::inNum('id');
+        $res = M('e_summary')->delete($id);
+        if($res) {
+            /*
+             * TODO
+             * 删除成功后发送短信通知重新提交
+             * sendMessage()
+             */
+            $this->success("删除成功!");
+        } else {
+            $this->error("删除失败,请重试");
+        }
+    }
+    public function export() {
+        $data = M('e_salon')->select();
+        $objPHPExcel = new \PHPExcel();
+        // 设置excel文档的属性
+        $objPHPExcel->getProperties()->setCreator("GuGoo.Ltd")
+            ->setLastModifiedBy("GuGoo.Ltd")
+            ->setTitle("Excel数据导出")
+            ->setSubject("Excel数据导出")
+            ->setDescription("Excel数据导出")
+            ->setKeywords("excel")
+            ->setCategory("result file");
+        $objPHPExcel->setActiveSheetIndex(0)
+            //Excel的第A列，uid是你查出数组的键值，下面以此类推
+            ->setCellValue('A1', "主题")
+            ->setCellValue('B1', "分类")
+            ->setCellValue('C1', "简介")
+            ->setCellValue('D1', "活动时间")
+            ->setCellValue('E1', "已参与人数")
+            ->setCellValue('F1', "参与人数")
+            ->setCellValue('G1', "点击量")
+            ->setCellValue('H1', "发起人")
+            ->setCellValue('I1', "参与人");
+        foreach($data as $k => $v){
+            $num=$k+2;
+            $publishUser = M('e_user')->find($v['publish_userid']);
+            $participateUsers = M('e_participate')->where('e_id='.$v['id'])->select();
+            $participate = "";
+            foreach($participateUsers as $u) {
+                $participate .= M('e_user')->find($u['user_id'])['student_name']."/";
+            }
+            $objPHPExcel->setActiveSheetIndex(0)
+                //Excel的第A列，uid是你查出数组的键值，下面以此类推
+                ->setCellValue('A'.$num, $v['title'])
+                ->setCellValue('B'.$num, $v['type'])
+                ->setCellValue('C'.$num, $v['brief'])
+                ->setCellValue('D'.$num, date("Y-m-d H:i",$v['start_date']).'-'.date("H:i",$v['end_date']))
+                ->setCellValue('E'.$num, $v['participated_number'])
+                ->setCellValue('F'.$num, $v['participate_number'])
+                ->setCellValue('G'.$num, $v['hits'])
+                ->setCellValue('H'.$num, $publishUser['student_name'])
+                ->setCellValue('I'.$num, $participate);
+        }
+        $objPHPExcel->getActiveSheet()->setTitle('User');
+        $objPHPExcel->setActiveSheetIndex(0);
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="export.xls"');
+        header('Cache-Control: max-age=0');
+        $objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+        $objWriter->save('php://output');
+        exit;
+    }
 }

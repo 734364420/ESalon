@@ -54,6 +54,11 @@
                     </php>
                     <volist name="summarys" id="summary">
                         <div class="detail-group" style="margin-left: 20px;">
+                            <span class="label">评价人：</span>
+                            <php>$user = M('e_user')->find($summary['user_id']);</php>
+                            <span class="cont">{$user.student_name}</span>
+                        </div>
+                        <div class="detail-group" style="margin-left: 20px;">
                             <span class="label">评价星星数：</span>
                             <span class="cont">{$summary.stars}颗心</span>
                         </div>
@@ -64,19 +69,28 @@
                         <php>if(!empty($summary['picture'])) {</php>
                         <div class="detail-group" style="margin-left: 20px;">
                             <span class="label">活动图片：</span>
-                            <a class="btn" data-src="{$summary.picture}">查看</a>
+                            <!--<a class="btn" class="show-pic" onclick="showPic('{$summary.picture}')">查看</a>-->
+                            <a class="btn" target="_blank" class="show-pic" href="{$summary.picture}">查看</a>
                         </div>
                         <php>}</php>
                         <div class="detail-group" style="margin-left: 20px;">
                             <span class="label">操作：</span>
-                            <a class="btn" href="">通过</a>
-                            <a class="btn btn-danger" href="">删除</a>
+                            <a class="btn btn-danger" href="{:addons_url('Salon://Salon/deleteSummary',['id'=>$summary['id']])}">删除</a>
                         </div>
                         <hr>
                     </volist>
                 </div>
             </div>
         </section>
+    </div>
+    <div class="modal">
+        <div class="header">
+            <span>活动图片(图片部分压缩,请右键查看原图)</span>
+            <span class="close">x</span>
+        </div>
+        <div class="content">
+            <img id="pic" src="" style="width: 750px;height: 400px;" alt="">
+        </div>
     </div>
 </block>
 <block name="script">
@@ -102,7 +116,14 @@
                     $("#search").click();
                 }
             });
+            $(".close").click(function(){
+                $(".modal").fadeOut();
+            })
 
         })
+        function showPic(src) {
+                $("#pic").attr('src',src);
+                $(".modal").fadeIn();
+        }
     </script>
 </block>

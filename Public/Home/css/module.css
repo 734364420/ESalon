@@ -1281,3 +1281,40 @@ label.textarea ~ .check-tips {
 .data-detail .detail-group span.label{
 	width: 120px;
 }
+.modal{
+	position: absolute;
+	left: 0;right: 0;top: 0;bottom: 0;
+	width: 800px;
+	height: 500px;
+	margin: auto;
+	background-color: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 20px rgba(0,0,0,0.4);
+	-webkit-box-shadow: 0 0 20px rgba(0,0,0,0.4);
+	-moz-box-shadow: 0 0 20px rgba(0,0,0,0.4);
+	-o-box-shadow: 0 0 20px rgba(0,0,0,0.4);
+	display: none;
+}
+.modal .header{
+	height: 40px;
+	line-height: 40px;
+	padding: 10px 35px;
+	border-bottom: 1px solid #ccc;
+}
+.modal .header span{
+	font-size: 22px;
+}
+.modal .header span:nth-child(2){
+	float: right;
+	cursor: pointer;
+	font-family: "Consolas", monospace;
+}
+.modal .content{
+	padding: 20px 35px;
+}
+.modal .content > div{
+	height: 180px;
+}
+.modal .content > div form{
+	margin: 20px 0;
+}

@@ -2323,3 +2323,6 @@ function e_auth() {
         session('user_id',$user['id']);
     }
 }
+function sendMessage($phone,$content) {
+
+}
