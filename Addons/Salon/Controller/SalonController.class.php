@@ -124,7 +124,7 @@ class SalonController extends AddonsController{
 				$this->error('活动时间已结束咯，请检查活动时间');
 			}
 			$data['space']=\LfRequest::inStr('space');
-			$room = M('room')->where(array('name'=>$data['space']))->find();
+			$room = M('room')->where(array('name'=>$data['space']))->order('id desc')->find();
 			if($room) {
                 if($data['start_date'] < $room['end_time'] && $data['start_date'] > $room['start_time'])
                     $this->error($data['space']."已被借用");
