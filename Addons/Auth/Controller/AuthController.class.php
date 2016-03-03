@@ -37,7 +37,7 @@ class AuthController extends AddonsController
             }
             $url = "http://222.197.183.98:45003/Xscxjk/xscxjkAction.action?xh=" . $user->student_id . "&xm=" . $user->student_name;
             $result = json_decode(https_request($url));
-            if($result['result']!="success") {
+            if($result->result !="success") {
                 $this->error("姓名或学号错误,请重新认证!");
                 exit();
             }
