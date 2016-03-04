@@ -18,6 +18,7 @@ class CouponsController extends AddonsController{
         $salon = M('e_salon')->find($coupon['salon_id']);
         if(!$user || !$salon) $this->error("该代金劵信息有误,请核实!");
         $this->assign('coupon',$coupon);
+        $this->assign('title',"代金劵");
         $this->assign('user',$user);
         $this->assign('salon',$salon);
         $this->assign('url',addons_url('Coupons://Coupons/useCoupon'));

@@ -9,8 +9,9 @@
     <div class="flex-box select-group">
         <select name="type" class="flex-1">
             <option value="">沙龙类别</option>
-            <option value="物联网" {:IsSelected($type,'物联网')}>物联网</option>
-            <option value="互联网+" {:IsSelected($type,'互联网+')}>互联网+</option>
+            <volist name="types" id="type">
+                <option value="{$type.name}">{$type.name}</option>
+            </volist>
             <option value="">全部</option>
         </select>
         <select name="salon_status" class="flex-1">

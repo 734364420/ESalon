@@ -41,9 +41,15 @@
 
 
 <!--已参加未结束,显示代金劵-->
-<php> if(!empty($participate)&&($iteam['end_date'] > time()) ) {</php>
-    <a href="{:addons_url('Auth://Auth/myCoupon',array('id'=>$iteam['id']))}" class="button">我的代金劵</a>
-<php>}</php>
+<php> if(!empty($participate)&&($iteam['end_date'] > time()) ) {
+    $uid = session('user_id');
+    $coupon = M('coupons')->where(['salon_id' => $iteam['id'], 'user_id' => $uid])->find();
+    if($coupon['is_used']) {
+ </php>
+<a href="#" class="button">代金劵已使用</a>
+<php>} else {</php>
+<a href="{:addons_url('Auth://Auth/myCoupon',array('id'=>$iteam['id']))}" class="button">我的代金劵</a>
+<php>} }</php>
 <!--~~~~~~~-->
 
 

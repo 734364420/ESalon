@@ -69,6 +69,9 @@ class SalonController extends AddonsController{
 		$salons_publish = M('e_salon')->where($data)->order('id desc')->limit($PublishPage['offset'],$PublishPage['perpagenum'])->select();
 		$salons_participate= M('e_salon')->where($Pdata)->order('id desc')->limit($ParticipatePage['offset'],$ParticipatePage['perpagenum'])->select();
 		$user = M('e_user')->where('id=' . session('user_id'))->find();
+		$IteamType = M('e_iteam_type');
+		$types = $IteamType->select();
+		$this->assign('types',$types);
 		$this->assign('status',$status);
 		$this->assign('PublishPage',$PublishPage);
 		$this->assign('ParticipatePage',$ParticipatePage);
