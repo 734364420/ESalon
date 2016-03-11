@@ -219,6 +219,9 @@ class SalonController extends AddonsController{
 		$end_salons=M('e_salon')->where($map2)->count();
 		$EndPage=\LfPageData::Page($end_salons,addons_url('Salon://Salon/SalonSquare/status/end'));
 		$this->end_salons=M('e_salon')->where($map2)->order('id desc')->limit($EndPage['offset'],$EndPage['perpagenum'])->select();
+		$IteamType = M('e_iteam_type');
+		$types = $IteamType->select();
+		$this->assign('types',$types);
 		$this->assign('status',$status);
 		$this->assign('EndPage',$EndPage);
 		$this->assign('SignPage',$SignPage);
