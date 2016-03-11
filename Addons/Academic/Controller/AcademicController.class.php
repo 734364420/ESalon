@@ -326,10 +326,18 @@ class AcademicController extends AddonsController
 			}
 			$summary->stars = \LfRequest::inNum('stars');
 			$summary->comment = \LfRequest::inStr('comment');
+			if(strlen($summary->comment) > 900) {
+				$this->error('总结字数需在300字以内');
+				exit();
+			}
 			if ($isSalon == '1') {
 				$summary->is_iteam = 0;
 			} else {
 				$summary->is_iteam = 1;
+			}
+			if(($_FILES['file']['size']/(1024*1024)) > 3) {
+				$this->error('图片大小在3M以内');
+				exit();
 			}
 			$upload =new \LfUpload('/Picture');
 			$path = $upload->upload('file');

@@ -35,21 +35,32 @@ class AuthController extends AddonsController
             if (empty($user->student_name)) {
                 $this->error("请输入姓名");
             }
-            $url = "http://222.197.183.98:45003/Xscxjk/xscxjkAction.action?xh=" . $user->student_id . "&xm=" . $user->student_name;
-            $result = json_decode(https_request($url));
-            if($result->result !="success") {
-                $this->error("姓名或学号错误,请重新认证!");
-                exit();
-            }
+//            $url = "http://222.197.183.98:45003/Xscxjk/xscxjkAction.action?xh=" . $user->student_id . "&xm=" . $user->student_name;
+//            $result = json_decode(https_request($url));
+//            if($result->result !="success") {
+//                $this->error("姓名或学号错误,请重新认证!");
+//                exit();
+//            }
             $isAuth = M('e_user')->where('openid = ' . get_openid())->find();
             if (!empty($isAuth)) {
                 $this->error("不能重复认证");
+                exit();
+            }
+            $isAuth = M('e_user')->where('student_id = ' . $user->student_id)->find();
+            if (!empty($isAuth)) {
+                $this->error("不能重复认证");
+                exit();
             }
             $id = $user->add();
             $credit = new CreditModel();
             $credit->createCredit($id);
             $this->success("认证成功", addons_url('Salon://Salon/Instruction'));
         } else {
+            $isAuth = M('e_user')->where('openid = ' . get_openid())->find();
+            if (!empty($isAuth)) {
+                redirect(addons_url('Auth://Auth/UserProfile',array("id"=>$isAuth["id"])));
+                exit();
+            }
             $user = '';
             $user['student_id'] = '';
             $user['student_name'] = '';
@@ -68,6 +79,7 @@ class AuthController extends AddonsController
 
     function UserProfile()
     {
+        e_auth();
         $user_id = I('id');
         $user = M('e_user')->find($user_id);
         if (empty($user)) {
@@ -80,19 +92,20 @@ class AuthController extends AddonsController
 
     function EditProfile()
     {
+        e_auth();
         $this->title = "编辑个人资料";
         if (IS_POST) {
-            $user = M('e_user');
-            $user->student_id = I('student_id');
-            $user->student_name = I('student_name');
-            $user->major = I('major');
-            $user->phone = I('phone');
-            $user->email = I('email');
-            $user->gender = I('gender');
-            $user->school = I('school');
-            $user->student_status = I('student_status');
-            $user->good = I('good');
-            $res = $user->where('id = ' . session('user_id'))->save();
+            //$user->student_id = I('student_id');
+            //$user->student_name = I('student_name');
+            //$user->major = I('major');
+            $user["id"] = session('user_id');
+            $user["phone"] = I('phone');
+            $user["email"] = I('email');
+            $user["gender"] = I('gender');
+            //$user->school = I('school');
+            $user["student_status"] = I('student_status');
+            $user["good"] = I('good');
+            $res = M('e_user')->save($user);
             if ($res) {
                 $this->success("修改成功");
             } else {
@@ -102,6 +115,7 @@ class AuthController extends AddonsController
             $user_id = session('user_id');
             $user = M('e_user')->find($user_id);
             $this->assign('user', $user);
+            $this->assign('edit', 1);
             $this->display('Auth/Auth');
         }
 
@@ -112,6 +126,7 @@ class AuthController extends AddonsController
      */
     public function myCoupon()
     {
+        e_auth();
         $sid = \LfRequest::inNum('id');
         $uid = session('user_id');
         $coupon = M('coupons')->where(['salon_id' => $sid, 'user_id' => $uid])->find();

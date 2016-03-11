@@ -15,6 +15,22 @@
             <b>学生姓名：</b>
             <span>{$user.student_name}</span>
         </li>
+        <li>
+            <b>代金劵金额：</b>
+            <span>{$coupon.money}</span>
+        </li>
+        <li>
+            <b>使用情况：</b>
+            <span>
+                <php>if($coupon["is_used"]) {
+                        echo "已使用";
+                    } else {
+                        echo "未使用";
+                    }
+                </php>
+            </span>
+        </li>
+
     </ul>
 </body>
 

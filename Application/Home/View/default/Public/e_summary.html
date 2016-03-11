@@ -1,10 +1,16 @@
 <php>
+	$isPass = M('e_salon')->where('id='.$iteam['id'])->find();
+	if($isPass["summary"]==2) {
+</php>
+
+<php>
+	//判断是否有总结
 	$isSummary = M('e_summary')->where(' e_id = '.$iteam['id'])->select();
 	if(!empty($isSummary)) {
 </php>
 <li id="comment">
 	<img src="/Public/static/img/summary.jpg" class="comment">
-	<span class="label">比赛总结：</span>
+	<span class="label">活动总结：</span>
 
 	<php>
 		$summary = M('e_summary')->where('user_id ='.$user['id'].' AND e_id = '.$iteam['id'].' AND is_iteam = '.$is_iteam)->find();
@@ -59,5 +65,6 @@
 		</volist>
 	</div>
 </li>
+<php>}</php>
 <php>}</php>
 <php>}</php>

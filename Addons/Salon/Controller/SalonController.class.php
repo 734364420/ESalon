@@ -178,9 +178,15 @@ class SalonController extends AddonsController{
 		$data['e_id']=$id;
 		$data['is_iteam']=0;
 		$participated_number=M('e_salon')->where('id='.$id)->getField('participated_number');
+		$publish_userid=M('e_salon')->where('id='.$id)->getField('publish_userid');
+		if($publish_userid == $data["user_id"]) {
+			$this->error('不能参加自己的活动');
+			exit();
+		}
 		$participate_number=M('e_salon')->where('id='.$id)->getField('participate_number');
 		if($participated_number == $participate_number){
 			$this->error('人数已满，稍后再试');
+			exit();
 		}else{
 			$number['participated_number']=$participated_number+1;
 			$result=M('e_salon')->where('id='.$id)->save($number);
@@ -408,8 +414,14 @@ class SalonController extends AddonsController{
 	public function passSummary() {
 		$id = \LfRequest::inNum('id');
 		$salon=M('e_salon')->where('id='.$id)->find();
-		if($salon['summary']==0) $this->error("未总结");
-		if($salon['summary']==2) $this->error("已经审核通过");
+		if($salon['summary']==0) {
+			$this->error("未总结");
+			exit();
+		}
+		if($salon['summary']==2) {
+			$this->error("已经审核通过");
+			exit();
+		}
 		$res = M('e_salon')->where('id='.$id)->save(['summary'=>2]);
 		if($res) {
 			$summarys = M('e_summary')->where(array('e_id'=>$id))->select();
